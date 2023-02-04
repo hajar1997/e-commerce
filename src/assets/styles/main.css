@@ -1,0 +1,65 @@
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    margin: 0 auto;
+    width: 50% !important;
+}
+
+.ant-input-group-wrapper {
+    flex: 1 0 0!important;
+    display: flex!important;
+}
+
+.ant-input-wrapper {
+    background: #F2F2F2 !important;
+    border: 1px solid #E0E0E0 !important;
+    border-radius: 8px !important;
+}
+
+.ant-input {
+    background-color: #F2F2F2;
+}
+
+.ant-input::placeholder {
+    color: #828282 !important;
+    font-size: 14px!important;
+}
+
+.ant-input-affix-wrapper {
+    background-color: #F2F2F2;
+}
+
+.ant-input-group-addon {
+    display: none !important;
+}
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover{
+    border-color: #E0E0E0!important;
+}
+
+.ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+    border-start-end-radius: 8px;
+    border-end-end-radius: 8px;
+}
+
+
+.ant-input-search .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
+    border-start-start-radius: 8px;
+    border-end-start-radius: 8px;
+}
+
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+    border-color: #E0E0E0 !important;
+    box-shadow: none !important;
+    outline: 0;
+}
+
+.countOfShopping{
+    padding: 0px 7px;
+    color: white;
+    border-radius: 50%;
+    background: #2DD06E;
+}
