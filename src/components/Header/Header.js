@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import {
   UserOutlined,
@@ -35,10 +36,16 @@ const Header = () => {
           </div>
           <div className="header-icons">
             <Space size={"large"}>
-              <UserOutlined style={{ fontSize: "20px" }} />
-              <HeartOutlined style={{ fontSize: "20px" }} />
+              <Link className="text-dark">
+                <UserOutlined style={{ fontSize: "20px" }} />
+              </Link>
+              <Link className="text-dark">
+                <HeartOutlined style={{ fontSize: "20px" }} />
+              </Link>
               <div className="shopping-icon d-flex align-items-center">
-                <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                <Link className="text-dark">
+                  <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+                </Link>
                 <div className="countOfShopping ms-2">0</div>
               </div>
             </Space>

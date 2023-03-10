@@ -1,3 +1,4 @@
+/* Header Start */
 nav {
     display: flex;
     align-items: center;
@@ -9,8 +10,8 @@ nav {
 }
 
 .ant-input-group-wrapper {
-    flex: 1 0 0!important;
-    display: flex!important;
+    flex: 1 0 0 !important;
+    display: flex !important;
 }
 
 .ant-input-wrapper {
@@ -25,7 +26,7 @@ nav {
 
 .ant-input::placeholder {
     color: #828282 !important;
-    font-size: 14px!important;
+    font-size: 14px !important;
 }
 
 .ant-input-affix-wrapper {
@@ -35,8 +36,9 @@ nav {
 .ant-input-group-addon {
     display: none !important;
 }
-.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover{
-    border-color: #E0E0E0!important;
+
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border-color: #E0E0E0 !important;
 }
 
 .ant-input-group .ant-input-affix-wrapper:not(:last-child) {
@@ -57,9 +59,109 @@ nav {
     outline: 0;
 }
 
-.countOfShopping{
+.countOfShopping {
     padding: 0px 7px;
     color: white;
     border-radius: 50%;
     background: #2DD06E;
 }
+
+/***MEGAMENU START***/
+.navbar .megamenu {
+    padding: 1rem;
+}
+
+.navbar-nav {
+    gap: 56px;
+}
+
+.col-megamenu img {
+    width: 100%;
+}
+
+.col-megamenu .title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4F4F4F;
+}
+
+.col-megamenu a {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #4F4F4F;
+}
+
+.navbar .has-megamenu {
+    position: static !important;
+}
+
+.navbar .has-megamenu .nav-link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #4F4F4F;
+}
+
+.navbar .megamenu {
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin-top: 0;
+    border: none;
+}
+
+.has-megamenu .nav-link:focus {
+    color: #2DD06E !important;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none !important;
+}
+
+.navbar-toggler {
+    border: none !important;
+}
+
+@media(max-width: 1400px) {
+    .navbar-nav {
+        gap: 20px;
+    }
+}
+
+@media(max-width: 992px) {
+
+    .navbar.fixed-top .navbar-collapse,
+    .navbar.sticky-top .navbar-collapse {
+        overflow-y: auto;
+        max-height: 90vh;
+        margin-top: 10px;
+    }
+
+    .megamenu .row {
+        gap: 20px;
+    }
+
+    .navbar-nav {
+        gap: unset;
+    }
+
+}
+
+.hr-line {
+    margin: 0;
+    height: 2px;
+    border-top: 1px solid #2DD06E !important;
+    opacity: unset !important;
+}
+
+/***MEGAMENU END***/
+
+
+/* Header End */
