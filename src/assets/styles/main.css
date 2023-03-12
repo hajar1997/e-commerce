@@ -87,10 +87,12 @@ nav {
     color: #4F4F4F;
 }
 
+
+
 .col-megamenu a {
     text-decoration: none;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
     line-height: 20px;
     color: #4F4F4F;
@@ -102,11 +104,12 @@ nav {
 
 .navbar .has-megamenu .nav-link {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;
     line-height: 20px;
     color: #4F4F4F;
 }
+
 
 .navbar .megamenu {
     left: 0;
@@ -129,6 +132,14 @@ nav {
     border: none !important;
 }
 
+.mobile-dropdown {
+    display: none;
+}
+
+.transition {
+    transition: all 0.3s ease-out;
+}
+
 @media(max-width: 1400px) {
     .navbar-nav {
         gap: 20px;
@@ -137,11 +148,30 @@ nav {
 
 @media(max-width: 992px) {
 
+    .shopping-icon {
+        position: relative;
+    }
+
+    .countOfShopping {
+        position: absolute;
+        bottom: 10px;
+        padding: 0px 5px;
+    }
+
+    .logo img {
+        width: 115px;
+    }
+
     .navbar.fixed-top .navbar-collapse,
     .navbar.sticky-top .navbar-collapse {
         overflow-y: auto;
         max-height: 90vh;
         margin-top: 10px;
+        transition: all .3s ease-out;
+    }
+
+    .navbar-collapse {
+        height: 100vh;
     }
 
     .megamenu .row {
@@ -150,6 +180,31 @@ nav {
 
     .navbar-nav {
         gap: unset;
+    }
+
+    .navbar .megamenu {
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 0.25rem;
+    }
+
+    .mobile-dropdown {
+        display: block;
+        width: 6px;
+        color: #2E3A59;
+    }
+
+    .has-megamenu .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-toggle-wrapper{
+        display: flex;
+    }
+
+    .search-bar {
+        width: 100% !important;
     }
 
 }

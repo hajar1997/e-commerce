@@ -1,9 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  UserOutlined,
+  HeartOutlined,
+  ShoppingCartOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo.svg";
 import img from "../../assets/images/mega-menu-pic.png";
+import { Space } from "antd";
+import { Input } from "antd";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MegaMenu = () => {
+const { Search } = Input;
+const prefix = (
+  <SearchOutlined
+    style={{
+      fontSize: 16,
+      color: "#828282",
+      marginRight: 10,
+    }}
+  />
+);
+
+const MobileHeader = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [current, setCurrent] = useState("home");
+
+  const handleClick = (e) => {
+    setCurrent(e.target.name);
+  };
+
+  const handleMenuClick = () => {
+    setMenuOpen(!menuOpen);
+  };
+  
   const categories = [
     "Apple",
     "Samsung",
@@ -15,20 +47,41 @@ const MegaMenu = () => {
   ];
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light ">
-        <div className="container">
+    <div className="container-fluid">
+      <nav className="navbar navbar-expand-md navbar-light bg-white mobile-navbar">
+        <div className="logo-toggle-wrapper">
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#main_nav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={handleMenuClick}
           >
             <span className="navbar-toggler-icon" />
           </button>
-          <div className="collapse navbar-collapse" id="main_nav">
+          <a href="#" className="navbar-brand logo">
+            <img src={logo} alt="" />
+          </a>
+        </div>
+        <div className="header-icons">
+          <Space size={"small"}>
+            <Link className="text-dark">
+              <UserOutlined style={{ fontSize: "20px" }} />
+            </Link>
+            <Link className="text-dark">
+              <HeartOutlined style={{ fontSize: "20px" }} />
+            </Link>
+            <div className="shopping-icon d-flex align-items-center">
+              <Link className="text-dark">
+                <ShoppingCartOutlined style={{ fontSize: "20px" }} />
+              </Link>
+              <div className="countOfShopping ms-2">0</div>
+            </div>
+          </Space>
+        </div>
+        <div
+          className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
+          id="navbarCollapse"
+        >
+          <div className="container-fluid">
             <ul className="navbar-nav">
               <li className="nav-item dropdown has-megamenu">
                 <a
@@ -113,11 +166,7 @@ const MegaMenu = () => {
               </li>
               {categories.map((category) => (
                 <li className="nav-item dropdown has-megamenu">
-                  <a
-                    className="nav-link"
-                    href="#"
-                    data-bs-toggle="dropdown"
-                  >
+                  <a className="nav-link" href="#" data-bs-toggle="dropdown">
                     {category}
                     <FontAwesomeIcon
                       className="mobile-dropdown"
@@ -189,13 +238,21 @@ const MegaMenu = () => {
                   </div>
                 </li>
               ))}
+              <li className="nav-item mt-2">
+                <button className="btn btn-outline-secondary me-2">
+                  Login
+                </button>
+                <button className="btn btn-primary">Register</button>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
-      <hr className="hr-line" />
+      <div className="search-bar">
+        <Search placeholder="Axtarış..." size="large" prefix={prefix} />
+      </div>
     </div>
   );
 };
 
-export default MegaMenu;
+export default MobileHeader;
