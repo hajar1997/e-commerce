@@ -9,6 +9,9 @@ import {
 } from "@ant-design/icons";
 import { Input } from "antd";
 import { Space } from "antd";
+import MegaMenu from "../MegaMenu/MegaMenu";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { Search } = Input;
 const prefix = (
@@ -27,7 +30,17 @@ const Header = () => {
   return (
     <header>
       <div className="container">
-        <nav>
+        <nav className="d-flex justify-content-between">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#main_nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <FontAwesomeIcon icon={faBars} className="navbar-toggler-icon" />
+          </button>
           <div className="header-logo">
             <img src={logo} alt="" />
           </div>
@@ -51,7 +64,11 @@ const Header = () => {
             </Space>
           </div>
         </nav>
+        <div className="mobile-navbar">
+          <MegaMenu />
+        </div>
       </div>
+      <hr className="hr-line" />
     </header>
   );
 };

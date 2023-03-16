@@ -1,14 +1,12 @@
 import React from "react";
 import Header from "../components/Header/Header";
-import MegaMenu from "../components/MegaMenu/MegaMenu";
-import MobileHeader from "../components/MobileHeader/MobileHeader";
+import MainSection from "../components/MainSection/MainSection";
 
 const Home = () => {
   return (
     <div>
-      {/* <Header /> */}
-      {/* <MegaMenu /> */}
-      <MobileHeader />
+      <Header />
+      <MainSection />
     </div>
   );
 };

@@ -2,6 +2,7 @@
 nav {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .search-bar {
@@ -64,6 +65,13 @@ nav {
     color: white;
     border-radius: 50%;
     background: #2DD06E;
+}
+
+.hr-line {
+    margin: 0;
+    height: 2px;
+    border-top: 1px solid #2DD06E !important;
+    opacity: unset !important;
 }
 
 /***MEGAMENU START***/
@@ -129,6 +137,7 @@ nav {
 }
 
 .navbar-toggler {
+    display: none;
     border: none !important;
 }
 
@@ -140,6 +149,28 @@ nav {
     transition: all 0.3s ease-out;
 }
 
+.login-and-register-wrapper {
+    display: none;
+    justify-content: space-between;
+    padding: 14px 0px;
+    gap: 19px;
+}
+
+.login-btn {
+    background: #FFFFFF !important;
+    border: 1px solid #2DD06E !important;
+    border-radius: 8px !important;
+    color: #2DD06E !important;
+    width: 50%;
+}
+
+.register-btn {
+    width: 50%;
+    background: #2DD06E !important;
+    border-radius: 8px !important;
+    color: white !important;
+}
+
 @media(max-width: 1400px) {
     .navbar-nav {
         gap: 20px;
@@ -147,6 +178,10 @@ nav {
 }
 
 @media(max-width: 992px) {
+
+    .navbar-toggler {
+        display: block;
+    }
 
     .shopping-icon {
         position: relative;
@@ -162,16 +197,18 @@ nav {
         width: 115px;
     }
 
-    .navbar.fixed-top .navbar-collapse,
-    .navbar.sticky-top .navbar-collapse {
-        overflow-y: auto;
-        max-height: 90vh;
-        margin-top: 10px;
-        transition: all .3s ease-out;
+    .navbar-collapse {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background: white;
+        height: calc(100vh - 60px);
+        z-index: 9999;
+        padding: 0px 10px;
     }
 
-    .navbar-collapse {
-        height: 100vh;
+    .navbar-collapse .nav-item {
+        padding: 20px 0px;
     }
 
     .megamenu .row {
@@ -199,7 +236,7 @@ nav {
         justify-content: space-between;
     }
 
-    .logo-toggle-wrapper{
+    .logo-toggle-wrapper {
         display: flex;
     }
 
@@ -207,16 +244,85 @@ nav {
         width: 100% !important;
     }
 
+    .hr-line {
+        display: none;
+    }
+
+    .mobile-navbar {
+        order: 1;
+    }
+
+    .header-logo {
+        order: 2;
+    }
+
+    .header-icons {
+        order: 3;
+    }
+
+    .search-bar {
+        order: 4;
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    .navbar-toggler {
+        padding: unset !important;
+    }
+
+    .login-and-register-wrapper {
+        display: flex;
+    }
+
 }
 
-.hr-line {
-    margin: 0;
-    height: 2px;
-    border-top: 1px solid #2DD06E !important;
-    opacity: unset !important;
-}
+
+
 
 /***MEGAMENU END***/
 
 
 /* Header End */
+
+/* MAIN SECTION START */
+
+.main-section {
+    background: url('../images/mainsection-background.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+.main-text h1 {
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 48px;
+    line-height: 64px;
+    color: #000000;
+}
+
+.main-text p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4F4F4F;
+}
+
+
+.carousel .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: gray;
+}
+
+/* MAIN SECTION END */
