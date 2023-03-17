@@ -171,6 +171,72 @@ nav {
     color: white !important;
 }
 
+
+
+
+
+/***MEGAMENU END***/
+
+
+/* Header End */
+
+/* MAIN SECTION START */
+
+.main-section {
+    background: url('../images/mainsection-background.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.main-section .container {
+    display: flex !important;
+}
+
+.ant-carousel .slick-dots li {
+    width: 10px !important;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    background: #00D68F;
+}
+
+.carousel-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    gap: 150px;
+}
+
+.main-text h1 {
+    font-style: normal;
+    font-weight: 700 !important;
+    font-size: 48px;
+    line-height: 64px;
+    color: #000000;
+}
+
+.main-text p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #4F4F4F;
+}
+
+
+.ant-carousel .slick-dots li button {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: gray;
+}
+
+/* MAIN SECTION END */
+
+
+
 @media(max-width: 1400px) {
     .navbar-nav {
         gap: 20px;
@@ -202,13 +268,12 @@ nav {
         top: 0;
         width: 100%;
         background: white;
-        height: calc(100vh - 60px);
         z-index: 9999;
         padding: 0px 10px;
     }
 
     .navbar-collapse .nav-item {
-        padding: 20px 0px;
+        padding: 12px 16px;
     }
 
     .megamenu .row {
@@ -276,53 +341,32 @@ nav {
         display: flex;
     }
 
+    .content-img img {
+        width: 231px;
+        height: 216px;
+    }
+
+    .carousel-wrapper {
+        flex-direction: column-reverse;
+        height: unset;
+        gap: 40px;
+        margin-top: 32px;
+    }
+
+    .main-text h1 {
+        font-size: 24px;
+        line-height: 23px;
+        text-align: center;
+    }
+
+    .main-text p {
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .ant-carousel .slick-dots {
+        display: none !important;
+    }
 }
-
-
-
-
-/***MEGAMENU END***/
-
-
-/* Header End */
-
-/* MAIN SECTION START */
-
-.main-section {
-    background: url('../images/mainsection-background.png');
-    background-position: center;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-}
-
-
-.main-text h1 {
-    font-style: normal;
-    font-weight: 700 !important;
-    font-size: 48px;
-    line-height: 64px;
-    color: #000000;
-}
-
-.main-text p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #4F4F4F;
-}
-
-
-.carousel .carousel-indicators button {
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    background-color: gray;
-}
-
-/* MAIN SECTION END */
