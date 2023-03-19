@@ -7,7 +7,7 @@ import { Carousel } from "antd";
 const MainSection = () => {
   return (
     <section className="main-section">
-      <Carousel autoplay>
+      <Carousel >
         <div className="container">
           <div className="carousel-wrapper">
             <div className="main-text">

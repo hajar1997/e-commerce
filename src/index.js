@@ -7,6 +7,7 @@ import store from "./redux/store/store";
 import "./assets/styles/main.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import "slick-carousel/slick/slick.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

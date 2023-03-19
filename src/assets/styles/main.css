@@ -1,4 +1,8 @@
 /* Header Start */
+* {
+    text-decoration: none !important;
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -235,7 +239,129 @@ nav {
 
 /* MAIN SECTION END */
 
+/* BEST SELLER PRODUCT START */
+.best-seller-products {
+    margin-top: 100px;
+    display: flex !important;
+    gap: 20px !important;
+}
 
+.headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headings h6 {
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: #333333;
+}
+
+.headings a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #333333 !important;
+    display: flex;
+    align-items: flex-end !important;
+    gap: 10px;
+}
+
+.cards__wrapper {
+    margin-top: 32px;
+}
+
+.card-wrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100% !important;
+    background: "#FFFFFF";
+    box-shadow: 0px 0px 8px rgba(164, 164, 164, 0.4);
+    border-radius: 4px;
+}
+
+.card-wrapper img {
+    padding: 20px;
+    margin: 0px auto;
+}
+
+
+.card__content {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
+}
+
+
+.ant-card .ant-card-body {
+    padding: 0 !important;
+}
+
+.card__content span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
+.card__content a {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    height: 48px;
+    line-height: 24px;
+    color: #333333 !important;
+}
+
+.slick-arrow {
+    display: none !important;
+}
+
+.slick-track {
+    display: flex !important;
+    gap: 18px !important;
+}
+
+.bottom-heading{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 28px;
+}
+
+.bottom-heading a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 16px;
+    color: #333333 !important;
+    display: flex;
+    align-items: flex-end !important;
+    gap: 10px;
+}
+
+/* BEST SELLER PRODUCT END */
+
+/* Ads Start */
+.reklam-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reklam-wrapper img {
+    max-width: 100% !important;
+}
+
+
+
+/* Ads End */
 
 @media(max-width: 1400px) {
     .navbar-nav {
@@ -368,5 +494,25 @@ nav {
 
     .ant-carousel .slick-dots {
         display: none !important;
+    }
+
+    .reklam-wrapper {
+        flex-direction: column;
+        gap: 24px;
+    }
+}
+
+@media(max-width: 480px) {
+    .slick-track {
+        display: flex !important;
+        gap: unset !important;
+    }
+
+    .bottom-heading{
+        display: flex;
+    }
+
+    .headings a{
+        display: none;
     }
 }
