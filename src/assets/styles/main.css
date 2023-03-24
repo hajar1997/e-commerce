@@ -328,7 +328,7 @@ nav {
     gap: 18px !important;
 }
 
-.bottom-heading{
+.bottom-heading {
     display: none;
     align-items: center;
     justify-content: center;
@@ -359,9 +359,250 @@ nav {
     max-width: 100% !important;
 }
 
-
-
 /* Ads End */
+
+
+/* Access To Products Start */
+.access-products-wrapper {
+    margin-top: 100px;
+}
+
+.telefon-product-container {
+    height: 729px;
+    background: #E4E9F2;
+    border-radius: 8px;
+    position: relative;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.watch-product-container {
+    position: relative;
+    height: 356px;
+    background: #E4E9F2;
+    border-radius: 8px;
+    display: flex;
+    gap: 20px;
+}
+
+.accessory-product-container {
+    position: relative;
+    height: 356px;
+    background: #E4E9F2;
+    border-radius: 8px;
+}
+
+.accessory-product-container img {
+    position: absolute;
+    right: 25px;
+    bottom: 0;
+}
+
+.telefon-product-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.telefon-product-container .img-container img {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.watch-product-container img {
+    position: absolute;
+    right: 25px;
+    bottom: 0;
+}
+
+.access-products-wrapper .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+}
+
+.access-products-wrapper .product-info h5 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+    color: #303030;
+    margin-bottom: 0 !important;
+}
+
+.access-products-wrapper .product-info span {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    color: #303030;
+}
+
+.access-products-wrapper .product-info a {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Access To Products End */
+
+/* Our Advantage Start */
+.our-advantage-wrapper {
+    margin-top: 100px;
+}
+
+.advantage-container {
+    display: flex;
+    gap: 20px;
+}
+
+.advantage-container div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 20px;
+}
+
+.advantage-container img {
+    width: 64px;
+}
+
+.advantage-context {
+    margin-top: 46px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Our Advantage End */
+
+/* Our Partners Start */
+.our-partners-wrapper {
+    background: #F5F5F7;
+    margin-top: 136px;
+    padding-top: 30px !important;
+    padding-bottom: 48px !important;
+}
+
+.brands-container .brand {
+    background: #FFFFFF;
+    border-radius: 8px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    padding: 12px 15px;
+}
+
+/* Our Partners End */
+
+/* Footer Start */
+footer {
+    background: #262626;
+    color: white !important;
+}
+
+footer ul {
+    list-style-type: none;
+    margin-top: 30px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+footer ul>li {
+    padding: 4px;
+}
+
+footer ul>li a {
+    color: white !important;
+    opacity: 0.8;
+}
+
+
+footer hr {
+    border-width: 3px
+}
+
+.footer-card {
+    padding: 5% 0%
+}
+
+.footer-social {
+    display: flex !important;
+    gap: 33px !important;
+}
+
+footer .policy>a {
+    padding: 4px;
+    color: white !important;
+    opacity: 0.8;
+}
+
+footer .heading {
+    color: white;
+}
+
+.divider-destkop {
+    border-top: 2px solid;
+    opacity: 0.1;
+}
+
+.divider-mobile {
+    border-top: 2px solid;
+    opacity: 0.1;
+    display: none;
+}
+
+footer .card-text img {
+    width: 16px;
+}
+
+footer .address1 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #2DD06E;
+    opacity: 0.8;
+}
+
+footer .contact li {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.footer-destkop-bottom{
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.8;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.footer-mobile-bottom{
+    display: none;
+}
+
+.policy-mobile{
+    display: none;
+}
+
+/* Footer End */
+
+/* MEDIA QUERIES START */
 
 @media(max-width: 1400px) {
     .navbar-nav {
@@ -500,6 +741,72 @@ nav {
         flex-direction: column;
         gap: 24px;
     }
+
+    .gap-style {
+        gap: 20px;
+    }
+
+    .advantage-container {
+        flex-direction: column;
+    }
+
+    .advantage-context {
+        margin-top: 30px;
+        gap: 16px;
+    }
+
+    .our-partners-wrapper {
+        display: none;
+    }
+
+    footer .col-lg-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 27px;
+    }
+
+    footer ul {
+        gap: 8px;
+    }
+
+    .divider-mobile {
+        display: block;
+    }
+
+    .divider-destkop {
+        display: none;
+    }
+
+    .policy-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 24px;
+    }
+
+    .policy-mobile a {
+        padding: 4px;
+        color: white !important;
+        opacity: 0.8;
+    }
+
+    .footer-destkop-bottom{
+        display: none;
+    }
+
+    .footer-mobile-bottom{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        color: white !important;
+        opacity: 0.8;
+    }
+
 }
 
 @media(max-width: 480px) {
@@ -508,11 +815,59 @@ nav {
         gap: unset !important;
     }
 
-    .bottom-heading{
+    .bottom-heading {
         display: flex;
     }
 
-    .headings a{
+    .headings a {
         display: none;
     }
+
+    .watch-product-container img {
+        width: 141px;
+    }
+
+    .watch-product-container {
+        height: 197px;
+    }
+
+    .accessory-product-container {
+        height: 197px;
+    }
+
+    .accessory-product-container img {
+        width: 160px;
+    }
+
+    .access-products-wrapper .fa-chevron-right {
+        margin-left: 7px !important;
+    }
+
+    .access-products-wrapper h5 {
+        font-size: 18px !important;
+        line-height: 18px;
+    }
+
+    .access-products-wrapper span {
+        font-size: 12px !important;
+    }
+
+    .access-products-wrapper a {
+        font-size: 12px !important;
+    }
+
+    .access-products-wrapper .product-info {
+        gap: unset !important;
+    }
+
+    .telefon-product-container {
+        height: unset;
+    }
+
+    .telefon-product-container .img-container {
+        padding-bottom: 80%;
+    }
 }
+
+
+/* MEDIA QUERIES END */
