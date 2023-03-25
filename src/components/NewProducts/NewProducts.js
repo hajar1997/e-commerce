@@ -1,53 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import api from "../../api/api";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import img1 from "../../assets/images/new-products-1.png";
-import img2 from "../../assets/images/new-products-2.png";
-import img3 from "../../assets/images/new-products-3.png";
-import img4 from "../../assets/images/new-products-4.png";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Product from "../Product/Product";
 
 const NewProducts = () => {
-  const products = [
-    {
-      id: "1",
-      brand: "iPhone",
-      model: "13 Pro Max",
-      memory: "1 TB",
-      color: "Sierra Blue",
-      img: img1,
-      price: "4669",
-    },
-    {
-      id: "2",
-      brand: "iPhone",
-      model: "13",
-      memory: "256 GB",
-      color: "Midnight",
-      img: img2,
-      price: "2629",
-    },
-    {
-      id: "3",
-      brand: "Honor",
-      model: "10",
-      memory: "128 GB",
-      color: "Midnight Black",
-      img: img3,
-      price: "799.9",
-    },
-    {
-      id: "4",
-      brand: "Samsung",
-      model: "Galaxy Z Fold3",
-      memory: "(SM-F926)",
-      color: "Green",
-      img: img4,
-      price: "4199",
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    api.get("/smartphones?populate=*").then((response) => {
+      const filteredData = response.data.data.filter(
+        (phone) =>
+          phone.images &&
+          phone.images.length > 0 &&
+          phone.prices &&
+          phone.prices.length > 0 &&
+          phone.prices[0].price !== null
+      );
+      setData(filteredData);
+    });
+  }, []);
 
   const settings = {
     dots: false,
@@ -107,14 +81,14 @@ const NewProducts = () => {
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
-            {products.map((product) => (
-              <Link>
+            {data.map((product) => (
+              <Link key={product.id}>
                 <Product
-                  img={product.img}
-                  brand={product.brand}
-                  model={product.model}
-                  color={product.color}
-                  price={product.price}
+                  img={product.images[0].url}
+                  brand={product.name}
+                  memory={product.main.storage_capacity__gb}
+                  color={product.main.design_color_name}
+                  price={product.prices[0].price}
                 />
               </Link>
             ))}

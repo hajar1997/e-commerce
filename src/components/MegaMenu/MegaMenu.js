@@ -18,7 +18,7 @@ const MegaMenu = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="collapse navbar-collapse" id="main_nav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav container">
             <li className="nav-item dropdown has-megamenu">
               <a className="nav-link active" href="#" data-bs-toggle="dropdown">
                 Yeni
@@ -167,7 +167,7 @@ const MegaMenu = () => {
               </li>
             ))}
           </ul>
-          <div className="login-and-register-wrapper">
+          <div className="login-and-register-wrapper container">
             <button className="btn login-btn">Daxil ol</button>
             <button className="btn register-btn">Qeydiyyat</button>
           </div>

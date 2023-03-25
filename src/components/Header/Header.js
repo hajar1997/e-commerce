@@ -64,9 +64,9 @@ const Header = () => {
             </Space>
           </div>
         </nav>
-        <div className="mobile-navbar">
-          <MegaMenu />
-        </div>
+      </div>
+      <div className="mobile-navbar">
+        <MegaMenu />
       </div>
       <hr className="hr-line" />
     </header>
