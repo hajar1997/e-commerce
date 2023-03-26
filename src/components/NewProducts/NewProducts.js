@@ -9,19 +9,20 @@ import Product from "../Product/Product";
 const NewProducts = () => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    api.get("/smartphones?populate=*").then((response) => {
-      const filteredData = response.data.data.filter(
-        (phone) =>
-          phone.images &&
-          phone.images.length > 0 &&
-          phone.prices &&
-          phone.prices.length > 0 &&
-          phone.prices[0].price !== null
-      );
-      setData(filteredData);
-    });
-  }, []);
+  // useEffect(() => {
+  //   api.get("/smartphones?populate=*").then((response) => {
+  //     const filteredData = response.data.data.filter(
+  //       (phone) =>
+  //         phone.images &&
+  //         phone.images.length > 0 &&
+  //         phone.prices &&
+  //         phone.prices.length > 0 &&
+  //         phone.prices[0].price !== null &&
+  //         phone.main.general_year >= 2021
+  //     );
+  //     setData(filteredData);
+  //   });
+  // }, []);
 
   const settings = {
     dots: false,

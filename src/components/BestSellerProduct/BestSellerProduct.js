@@ -1,53 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import api from "../../api/api";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import img1 from "../../assets/images/best-seller-product-1.png";
-import img2 from "../../assets/images/best-seller-product-2.png";
-import img3 from "../../assets/images/best-seller-product-3.png";
-import img4 from "../../assets/images/best-seller-product-4.png";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Product from "../Product/Product";
 
 const BestSellerProduct = () => {
-  const products = [
-    {
-      id: "1",
-      brand: "Apple",
-      model: "iPhone 12",
-      memory: "64 GB",
-      color: "Purple",
-      img: img1,
-      price: "2089",
-    },
-    {
-      id: "2",
-      brand: "Nokia",
-      model: "X10",
-      memory: "64 GB",
-      color: "Deep Green",
-      img: img2,
-      price: "1360",
-    },
-    {
-      id: "3",
-      brand: "Xiaomi",
-      model: "Poco M3",
-      memory: "4/128 GB",
-      color: "Yellow (Global)",
-      img: img3,
-      price: "389.0",
-    },
-    {
-      id: "4",
-      brand: "Realme",
-      model: "8 Pro",
-      memory: "6/128 GB",
-      color: "Black",
-      img: img4,
-      price: "649.0",
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   api.get("/smartphones?populate=*").then((response) => {
+  //     const filteredData = response.data.data.filter(
+  //       (phone) =>
+  //         phone.images &&
+  //         phone.images.length > 0 &&
+  //         phone.prices &&
+  //         phone.prices.length > 0 &&
+  //         phone.prices[0].price !== null
+  //     );
+  //     setData(filteredData);
+  //   });
+  // }, []);
 
   const settings = {
     dots: false,
@@ -107,15 +81,14 @@ const BestSellerProduct = () => {
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
-            {products.map((product) => (
-              <Link>
+            {data.map((product) => (
+              <Link key={product.id}>
                 <Product
-                  img={product.img}
-                  brand={product.brand}
-                  model={product.model}
-                  memory={product.memory}
-                  color={product.color}
-                  price={product.price}
+                  img={product.images[0].url}
+                  brand={product.name}
+                  memory={product.main.storage_capacity__gb}
+                  color={product.main.design_color_name}
+                  price={product.prices[0].price}
                 />
               </Link>
             ))}

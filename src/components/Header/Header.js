@@ -3,28 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import {
   UserOutlined,
-  SearchOutlined,
   HeartOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Input } from "antd";
 import { Space } from "antd";
 import MegaMenu from "../MegaMenu/MegaMenu";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const { Search } = Input;
-const prefix = (
-  <SearchOutlined
-    style={{
-      fontSize: 16,
-      color: "#828282",
-      marginRight: 10,
-    }}
-  />
-);
-
-const onSearch = (value) => console.log(value);
+import SearchProduct from "../SearchProduct/SearchProduct";
 
 const Header = () => {
   return (
@@ -45,7 +31,7 @@ const Header = () => {
             <img src={logo} alt="" />
           </div>
           <div className="search-bar">
-            <Search placeholder="Axtarış..." size="large" prefix={prefix} />
+            <SearchProduct />
           </div>
           <div className="header-icons">
             <Space size={"large"}>
