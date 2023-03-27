@@ -1,0 +1,101 @@
+{
+  "filterCategories": [{
+    "category" : "Brend"
+  },
+  {
+    "category" : "Rəng"
+  },
+  {
+    "category" : "Daxili Yaddaş"
+  },
+  {
+    "category" : "Operativ Yaddaş"
+  }]
+  ,
+  "brands": [
+    {
+      "brand": "Apple"
+    },
+    {
+      "brand": "Samsung"
+    },
+    {
+      "brand": "Xiaomi"
+    },
+    {
+      "brand": "Honor"
+    }
+  ],
+  "daxiliYaddas": [
+    {
+      "memory": "4 GB"
+    },
+    {
+      "memory": "16 GB"
+    },
+    {
+      "memory": "32 GB"
+    },
+    {
+      "memory": "64 GB"
+    },
+    {
+      "memory": "128 GB"
+    },
+    {
+      "memory": "256 GB"
+    },
+    {
+      "memory": "512 GB"
+    }
+  ],
+  "operativYaddas": [
+    {
+      "memory": "1 GB"
+    },
+    {
+      "memory": "2 GB"
+    },
+    {
+      "memory": "3 GB"
+    },
+    {
+      "memory": "4 GB"
+    },
+    {
+      "memory": "6 GB"
+    },
+    {
+      "memory": "8 GB"
+    },
+    {
+      "memory": "12 GB"
+    }
+  ],
+  "colors": [
+    {
+      "color": "Yellow"
+    },
+    {
+      "color": "Black"
+    },
+    {
+      "color": "White"
+    },
+    {
+      "color": "Midnight"
+    },
+    {
+      "color": "Gold"
+    },
+    {
+      "color": "Blue"
+    },
+    {
+      "color": "Red"
+    },
+    {
+      "color": "Purple"
+    }
+  ]
+}

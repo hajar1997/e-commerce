@@ -18,7 +18,7 @@ const SearchProduct = () => {
   const [searchedData, setSearchedData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
   const [latestSearchs, setLatestSearchs] = useState([]);
-  const [mostSearched, setMostSearched] = useState([]);
+  // const [mostSearched, setMostSearched] = useState([]);
   const searchRef = useRef(null);
 
   const handleFocus = () => {
@@ -63,17 +63,17 @@ const SearchProduct = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const mostSearchedFromStorage = JSON.parse(
-      localStorage.getItem("latestSearchs")
-    );
-    if (mostSearchedFromStorage && latestSearchs.length > 0) {
-      const filteredMostSearched = mostSearchedFromStorage.filter((item) =>
-        latestSearchs.includes(item)
-      );
-      setMostSearched(filteredMostSearched);
-    }
-  }, [latestSearchs]);
+  // useEffect(() => {
+  //   const mostSearchedFromStorage = JSON.parse(
+  //     localStorage.getItem("latestSearchs")
+  //   );
+  //   if (mostSearchedFromStorage && latestSearchs.length > 0) {
+  //     const filteredMostSearched = mostSearchedFromStorage.filter((item) =>
+  //       latestSearchs.includes(item)
+  //     );
+  //     setMostSearched(filteredMostSearched);
+  //   }
+  // }, [latestSearchs]);
 
   return (
     <div className="position-relative w-100" ref={searchRef}>
@@ -102,7 +102,7 @@ const SearchProduct = () => {
               ))}
             </div>
           </div>
-          <div className="most-searched">
+          {/* <div className="most-searched">
             <div className="most-searched-heading">
               <h6>Çox axtarılanlar</h6>
             </div>
@@ -113,7 +113,7 @@ const SearchProduct = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </div>
