@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import PriceRange from "../PriceRange/PriceRange";
+import api from "../../api/api";
+import { Link } from "react-router-dom";
+import Product from "../Product/Product";
+import { Select } from "antd";
 
 const FilterProducts = () => {
   const [brands, setBrands] = useState([]);
@@ -9,6 +13,7 @@ const FilterProducts = () => {
   const [daxiliYaddas, setDaxiliYaddas] = useState([]);
   const [operativYaddas, setOperativYaddas] = useState([]);
   const [colors, setColors] = useState([]);
+  const [data, setData] = useState([]);
 
   const brandsEndpoint = "http://localhost:8001/brands";
   const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
@@ -43,6 +48,21 @@ const FilterProducts = () => {
         )
       );
   }, []);
+
+  // useEffect(() => {
+  //   api.get("/smartphones?populate=*").then((response) => {
+  //     const filteredData = response.data.data.filter(
+  //       (phone) =>
+  //         phone.images &&
+  //         phone.images.length > 0 &&
+  //         phone.prices &&
+  //         phone.prices.length > 0 &&
+  //         phone.prices[0].price !== null
+
+  //     );
+  //     setData(filteredData);
+  //   });
+  // }, []);
 
   return (
     <div className="filter-area-wrapper">
@@ -79,7 +99,47 @@ const FilterProducts = () => {
             ))}
             <PriceRange />
           </div>
-          <div className="col-lg-9"></div>
+          <div className="col-lg-9">
+            <div className="filtered_products_wrapper">
+              <div className="wrapper__headings">
+                <span>{data.length} məhsul tapıldı</span>
+                <Select
+                  defaultValue="Sıralamanı seç"
+                  style={{
+                    width: 176,
+                  }}
+                  // onChange={handleChange}
+                  options={[
+                    {
+                      value: "Ən yenilər",
+                      label: "Ən yenilər",
+                    },
+                    {
+                      value: "Əvvəlcə ucuz",
+                      label: "Əvvəlcə ucuz",
+                    },
+                    {
+                      value: "Əvvəlcə baha",
+                      label: "Əvvəlcə baha",
+                    }
+                  ]}
+                />
+              </div>
+              {/* <div className="all-products">
+                {data.map((product) => (
+                  <Link key={product.id}>
+                    <Product
+                      img={product.images[0].url}
+                      brand={product.name}
+                      memory={product.main.storage_capacity__gb}
+                      color={product.main.design_color_name}
+                      price={product.prices[0].price}
+                    />
+                  </Link>
+                ))}
+              </div> */}
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -679,7 +679,7 @@ footer .contact li {
 }
 
 .filter-dropdown-container {
-    width: 280px;
+    width: 100%;
     margin-top: 30px;
 }
 
@@ -688,7 +688,6 @@ footer .contact li {
 }
 
 .filter-heading-wrapper {
-    padding: 0px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -705,6 +704,7 @@ footer .contact li {
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
+    padding-left: 10px;
     line-height: 20px;
     color: #4F4F4F;
 }
@@ -764,13 +764,57 @@ footer .contact li {
 }
 
 .svg-inline--fa {
-    padding-right: 15px;
+    padding-right: 8px;
 }
 
 input:focus {
     outline: none !important;
     box-shadow: none !important;
     border-color: #ced4da !important;
+}
+
+.all-products {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.all-products .card-wrapper {
+    width: 286px !important;
+}
+
+.all-products .card-wrapper img {
+    display: flex;
+    align-items: center;
+}
+
+.all-products .card__content {
+    padding: 16px 20px;
+}
+
+.wrapper__headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ant-select-selector {
+    border: 1px solid #BDBDBD !important;
+    border-radius: 8px !important;
+}
+
+.ant-select-selection-item {
+    font-style: normal;
+    font-weight: 400!important;
+    font-size: 14px!important;
+    color: #4F4F4F!important;
+}
+
+.ant-select-selector:focus{
+    outline: none!important;
+    box-shadow: none!important;
+    
 }
 
 /* Filter Area End */
@@ -782,6 +826,19 @@ input:focus {
         padding: 2rem 4rem;
     }
 }
+
+@media(max-width: 1400px) {
+    .all-products .card-wrapper {
+        width: 256px !important;
+    }
+}
+
+@media(max-width: 1200px) {
+    .all-products .card-wrapper {
+        width: 225px !important;
+    }
+}
+
 
 @media(max-width: 1400px) {
     .navbar-nav {
@@ -1050,6 +1107,14 @@ input:focus {
 
     .telefon-product-container .img-container {
         padding-bottom: 80%;
+    }
+
+    .all-products {
+        display: unset;
+    }
+
+    .all-products .card-wrapper {
+        width: 100% !important;
     }
 }
 
