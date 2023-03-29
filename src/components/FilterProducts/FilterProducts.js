@@ -6,6 +6,11 @@ import api from "../../api/api";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
 import { Select } from "antd";
+import icon1 from "../../assets/images/siralama-icon.svg";
+import icon2 from "../../assets/images/filter-icon.svg";
+import { Divider } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const FilterProducts = () => {
   const [brands, setBrands] = useState([]);
@@ -14,6 +19,9 @@ const FilterProducts = () => {
   const [operativYaddas, setOperativYaddas] = useState([]);
   const [colors, setColors] = useState([]);
   const [data, setData] = useState([]);
+  const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
+  const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
 
   const brandsEndpoint = "http://localhost:8001/brands";
   const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
@@ -49,6 +57,12 @@ const FilterProducts = () => {
       );
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 992);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // useEffect(() => {
   //   api.get("/smartphones?populate=*").then((response) => {
   //     const filteredData = response.data.data.filter(
@@ -58,7 +72,6 @@ const FilterProducts = () => {
   //         phone.prices &&
   //         phone.prices.length > 0 &&
   //         phone.prices[0].price !== null
-
   //     );
   //     setData(filteredData);
   //   });
@@ -66,43 +79,33 @@ const FilterProducts = () => {
 
   return (
     <div className="filter-area-wrapper">
-      <div className="container">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="#">Ana səhifə</a>
-            </li>
-            <li className="breadcrumb-item">
-              <a href="#">Telefonlar</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              <span>Apple</span>
-            </li>
-          </ol>
-        </nav>
-        <div className="row">
-          <div className="col-lg-3">
-            {categories.map((category, index) => (
-              <FilterDropdown
-                key={index}
-                categoryName={category.category}
-                categoryItem={
-                  category.category === "Brend"
-                    ? brands
-                    : category.category === "Rəng"
-                    ? colors
-                    : category.category === "Daxili Yaddaş"
-                    ? daxiliYaddas
-                    : operativYaddas
-                }
-              />
-            ))}
-            <PriceRange />
+      {isMobile ? (
+        <>
+          <div className="mversion-container">
+            <div
+              className="leftSide__mobile"
+              onClick={() =>
+                setLeftSideMobileIsOpen(
+                  (prevLeftSideMobileIsOpen) => !prevLeftSideMobileIsOpen
+                )
+              }
+            >
+              <img src={icon1} />
+              <h5>Sıralama</h5>
+            </div>
+            <Divider type="vertical" />
+            <div
+              className="rightSide__mobile"
+              onClick={() => setRightSideMobileIsOpen(true)}
+            >
+              <img src={icon2} />
+              <h5>Filterləmələr</h5>
+            </div>
           </div>
-          <div className="col-lg-9">
-            <div className="filtered_products_wrapper">
-              <div className="wrapper__headings">
-                <span>{data.length} məhsul tapıldı</span>
+          <Divider type="horizontal" />
+          {leftSideMobileIsOpen && (
+            <div className="left-side-mobile__opened">
+              <div className="container">
                 <Select
                   defaultValue="Sıralamanı seç"
                   style={{
@@ -121,11 +124,111 @@ const FilterProducts = () => {
                     {
                       value: "Əvvəlcə baha",
                       label: "Əvvəlcə baha",
-                    }
+                    },
                   ]}
                 />
               </div>
-              {/* <div className="all-products">
+            </div>
+          )}
+          {rightSideMobileIsOpen && (
+            <div className="right-side-mobile__opened">
+              <div className="container">
+                <div className="mversion_opened_header">
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    onClick={() => setRightSideMobileIsOpen(false)}
+                  />
+                  <h6>Filterləmələr</h6>
+                </div>
+                <Divider className="hr-divider" type="horizontal" />
+                {categories.map((category, index) => (
+                  <FilterDropdown
+                    key={index}
+                    categoryName={category.category}
+                    categoryItem={
+                      category.category === "Brend"
+                        ? brands
+                        : category.category === "Rəng"
+                        ? colors
+                        : category.category === "Daxili Yaddaş"
+                        ? daxiliYaddas
+                        : operativYaddas
+                    }
+                  />
+                ))}
+                <PriceRange />
+                <div className="show_products_btn">
+                  <button className="btn">
+                    {" "}
+                    Filterlənmiş məhsulları göstər
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="container">
+          <nav aria-label="breadcrumb">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <a href="#">Ana səhifə</a>
+              </li>
+              <li className="breadcrumb-item">
+                <a href="#">Telefonlar</a>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                <span>Apple</span>
+              </li>
+            </ol>
+          </nav>
+          <div className="row">
+            <div className="col-lg-3">
+              {categories.map((category, index) => (
+                <FilterDropdown
+                  key={index}
+                  categoryName={category.category}
+                  categoryItem={
+                    category.category === "Brend"
+                      ? brands
+                      : category.category === "Rəng"
+                      ? colors
+                      : category.category === "Daxili Yaddaş"
+                      ? daxiliYaddas
+                      : operativYaddas
+                  }
+                />
+              ))}
+              <PriceRange />
+            </div>
+            <div className="col-lg-9">
+              <div className="filtered_products_wrapper">
+                <div className="wrapper__headings">
+                  <span>{data.length} məhsul tapıldı</span>
+                  <Select
+                    defaultValue="Sıralamanı seç"
+                    style={{
+                      width: 176,
+                    }}
+                    // onChange={handleChange}
+                    options={[
+                      {
+                        value: "Ən yenilər",
+                        label: "Ən yenilər",
+                      },
+                      {
+                        value: "Əvvəlcə ucuz",
+                        label: "Əvvəlcə ucuz",
+                      },
+                      {
+                        value: "Əvvəlcə baha",
+                        label: "Əvvəlcə baha",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+              <div className="all-products">
                 {data.map((product) => (
                   <Link key={product.id}>
                     <Product
@@ -137,11 +240,26 @@ const FilterProducts = () => {
                     />
                   </Link>
                 ))}
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
+      {/* <div className="container">
+        <div className="all-products">
+          {data.map((product) => (
+            <Link key={product.id}>
+              <Product
+                img={product.images[0].url}
+                brand={product.name}
+                memory={product.main.storage_capacity__gb}
+                color={product.main.design_color_name}
+                price={product.prices[0].price}
+              />
+            </Link>
+          ))}
+        </div>
+      </div> */}
     </div>
   );
 };

@@ -25,7 +25,7 @@ const FilterDropdown = ({ categoryName, categoryItem }) => {
         )}
       </div>
       <hr />
-      {toggle ? (
+      {toggle && (
         <div className="checkboxes-container">
           {categoryItem.map((category, index) => (
             <div className="form-check" key={index}>
@@ -44,8 +44,6 @@ const FilterDropdown = ({ categoryName, categoryItem }) => {
             </div>
           ))}
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

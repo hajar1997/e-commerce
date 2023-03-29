@@ -806,15 +806,99 @@ input:focus {
 
 .ant-select-selection-item {
     font-style: normal;
-    font-weight: 400!important;
-    font-size: 14px!important;
-    color: #4F4F4F!important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    color: #4F4F4F !important;
 }
 
-.ant-select-selector:focus{
-    outline: none!important;
-    box-shadow: none!important;
-    
+.ant-select-selector:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.mversion-container {
+    display: flex;
+    justify-content: center;
+    margin: 27px 0px !important;
+}
+
+.ant-divider-vertical {
+    height: 31px !important;
+}
+
+.mversion-container h5 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #303030;
+    margin-bottom: 0;
+}
+
+
+.leftSide__mobile,
+.rightSide__mobile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.right-side-mobile__opened {
+    z-index: 100000;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}
+
+.mversion_opened_header {
+    display: flex;
+    align-items: center;
+    padding: 20px 0px;
+}
+
+.mversion_opened_header h6 {
+    margin-bottom: 0 !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #333333;
+}
+
+.mversion_opened_header .fa-xmark {
+    padding: 0px 22px;
+}
+
+.hr-divider {
+    margin-top: 0 !important;
+}
+
+.show_products_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.show_products_btn .btn {
+    background-color: #2DD06E !important;
+    border-radius: 8px;
+    width: 100%;
+    padding: 16px 2px !important;
+    color: white !important;
+}
+.left-side-mobile__opened{
+    padding: 20px 0px;
+    background-color: white;
+}
+
+
+.left-side-mobile__opened .ant-select{
+    width: 100%!important;
 }
 
 /* Filter Area End */
@@ -877,6 +961,8 @@ input:focus {
         background: white;
         z-index: 9999;
         padding: 0px 10px;
+        height: 100vh !important;
+        transition: .3s all ease-in-out;
     }
 
     .navbar-collapse .nav-item {
@@ -917,9 +1003,7 @@ input:focus {
         width: 100% !important;
     }
 
-    .hr-line {
-        display: none;
-    }
+
 
     .mobile-navbar {
         order: 1;
@@ -1046,6 +1130,14 @@ input:focus {
         align-items: center;
         color: white !important;
         opacity: 0.8;
+    }
+
+    .filter-area-wrapper .breadcrumb {
+        display: none;
+    }
+
+    .price-range-container {
+        justify-content: center !important;
     }
 
 }
