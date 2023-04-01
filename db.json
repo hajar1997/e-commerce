@@ -1,101 +1,109 @@
 {
-  "filterCategories": [{
-    "category" : "Brend"
-  },
-  {
-    "category" : "Rəng"
-  },
-  {
-    "category" : "Daxili Yaddaş"
-  },
-  {
-    "category" : "Operativ Yaddaş"
-  }]
-  ,
+  "filterCategories": [
+    {
+      "category": "Brend"
+    },
+    {
+      "category": "Rəng"
+    }
+  ],
   "brands": [
     {
-      "brand": "Apple"
+      "value": "iPhone"
     },
     {
-      "brand": "Samsung"
+      "value": "Samsung"
     },
     {
-      "brand": "Xiaomi"
+      "value": "Xiaomi"
     },
     {
-      "brand": "Honor"
-    }
-  ],
-  "daxiliYaddas": [
-    {
-      "memory": "4 GB"
-    },
-    {
-      "memory": "16 GB"
-    },
-    {
-      "memory": "32 GB"
-    },
-    {
-      "memory": "64 GB"
-    },
-    {
-      "memory": "128 GB"
-    },
-    {
-      "memory": "256 GB"
-    },
-    {
-      "memory": "512 GB"
-    }
-  ],
-  "operativYaddas": [
-    {
-      "memory": "1 GB"
-    },
-    {
-      "memory": "2 GB"
-    },
-    {
-      "memory": "3 GB"
-    },
-    {
-      "memory": "4 GB"
-    },
-    {
-      "memory": "6 GB"
-    },
-    {
-      "memory": "8 GB"
-    },
-    {
-      "memory": "12 GB"
+      "value": "Honor"
     }
   ],
   "colors": [
     {
-      "color": "Yellow"
+      "value": "Yellow"
     },
     {
-      "color": "Black"
+      "value": "Black"
     },
     {
-      "color": "White"
+      "value": "White"
     },
     {
-      "color": "Midnight"
+      "value": "Midnight"
     },
     {
-      "color": "Gold"
+      "value": "Gold"
     },
     {
-      "color": "Blue"
+      "value": "Blue"
     },
     {
-      "color": "Red"
+      "value": "Red"
     },
     {
-      "color": "Purple"
+      "value": "Purple"
+    },
+    {
+      "value": "Green"
+    }
+  ],
+  "smartphones": [
+    {
+      "id": "1",
+      "productBrand": "iPhone",
+      "model": "13 Pro Max",
+      "memory": "1 TB",
+      "productColor": "Sierra Blue",
+      "img": "",
+      "price": "4669"
+    },
+    {
+      "id": "2",
+      "productBrand": "iPhone",
+      "model": "13",
+      "memory": "256 GB",
+      "productColor": "Midnight",
+      "img": "",
+      "price": "2629"
+    },
+    {
+      "id": "3",
+      "productBrand": "Honor",
+      "model": "10",
+      "memory": "128 GB",
+      "productColor": "Midnight Black",
+      "img": "",
+      "price": "799.9"
+    },
+    {
+      "id": "4",
+      "productBrand": "Samsung",
+      "model": "Galaxy Z Fold3",
+      "memory": "(SM-F926)",
+      "productColor": "Green",
+      "img": "",
+      "price": "4199"
+    },
+    {
+      "id": "5",
+      "productBrand": "iPhone",
+      "model": "7",
+      "memory": "64",
+      "productColor": "White",
+      "img": "",
+      "price": "4199"
+    },
+    {
+      "id": "6",
+      "productBrand": "Xiaomi",
+      "model": "Z",
+      "memory": "125",
+      "productColor": "Purple",
+      "img": "",
+      "price": "4199"
     }
   ]
 }

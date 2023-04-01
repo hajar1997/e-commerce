@@ -12,46 +12,64 @@ import { Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const FilterProducts = () => {
+const FilterProducts = ({
+  brandsEndpoint,
+  filterCategoriesEndpoint,
+  colorsEndpoint,
+  phonesEndpoint,
+}) => {
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [daxiliYaddas, setDaxiliYaddas] = useState([]);
-  const [operativYaddas, setOperativYaddas] = useState([]);
   const [colors, setColors] = useState([]);
   const [data, setData] = useState([]);
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
   const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState({
+    productBrand: [],
+    productColor: [],
+  });
 
-  const brandsEndpoint = "http://localhost:8001/brands";
-  const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
-  const daxiliYaddasEndpoint = "http://localhost:8001/daxiliYaddas";
-  const operativYaddasEndpoint = "http://localhost:8001/operativYaddas";
-  const colorsEndpoint = "http://localhost:8001/colors";
+  const handleCheckboxChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setSelectedCheckboxes((prevState) => ({
+      ...prevState,
+      [name]: prevState[name].includes(value)
+        ? prevState[name].filter((checkbox) => checkbox !== value)
+        : [...prevState[name], value],
+    }));
+  };
+
+  const filteredProducts = data.filter(
+    (product) =>
+      (selectedCheckboxes.productBrand.length === 0 ||
+        selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+      (selectedCheckboxes.productColor.length === 0 ||
+        selectedCheckboxes.productColor.includes(product.productColor))
+  );
 
   useEffect(() => {
     axios
       .all([
         axios.get(brandsEndpoint),
         axios.get(filterCategoriesEndpoint),
-        axios.get(daxiliYaddasEndpoint),
-        axios.get(operativYaddasEndpoint),
         axios.get(colorsEndpoint),
+        axios.get(phonesEndpoint),
       ])
       .then(
         axios.spread(
           (
             brandsEndpoint,
             filterCategoriesEndpoint,
-            daxiliYaddasEndpoint,
-            operativYaddasEndpoint,
-            colorsEndpoint
+            colorsEndpoint,
+            phonesEndpoint
           ) => {
             setBrands(brandsEndpoint.data);
             setCategories(filterCategoriesEndpoint.data);
-            setDaxiliYaddas(daxiliYaddasEndpoint.data);
-            setOperativYaddas(operativYaddasEndpoint.data);
             setColors(colorsEndpoint.data);
+            setData(phonesEndpoint.data);
           }
         )
       );
@@ -146,13 +164,7 @@ const FilterProducts = () => {
                     key={index}
                     categoryName={category.category}
                     categoryItem={
-                      category.category === "Brend"
-                        ? brands
-                        : category.category === "Rəng"
-                        ? colors
-                        : category.category === "Daxili Yaddaş"
-                        ? daxiliYaddas
-                        : operativYaddas
+                      category.category === "Brend" ? brands : colors
                     }
                   />
                 ))}
@@ -188,15 +200,9 @@ const FilterProducts = () => {
                 <FilterDropdown
                   key={index}
                   categoryName={category.category}
-                  categoryItem={
-                    category.category === "Brend"
-                      ? brands
-                      : category.category === "Rəng"
-                      ? colors
-                      : category.category === "Daxili Yaddaş"
-                      ? daxiliYaddas
-                      : operativYaddas
-                  }
+                  categoryItem={category.category === "Brend" ? brands : colors}
+                  handleCheckboxChange={handleCheckboxChange}
+                  selectedCheckboxes={selectedCheckboxes}
                 />
               ))}
               <PriceRange />
@@ -229,14 +235,15 @@ const FilterProducts = () => {
                 </div>
               </div>
               <div className="all-products">
-                {data.map((product) => (
+                {filteredProducts.map((product) => (
                   <Link key={product.id}>
                     <Product
-                      img={product.images[0].url}
-                      brand={product.name}
-                      memory={product.main.storage_capacity__gb}
-                      color={product.main.design_color_name}
-                      price={product.prices[0].price}
+                      // img={product.images.url}
+                      brand={product.productBrand}
+                      model={product.model}
+                      memory={product.memory}
+                      color={product.productColor}
+                      price={product.price}
                     />
                   </Link>
                 ))}
@@ -245,21 +252,6 @@ const FilterProducts = () => {
           </div>
         </div>
       )}
-      {/* <div className="container">
-        <div className="all-products">
-          {data.map((product) => (
-            <Link key={product.id}>
-              <Product
-                img={product.images[0].url}
-                brand={product.name}
-                memory={product.main.storage_capacity__gb}
-                color={product.main.design_color_name}
-                price={product.prices[0].price}
-              />
-            </Link>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };

@@ -3,7 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const FilterDropdown = ({ categoryName, categoryItem }) => {
+const FilterDropdown = ({
+  categoryName,
+  categoryItem,
+  handleCheckboxChange,
+  selectedCheckboxes,
+}) => {
   const [toggle, setToggle] = useState(true);
 
   const handlePlusClick = () => {
@@ -27,19 +32,23 @@ const FilterDropdown = ({ categoryName, categoryItem }) => {
       <hr />
       {toggle && (
         <div className="checkboxes-container">
-          {categoryItem.map((category, index) => (
-            <div className="form-check" key={index}>
+          {categoryItem.map((category) => (
+            <div className="form-check">
               <input
                 className="form-check-input"
                 type="checkbox"
-                defaultValue
-                id={index}
+                value={category.value}
+                name={
+                  categoryName === "Brend" ? "productBrand" : "productColor"
+                }
+                checked={
+                  selectedCheckboxes.productBrand.includes(category.value) ||
+                  selectedCheckboxes.productColor.includes(category.value)
+                }
+                onChange={handleCheckboxChange}
               />
-              <label className="form-check-label" htmlFor={index}>
-                {category.brand ||
-                  category.color ||
-                  category.memory ||
-                  category.memory}
+              <label className="form-check-label" key={category.value}>
+                {category.value}
               </label>
             </div>
           ))}

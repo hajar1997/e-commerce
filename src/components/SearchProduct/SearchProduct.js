@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
@@ -20,20 +21,25 @@ const SearchProduct = () => {
   const [latestSearchs, setLatestSearchs] = useState([]);
   // const [mostSearched, setMostSearched] = useState([]);
   const searchRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleFocus = () => {
     setIsFocus(true);
   };
 
-  const handleSearch = (e) => {
-    setSearchedData(e.target.value);
+  const handleSearch = (value) => {
+    setSearchedData(value);
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && searchedData !== "") {
       const newLatestSearchs = [...latestSearchs, searchedData];
       setLatestSearchs(newLatestSearchs);
       localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
+      navigate({
+        pathname: "/products",
+        search: `?q=${searchedData}`,
+      });
     }
   };
 
@@ -81,7 +87,7 @@ const SearchProduct = () => {
         placeholder="Axtarış..."
         size="large"
         prefix={prefix}
-        onChange={handleSearch}
+        onSearch={handleSearch}
         onFocus={handleFocus}
         onKeyPress={handleKeyPress}
       />

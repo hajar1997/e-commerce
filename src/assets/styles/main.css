@@ -732,6 +732,7 @@ footer .contact li {
 .form-check-input:focus {
     outline: none !important;
     box-shadow: none !important;
+    border: 1px solid #2DD06E !important;
 }
 
 .form-check-input:checked {
@@ -891,14 +892,15 @@ input:focus {
     padding: 16px 2px !important;
     color: white !important;
 }
-.left-side-mobile__opened{
+
+.left-side-mobile__opened {
     padding: 20px 0px;
     background-color: white;
 }
 
 
-.left-side-mobile__opened .ant-select{
-    width: 100%!important;
+.left-side-mobile__opened .ant-select {
+    width: 100% !important;
 }
 
 /* Filter Area End */
