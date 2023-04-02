@@ -1204,7 +1204,7 @@ input:focus {
     }
 
     .all-products {
-        display: unset;
+        display: inline-block;
     }
 
     .all-products .card-wrapper {

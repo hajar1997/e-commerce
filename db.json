@@ -9,7 +9,7 @@
   ],
   "brands": [
     {
-      "value": "iPhone"
+      "value": "Apple"
     },
     {
       "value": "Samsung"
@@ -32,9 +32,6 @@
       "value": "White"
     },
     {
-      "value": "Midnight"
-    },
-    {
       "value": "Gold"
     },
     {
@@ -44,7 +41,7 @@
       "value": "Red"
     },
     {
-      "value": "Purple"
+      "value": "Silver"
     },
     {
       "value": "Green"
@@ -53,57 +50,219 @@
   "smartphones": [
     {
       "id": "1",
-      "productBrand": "iPhone",
-      "model": "13 Pro Max",
-      "memory": "1 TB",
-      "productColor": "Sierra Blue",
-      "img": "",
-      "price": "4669"
+      "productBrand": "Apple",
+      "productModel": "iPhone 7",
+      "memory": "32",
+      "productColor": "Black",
+      "img": "images/iphone-7-black.jpg",
+      "price": "340"
     },
     {
       "id": "2",
-      "productBrand": "iPhone",
-      "model": "13",
-      "memory": "256 GB",
-      "productColor": "Midnight",
-      "img": "",
-      "price": "2629"
+      "productBrand": "Apple",
+      "productModel": "iPhone 7 Plus",
+      "memory": "128",
+      "productColor": "Gold",
+      "img": "images/iphone-7-plus-gold.avif",
+      "price": "450"
     },
     {
       "id": "3",
-      "productBrand": "Honor",
-      "model": "10",
-      "memory": "128 GB",
-      "productColor": "Midnight Black",
-      "img": "",
-      "price": "799.9"
+      "productBrand": "Apple",
+      "productModel": "iPhone 8",
+      "memory": "64",
+      "productColor": "Silver",
+      "img": "images/iphone-8-silver.jpg",
+      "price": "370"
     },
     {
       "id": "4",
-      "productBrand": "Samsung",
-      "model": "Galaxy Z Fold3",
-      "memory": "(SM-F926)",
-      "productColor": "Green",
-      "img": "",
-      "price": "4199"
+      "productBrand": "Apple",
+      "productModel": "iPhone X",
+      "memory": "256",
+      "productColor": "Silver",
+      "img": "images/iphone-x-silver.png",
+      "price": "430"
     },
     {
       "id": "5",
-      "productBrand": "iPhone",
-      "model": "7",
-      "memory": "64",
-      "productColor": "White",
-      "img": "",
-      "price": "4199"
+      "productBrand": "Apple",
+      "productModel": "iPhone XS",
+      "memory": "512",
+      "productColor": "Gold",
+      "img": "images/iphone-xs-gold.png",
+      "price": "520"
     },
     {
       "id": "6",
+      "productBrand": "Apple",
+      "productModel": "iPhone 11",
+      "memory": "64",
+      "productColor": "Green",
+      "img": "images/iphone-11-green.jpeg",
+      "price": "600"
+    },
+    {
+      "id": "7",
+      "productBrand": "Apple",
+      "productModel": "iPhone 11 Pro Max",
+      "memory": "256",
+      "productColor": "Gold",
+      "img": "images/iphone-11-pro-max-gold.jpg",
+      "price": "820"
+    },
+    {
+      "id": "8",
+      "productBrand": "Apple",
+      "productModel": "iPhone 12",
+      "memory": "128",
+      "productColor": "White",
+      "img": "images/iphone-12-white.jpeg",
+      "price": "800"
+    },
+    {
+      "id": "9",
+      "productBrand": "Apple",
+      "productModel": "iPhone 13",
+      "memory": "128",
+      "productColor": "Red",
+      "img": "images/iphone-13-red.png",
+      "price": "839"
+    },
+    {
+      "id": "10",
+      "productBrand": "Apple",
+      "productModel": "iPhone 14",
+      "memory": "512",
+      "productColor": "Blue",
+      "img": "images/iphone-14-blue.jpg",
+      "price": "1029"
+    },
+    {
+      "id": "11",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy A34",
+      "memory": "128",
+      "productColor": "Silver",
+      "img": "images/samsung-galaxy-a-34-silver.avif",
+      "price": "400"
+    },
+    {
+      "id": "12",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy S23 Ultra",
+      "memory": "256",
+      "productColor": "Green",
+      "img": "images/samsung-galaxy-s23-ultra.jpg",
+      "price": "1199"
+    },
+    {
+      "id": "13",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy S23+",
+      "memory": "256",
+      "productColor": "Green",
+      "img": "images/samsung-galaxy-s23-plus.webp",
+      "price": "999"
+    },
+    {
+      "id": "14",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy A54",
+      "memory": "128",
+      "productColor": "White",
+      "img": "images/samsung-galaxy-a54.webp",
+      "price": "500"
+    },
+    {
+      "id": "15",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy F14",
+      "memory": "128",
+      "productColor": "Black",
+      "img": "images/samsung-galaxy-f14-black.jpg",
+      "price": "160"
+    },
+    {
+      "id": "16",
       "productBrand": "Xiaomi",
-      "model": "Z",
-      "memory": "125",
-      "productColor": "Purple",
-      "img": "",
-      "price": "4199"
+      "productModel": "13",
+      "memory": "128",
+      "productColor": "Yellow",
+      "img": "images/xiaomi-13-yellow.jpg",
+      "price": "570"
+    },
+    {
+      "id": "17",
+      "productBrand": "Xiaomi",
+      "productModel": "13 Pro",
+      "memory": "256",
+      "productColor": "Black",
+      "img": "images/xiaomi-13-pro-black.webp",
+      "price": "710"
+    },
+    {
+      "id": "18",
+      "productBrand": "Xiaomi",
+      "productModel": "12T Pro",
+      "memory": "256",
+      "productColor": "Blue",
+      "img": "images/xiaomi-12T-pro-blue.jpg",
+      "price": "750"
+    },
+    {
+      "id": "19",
+      "productBrand": "Xiaomi",
+      "productModel": "12S Ultra",
+      "memory": "512",
+      "productColor": "Black",
+      "img": "images/xiaomi-12S-ultra-black.webp",
+      "price": "970"
+    },
+    {
+      "id": "20",
+      "productBrand": "Honor",
+      "productModel": "Play 7T Pro",
+      "memory": "128",
+      "productColor": "Green",
+      "img": "images/honor-play-7T-pro-green.jpg",
+      "price": "210"
+    },
+    {
+      "id": "21",
+      "productBrand": "Honor",
+      "productModel": "Magic 5 Ultimate",
+      "memory": "512",
+      "productColor": "Black",
+      "img": "images/honor-magic-5-ultimate.webp",
+      "price": "960"
+    },
+    {
+      "id": "22",
+      "productBrand": "Honor",
+      "productModel": "X9A",
+      "memory": "256",
+      "productColor": "Silver",
+      "img": "images/honor-x9a-silver.jpeg",
+      "price": "300"
+    },
+    {
+      "id": "23",
+      "productBrand": "Honor",
+      "productModel": "80 SE",
+      "memory": "128",
+      "productColor": "Blue",
+      "img": "images/honor-80se-blue.jpg",
+      "price": "340"
+    },
+    {
+      "id": "24",
+      "productBrand": "Honor",
+      "productModel": "Play 40 Plus",
+      "memory": "128",
+      "productColor": "Blue",
+      "img": "images/honor-play-40-plus-2.jpg",
+      "price": "150"
     }
   ]
 }

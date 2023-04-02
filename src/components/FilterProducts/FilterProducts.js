@@ -98,7 +98,7 @@ const FilterProducts = ({
   return (
     <div className="filter-area-wrapper">
       {isMobile ? (
-        <>
+        <div>
           <div className="mversion-container">
             <div
               className="leftSide__mobile"
@@ -166,6 +166,8 @@ const FilterProducts = ({
                     categoryItem={
                       category.category === "Brend" ? brands : colors
                     }
+                    handleCheckboxChange={handleCheckboxChange}
+                    selectedCheckboxes={selectedCheckboxes}
                   />
                 ))}
                 <PriceRange />
@@ -178,7 +180,21 @@ const FilterProducts = ({
               </div>
             </div>
           )}
-        </>
+          <div className="all-products container">
+            {filteredProducts.map((product) => (
+              <Link key={product.id}>
+                <Product
+                  img={product.img}
+                  brand={product.productBrand}
+                  model={product.productModel}
+                  memory={product.memory}
+                  color={product.productColor}
+                  price={product.price}
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="container">
           <nav aria-label="breadcrumb">
@@ -210,7 +226,7 @@ const FilterProducts = ({
             <div className="col-lg-9">
               <div className="filtered_products_wrapper">
                 <div className="wrapper__headings">
-                  <span>{data.length} məhsul tapıldı</span>
+                  <span>{filteredProducts.length} məhsul tapıldı</span>
                   <Select
                     defaultValue="Sıralamanı seç"
                     style={{
@@ -238,9 +254,9 @@ const FilterProducts = ({
                 {filteredProducts.map((product) => (
                   <Link key={product.id}>
                     <Product
-                      // img={product.images.url}
+                      img={product.img}
                       brand={product.productBrand}
-                      model={product.model}
+                      model={product.productModel}
                       memory={product.memory}
                       color={product.productColor}
                       price={product.price}

@@ -5,23 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Product from "../Product/Product";
+import axios from "axios";
 
 const BestSellerProduct = () => {
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   api.get("/smartphones?populate=*").then((response) => {
-  //     const filteredData = response.data.data.filter(
-  //       (phone) =>
-  //         phone.images &&
-  //         phone.images.length > 0 &&
-  //         phone.prices &&
-  //         phone.prices.length > 0 &&
-  //         phone.prices[0].price !== null
-  //     );
-  //     setData(filteredData);
-  //   });
-  // }, []);
+  const phonesEndpoint = "http://localhost:8001/smartphones";
+
+  useEffect(() => {
+    axios.get(phonesEndpoint).then((res) => {
+      setData(res.data);
+    });
+  }, []);
 
   const settings = {
     dots: false,
@@ -84,11 +79,12 @@ const BestSellerProduct = () => {
             {data.map((product) => (
               <Link key={product.id}>
                 <Product
-                  img={product.images[0].url}
-                  brand={product.name}
-                  memory={product.main.storage_capacity__gb}
-                  color={product.main.design_color_name}
-                  price={product.prices[0].price}
+                   img={product.img}
+                   brand={product.productBrand}
+                   model={product.productModel}
+                   memory={product.memory}
+                   color={product.productColor}
+                   price={product.price}
                 />
               </Link>
             ))}
