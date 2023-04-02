@@ -1,12 +1,4 @@
 import React from "react";
-import icon1 from "../../assets/images/footer-icon-1.svg";
-import icon2 from "../../assets/images/footer-icon-2.svg";
-import icon3 from "../../assets/images/footer-icon-3.svg";
-import social1 from "../../assets/images/footer-social-1.svg";
-import social2 from "../../assets/images/footer-social-2.svg";
-import social3 from "../../assets/images/footer-social-3.svg";
-import social4 from "../../assets/images/footer-social-4.svg";
-import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -18,21 +10,21 @@ const Footer = () => {
             <div className="col-lg-3">
               <div className="footer-logo d-flex">
                 <Link>
-                  <img src={logo} />
+                  <img src="images/logo.svg" />
                 </Link>
               </div>
               <div className="footer-social mt-2 mb-3">
                 <Link>
-                  <img src={social1} />
+                  <img src="images/footer-social-1.svg" />
                 </Link>
                 <Link>
-                  <img src={social2} />
+                  <img src="images/footer-social-2.svg" />
                 </Link>
                 <Link>
-                  <img src={social3} />
+                  <img src="images/footer-social-3.svg" />
                 </Link>
                 <Link>
-                  <img src={social4} />
+                  <img src="images/footer-social-4.svg" />
                 </Link>
               </div>
             </div>
@@ -71,17 +63,17 @@ const Footer = () => {
               <h5 className="heading">Əlaqə</h5>
               <ul className="card-text contact">
                 <li>
-                  <img src={icon1} />
+                  <img src="images/footer-icon-1.svg" />
                   <span className="address1">
                     M. K. Ataturk avenue 89, Baku, Azerbaijan
                   </span>
                 </li>
                 <li>
-                  <img src={icon2} />
+                  <img src="images/footer-icon-2.svg" />
                   <a href="mailto:example@gmail.com">example@gmail.com</a>
                 </li>
                 <li>
-                  <img src={icon3} />
+                  <img src="images/footer-icon-3.svg" />
                   <a href="tel:*2108">*2108</a>
                 </li>
               </ul>

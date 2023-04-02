@@ -1,31 +1,25 @@
 import React from "react";
 import Slider from "react-slick";
-import img1 from "../../assets/images/brand-1.svg";
-import img2 from "../../assets/images/brand-2.svg";
-import img3 from "../../assets/images/brand-3.svg";
-import img4 from "../../assets/images/brand-4.svg";
-import img5 from "../../assets/images/brand-5.svg";
-import img6 from "../../assets/images/brand-6.svg";
 
 const OurPartners = () => {
   const images = [
     {
-      img: img1,
+      img: "images/brand-1.svg",
     },
     {
-      img: img2,
+      img: "images/brand-2.svg",
     },
     {
-      img: img3,
+      img: "images/brand-3.svg",
     },
     {
-      img: img4,
+      img: "images/brand-4.svg",
     },
     {
-      img: img5,
+      img: "images/brand-5.svg",
     },
     {
-      img: img6,
+      img: "images/brand-6.svg",
     },
   ];
 

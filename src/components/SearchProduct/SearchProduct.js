@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../api/api";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 const { Search } = Input;

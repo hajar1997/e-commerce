@@ -1,7 +1,4 @@
 import React from "react";
-import img1 from "../../assets/images/access-products-1.png";
-import img2 from "../../assets/images/access-products-2.png";
-import img3 from "../../assets/images/access-products-3.png";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -28,7 +25,7 @@ const AccessToProducts = () => {
                 </a>
               </div>
               <div className="img-container">
-                <img src={img1} />
+                <img src="images/access-products-1.png" />
               </div>
             </div>
           </div>
@@ -50,7 +47,7 @@ const AccessToProducts = () => {
                 </a>
               </div>
               <div className="img-container">
-                <img src={img2} />
+                <img src="images/access-products-2.png" />
               </div>
             </div>
             <div className="accessory-product-container">
@@ -70,7 +67,7 @@ const AccessToProducts = () => {
                 </a>
               </div>
               <div className="img-container">
-                <img src={img3} />
+                <img src="images/access-products-3.png" />
               </div>
             </div>
           </div>

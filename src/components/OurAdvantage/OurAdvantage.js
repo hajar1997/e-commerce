@@ -1,7 +1,4 @@
 import React from "react";
-import img1 from "../../assets/images/icon-1.svg";
-import img2 from "../../assets/images/icon-2.svg";
-import img3 from "../../assets/images/icon-3.svg";
 
 const OurAdvantage = () => {
   return (
@@ -9,7 +6,7 @@ const OurAdvantage = () => {
       <div className="container">
         <div className="advantage-container">
           <div>
-            <img src={img1} />
+            <img src="images/icon-1.svg" />
             <div className="advantage-context">
               <h6>Çatdırılma</h6>
               <span>
@@ -18,7 +15,7 @@ const OurAdvantage = () => {
             </div>
           </div>
           <div>
-            <img src={img2} />
+            <img src="images/icon-2.svg" />
             <div className="advantage-context">
               <h6>Kredit</h6>
               <span>
@@ -27,7 +24,7 @@ const OurAdvantage = () => {
             </div>
           </div>
           <div>
-            <img src={img3} />
+            <img src="images/icon-3.svg" />
             <div className="advantage-context">
               <h6>Zəmanət</h6>
               <span>

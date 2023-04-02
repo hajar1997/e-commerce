@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../assets/images/mega-menu-pic.png";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -88,7 +87,7 @@ const MegaMenu = () => {
                   </div>
                   <div className="col-lg-6 col-sm-12">
                     <div className="col-megamenu">
-                      <img src={img} />
+                      <img src="images/mega-menu-pic.png" />
                     </div>
                   </div>
                 </div>

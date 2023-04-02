@@ -1,8 +1,5 @@
 import React from "react";
-import img from "../../assets/images/main-section-phone.png";
 import { Carousel } from "antd";
-
-
 
 const MainSection = () => {
   return (
@@ -19,7 +16,7 @@ const MainSection = () => {
               </p>
             </div>
             <div className="content-img">
-              <img src={img} />
+              <img src="images/main-section-phone.png" />
             </div>
           </div>
         </div>
@@ -34,7 +31,7 @@ const MainSection = () => {
               </p>
             </div>
             <div className="content-img">
-              <img src={img} />
+              <img src="images/main-section-phone.png" />
             </div>
           </div>
         </div>
@@ -49,7 +46,7 @@ const MainSection = () => {
               </p>
             </div>
             <div className="content-img">
-              <img src={img} />
+              <img src="images/main-section-phone.png" />
             </div>
           </div>
         </div>

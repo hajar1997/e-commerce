@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import PriceRange from "../PriceRange/PriceRange";
-import api from "../../api/api";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
 import { Select } from "antd";
-import icon1 from "../../assets/images/siralama-icon.svg";
-import icon2 from "../../assets/images/filter-icon.svg";
 import { Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -81,20 +78,6 @@ const FilterProducts = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // useEffect(() => {
-  //   api.get("/smartphones?populate=*").then((response) => {
-  //     const filteredData = response.data.data.filter(
-  //       (phone) =>
-  //         phone.images &&
-  //         phone.images.length > 0 &&
-  //         phone.prices &&
-  //         phone.prices.length > 0 &&
-  //         phone.prices[0].price !== null
-  //     );
-  //     setData(filteredData);
-  //   });
-  // }, []);
-
   return (
     <div className="filter-area-wrapper">
       {isMobile ? (
@@ -108,7 +91,7 @@ const FilterProducts = ({
                 )
               }
             >
-              <img src={icon1} />
+              <img src="images/siralama-icon.svg" />
               <h5>Sıralama</h5>
             </div>
             <Divider type="vertical" />
@@ -116,7 +99,7 @@ const FilterProducts = ({
               className="rightSide__mobile"
               onClick={() => setRightSideMobileIsOpen(true)}
             >
-              <img src={icon2} />
+              <img src="images/filter-icon.svg" />
               <h5>Filterləmələr</h5>
             </div>
           </div>

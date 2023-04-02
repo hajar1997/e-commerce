@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/logo.svg";
 import {
   UserOutlined,
   HeartOutlined,
@@ -28,7 +27,7 @@ const Header = () => {
             <FontAwesomeIcon icon={faBars} className="navbar-toggler-icon" />
           </button>
           <div className="header-logo">
-            <img src={logo} alt="" />
+            <img src="images/logo.svg" alt="" />
           </div>
           <div className="search-bar">
             <SearchProduct />

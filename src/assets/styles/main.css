@@ -237,7 +237,7 @@ nav {
 /* MAIN SECTION START */
 
 .main-section {
-    background: url('../images/mainsection-background.png');
+    background: url('/public/images/mainsection-background.png');
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -675,7 +675,7 @@ footer .contact li {
     float: left;
     padding-right: var(--bs-breadcrumb-item-padding-x);
     color: #4F4F4F !important;
-    content: url('../images/chevron-right.svg') !important;
+    content: url('/public/images/chevron-right.svg') !important;
 }
 
 .filter-dropdown-container {
