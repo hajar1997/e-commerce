@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 const { Search } = Input;
@@ -15,6 +16,7 @@ const prefix = (
 );
 
 const SearchProduct = () => {
+  const [data, setData] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
   const [latestSearchs, setLatestSearchs] = useState([]);
@@ -35,12 +37,25 @@ const SearchProduct = () => {
       const newLatestSearchs = [...latestSearchs, searchedData];
       setLatestSearchs(newLatestSearchs);
       localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
-      navigate({
-        pathname: "/products",
-        search: `?q=${searchedData}`,
-      });
+      const searchedProducts = data.filter((product) =>
+        product.productModel.toLowerCase().includes(searchedData.toLowerCase()) ||
+        product.productBrand.toLowerCase().includes(searchedData.toLowerCase())
+      );
+      // navigate({
+      //   pathname: "/products",
+      //   search: `?q=${searchedData}`,
+      // });
+      // navigate({
+      //   pathname: "/products",
+      //   state: {
+      //     products: searchedProducts,
+      //     searchedQuery: searchedData,
+      //   },
+      // });
+      console.log(searchedProducts);
     }
   };
+
 
   const deleteLatestSearchs = () => {
     localStorage.removeItem("latestSearches");
@@ -67,6 +82,12 @@ const SearchProduct = () => {
       setLatestSearchs(latestSearchesFromStorage);
     }
   }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:8001/smartphones").then((res) => {
+      setData(res.data);
+    });
+  });
 
   // useEffect(() => {
   //   const mostSearchedFromStorage = JSON.parse(

@@ -1,12 +1,12 @@
 import React from "react";
 
-const Product = ({ img, model, color, memory, price }) => {
+const Product = ({ brand,img, model, color, memory, price }) => {
   return (
     <div className="card-wrapper">
       <img src={img} />
       <div className="card__content">
         <a href="#">
-          {model} {memory} GB {color}
+        {brand} {model} {memory} GB {color}
         </a>
         <span>{price} $</span>
       </div>

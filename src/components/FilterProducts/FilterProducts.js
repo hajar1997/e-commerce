@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
-import PriceRange from "../PriceRange/PriceRange";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
 import { Select } from "antd";
 import { Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTimes,
+  faPlus,
+  faMinus,
+  faDollarSign,
+  faManatSign,
+} from "@fortawesome/free-solid-svg-icons";
 
 const FilterProducts = ({
   brandsEndpoint,
@@ -22,10 +27,33 @@ const FilterProducts = ({
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
   const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
+  const [toggle, setToggle] = useState(true);
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState("");
   const [selectedCheckboxes, setSelectedCheckboxes] = useState({
     productBrand: [],
     productColor: [],
   });
+
+  const handlePlusClick = () => {
+    setToggle(false);
+  };
+
+  const handeMinusClick = () => {
+    setToggle(true);
+  };
+
+  const handleSorting = (value) => {
+    const newData = [...filteredProducts];
+    if (value === "Ən yenilər") {
+      newData.sort((a, b) => b.id - a.id);
+    } else if (value === "Əvvəlcə ucuz") {
+      newData.sort((a, b) => a.price - b.price);
+    } else if (value === "Əvvəlcə baha") {
+      newData.sort((a, b) => b.price - a.price);
+    }
+    setData(newData);
+  };
 
   const handleCheckboxChange = (event) => {
     const value = event.target.value;
@@ -39,12 +67,26 @@ const FilterProducts = ({
     }));
   };
 
+  const handlePriceChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    if (name === "min") {
+      setMinPrice(value);
+    } else if (name === "max") {
+      setMaxPrice(value);
+    }
+  };
+
   const filteredProducts = data.filter(
     (product) =>
       (selectedCheckboxes.productBrand.length === 0 ||
         selectedCheckboxes.productBrand.includes(product.productBrand)) &&
       (selectedCheckboxes.productColor.length === 0 ||
-        selectedCheckboxes.productColor.includes(product.productColor))
+        selectedCheckboxes.productColor.includes(product.productColor)) &&
+      (maxPrice.length === 0 ||
+        (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+      (minPrice.length === 0 ||
+        (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
   );
 
   useEffect(() => {
@@ -112,7 +154,7 @@ const FilterProducts = ({
                   style={{
                     width: 176,
                   }}
-                  // onChange={handleChange}
+                  onChange={handleSorting}
                   options={[
                     {
                       value: "Ən yenilər",
@@ -153,10 +195,58 @@ const FilterProducts = ({
                     selectedCheckboxes={selectedCheckboxes}
                   />
                 ))}
-                <PriceRange />
+                <div className="filter-dropdown-container">
+                  <div className="filter-heading-wrapper">
+                    <h5>Qiymət</h5>
+                    {toggle ? (
+                      <FontAwesomeIcon
+                        icon={faPlus}
+                        onClick={handlePlusClick}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={faMinus}
+                        onClick={handeMinusClick}
+                      />
+                    )}
+                  </div>
+                  <hr />
+                  {toggle ? (
+                    <div className="price-range-container">
+                      <div className="input-wrapper">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Ən az"
+                          name="min"
+                          value={minPrice}
+                          onChange={handlePriceChange}
+                          aria-label="default input example"
+                        />
+                        {/* <FontAwesomeIcon icon={faManatSign} /> */}
+                        <FontAwesomeIcon icon={faDollarSign} />
+                      </div>
+                      <span></span>
+                      <div className="input-wrapper">
+                        <input
+                          className="form-control"
+                          type="text"
+                          name="max"
+                          placeholder="Ən çox"
+                          value={maxPrice}
+                          onChange={handlePriceChange}
+                          aria-label="default input example"
+                        />
+                        <FontAwesomeIcon icon={faDollarSign} />
+                        {/* <FontAwesomeIcon icon={faManatSign} /> */}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
                 <div className="show_products_btn">
-                  <button className="btn">
-                    {" "}
+                  <button className="btn" type="submit">
                     Filterlənmiş məhsulları göstər
                   </button>
                 </div>
@@ -204,7 +294,50 @@ const FilterProducts = ({
                   selectedCheckboxes={selectedCheckboxes}
                 />
               ))}
-              <PriceRange />
+              <div className="filter-dropdown-container">
+                <div className="filter-heading-wrapper">
+                  <h5>Qiymət</h5>
+                  {toggle ? (
+                    <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} />
+                  ) : (
+                    <FontAwesomeIcon icon={faMinus} onClick={handeMinusClick} />
+                  )}
+                </div>
+                <hr />
+                {toggle ? (
+                  <div className="price-range-container">
+                    <div className="input-wrapper">
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Ən az"
+                        value={minPrice}
+                        name="min"
+                        onChange={handlePriceChange}
+                        aria-label="default input example"
+                      />
+                      {/* <FontAwesomeIcon icon={faManatSign} /> */}
+                      <FontAwesomeIcon icon={faDollarSign} />
+                    </div>
+                    <span></span>
+                    <div className="input-wrapper">
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="max"
+                        placeholder="Ən çox"
+                        value={maxPrice}
+                        onChange={handlePriceChange}
+                        aria-label="default input example"
+                      />
+                      <FontAwesomeIcon icon={faDollarSign} />
+                      {/* <FontAwesomeIcon icon={faManatSign} /> */}
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
             <div className="col-lg-9">
               <div className="filtered_products_wrapper">
@@ -215,7 +348,7 @@ const FilterProducts = ({
                     style={{
                       width: 176,
                     }}
-                    // onChange={handleChange}
+                    onChange={handleSorting}
                     options={[
                       {
                         value: "Ən yenilər",

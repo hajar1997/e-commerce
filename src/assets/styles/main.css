@@ -848,11 +848,14 @@ input:focus {
 }
 
 .right-side-mobile__opened {
-    z-index: 100000;
-    background-color: white;
-    position: absolute;
-    width: 100%;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    background-color: white;
+    overflow-y: scroll;
 }
 
 .mversion_opened_header {
