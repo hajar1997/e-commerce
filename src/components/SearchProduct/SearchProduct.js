@@ -16,11 +16,9 @@ const prefix = (
 );
 
 const SearchProduct = () => {
-  const [data, setData] = useState([]);
   const [searchedData, setSearchedData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
   const [latestSearchs, setLatestSearchs] = useState([]);
-  // const [mostSearched, setMostSearched] = useState([]);
   const searchRef = useRef(null);
   const navigate = useNavigate();
 
@@ -37,25 +35,10 @@ const SearchProduct = () => {
       const newLatestSearchs = [...latestSearchs, searchedData];
       setLatestSearchs(newLatestSearchs);
       localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
-      const searchedProducts = data.filter((product) =>
-        product.productModel.toLowerCase().includes(searchedData.toLowerCase()) ||
-        product.productBrand.toLowerCase().includes(searchedData.toLowerCase())
-      );
-      // navigate({
-      //   pathname: "/products",
-      //   search: `?q=${searchedData}`,
-      // });
-      // navigate({
-      //   pathname: "/products",
-      //   state: {
-      //     products: searchedProducts,
-      //     searchedQuery: searchedData,
-      //   },
-      // });
-      console.log(searchedProducts);
+      navigate(`/products?query=${searchedData}`);
+      setIsFocus(false)
     }
   };
-
 
   const deleteLatestSearchs = () => {
     localStorage.removeItem("latestSearches");
@@ -83,24 +66,6 @@ const SearchProduct = () => {
     }
   }, []);
 
-  useEffect(() => {
-    axios.get("http://localhost:8001/smartphones").then((res) => {
-      setData(res.data);
-    });
-  });
-
-  // useEffect(() => {
-  //   const mostSearchedFromStorage = JSON.parse(
-  //     localStorage.getItem("latestSearchs")
-  //   );
-  //   if (mostSearchedFromStorage && latestSearchs.length > 0) {
-  //     const filteredMostSearched = mostSearchedFromStorage.filter((item) =>
-  //       latestSearchs.includes(item)
-  //     );
-  //     setMostSearched(filteredMostSearched);
-  //   }
-  // }, [latestSearchs]);
-
   return (
     <div className="position-relative w-100" ref={searchRef}>
       <Search
@@ -122,24 +87,12 @@ const SearchProduct = () => {
             </div>
             <div className="searchs__wrapper">
               {latestSearchs.map((search, index) => (
-                <a href="#" className="latest-search" key={index}>
+                <a href="#" className="latest-search" key={index} onClick={()=>  navigate(`/products?query=${search}`)}>
                   {search}
                 </a>
               ))}
             </div>
           </div>
-          {/* <div className="most-searched">
-            <div className="most-searched-heading">
-              <h6>Çox axtarılanlar</h6>
-            </div>
-            <div className="searchs__wrapper">
-              {mostSearched.map((search, index) => (
-                <a href="#" className="latest-search" key={index}>
-                  {search}
-                </a>
-              ))}
-            </div>
-          </div> */}
         </div>
       )}
     </div>

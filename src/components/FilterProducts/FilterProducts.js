@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
@@ -35,9 +36,14 @@ const FilterProducts = ({
     productColor: [],
   });
 
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get("query");
+  
   const handlePlusClick = () => {
     setToggle(false);
   };
+
+
 
   const handeMinusClick = () => {
     setToggle(true);
@@ -77,17 +83,39 @@ const FilterProducts = ({
     }
   };
 
-  const filteredProducts = data.filter(
-    (product) =>
-      (selectedCheckboxes.productBrand.length === 0 ||
-        selectedCheckboxes.productBrand.includes(product.productBrand)) &&
-      (selectedCheckboxes.productColor.length === 0 ||
-        selectedCheckboxes.productColor.includes(product.productColor)) &&
-      (maxPrice.length === 0 ||
-        (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-      (minPrice.length === 0 ||
-        (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-  );
+  const filteredProducts = searchQuery
+    ? data
+        .filter(
+          (product) =>
+            product.productModel
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            product.productBrand
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+        )
+        .filter(
+          (product) =>
+            (selectedCheckboxes.productBrand.length === 0 ||
+              selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+            (selectedCheckboxes.productColor.length === 0 ||
+              selectedCheckboxes.productColor.includes(product.productColor)) &&
+            (maxPrice.length === 0 ||
+              (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+            (minPrice.length === 0 ||
+              (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+        )
+    : data.filter(
+        (product) =>
+          (selectedCheckboxes.productBrand.length === 0 ||
+            selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+          (selectedCheckboxes.productColor.length === 0 ||
+            selectedCheckboxes.productColor.includes(product.productColor)) &&
+          (maxPrice.length === 0 ||
+            (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+          (minPrice.length === 0 ||
+            (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+      );
 
   useEffect(() => {
     axios
