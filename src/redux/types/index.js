@@ -1,1 +1,7 @@
-export const example1 = "EXAMPLE1";
+export const SET_BRANDS = "SET_BRANDS";
+export const SET_CATEGORIES = "SET_CATEGORIES";
+export const SET_COLORS = "SET_COLORS";
+export const SET_DATA = "SET_DATA";
+export const SET_MAX_PRICE = "SET_MAX_PRICE";
+export const SET_MIN_PRICE = "SET_MIN_PRICE";
+export const SET_SELECTED_CHECKBOXES = "SET_SELECTED_CHECKBOXES";
