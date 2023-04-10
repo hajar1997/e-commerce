@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation,Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
-import { Select,Divider } from "antd";
+import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTimes,
@@ -13,7 +13,7 @@ import {
   faManatSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-const FilterProducts = ({
+const Results = ({
   brandsEndpoint,
   filterCategoriesEndpoint,
   colorsEndpoint,
@@ -33,7 +33,7 @@ const FilterProducts = ({
     productBrand: [],
     productColor: [],
   });
-
+  const navigate = useNavigate();
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -79,6 +79,10 @@ const FilterProducts = ({
     }
   };
 
+  const formattedStr =
+    searchQuery.toLowerCase().charAt(0).toUpperCase() +
+    searchQuery.slice(1).toLowerCase();
+
   const filteredProducts = searchQuery
     ? data
         .filter(
@@ -101,17 +105,7 @@ const FilterProducts = ({
             (minPrice.length === 0 ||
               (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
         )
-    : data.filter(
-        (product) =>
-          (selectedCheckboxes.productBrand.length === 0 ||
-            selectedCheckboxes.productBrand.includes(product.productBrand)) &&
-          (selectedCheckboxes.productColor.length === 0 ||
-            selectedCheckboxes.productColor.includes(product.productColor)) &&
-          (maxPrice.length === 0 ||
-            (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-          (minPrice.length === 0 ||
-            (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-      );
+    : "";
 
   useEffect(() => {
     axios
@@ -208,17 +202,12 @@ const FilterProducts = ({
                   <h6>Filterləmələr</h6>
                 </div>
                 <Divider className="hr-divider" type="horizontal" />
-                {categories.map((category, index) => (
-                  <FilterDropdown
-                    key={index}
-                    categoryName={category.category}
-                    categoryItem={
-                      category.category === "Brend" ? brands : colors
-                    }
-                    handleCheckboxChange={handleCheckboxChange}
-                    selectedCheckboxes={selectedCheckboxes}
-                  />
-                ))}
+                <FilterDropdown
+                  categoryName="Rəng"
+                  categoryItem={colors}
+                  handleCheckboxChange={handleCheckboxChange}
+                  selectedCheckboxes={selectedCheckboxes}
+                />
                 <div className="filter-dropdown-container">
                   <div className="filter-heading-wrapper">
                     <h5>Qiymət</h5>
@@ -277,19 +266,30 @@ const FilterProducts = ({
               </div>
             </div>
           )}
-          <div className="all-products container">
-            {filteredProducts.map((product) => (
-              <Link key={product.id}>
-                <Product
-                  img={product.img}
-                  brand={product.productBrand}
-                  model={product.productModel}
-                  memory={product.memory}
-                  color={product.productColor}
-                  price={product.price}
-                />
-              </Link>
-            ))}
+          <div className="container">
+            <div className="filtered_products_wrapper">
+              <div className="wrapper__headings">
+                <span>
+                  {filteredProducts.length > 0
+                    ? filteredProducts.length + " məhsul tapıldı"
+                    : "Məhsul tapılmadı"}
+                </span>
+              </div>
+            </div>
+            <div className="all-products">
+              {filteredProducts.map((product) => (
+                <Link key={product.id}>
+                  <Product
+                    img={product.img}
+                    brand={product.productBrand}
+                    model={product.productModel}
+                    memory={product.memory}
+                    color={product.productColor}
+                    price={product.price}
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       ) : (
@@ -299,32 +299,24 @@ const FilterProducts = ({
               <li className="breadcrumb-item">
                 <a href="#">Ana səhifə</a>
               </li>
+              <li className="breadcrumb-item">
+                <a href="#" onClick={() => navigate(`/products`)}>
+                  Telefonlar
+                </a>
+              </li>
               <li className="breadcrumb-item active" aria-current="page">
-                <span>Telefonlar</span>
+                <span>{filteredProducts.length > 0 ? formattedStr : ""}</span>
               </li>
             </ol>
           </nav>
           <div className="row">
             <div className="col-lg-3">
-              {searchQuery &&
-                categories.map((category, index) => (
-                  <FilterDropdown
-                    key={index}
-                    categoryName={category.category}
-                    categoryItem={category.colors}
-                    handleCheckboxChange={handleCheckboxChange}
-                    selectedCheckboxes={selectedCheckboxes}
-                  />
-                ))}
-              {categories.map((category, index) => (
-                <FilterDropdown
-                  key={index}
-                  categoryName={category.category}
-                  categoryItem={category.category === "Brend" ? brands : colors}
-                  handleCheckboxChange={handleCheckboxChange}
-                  selectedCheckboxes={selectedCheckboxes}
-                />
-              ))}
+              <FilterDropdown
+                categoryName="Rəng"
+                categoryItem={colors}
+                handleCheckboxChange={handleCheckboxChange}
+                selectedCheckboxes={selectedCheckboxes}
+              />
               <div className="filter-dropdown-container">
                 <div className="filter-heading-wrapper">
                   <h5>Qiymət</h5>
@@ -373,7 +365,11 @@ const FilterProducts = ({
             <div className="col-lg-9">
               <div className="filtered_products_wrapper">
                 <div className="wrapper__headings">
-                  <span>{filteredProducts.length} məhsul tapıldı</span>
+                  <span>
+                    {filteredProducts.length > 0
+                      ? filteredProducts.length + " məhsul tapıldı"
+                      : "Məhsul tapılmadı"}
+                  </span>
                   <Select
                     defaultValue="Sıralamanı seç"
                     style={{
@@ -419,4 +415,4 @@ const FilterProducts = ({
   );
 };
 
-export default FilterProducts;
+export default Results;

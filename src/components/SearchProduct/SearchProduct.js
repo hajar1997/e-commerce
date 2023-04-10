@@ -35,8 +35,8 @@ const SearchProduct = () => {
       const newLatestSearchs = [...latestSearchs, searchedData];
       setLatestSearchs(newLatestSearchs);
       localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
-      navigate(`/products?query=${searchedData}`);
-      setIsFocus(false)
+      navigate(`/search-results?query=${searchedData}`);
+      setIsFocus(false);
     }
   };
 
@@ -62,7 +62,8 @@ const SearchProduct = () => {
       localStorage.getItem("latestSearches")
     );
     if (latestSearchesFromStorage) {
-      setLatestSearchs(latestSearchesFromStorage);
+      const latestSearches = latestSearchesFromStorage.slice(-7);
+      setLatestSearchs(latestSearches);
     }
   }, []);
 
@@ -87,7 +88,12 @@ const SearchProduct = () => {
             </div>
             <div className="searchs__wrapper">
               {latestSearchs.map((search, index) => (
-                <a href="#" className="latest-search" key={index} onClick={()=>  navigate(`/products?query=${search}`)}>
+                <a
+                  href="#"
+                  className="latest-search"
+                  key={index}
+                  onClick={() => navigate(`/search-results?query=${search}`)}
+                >
                   {search}
                 </a>
               ))}
