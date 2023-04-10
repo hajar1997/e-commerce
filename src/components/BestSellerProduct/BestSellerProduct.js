@@ -65,7 +65,7 @@ const BestSellerProduct = () => {
       <div className="container">
         <div className="headings">
           <h6>Ən çox satılan məhsullar</h6>
-          <a href="#">
+          <a href="/products">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

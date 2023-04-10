@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AccessToProducts = () => {
+  const [phones, setPhones] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8001/smartphones")
+      .then((res) => setPhones(res.data));
+  }, []);
+
   return (
     <section className="access-products-wrapper">
       <div className="container">
@@ -11,8 +20,8 @@ const AccessToProducts = () => {
             <div className="telefon-product-container">
               <div className="product-info">
                 <h5>Telefon</h5>
-                <span>Məhsul sayı: 322</span>
-                <a href="#">
+                <span>Məhsul sayı: {phones.length}</span>
+                <a href="/products">
                   Məhsullara keçid
                   <FontAwesomeIcon
                     icon={faChevronRight}

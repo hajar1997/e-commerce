@@ -775,10 +775,8 @@ input:focus {
 }
 
 .all-products {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
 }
 
 .all-products .card-wrapper {
@@ -1008,8 +1006,6 @@ input:focus {
         width: 100% !important;
     }
 
-
-
     .mobile-navbar {
         order: 1;
     }
@@ -1145,6 +1141,12 @@ input:focus {
         justify-content: center !important;
     }
 
+}
+
+@media(max-width: 770px) {
+    .all-products{
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media(max-width: 480px) {

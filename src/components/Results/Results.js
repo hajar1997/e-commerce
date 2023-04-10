@@ -13,14 +13,7 @@ import {
   faManatSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Results = ({
-  brandsEndpoint,
-  filterCategoriesEndpoint,
-  colorsEndpoint,
-  phonesEndpoint,
-}) => {
-  const [brands, setBrands] = useState([]);
-  const [categories, setCategories] = useState([]);
+const Results = ({ colorsEndpoint, phonesEndpoint }) => {
   const [colors, setColors] = useState([]);
   const [data, setData] = useState([]);
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
@@ -96,8 +89,6 @@ const Results = ({
         )
         .filter(
           (product) =>
-            (selectedCheckboxes.productBrand.length === 0 ||
-              selectedCheckboxes.productBrand.includes(product.productBrand)) &&
             (selectedCheckboxes.productColor.length === 0 ||
               selectedCheckboxes.productColor.includes(product.productColor)) &&
             (maxPrice.length === 0 ||
@@ -108,28 +99,12 @@ const Results = ({
     : "";
 
   useEffect(() => {
-    axios
-      .all([
-        axios.get(brandsEndpoint),
-        axios.get(filterCategoriesEndpoint),
-        axios.get(colorsEndpoint),
-        axios.get(phonesEndpoint),
-      ])
-      .then(
-        axios.spread(
-          (
-            brandsEndpoint,
-            filterCategoriesEndpoint,
-            colorsEndpoint,
-            phonesEndpoint
-          ) => {
-            setBrands(brandsEndpoint.data);
-            setCategories(filterCategoriesEndpoint.data);
-            setColors(colorsEndpoint.data);
-            setData(phonesEndpoint.data);
-          }
-        )
-      );
+    axios.all([axios.get(colorsEndpoint), axios.get(phonesEndpoint)]).then(
+      axios.spread((colorsEndpoint, phonesEndpoint) => {
+        setColors(colorsEndpoint.data);
+        setData(phonesEndpoint.data);
+      })
+    );
   }, []);
 
   useEffect(() => {
@@ -297,7 +272,9 @@ const Results = ({
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="#">Ana səhifə</a>
+                <a href="#" onClick={() => navigate("/")}>
+                  Ana səhifə
+                </a>
               </li>
               <li className="breadcrumb-item">
                 <a href="#" onClick={() => navigate(`/products`)}>

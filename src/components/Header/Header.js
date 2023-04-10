@@ -27,7 +27,9 @@ const Header = () => {
             <FontAwesomeIcon icon={faBars} className="navbar-toggler-icon" />
           </button>
           <div className="header-logo">
-            <img src="images/logo.svg" alt="" />
+            <Link to="/">
+              <img src="images/logo.svg" alt="" />
+            </Link>
           </div>
           <div className="search-bar">
             <SearchProduct />

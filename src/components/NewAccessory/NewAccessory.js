@@ -65,7 +65,7 @@ const NewAccessory = () => {
       <div className="container">
         <div className="headings">
           <h6>Yeni gələn aksessuarlar</h6>
-          <a href="#">
+          <a href="/products">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

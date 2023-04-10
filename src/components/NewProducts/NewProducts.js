@@ -65,7 +65,7 @@ const NewProducts = () => {
       <div className="container">
         <div className="headings">
           <h6>Yeni gələn məhsullar</h6>
-          <a href="#">
+          <a href="/products">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

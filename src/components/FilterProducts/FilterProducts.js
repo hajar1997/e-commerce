@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation,Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
-import { Select,Divider } from "antd";
+import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTimes,
@@ -33,7 +33,7 @@ const FilterProducts = ({
     productBrand: [],
     productColor: [],
   });
-
+  const navigate = useNavigate();
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
 
@@ -297,7 +297,9 @@ const FilterProducts = ({
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="#">Ana səhifə</a>
+                <a href="#" onClick={() => navigate("/")}>
+                  Ana səhifə
+                </a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
                 <span>Telefonlar</span>
