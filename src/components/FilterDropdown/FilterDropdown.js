@@ -43,7 +43,7 @@ const FilterDropdown = ({
                 }
                 checked={
                   selectedCheckboxes.productBrand.includes(category.value) ||
-                  selectedCheckboxes.productColor.includes(category.value)
+                  selectedCheckboxes.productColor.includes(category.value) 
                 }
                 onChange={handleCheckboxChange}
               />

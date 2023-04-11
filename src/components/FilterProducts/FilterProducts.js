@@ -69,6 +69,15 @@ const FilterProducts = ({
     }));
   };
 
+  useEffect(() => {
+    setSelectedCheckboxes({
+      productBrand: [],
+      productColor: [],
+    });
+    setMaxPrice("");
+    setMinPrice("");
+  }, [searchQuery]);
+
   const handlePriceChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -208,9 +217,9 @@ const FilterProducts = ({
                   <h6>Filterləmələr</h6>
                 </div>
                 <Divider className="hr-divider" type="horizontal" />
-                {categories.map((category, index) => (
+                {categories.map((category) => (
                   <FilterDropdown
-                    key={index}
+                    key={searchQuery}
                     categoryName={category.category}
                     categoryItem={
                       category.category === "Brend" ? brands : colors
@@ -243,6 +252,7 @@ const FilterProducts = ({
                           type="text"
                           placeholder="Ən az"
                           name="min"
+                          key={searchQuery}
                           value={minPrice}
                           onChange={handlePriceChange}
                           aria-label="default input example"
@@ -258,6 +268,7 @@ const FilterProducts = ({
                           name="max"
                           placeholder="Ən çox"
                           value={maxPrice}
+                          key={searchQuery}
                           onChange={handlePriceChange}
                           aria-label="default input example"
                         />
@@ -309,18 +320,18 @@ const FilterProducts = ({
           <div className="row">
             <div className="col-lg-3">
               {searchQuery &&
-                categories.map((category, index) => (
+                categories.map((category) => (
                   <FilterDropdown
-                    key={index}
+                    key={searchQuery}
                     categoryName={category.category}
                     categoryItem={category.colors}
                     handleCheckboxChange={handleCheckboxChange}
                     selectedCheckboxes={selectedCheckboxes}
                   />
                 ))}
-              {categories.map((category, index) => (
+              {categories.map((category) => (
                 <FilterDropdown
-                  key={index}
+                  key={searchQuery}
                   categoryName={category.category}
                   categoryItem={category.category === "Brend" ? brands : colors}
                   handleCheckboxChange={handleCheckboxChange}

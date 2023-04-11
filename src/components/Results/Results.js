@@ -72,6 +72,13 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
     }
   };
 
+  useEffect(() => {
+    setSelectedCheckboxes({
+    productBrand: [],
+    productColor: [],
+  });
+  }, [searchQuery]);
+
   const formattedStr =
     searchQuery.toLowerCase().charAt(0).toUpperCase() +
     searchQuery.slice(1).toLowerCase();
@@ -182,6 +189,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                   categoryItem={colors}
                   handleCheckboxChange={handleCheckboxChange}
                   selectedCheckboxes={selectedCheckboxes}
+                  key={searchQuery}
                 />
                 <div className="filter-dropdown-container">
                   <div className="filter-heading-wrapper">
@@ -234,7 +242,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                   )}
                 </div>
                 <div className="show_products_btn">
-                  <button className="btn" type="submit">
+                  <button className="btn" type="submit" >
                     Filterlənmiş məhsulları göstər
                   </button>
                 </div>
@@ -293,6 +301,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                 categoryItem={colors}
                 handleCheckboxChange={handleCheckboxChange}
                 selectedCheckboxes={selectedCheckboxes}
+                key={searchQuery}
               />
               <div className="filter-dropdown-container">
                 <div className="filter-heading-wrapper">
