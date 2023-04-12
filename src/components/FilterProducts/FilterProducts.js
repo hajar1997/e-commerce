@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
 import { Select, Divider } from "antd";
+import { setSearchSubmitted } from "../../redux/actions/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTimes,
@@ -33,8 +35,13 @@ const FilterProducts = ({
     productBrand: [],
     productColor: [],
   });
+  const [mobileFilteredProducts, setMobileFilteredProducts] = useState([]);
+  const searchSubmitted = useSelector((state) => state.main.searchSubmitted);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
+
   const searchQuery = new URLSearchParams(location.search).get("query");
 
   const handlePlusClick = () => {
@@ -69,18 +76,14 @@ const FilterProducts = ({
     }));
   };
 
-  useEffect(() => {
-    setSelectedCheckboxes({
-      productBrand: [],
-      productColor: [],
-    });
-    setMaxPrice("");
-    setMinPrice("");
-  }, [searchQuery]);
-
   const handlePriceChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
+    if (searchSubmitted) {
+      setMaxPrice("");
+      setMinPrice("");
+      dispatch(setSearchSubmitted(false));
+    }
     if (name === "min") {
       setMinPrice(value);
     } else if (name === "max") {
@@ -121,6 +124,18 @@ const FilterProducts = ({
           (minPrice.length === 0 ||
             (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
       );
+
+  const handleFilterProducts = () => {
+    setMobileFilteredProducts(filteredProducts);
+    setRightSideMobileIsOpen(false);
+  };
+
+  useEffect(() => {
+    setSelectedCheckboxes({
+      productBrand: [],
+      productColor: [],
+    });
+  }, [searchQuery]);
 
   useEffect(() => {
     axios
@@ -252,8 +267,7 @@ const FilterProducts = ({
                           type="text"
                           placeholder="Ən az"
                           name="min"
-                          key={searchQuery}
-                          value={minPrice}
+                          value={searchSubmitted ? "" : minPrice}
                           onChange={handlePriceChange}
                           aria-label="default input example"
                         />
@@ -267,8 +281,7 @@ const FilterProducts = ({
                           type="text"
                           name="max"
                           placeholder="Ən çox"
-                          value={maxPrice}
-                          key={searchQuery}
+                          value={searchSubmitted ? "" : maxPrice}
                           onChange={handlePriceChange}
                           aria-label="default input example"
                         />
@@ -279,11 +292,6 @@ const FilterProducts = ({
                   ) : (
                     ""
                   )}
-                </div>
-                <div className="show_products_btn">
-                  <button className="btn" type="submit">
-                    Filterlənmiş məhsulları göstər
-                  </button>
                 </div>
               </div>
             </div>
@@ -355,7 +363,7 @@ const FilterProducts = ({
                         className="form-control"
                         type="text"
                         placeholder="Ən az"
-                        value={minPrice}
+                        value={searchSubmitted ? "" : minPrice}
                         name="min"
                         onChange={handlePriceChange}
                         aria-label="default input example"
@@ -370,7 +378,7 @@ const FilterProducts = ({
                         type="text"
                         name="max"
                         placeholder="Ən çox"
-                        value={maxPrice}
+                        value={searchSubmitted ? "" : maxPrice}
                         onChange={handlePriceChange}
                         aria-label="default input example"
                       />

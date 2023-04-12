@@ -93,8 +93,8 @@ const MegaMenu = () => {
                 </div>
               </div>
             </li>
-            {categories.map((category) => (
-              <li className="nav-item dropdown has-megamenu">
+            {categories.map((category,index) => (
+              <li className="nav-item dropdown has-megamenu" key={index}>
                 <a className="nav-link" href="#" data-bs-toggle="dropdown">
                   {category}
                   <FontAwesomeIcon

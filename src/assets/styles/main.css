@@ -845,16 +845,7 @@ input:focus {
     cursor: pointer;
 }
 
-.right-side-mobile__opened {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 100;
-    background-color: white;
-    overflow-y: scroll;
-}
+
 
 .mversion_opened_header {
     display: flex;
@@ -877,21 +868,6 @@ input:focus {
 
 .hr-divider {
     margin-top: 0 !important;
-}
-
-.show_products_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px auto;
-}
-
-.show_products_btn .btn {
-    background-color: #2DD06E !important;
-    border-radius: 8px;
-    width: 100%;
-    padding: 16px 2px !important;
-    color: white !important;
 }
 
 .left-side-mobile__opened {
@@ -1209,7 +1185,8 @@ input:focus {
     }
 
     .all-products {
-        display: inline-block;
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
     .all-products .card-wrapper {

@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
+import {
+  setSearchedData,
+  setSearchSubmitted,
+} from "../../redux/actions/action";
 const { Search } = Input;
 
 const prefix = (
@@ -16,7 +20,9 @@ const prefix = (
 );
 
 const SearchProduct = () => {
-  const [searchedData, setSearchedData] = useState([]);
+  // const [searchedData, setSearchedData] = useState([]);
+  const searchedData = useSelector((state) => state.main.searchedData);
+  const searchSubmitted = useSelector((state) => state.main.searchSubmitted);
   const [isFocus, setIsFocus] = useState(false);
   const [latestSearchs, setLatestSearchs] = useState([]);
   const searchRef = useRef(null);
@@ -26,8 +32,10 @@ const SearchProduct = () => {
     setIsFocus(true);
   };
 
+  const dispatch = useDispatch();
+
   const handleSearch = (value) => {
-    setSearchedData(value);
+    dispatch(setSearchedData(value));
   };
 
   const handleKeyPress = (event) => {
@@ -37,6 +45,7 @@ const SearchProduct = () => {
       localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
       navigate(`/search-results?query=${searchedData}`);
       setIsFocus(false);
+      dispatch(setSearchSubmitted(true));
     }
   };
 

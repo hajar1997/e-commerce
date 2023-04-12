@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setSearchedData,
+  setSearchSubmitted,
+} from "../../redux/actions/action";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
 import { Select, Divider } from "antd";
@@ -26,9 +31,13 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
     productBrand: [],
     productColor: [],
   });
+  const [mobileFilteredProducts, setMobileFilteredProducts] = useState([]);
+
   const navigate = useNavigate();
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
+  const searchSubmitted = useSelector((state) => state.main.searchSubmitted);
+  const dispatch = useDispatch();
 
   const handlePlusClick = () => {
     setToggle(false);
@@ -63,6 +72,11 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
   };
 
   const handlePriceChange = (event) => {
+    if (searchSubmitted) {
+      setMaxPrice("");
+      setMinPrice("");
+      dispatch(setSearchSubmitted(false));
+    }
     const value = event.target.value;
     const name = event.target.name;
     if (name === "min") {
@@ -74,9 +88,9 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
 
   useEffect(() => {
     setSelectedCheckboxes({
-    productBrand: [],
-    productColor: [],
-  });
+      productBrand: [],
+      productColor: [],
+    });
   }, [searchQuery]);
 
   const formattedStr =
@@ -104,6 +118,38 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
               (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
         )
     : "";
+
+  const handleFilterProducts = () => {
+    const filteredProducts = searchQuery
+      ? data
+          .filter(
+            (product) =>
+              product.productModel
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase()) ||
+              product.productBrand
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+          )
+          .filter(
+            (product) =>
+              (selectedCheckboxes.productColor.length === 0 ||
+                selectedCheckboxes.productColor.includes(
+                  product.productColor
+                )) &&
+              (maxPrice.length === 0 ||
+                (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+              (minPrice.length === 0 ||
+                (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+          )
+      : "";
+    setMobileFilteredProducts(filteredProducts);
+    setRightSideMobileIsOpen(false);
+    setSelectedCheckboxes({
+      productBrand: [],
+      productColor: [],
+    });
+  };
 
   useEffect(() => {
     axios.all([axios.get(colorsEndpoint), axios.get(phonesEndpoint)]).then(
@@ -215,7 +261,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                           type="text"
                           placeholder="Ən az"
                           name="min"
-                          value={minPrice}
+                          value={searchSubmitted ? "" : minPrice}
                           onChange={handlePriceChange}
                           aria-label="default input example"
                         />
@@ -229,7 +275,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                           type="text"
                           name="max"
                           placeholder="Ən çox"
-                          value={maxPrice}
+                          value={searchSubmitted ? "" : maxPrice}
                           onChange={handlePriceChange}
                           aria-label="default input example"
                         />
@@ -240,11 +286,6 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                   ) : (
                     ""
                   )}
-                </div>
-                <div className="show_products_btn">
-                  <button className="btn" type="submit" >
-                    Filterlənmiş məhsulları göstər
-                  </button>
                 </div>
               </div>
             </div>
@@ -320,7 +361,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                         className="form-control"
                         type="text"
                         placeholder="Ən az"
-                        value={minPrice}
+                        value={searchSubmitted ? "" : minPrice}
                         name="min"
                         onChange={handlePriceChange}
                         aria-label="default input example"
@@ -335,7 +376,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                         type="text"
                         name="max"
                         placeholder="Ən çox"
-                        value={maxPrice}
+                        value={searchSubmitted ? "" : maxPrice}
                         onChange={handlePriceChange}
                         aria-label="default input example"
                       />

@@ -33,7 +33,7 @@ const FilterDropdown = ({
       {toggle && (
         <div className="checkboxes-container">
           {categoryItem.map((category) => (
-            <div className="form-check">
+            <div className="form-check" key={category.id}>
               <input
                 className="form-check-input"
                 type="checkbox"

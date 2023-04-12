@@ -1,9 +1,11 @@
 {
   "filterCategories": [
     {
+      "id": "1",
       "category": "Brend"
     },
     {
+      "id" : "2",
       "category": "Rəng"
     }
   ],

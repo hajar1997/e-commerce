@@ -1,69 +1,81 @@
-// import {
-//   SET_BRANDS,
-//   SET_CATEGORIES,
-//   SET_COLORS,
-//   SET_DATA,
-//   SET_MAX_PRICE,
-//   SET_MIN_PRICE,
-//   SET_SELECTED_CHECKBOXES,
-//   SET_LEFT_SIDE_MOBILE_IS_OPEN,
-//   SET_RIGHT_SIDE_MOBILE_IS_OPEN,
-//   SET_TOGGLE,
-//   SET_IS_MOBILE,
-//   GET_DATA
-// } from "../types/index";
+import {
+  SET_BRANDS,
+  SET_CATEGORIES,
+  SET_COLORS,
+  SET_DATA,
+  SET_MAX_PRICE,
+  SET_MIN_PRICE,
+  SET_SELECTED_CHECKBOXES,
+  SET_LEFT_SIDE_MOBILE_IS_OPEN,
+  SET_RIGHT_SIDE_MOBILE_IS_OPEN,
+  SET_TOGGLE,
+  SET_IS_MOBILE,
+  GET_DATA,
+  SET_SEARCHED_DATA,
+  SET_SEARCH_SUBMITTED
+} from "../types/index";
 
-// export const setBrands = (brands) => ({
-//   type: SET_BRANDS,
-//   payload: brands,
-// });
+export const setSearchedData = (searchedData) => ({
+  type: SET_SEARCHED_DATA,
+  payload: searchedData,
+});
 
-// export const setCategories = (categories) => ({
-//   type: SET_CATEGORIES,
-//   payload: categories,
-// });
+export const setSearchSubmitted = (searchSubmitted) => ({
+    type: SET_SEARCH_SUBMITTED,
+    payload: searchSubmitted,
+  });
 
-// export const setColors = (colors) => ({
-//   type: SET_COLORS,
-//   payload: colors,
-// });
+export const setBrands = (brands) => ({
+  type: SET_BRANDS,
+  payload: brands,
+});
 
-// export const setData = (data) => ({
-//   type: SET_DATA,
-//   payload: data,
-// });
+export const setCategories = (categories) => ({
+  type: SET_CATEGORIES,
+  payload: categories,
+});
 
-// export const setMaxPrice = (maxPrice) => ({
-//   type: SET_MAX_PRICE,
-//   payload: maxPrice,
-// });
+export const setColors = (colors) => ({
+  type: SET_COLORS,
+  payload: colors,
+});
 
-// export const setMinPrice = (minPrice) => ({
-//   type: SET_MIN_PRICE,
-//   payload: minPrice,
-// });
+export const setData = (data) => ({
+  type: SET_DATA,
+  payload: data,
+});
 
-// export const setSelectedCheckboxes = (selectedCheckboxes) => ({
-//   type: SET_SELECTED_CHECKBOXES,
-//   payload: selectedCheckboxes,
-// });
+export const setMaxPrice = (maxPrice) => ({
+  type: SET_MAX_PRICE,
+  payload: maxPrice,
+});
 
-// export const setLeftSideMobileIsOpen = (leftSideMobileIsOpen) => ({
-//   type: SET_LEFT_SIDE_MOBILE_IS_OPEN,
-//   payload: leftSideMobileIsOpen,
-// });
+export const setMinPrice = (minPrice) => ({
+  type: SET_MIN_PRICE,
+  payload: minPrice,
+});
 
-// export const setRightSideMobileIsOpen = (rightSideMobileIsOpen) => ({
-//   type: SET_RIGHT_SIDE_MOBILE_IS_OPEN,
-//   payload: rightSideMobileIsOpen,
-// });
+export const setSelectedCheckboxes = (selectedCheckboxes) => ({
+  type: SET_SELECTED_CHECKBOXES,
+  payload: selectedCheckboxes,
+});
 
-// export const setIsMobile = (isMobile) => ({
-//   type: SET_IS_MOBILE,
-//   payload: isMobile,
-// });
+export const setLeftSideMobileIsOpen = (leftSideMobileIsOpen) => ({
+  type: SET_LEFT_SIDE_MOBILE_IS_OPEN,
+  payload: leftSideMobileIsOpen,
+});
 
-// export const setToggle = (toggle) => ({
-//   type: SET_TOGGLE,
-//   payload: toggle,
-// });
+export const setRightSideMobileIsOpen = (rightSideMobileIsOpen) => ({
+  type: SET_RIGHT_SIDE_MOBILE_IS_OPEN,
+  payload: rightSideMobileIsOpen,
+});
+
+export const setIsMobile = (isMobile) => ({
+  type: SET_IS_MOBILE,
+  payload: isMobile,
+});
+
+export const setToggle = (toggle) => ({
+  type: SET_TOGGLE,
+  payload: toggle,
+});
