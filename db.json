@@ -5,7 +5,7 @@
       "category": "Brend"
     },
     {
-      "id" : "2",
+      "id": "2",
       "category": "Rəng"
     }
   ],
@@ -265,6 +265,145 @@
       "productColor": "Blue",
       "img": "images/honor-play-40-plus-2.jpg",
       "price": "150"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "1",
+      "brand": "Apple",
+      "model": "Iphone MagSafe to USB-C Cable",
+      "img": "images/new-accessory-1.png",
+      "price": "89.99"
+    },
+    {
+      "id": "2",
+      "brand": "Apple",
+      "model": "Air Tag Leather Loop",
+      "color": "Red",
+      "img": "images/new-accessory-2.png",
+      "price": "109.9"
+    },
+    {
+      "id": "3",
+      "brand": "Apple",
+      "model": "AirPods Max",
+      "color": "Green",
+      "img": "images/new-accessory-3.png",
+      "price": "1279"
+    },
+    {
+      "id": "4",
+      "brand": "Apple",
+      "model": "AirPods Pro with Wireless Charging Case",
+      "img": "images/new-accessory-4.png",
+      "price": "549.9"
+    },
+    {
+      "id": "5",
+      "brand": "Apple",
+      "model": "Mixfly Lightning to HDMI Adapter for iPhone to TV",
+      "img": "images/new-accessory-5.png",
+      "price": "119"
+    },
+    {
+      "id": "6",
+      "brand": "Apple",
+      "model": "iPhone Adapter",
+      "img": "images/new-accessory-6.png",
+      "price": "27.9"
+    },
+    {
+      "id": "7",
+      "brand": "GNMN",
+      "model": "Bluetooth Headphones Wireless Earbuds",
+      "img": "images/new-accessory-7.png",
+      "price": "129.95"
+    },
+    {
+      "id": "8",
+      "brand": "Samsung",
+      "model": "Galaxy Buds Live True Wireless Earbuds",
+      "img": "images/new-accessory-8.png",
+      "price": "179.99"
+    },
+    {
+      "id": "9",
+      "brand": "Samsung",
+      "model": "Wireless Charger Fast Charge Pad",
+      "img": "images/new-accessory-9.png",
+      "price": "31.89"
+    },
+    {
+      "id": "10",
+      "brand": "Samsung",
+      "model": "Galaxy S22 S-View Flip Cover",
+      "img": "images/new-accessory-10.png",
+      "price": "23.99"
+    },
+    {
+      "id": "11",
+      "brand": "Beats",
+      "model": "Studio3 Wireless Noise Cancelling Over-Ear Headphones",
+      "img": "images/new-accessory-11.png",
+      "price": "156.59"
+    },
+    {
+      "id": "12",
+      "brand": "Beats",
+      "model": "Fit Pro - True Wireless Noise Cancelling Earbuds",
+      "img": "images/new-accessory-12.png",
+      "price": "199.95"
+    },
+    {
+      "id": "13",
+      "brand": "Soundcore",
+      "model": "Anker Life Q20 Hybrid Active Noise Cancelling Headphones",
+      "img": "images/new-accessory-13.png",
+      "price": "65"
+    }
+  ],
+  "smartWatches": [
+    {
+      "id": "1",
+      "brand": "Fitbit",
+      "model": "Versa 2 Health and Fitness Smartwatch",
+      "img": "images/watch-1.jpg",
+      "price": "118.95"
+    },
+    {
+      "id": "2",
+      "brand": "Fitbit",
+      "model": "Versa 4 Fitness Smartwatch",
+      "img": "images/watch-2.jpg",
+      "price": "198.95"
+    },
+    {
+      "id": "3",
+      "brand": "Samsung",
+      "model": "Galaxy Watch 5 Pro",
+      "img": "images/watch-3.jpg",
+      "price": "394.49"
+    },
+    {
+      "id": "4",
+      "brand": "Samsung",
+      "model": "Galaxy Watch 5",
+      "img": "images/watch-4.jpg",
+      "price": "118.95"
+    },
+    {
+      "id": "5",
+      "brand": "Apple",
+      "model": "Watch SE (2nd Gen) [GPS 40mm] Smart Watch",
+      "img": "images/watch-5.jpg",
+      "price": "209.41"
+    },
+    {
+      "id": "6",
+      "brand": "Apple",
+      "model": "Watch Series 8 [GPS 41mm] Smart Watch",
+      "img": "images/watch-6.jpg",
+      "price": "329"
     }
   ]
 }

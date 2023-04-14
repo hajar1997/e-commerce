@@ -1,22 +1,18 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { fetchData } from "../../redux/actions/action";
 import Slider from "react-slick";
-import Product from "../Product/Product";
 
-const NewAccessory = () => {
-  const [data, setData] = useState([]);
-
-  const phonesEndpoint = "http://localhost:8001/smartphones";
+const NewAccessory = ({ main, fetchData }) => {
 
   useEffect(() => {
-    axios.get(phonesEndpoint).then((res) => {
-      setData(res.data);
-    });
+    fetchData();
   }, []);
-
+  
   const settings = {
     dots: false,
     infinite: false,
@@ -75,16 +71,18 @@ const NewAccessory = () => {
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
-            {data.map((product) => (
+            {main.accessories.map((product) => (
               <Link>
-                <Product
-                  img={product.img}
-                  brand={product.productBrand}
-                  model={product.productModel}
-                  memory={product.memory}
-                  color={product.productColor}
-                  price={product.price}
-                />
+                <div className="card-wrapper">
+                  <img src={product.img} />
+                  <div className="card__content">
+                    <a href="#">
+                      {product.brand} {product.model} {product.memory}{" "}
+                      {product.color}
+                    </a>
+                    <span>{product.price} $</span>
+                  </div>
+                </div>
               </Link>
             ))}
           </Slider>
@@ -103,4 +101,8 @@ const NewAccessory = () => {
   );
 };
 
-export default NewAccessory;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps, { fetchData })(NewAccessory);

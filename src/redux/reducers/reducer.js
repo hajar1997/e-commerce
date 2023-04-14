@@ -1,105 +1,52 @@
 import {
-  SET_SELECTED_CHECKBOXES,
-  SET_LEFT_SIDE_MOBILE_IS_OPEN,
-  SET_RIGHT_SIDE_MOBILE_IS_OPEN,
-  SET_TOGGLE,
-  SET_IS_MOBILE,
-  SET_BRANDS,
-  SET_CATEGORIES,
-  SET_COLORS,
-  SET_MAX_PRICE,
-  SET_MIN_PRICE,
-  SET_DATA,
   SET_SEARCHED_DATA,
-  SET_SEARCH_SUBMITTED
+  SET_SEARCH_SUBMITTED,
+  FETCH_DATA_FAILURE,
+  FETCH_DATA_SUCCESS,
 } from "../types/index";
 
 const initialState = {
+  searchedData: [],
+  searchSubmitted: false,
   brands: [],
   categories: [],
   colors: [],
-  maxPrice: "",
-  minPrice: "",
-  data: [],
-  selectedCheckboxes: {
-    productBrand: [],
-    productColor: [],
-  },
-  toggle: true,
-  isMobile: window.innerWidth < 992,
-  leftSideMobileIsOpen: false,
-  rightSideMobileIsOpen: false,
-  searchedData: [],
-  searchSubmitted: false,
+  phones: [],
+  accessories: [],
+  smartWatches: [],
+  error: null,
 };
 
 export const mainReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_BRANDS:
-      return {
-        ...state,
-        brands: action.payload,
-      };
-    case SET_CATEGORIES:
-      return {
-        ...state,
-        categories: action.payload,
-      };
-    case SET_COLORS:
-      return {
-        ...state,
-        colors: action.payload,
-      };
-    case SET_MAX_PRICE:
-      return {
-        ...state,
-        maxPrice: action.payload,
-      };
-    case SET_MIN_PRICE:
-      return {
-        ...state,
-        minPrice: action.payload,
-      };
-    case SET_DATA:
-      return {
-        ...state,
-        data: action.payload,
-      };
-    case SET_SELECTED_CHECKBOXES:
-      return {
-        ...state,
-        selectedCheckboxes: action.payload,
-      };
-    case SET_LEFT_SIDE_MOBILE_IS_OPEN:
-      return {
-        ...state,
-        leftSideMobileIsOpen: action.payload,
-      };
-    case SET_RIGHT_SIDE_MOBILE_IS_OPEN:
-      return {
-        ...state,
-        rightSideMobileIsOpen: action.payload,
-      };
-    case SET_TOGGLE:
-      return {
-        ...state,
-        toggle: action.payload,
-      };
-    case SET_IS_MOBILE:
-      return {
-        ...state,
-        isMobile: action.payload,
-      };
     case SET_SEARCHED_DATA:
       return {
         ...state,
         searchedData: action.payload,
       };
-      case SET_SEARCH_SUBMITTED:
-        return {
-          ...state,
-          searchSubmitted: action.payload,
-        };
+    case SET_SEARCH_SUBMITTED:
+      return {
+        ...state,
+        searchSubmitted: action.payload,
+      };
+    case FETCH_DATA_SUCCESS: {
+      return {
+        ...state,
+        brands: action.payload.brands,
+        categories: action.payload.categories,
+        colors: action.payload.colors,
+        phones: action.payload.phones,
+        accessories: action.payload.accessories,
+        smartWatches: action.payload.smartWatches,
+        error: null,
+      };
+    }
+    case FETCH_DATA_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
     default:
       return state;
   }

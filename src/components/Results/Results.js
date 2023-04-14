@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  setSearchedData,
-  setSearchSubmitted,
-} from "../../redux/actions/action";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { setSearchSubmitted } from "../../redux/actions/action";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
+import { fetchData } from "../../redux/actions/action";
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,9 +15,7 @@ import {
   faManatSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Results = ({ colorsEndpoint, phonesEndpoint }) => {
-  const [colors, setColors] = useState([]);
-  const [data, setData] = useState([]);
+const Results = ({ main, fetchData }) => {
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
   const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
@@ -56,7 +51,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
     } else if (value === "Əvvəlcə baha") {
       newData.sort((a, b) => b.price - a.price);
     }
-    setData(newData);
+    dispatch(fetchData(newData))
   };
 
   const handleCheckboxChange = (event) => {
@@ -98,7 +93,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
     searchQuery.slice(1).toLowerCase();
 
   const filteredProducts = searchQuery
-    ? data
+    ? main.phones
         .filter(
           (product) =>
             product.productModel
@@ -119,52 +114,16 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
         )
     : "";
 
-  const handleFilterProducts = () => {
-    const filteredProducts = searchQuery
-      ? data
-          .filter(
-            (product) =>
-              product.productModel
-                .toLowerCase()
-                .includes(searchQuery.toLowerCase()) ||
-              product.productBrand
-                .toLowerCase()
-                .includes(searchQuery.toLowerCase())
-          )
-          .filter(
-            (product) =>
-              (selectedCheckboxes.productColor.length === 0 ||
-                selectedCheckboxes.productColor.includes(
-                  product.productColor
-                )) &&
-              (maxPrice.length === 0 ||
-                (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-              (minPrice.length === 0 ||
-                (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-          )
-      : "";
-    setMobileFilteredProducts(filteredProducts);
-    setRightSideMobileIsOpen(false);
-    setSelectedCheckboxes({
-      productBrand: [],
-      productColor: [],
-    });
-  };
-
-  useEffect(() => {
-    axios.all([axios.get(colorsEndpoint), axios.get(phonesEndpoint)]).then(
-      axios.spread((colorsEndpoint, phonesEndpoint) => {
-        setColors(colorsEndpoint.data);
-        setData(phonesEndpoint.data);
-      })
-    );
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 992);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth < 992);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    
+    useEffect(() => {
+      fetchData();
+    }, []);
 
   return (
     <div className="filter-area-wrapper">
@@ -232,7 +191,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
                 <Divider className="hr-divider" type="horizontal" />
                 <FilterDropdown
                   categoryName="Rəng"
-                  categoryItem={colors}
+                  categoryItem={main.colors}
                   handleCheckboxChange={handleCheckboxChange}
                   selectedCheckboxes={selectedCheckboxes}
                   key={searchQuery}
@@ -339,7 +298,7 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
             <div className="col-lg-3">
               <FilterDropdown
                 categoryName="Rəng"
-                categoryItem={colors}
+                categoryItem={main.colors}
                 handleCheckboxChange={handleCheckboxChange}
                 selectedCheckboxes={selectedCheckboxes}
                 key={searchQuery}
@@ -442,4 +401,8 @@ const Results = ({ colorsEndpoint, phonesEndpoint }) => {
   );
 };
 
-export default Results;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps, { fetchData })(Results);

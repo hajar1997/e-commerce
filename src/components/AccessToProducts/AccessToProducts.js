@@ -5,11 +5,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AccessToProducts = () => {
   const [phones, setPhones] = useState([]);
+  const [accessories, setAccessories] = useState([]);
+  const [smartWatches, setSmartWatches] = useState([]);
+
+  const phonesEndpoint = "http://localhost:8001/smartphones";
+  const accessoryEndpoint = "http://localhost:8001/accessories";
+  const smartWatchEndpoint = "http://localhost:8001/smartWatches";
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/smartphones")
-      .then((res) => setPhones(res.data));
+      .all([
+        axios.get(phonesEndpoint),
+        axios.get(accessoryEndpoint),
+        axios.get(smartWatchEndpoint),
+      ])
+      .then(
+        axios.spread(
+          (phonesEndpoint, accessoryEndpoint, smartWatchEndpoint) => {
+            setPhones(phonesEndpoint.data);
+            setAccessories(accessoryEndpoint.data);
+            setSmartWatches(smartWatchEndpoint.data);
+          }
+        )
+      );
   }, []);
 
   return (
@@ -42,7 +60,7 @@ const AccessToProducts = () => {
             <div className="watch-product-container">
               <div className="product-info">
                 <h5>Smart saat</h5>
-                <span>Məhsul sayı: 46</span>
+                <span>Məhsul sayı: {smartWatches.length}</span>
                 <a href="#">
                   Məhsullara keçid
                   <FontAwesomeIcon
@@ -62,7 +80,7 @@ const AccessToProducts = () => {
             <div className="accessory-product-container">
               <div className="product-info">
                 <h5>Aksesuar</h5>
-                <span>Məhsul sayı: 891</span>
+                <span>Məhsul sayı: {accessories.length}</span>
                 <a href="#">
                   Məhsullara keçid
                   <FontAwesomeIcon

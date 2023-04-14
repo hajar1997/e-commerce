@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
 import { Select, Divider } from "antd";
 import { setSearchSubmitted } from "../../redux/actions/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fetchData } from "../../redux/actions/action";
 import {
   faTimes,
   faPlus,
@@ -15,16 +15,7 @@ import {
   faManatSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-const FilterProducts = ({
-  brandsEndpoint,
-  filterCategoriesEndpoint,
-  colorsEndpoint,
-  phonesEndpoint,
-}) => {
-  const [brands, setBrands] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [colors, setColors] = useState([]);
-  const [data, setData] = useState([]);
+const FilterProducts = ({ main, fetchData }) => {
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
   const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
@@ -61,7 +52,7 @@ const FilterProducts = ({
     } else if (value === "Əvvəlcə baha") {
       newData.sort((a, b) => b.price - a.price);
     }
-    setData(newData);
+    dispatch(fetchData(newData));
   };
 
   const handleCheckboxChange = (event) => {
@@ -92,7 +83,7 @@ const FilterProducts = ({
   };
 
   const filteredProducts = searchQuery
-    ? data
+    ? main.phones
         .filter(
           (product) =>
             product.productModel
@@ -113,7 +104,7 @@ const FilterProducts = ({
             (minPrice.length === 0 ||
               (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
         )
-    : data.filter(
+    : main.phones.filter(
         (product) =>
           (selectedCheckboxes.productBrand.length === 0 ||
             selectedCheckboxes.productBrand.includes(product.productBrand)) &&
@@ -138,28 +129,7 @@ const FilterProducts = ({
   }, [searchQuery]);
 
   useEffect(() => {
-    axios
-      .all([
-        axios.get(brandsEndpoint),
-        axios.get(filterCategoriesEndpoint),
-        axios.get(colorsEndpoint),
-        axios.get(phonesEndpoint),
-      ])
-      .then(
-        axios.spread(
-          (
-            brandsEndpoint,
-            filterCategoriesEndpoint,
-            colorsEndpoint,
-            phonesEndpoint
-          ) => {
-            setBrands(brandsEndpoint.data);
-            setCategories(filterCategoriesEndpoint.data);
-            setColors(colorsEndpoint.data);
-            setData(phonesEndpoint.data);
-          }
-        )
-      );
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -232,12 +202,12 @@ const FilterProducts = ({
                   <h6>Filterləmələr</h6>
                 </div>
                 <Divider className="hr-divider" type="horizontal" />
-                {categories.map((category) => (
+                {main.categories.map((category) => (
                   <FilterDropdown
                     key={searchQuery}
                     categoryName={category.category}
                     categoryItem={
-                      category.category === "Brend" ? brands : colors
+                      category.category === "Brend" ? main.brands : main.colors
                     }
                     handleCheckboxChange={handleCheckboxChange}
                     selectedCheckboxes={selectedCheckboxes}
@@ -328,7 +298,7 @@ const FilterProducts = ({
           <div className="row">
             <div className="col-lg-3">
               {searchQuery &&
-                categories.map((category) => (
+                main.categories.map((category) => (
                   <FilterDropdown
                     key={searchQuery}
                     categoryName={category.category}
@@ -337,11 +307,13 @@ const FilterProducts = ({
                     selectedCheckboxes={selectedCheckboxes}
                   />
                 ))}
-              {categories.map((category) => (
+              {main.categories.map((category) => (
                 <FilterDropdown
                   key={searchQuery}
                   categoryName={category.category}
-                  categoryItem={category.category === "Brend" ? brands : colors}
+                  categoryItem={
+                    category.category === "Brend" ? main.brands : main.colors
+                  }
                   handleCheckboxChange={handleCheckboxChange}
                   selectedCheckboxes={selectedCheckboxes}
                 />
@@ -440,4 +412,8 @@ const FilterProducts = ({
   );
 };
 
-export default FilterProducts;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps, { fetchData })(FilterProducts);
