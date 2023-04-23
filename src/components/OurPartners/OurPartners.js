@@ -4,22 +4,22 @@ import Slider from "react-slick";
 const OurPartners = () => {
   const images = [
     {
-      img: "images/brand-1.svg",
+      img: "/images/brand-1.svg",
     },
     {
-      img: "images/brand-2.svg",
+      img: "/images/brand-2.svg",
     },
     {
-      img: "images/brand-3.svg",
+      img: "/images/brand-3.svg",
     },
     {
-      img: "images/brand-4.svg",
+      img: "/images/brand-4.svg",
     },
     {
-      img: "images/brand-5.svg",
+      img: "/images/brand-5.svg",
     },
     {
-      img: "images/brand-6.svg",
+      img: "/images/brand-6.svg",
     },
   ];
 

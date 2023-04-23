@@ -6,7 +6,7 @@ const OurAdvantage = () => {
       <div className="container">
         <div className="advantage-container">
           <div>
-            <img src="images/icon-1.svg" />
+            <img src="/images/icon-1.svg" />
             <div className="advantage-context">
               <h6>Çatdırılma</h6>
               <span>
@@ -15,7 +15,7 @@ const OurAdvantage = () => {
             </div>
           </div>
           <div>
-            <img src="images/icon-2.svg" />
+            <img src="/images/icon-2.svg" />
             <div className="advantage-context">
               <h6>Kredit</h6>
               <span>
@@ -24,7 +24,7 @@ const OurAdvantage = () => {
             </div>
           </div>
           <div>
-            <img src="images/icon-3.svg" />
+            <img src="/images/icon-3.svg" />
             <div className="advantage-context">
               <h6>Zəmanət</h6>
               <span>

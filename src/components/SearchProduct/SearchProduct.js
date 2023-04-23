@@ -20,7 +20,6 @@ const prefix = (
 );
 
 const SearchProduct = () => {
-  // const [searchedData, setSearchedData] = useState([]);
   const searchedData = useSelector((state) => state.main.searchedData);
   const searchSubmitted = useSelector((state) => state.main.searchSubmitted);
   const [isFocus, setIsFocus] = useState(false);

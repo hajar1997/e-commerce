@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Product from "../Product/Product";
+import { fetchData } from "../../redux/actions/action";
+import { connect } from "react-redux";
 
-const NewProducts = () => {
-  const [data, setData] = useState([]);
-
-  const phonesEndpoint = "http://localhost:8001/smartphones";
-
+const NewProducts = ({ main, fetchData }) => {
   useEffect(() => {
-    axios.get(phonesEndpoint).then((res) => {
-      setData(res.data);
-    });
+    fetchData();
   }, []);
 
   const settings = {
@@ -75,7 +70,7 @@ const NewProducts = () => {
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
-            {data.map((product) => (
+            {main.phones.map((product) => (
               <Link key={product.id}>
                 <Product
                   img={product.img}
@@ -90,7 +85,7 @@ const NewProducts = () => {
           </Slider>
         </div>
         <div className="bottom-heading">
-          <a href="#">
+          <a href="/products">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}
@@ -103,4 +98,8 @@ const NewProducts = () => {
   );
 };
 
-export default NewProducts;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps, { fetchData })(NewProducts);

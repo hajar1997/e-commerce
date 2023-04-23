@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import Product from "../Product/Product";
-import axios from "axios";
+import { fetchData } from "../../redux/actions/action";
+import { connect } from "react-redux";
 
-const BestSellerProduct = () => {
-  const [data, setData] = useState([]);
-
-  const phonesEndpoint = "http://localhost:8001/smartphones";
-
+const BestSellerProduct = ({ main, fetchData }) => {
   useEffect(() => {
-    axios.get(phonesEndpoint).then((res) => {
-      setData(res.data);
-    });
+    fetchData();
   }, []);
 
   const settings = {
@@ -75,15 +70,15 @@ const BestSellerProduct = () => {
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
-            {data.map((product) => (
+            {main.phones.map((product) => (
               <Link key={product.id}>
                 <Product
-                   img={product.img}
-                   brand={product.productBrand}
-                   model={product.productModel}
-                   memory={product.memory}
-                   color={product.productColor}
-                   price={product.price}
+                  img={product.img}
+                  brand={product.productBrand}
+                  model={product.productModel}
+                  memory={product.memory}
+                  color={product.productColor}
+                  price={product.price}
                 />
               </Link>
             ))}
@@ -103,4 +98,8 @@ const BestSellerProduct = () => {
   );
 };
 
-export default BestSellerProduct;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps, { fetchData })(BestSellerProduct);

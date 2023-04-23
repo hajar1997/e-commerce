@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fetchData } from "../../redux/actions/action";
+import { connect } from "react-redux";
 
-const AccessToProducts = () => {
-  const [phones, setPhones] = useState([]);
-  const [accessories, setAccessories] = useState([]);
-  const [smartWatches, setSmartWatches] = useState([]);
+const AccessToProducts = ({ main, fetchData }) => {
+  const navigate = useNavigate();
 
-  const phonesEndpoint = "http://localhost:8001/smartphones";
-  const accessoryEndpoint = "http://localhost:8001/accessories";
-  const smartWatchEndpoint = "http://localhost:8001/smartWatches";
+  const handleClick = (category) => {
+    navigate(`/products/${category}`);
+  };
 
   useEffect(() => {
-    axios
-      .all([
-        axios.get(phonesEndpoint),
-        axios.get(accessoryEndpoint),
-        axios.get(smartWatchEndpoint),
-      ])
-      .then(
-        axios.spread(
-          (phonesEndpoint, accessoryEndpoint, smartWatchEndpoint) => {
-            setPhones(phonesEndpoint.data);
-            setAccessories(accessoryEndpoint.data);
-            setSmartWatches(smartWatchEndpoint.data);
-          }
-        )
-      );
+    fetchData();
   }, []);
 
   return (
@@ -38,8 +24,8 @@ const AccessToProducts = () => {
             <div className="telefon-product-container">
               <div className="product-info">
                 <h5>Telefon</h5>
-                <span>Məhsul sayı: {phones.length}</span>
-                <a href="/products">
+                <span>Məhsul sayı: {main.phones.length}</span>
+                <a href="" onClick={() => handleClick("phones")}>
                   Məhsullara keçid
                   <FontAwesomeIcon
                     icon={faChevronRight}
@@ -52,7 +38,7 @@ const AccessToProducts = () => {
                 </a>
               </div>
               <div className="img-container">
-                <img src="images/access-products-1.png" />
+                <img src="/images/access-products-1.png" />
               </div>
             </div>
           </div>
@@ -60,8 +46,8 @@ const AccessToProducts = () => {
             <div className="watch-product-container">
               <div className="product-info">
                 <h5>Smart saat</h5>
-                <span>Məhsul sayı: {smartWatches.length}</span>
-                <a href="#">
+                <span>Məhsul sayı: {main.smartWatches.length}</span>
+                <a href="" onClick={() => handleClick("smartWatches")}>
                   Məhsullara keçid
                   <FontAwesomeIcon
                     icon={faChevronRight}
@@ -74,14 +60,14 @@ const AccessToProducts = () => {
                 </a>
               </div>
               <div className="img-container">
-                <img src="images/access-products-2.png" />
+                <img src="/images/access-products-2.png" />
               </div>
             </div>
             <div className="accessory-product-container">
               <div className="product-info">
-                <h5>Aksesuar</h5>
-                <span>Məhsul sayı: {accessories.length}</span>
-                <a href="#">
+                <h5>Aksessuar</h5>
+                <span>Məhsul sayı: {main.accessories.length}</span>
+                <a href="" onClick={() => handleClick("accessories")}>
                   Məhsullara keçid
                   <FontAwesomeIcon
                     icon={faChevronRight}
@@ -94,7 +80,7 @@ const AccessToProducts = () => {
                 </a>
               </div>
               <div className="img-container">
-                <img src="images/access-products-3.png" />
+                <img src="/images/access-products-3.png" />
               </div>
             </div>
           </div>
@@ -104,4 +90,8 @@ const AccessToProducts = () => {
   );
 };
 
-export default AccessToProducts;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps, { fetchData })(AccessToProducts);

@@ -3,12 +3,11 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
+  UPDATE_CATEGORY_DATA
 } from "../types/index";
 import axios from "axios";
 
-const brandsEndpoint = "http://localhost:8001/brands";
 const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
-const colorsEndpoint = "http://localhost:8001/colors";
 const phonesEndpoint = "http://localhost:8001/smartphones";
 const accessoryEndpoint = "http://localhost:8001/accessories";
 const smartWatchesEndpoint = "http://localhost:8001/smartWatches";
@@ -23,13 +22,19 @@ export const setSearchSubmitted = (searchSubmitted) => ({
   payload: searchSubmitted,
 });
 
+export const updateCategoryData = (category, newData) => ({
+  type: UPDATE_CATEGORY_DATA,
+  payload: {
+    category,
+    newData,
+  },
+});
+
 export const fetchData = () => {
   return (dispatch) => {
     axios
       .all([
-        axios.get(brandsEndpoint),
         axios.get(filterCategoriesEndpoint),
-        axios.get(colorsEndpoint),
         axios.get(phonesEndpoint),
         axios.get(accessoryEndpoint),
         axios.get(smartWatchesEndpoint),
@@ -37,9 +42,7 @@ export const fetchData = () => {
       .then(
         axios.spread(
           (
-            brandsEndpoint,
             filterCategoriesEndpoint,
-            colorsEndpoint,
             phonesEndpoint,
             accessoryEndpoint,
             smartWatchesEndpoint
@@ -47,9 +50,7 @@ export const fetchData = () => {
             dispatch({
               type: FETCH_DATA_SUCCESS,
               payload: {
-                brands: brandsEndpoint.data,
                 categories: filterCategoriesEndpoint.data,
-                colors: colorsEndpoint.data,
                 phones: phonesEndpoint.data,
                 accessories: accessoryEndpoint.data,
                 smartWatches: smartWatchesEndpoint.data,

@@ -28,7 +28,7 @@ const Header = () => {
           </button>
           <div className="header-logo">
             <Link to="/">
-              <img src="images/logo.svg" alt="" />
+              <img src="/images/logo.svg" alt="" />
             </Link>
           </div>
           <div className="search-bar">

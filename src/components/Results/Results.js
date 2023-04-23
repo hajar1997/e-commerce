@@ -26,7 +26,6 @@ const Results = ({ main, fetchData }) => {
     productBrand: [],
     productColor: [],
   });
-  const [mobileFilteredProducts, setMobileFilteredProducts] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -113,7 +112,6 @@ const Results = ({ main, fetchData }) => {
               (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
         )
     : "";
-
     
     useEffect(() => {
       const handleResize = () => setIsMobile(window.innerWidth < 992);
@@ -138,7 +136,7 @@ const Results = ({ main, fetchData }) => {
                 )
               }
             >
-              <img src="images/siralama-icon.svg" />
+              <img src="/images/siralama-icon.svg" />
               <h5>Sıralama</h5>
             </div>
             <Divider type="vertical" />
@@ -146,7 +144,7 @@ const Results = ({ main, fetchData }) => {
               className="rightSide__mobile"
               onClick={() => setRightSideMobileIsOpen(true)}
             >
-              <img src="images/filter-icon.svg" />
+              <img src="/images/filter-icon.svg" />
               <h5>Filterləmələr</h5>
             </div>
           </div>

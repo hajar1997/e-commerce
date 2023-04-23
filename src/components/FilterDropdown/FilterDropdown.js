@@ -5,12 +5,12 @@ import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const FilterDropdown = ({
   categoryName,
-  categoryItem,
   handleCheckboxChange,
   selectedCheckboxes,
+  allBrands,
+  allColors,
 }) => {
   const [toggle, setToggle] = useState(true);
-
   const handlePlusClick = () => {
     setToggle(false);
   };
@@ -32,26 +32,35 @@ const FilterDropdown = ({
       <hr />
       {toggle && (
         <div className="checkboxes-container">
-          {categoryItem.map((category) => (
-            <div className="form-check" key={category.id}>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value={category.value}
-                name={
-                  categoryName === "Brend" ? "productBrand" : "productColor"
-                }
-                checked={
-                  selectedCheckboxes.productBrand.includes(category.value) ||
-                  selectedCheckboxes.productColor.includes(category.value) 
-                }
-                onChange={handleCheckboxChange}
-              />
-              <label className="form-check-label" key={category.value}>
-                {category.value}
-              </label>
-            </div>
-          ))}
+          {categoryName === "Brend"
+            ? allBrands.map((brand) => (
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="productBrand"
+                    id={brand}
+                    checked={selectedCheckboxes.productBrand?.includes(brand)}
+                    onChange={handleCheckboxChange}
+                    value={brand}
+                  />
+                  <label className="form-check-label">{brand}</label>
+                </div>
+              ))
+            : allColors.map((color) => (
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="productColor"
+                    id={color}
+                    checked={selectedCheckboxes.productColor?.includes(color)}
+                    onChange={handleCheckboxChange}
+                    value={color}
+                  />
+                  <label className="form-check-label">{color}</label>
+                </div>
+              ))}
         </div>
       )}
     </div>

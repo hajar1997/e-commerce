@@ -16,7 +16,7 @@ const MainSection = () => {
               </p>
             </div>
             <div className="content-img">
-              <img src="images/main-section-phone.png" />
+              <img src="/images/main-section-phone.png" />
             </div>
           </div>
         </div>
@@ -31,7 +31,7 @@ const MainSection = () => {
               </p>
             </div>
             <div className="content-img">
-              <img src="images/main-section-phone.png" />
+              <img src="/images/main-section-phone.png" />
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@ const MainSection = () => {
               </p>
             </div>
             <div className="content-img">
-              <img src="images/main-section-phone.png" />
+              <img src="/images/main-section-phone.png" />
             </div>
           </div>
         </div>

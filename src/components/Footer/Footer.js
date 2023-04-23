@@ -10,21 +10,21 @@ const Footer = () => {
             <div className="col-lg-3">
               <div className="footer-logo d-flex">
                 <Link>
-                  <img src="images/logo.svg" />
+                  <img src="/images/logo.svg" />
                 </Link>
               </div>
               <div className="footer-social mt-2 mb-3">
                 <Link>
-                  <img src="images/footer-social-1.svg" />
+                  <img src="/images/footer-social-1.svg" />
                 </Link>
                 <Link>
-                  <img src="images/footer-social-2.svg" />
+                  <img src="/images/footer-social-2.svg" />
                 </Link>
                 <Link>
-                  <img src="images/footer-social-3.svg" />
+                  <img src="/images/footer-social-3.svg" />
                 </Link>
                 <Link>
-                  <img src="images/footer-social-4.svg" />
+                  <img src="/images/footer-social-4.svg" />
                 </Link>
               </div>
             </div>
@@ -63,17 +63,17 @@ const Footer = () => {
               <h5 className="heading">Əlaqə</h5>
               <ul className="card-text contact">
                 <li>
-                  <img src="images/footer-icon-1.svg" />
+                  <img src="/images/footer-icon-1.svg" />
                   <span className="address1">
                     M. K. Ataturk avenue 89, Baku, Azerbaijan
                   </span>
                 </li>
                 <li>
-                  <img src="images/footer-icon-2.svg" />
+                  <img src="/images/footer-icon-2.svg" />
                   <a href="mailto:example@gmail.com">example@gmail.com</a>
                 </li>
                 <li>
-                  <img src="images/footer-icon-3.svg" />
+                  <img src="/images/footer-icon-3.svg" />
                   <a href="tel:*2108">*2108</a>
                 </li>
               </ul>

@@ -3,14 +3,13 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
+  UPDATE_CATEGORY_DATA,
 } from "../types/index";
 
 const initialState = {
   searchedData: [],
   searchSubmitted: false,
-  brands: [],
   categories: [],
-  colors: [],
   phones: [],
   accessories: [],
   smartWatches: [],
@@ -19,6 +18,13 @@ const initialState = {
 
 export const mainReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_CATEGORY_DATA: {
+      const { category, newData } = action.payload;
+      return {
+        ...state,
+        [category]: newData,
+      };
+    }
     case SET_SEARCHED_DATA:
       return {
         ...state,
@@ -32,9 +38,7 @@ export const mainReducer = (state = initialState, action) => {
     case FETCH_DATA_SUCCESS: {
       return {
         ...state,
-        brands: action.payload.brands,
         categories: action.payload.categories,
-        colors: action.payload.colors,
         phones: action.payload.phones,
         accessories: action.payload.accessories,
         smartWatches: action.payload.smartWatches,

@@ -56,7 +56,7 @@
       "productModel": "iPhone 7",
       "memory": "32",
       "productColor": "Black",
-      "img": "images/iphone-7-black.jpg",
+      "img": "/images/iphone-7-black.jpg",
       "price": "340"
     },
     {
@@ -65,7 +65,7 @@
       "productModel": "iPhone 7 Plus",
       "memory": "128",
       "productColor": "Gold",
-      "img": "images/iphone-7-plus-gold.avif",
+      "img": "/images/iphone-7-plus-gold.avif",
       "price": "450"
     },
     {
@@ -74,7 +74,7 @@
       "productModel": "iPhone 8",
       "memory": "64",
       "productColor": "Silver",
-      "img": "images/iphone-8-silver.jpg",
+      "img": "/images/iphone-8-silver.jpg",
       "price": "370"
     },
     {
@@ -83,7 +83,7 @@
       "productModel": "iPhone X",
       "memory": "256",
       "productColor": "Silver",
-      "img": "images/iphone-x-silver.png",
+      "img": "/images/iphone-x-silver.png",
       "price": "430"
     },
     {
@@ -92,7 +92,7 @@
       "productModel": "iPhone XS",
       "memory": "512",
       "productColor": "Gold",
-      "img": "images/iphone-xs-gold.png",
+      "img": "/images/iphone-xs-gold.png",
       "price": "520"
     },
     {
@@ -101,7 +101,7 @@
       "productModel": "iPhone 11",
       "memory": "64",
       "productColor": "Green",
-      "img": "images/iphone-11-green.jpeg",
+      "img": "/images/iphone-11-green.jpeg",
       "price": "600"
     },
     {
@@ -110,7 +110,7 @@
       "productModel": "iPhone 11 Pro Max",
       "memory": "256",
       "productColor": "Gold",
-      "img": "images/iphone-11-pro-max-gold.jpg",
+      "img": "/images/iphone-11-pro-max-gold.jpg",
       "price": "820"
     },
     {
@@ -119,7 +119,7 @@
       "productModel": "iPhone 12",
       "memory": "128",
       "productColor": "White",
-      "img": "images/iphone-12-white.jpeg",
+      "img": "/images/iphone-12-white.jpeg",
       "price": "800"
     },
     {
@@ -128,7 +128,7 @@
       "productModel": "iPhone 13",
       "memory": "128",
       "productColor": "Red",
-      "img": "images/iphone-13-red.png",
+      "img": "/images/iphone-13-red.png",
       "price": "839"
     },
     {
@@ -137,7 +137,7 @@
       "productModel": "iPhone 14",
       "memory": "512",
       "productColor": "Blue",
-      "img": "images/iphone-14-blue.jpg",
+      "img": "/images/iphone-14-blue.jpg",
       "price": "1029"
     },
     {
@@ -146,7 +146,7 @@
       "productModel": "Galaxy A34",
       "memory": "128",
       "productColor": "Silver",
-      "img": "images/samsung-galaxy-a-34-silver.avif",
+      "img": "/images/samsung-galaxy-a-34-silver.avif",
       "price": "400"
     },
     {
@@ -155,7 +155,7 @@
       "productModel": "Galaxy S23 Ultra",
       "memory": "256",
       "productColor": "Green",
-      "img": "images/samsung-galaxy-s23-ultra.jpg",
+      "img": "/images/samsung-galaxy-s23-ultra.jpg",
       "price": "1199"
     },
     {
@@ -164,7 +164,7 @@
       "productModel": "Galaxy S23+",
       "memory": "256",
       "productColor": "Green",
-      "img": "images/samsung-galaxy-s23-plus.webp",
+      "img": "/images/samsung-galaxy-s23-plus.webp",
       "price": "999"
     },
     {
@@ -173,7 +173,7 @@
       "productModel": "Galaxy A54",
       "memory": "128",
       "productColor": "White",
-      "img": "images/samsung-galaxy-a54.webp",
+      "img": "/images/samsung-galaxy-a54.webp",
       "price": "500"
     },
     {
@@ -182,7 +182,7 @@
       "productModel": "Galaxy F14",
       "memory": "128",
       "productColor": "Black",
-      "img": "images/samsung-galaxy-f14-black.jpg",
+      "img": "/images/samsung-galaxy-f14-black.jpg",
       "price": "160"
     },
     {
@@ -191,7 +191,7 @@
       "productModel": "13",
       "memory": "128",
       "productColor": "Yellow",
-      "img": "images/xiaomi-13-yellow.jpg",
+      "img": "/images/xiaomi-13-yellow.jpg",
       "price": "570"
     },
     {
@@ -200,7 +200,7 @@
       "productModel": "13 Pro",
       "memory": "256",
       "productColor": "Black",
-      "img": "images/xiaomi-13-pro-black.webp",
+      "img": "/images/xiaomi-13-pro-black.webp",
       "price": "710"
     },
     {
@@ -209,7 +209,7 @@
       "productModel": "12T Pro",
       "memory": "256",
       "productColor": "Blue",
-      "img": "images/xiaomi-12T-pro-blue.jpg",
+      "img": "/images/xiaomi-12T-pro-blue.jpg",
       "price": "750"
     },
     {
@@ -218,7 +218,7 @@
       "productModel": "12S Ultra",
       "memory": "512",
       "productColor": "Black",
-      "img": "images/xiaomi-12S-ultra-black.webp",
+      "img": "/images/xiaomi-12S-ultra-black.webp",
       "price": "970"
     },
     {
@@ -227,7 +227,7 @@
       "productModel": "Play 7T Pro",
       "memory": "128",
       "productColor": "Green",
-      "img": "images/honor-play-7T-pro-green.jpg",
+      "img": "/images/honor-play-7T-pro-green.jpg",
       "price": "210"
     },
     {
@@ -236,7 +236,7 @@
       "productModel": "Magic 5 Ultimate",
       "memory": "512",
       "productColor": "Black",
-      "img": "images/honor-magic-5-ultimate.webp",
+      "img": "/images/honor-magic-5-ultimate.webp",
       "price": "960"
     },
     {
@@ -245,7 +245,7 @@
       "productModel": "X9A",
       "memory": "256",
       "productColor": "Silver",
-      "img": "images/honor-x9a-silver.jpeg",
+      "img": "/images/honor-x9a-silver.jpeg",
       "price": "300"
     },
     {
@@ -254,7 +254,7 @@
       "productModel": "80 SE",
       "memory": "128",
       "productColor": "Blue",
-      "img": "images/honor-80se-blue.jpg",
+      "img": "/images/honor-80se-blue.jpg",
       "price": "340"
     },
     {
@@ -263,146 +263,146 @@
       "productModel": "Play 40 Plus",
       "memory": "128",
       "productColor": "Blue",
-      "img": "images/honor-play-40-plus-2.jpg",
+      "img": "/images/honor-play-40-plus-2.jpg",
       "price": "150"
     }
   ],
   "accessories": [
     {
       "id": "1",
-      "brand": "Apple",
-      "model": "Iphone MagSafe to USB-C Cable",
-      "img": "images/new-accessory-1.png",
+      "productBrand": "Apple",
+      "productModel": "Iphone MagSafe to USB-C Cable",
+      "img": "/images/new-accessory-1.png",
       "price": "89.99"
     },
     {
       "id": "2",
-      "brand": "Apple",
-      "model": "Air Tag Leather Loop",
-      "color": "Red",
-      "img": "images/new-accessory-2.png",
+      "productBrand": "Apple",
+      "productModel": "Air Tag Leather Loop",
+      "productColor": "Red",
+      "img": "/images/new-accessory-2.png",
       "price": "109.9"
     },
     {
       "id": "3",
-      "brand": "Apple",
-      "model": "AirPods Max",
-      "color": "Green",
-      "img": "images/new-accessory-3.png",
+      "productBrand": "Apple",
+      "productModel": "AirPods Max",
+      "productColor": "Green",
+      "img": "/images/new-accessory-3.png",
       "price": "1279"
     },
     {
       "id": "4",
-      "brand": "Apple",
-      "model": "AirPods Pro with Wireless Charging Case",
-      "img": "images/new-accessory-4.png",
+      "productBrand": "Apple",
+      "productModel": "AirPods Pro with Wireless Charging Case",
+      "img": "/images/new-accessory-4.png",
       "price": "549.9"
     },
     {
       "id": "5",
-      "brand": "Apple",
-      "model": "Mixfly Lightning to HDMI Adapter for iPhone to TV",
-      "img": "images/new-accessory-5.png",
+      "productBrand": "Apple",
+      "productModel": "Mixfly Lightning to HDMI Adapter for iPhone to TV",
+      "img": "/images/new-accessory-5.png",
       "price": "119"
     },
     {
       "id": "6",
-      "brand": "Apple",
-      "model": "iPhone Adapter",
-      "img": "images/new-accessory-6.png",
+      "productBrand": "Apple",
+      "productModel": "iPhone Adapter",
+      "img": "/images/new-accessory-6.png",
       "price": "27.9"
     },
     {
       "id": "7",
-      "brand": "GNMN",
-      "model": "Bluetooth Headphones Wireless Earbuds",
-      "img": "images/new-accessory-7.png",
+      "productBrand": "GNMN",
+      "productModel": "Bluetooth Headphones Wireless Earbuds",
+      "img": "/images/new-accessory-7.png",
       "price": "129.95"
     },
     {
       "id": "8",
-      "brand": "Samsung",
-      "model": "Galaxy Buds Live True Wireless Earbuds",
-      "img": "images/new-accessory-8.png",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy Buds Live True Wireless Earbuds",
+      "img": "/images/new-accessory-8.png",
       "price": "179.99"
     },
     {
       "id": "9",
-      "brand": "Samsung",
-      "model": "Wireless Charger Fast Charge Pad",
-      "img": "images/new-accessory-9.png",
+      "productBrand": "Samsung",
+      "productModel": "Wireless Charger Fast Charge Pad",
+      "img": "/images/new-accessory-9.png",
       "price": "31.89"
     },
     {
       "id": "10",
-      "brand": "Samsung",
-      "model": "Galaxy S22 S-View Flip Cover",
-      "img": "images/new-accessory-10.png",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy S22 S-View Flip Cover",
+      "img": "/images/new-accessory-10.png",
       "price": "23.99"
     },
     {
       "id": "11",
-      "brand": "Beats",
-      "model": "Studio3 Wireless Noise Cancelling Over-Ear Headphones",
-      "img": "images/new-accessory-11.png",
+      "productBrand": "Beats",
+      "productModel": "Studio3 Wireless Noise Cancelling Over-Ear Headphones",
+      "img": "/images/new-accessory-11.png",
       "price": "156.59"
     },
     {
       "id": "12",
-      "brand": "Beats",
-      "model": "Fit Pro - True Wireless Noise Cancelling Earbuds",
-      "img": "images/new-accessory-12.png",
+      "productBrand": "Beats",
+      "productModel": "Fit Pro - True Wireless Noise Cancelling Earbuds",
+      "img": "/images/new-accessory-12.png",
       "price": "199.95"
     },
     {
       "id": "13",
-      "brand": "Soundcore",
-      "model": "Anker Life Q20 Hybrid Active Noise Cancelling Headphones",
-      "img": "images/new-accessory-13.png",
+      "productBrand": "Soundcore",
+      "productModel": "Anker Life Q20 Hybrid Active Noise Cancelling Headphones",
+      "img": "/images/new-accessory-13.png",
       "price": "65"
     }
   ],
   "smartWatches": [
     {
       "id": "1",
-      "brand": "Fitbit",
-      "model": "Versa 2 Health and Fitness Smartwatch",
-      "img": "images/watch-1.jpg",
+      "productBrand": "Fitbit",
+      "productModel": "Versa 2 Health and Fitness Smartwatch",
+      "img": "/images/watch-1.jpg",
       "price": "118.95"
     },
     {
       "id": "2",
-      "brand": "Fitbit",
-      "model": "Versa 4 Fitness Smartwatch",
-      "img": "images/watch-2.jpg",
+      "productBrand": "Fitbit",
+      "productModel": "Versa 4 Fitness Smartwatch",
+      "img": "/images/watch-2.jpg",
       "price": "198.95"
     },
     {
       "id": "3",
-      "brand": "Samsung",
-      "model": "Galaxy Watch 5 Pro",
-      "img": "images/watch-3.jpg",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy Watch 5 Pro",
+      "img": "/images/watch-3.jpg",
       "price": "394.49"
     },
     {
       "id": "4",
-      "brand": "Samsung",
-      "model": "Galaxy Watch 5",
-      "img": "images/watch-4.jpg",
+      "productBrand": "Samsung",
+      "productModel": "Galaxy Watch 5",
+      "img": "/images/watch-4.jpg",
       "price": "118.95"
     },
     {
       "id": "5",
-      "brand": "Apple",
-      "model": "Watch SE (2nd Gen) [GPS 40mm] Smart Watch",
-      "img": "images/watch-5.jpg",
+      "productBrand": "Apple",
+      "productModel": "Watch SE (2nd Gen) [GPS 40mm] Smart Watch",
+      "img": "/images/watch-5.jpg",
       "price": "209.41"
     },
     {
       "id": "6",
-      "brand": "Apple",
-      "model": "Watch Series 8 [GPS 41mm] Smart Watch",
-      "img": "images/watch-6.jpg",
+      "productBrand": "Apple",
+      "productModel": "Watch Series 8 [GPS 41mm] Smart Watch",
+      "img": "/images/watch-6.jpg",
       "price": "329"
     }
   ]

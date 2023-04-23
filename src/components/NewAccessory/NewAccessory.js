@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -77,8 +76,8 @@ const NewAccessory = ({ main, fetchData }) => {
                   <img src={product.img} />
                   <div className="card__content">
                     <a href="#">
-                      {product.brand} {product.model} {product.memory}{" "}
-                      {product.color}
+                      {product.productBrand} {product.productModel} {product.memory}{" "}
+                      {product.productColor}
                     </a>
                     <span>{product.price} $</span>
                   </div>
