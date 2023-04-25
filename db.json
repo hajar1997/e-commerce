@@ -9,46 +9,6 @@
       "category": "Rəng"
     }
   ],
-  "brands": [
-    {
-      "value": "Apple"
-    },
-    {
-      "value": "Samsung"
-    },
-    {
-      "value": "Xiaomi"
-    },
-    {
-      "value": "Honor"
-    }
-  ],
-  "colors": [
-    {
-      "value": "Yellow"
-    },
-    {
-      "value": "Black"
-    },
-    {
-      "value": "White"
-    },
-    {
-      "value": "Gold"
-    },
-    {
-      "value": "Blue"
-    },
-    {
-      "value": "Red"
-    },
-    {
-      "value": "Silver"
-    },
-    {
-      "value": "Green"
-    }
-  ],
   "smartphones": [
     {
       "id": "1",

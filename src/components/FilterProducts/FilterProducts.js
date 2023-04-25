@@ -5,7 +5,7 @@ import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fetchData, updateCategoryData } from "../../redux/actions/action";
+import { fetchData } from "../../redux/actions/action";
 import {
   faTimes,
   faPlus,
@@ -25,8 +25,10 @@ const FilterProducts = ({ main, fetchData }) => {
     productColor: [],
   });
   const { category } = useParams();
+  const [sortedData, setSortedData] = useState(main[category]);
+  const [sortClicked, setSortClicked] = useState(false);
+
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handlePlusClick = () => {
     setToggle(false);
@@ -65,21 +67,8 @@ const FilterProducts = ({ main, fetchData }) => {
     ...new Set(main[category].map((product) => product.productColor)),
   ];
 
-  const filteredProducts = main[category].filter(
-    (product) =>
-      (selectedCheckboxes.productBrand.length === 0 ||
-        selectedCheckboxes.productBrand.includes(product.productBrand)) &&
-      (selectedCheckboxes.productColor.length === 0 ||
-        selectedCheckboxes.productColor.includes(product.productColor)) &&
-      (maxPrice.length === 0 ||
-        (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-      (minPrice.length === 0 ||
-        (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-  );
-
   const handleSorting = (value) => {
     const newData = [...main[category]];
-    console.log(newData);
     if (value === "Ən yenilər") {
       newData.sort((a, b) => b.id - a.id);
     } else if (value === "Əvvəlcə ucuz") {
@@ -87,9 +76,33 @@ const FilterProducts = ({ main, fetchData }) => {
     } else if (value === "Əvvəlcə baha") {
       newData.sort((a, b) => b.price - a.price);
     }
-    dispatch(updateCategoryData(category, newData));
+    setSortedData(newData);
+    setSortClicked(true);
   };
 
+  const filteredProducts = sortClicked
+    ? sortedData.filter(
+        (product) =>
+          (selectedCheckboxes.productBrand.length === 0 ||
+            selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+          (selectedCheckboxes.productColor.length === 0 ||
+            selectedCheckboxes.productColor.includes(product.productColor)) &&
+          (maxPrice.length === 0 ||
+            (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+          (minPrice.length === 0 ||
+            (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+      )
+    : main[category].filter(
+        (product) =>
+          (selectedCheckboxes.productBrand.length === 0 ||
+            selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+          (selectedCheckboxes.productColor.length === 0 ||
+            selectedCheckboxes.productColor.includes(product.productColor)) &&
+          (maxPrice.length === 0 ||
+            (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+          (minPrice.length === 0 ||
+            (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+      );
 
   useEffect(() => {
     fetchData();
@@ -374,6 +387,4 @@ const mapStateToProps = (state) => ({
   main: state.main,
 });
 
-export default connect(mapStateToProps, { fetchData, updateCategoryData })(
-  FilterProducts
-);
+export default connect(mapStateToProps, { fetchData })(FilterProducts);

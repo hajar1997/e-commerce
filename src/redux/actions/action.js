@@ -3,7 +3,6 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
-  UPDATE_CATEGORY_DATA
 } from "../types/index";
 import axios from "axios";
 
@@ -20,14 +19,6 @@ export const setSearchedData = (searchedData) => ({
 export const setSearchSubmitted = (searchSubmitted) => ({
   type: SET_SEARCH_SUBMITTED,
   payload: searchSubmitted,
-});
-
-export const updateCategoryData = (category, newData) => ({
-  type: UPDATE_CATEGORY_DATA,
-  payload: {
-    category,
-    newData,
-  },
 });
 
 export const fetchData = () => {

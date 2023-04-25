@@ -3,7 +3,6 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
-  UPDATE_CATEGORY_DATA,
 } from "../types/index";
 
 const initialState = {
@@ -18,13 +17,6 @@ const initialState = {
 
 export const mainReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_CATEGORY_DATA: {
-      const { category, newData } = action.payload;
-      return {
-        ...state,
-        [category]: newData,
-      };
-    }
     case SET_SEARCHED_DATA:
       return {
         ...state,

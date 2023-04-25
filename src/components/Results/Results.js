@@ -41,6 +41,44 @@ const Results = ({ main, fetchData }) => {
     setToggle(true);
   };
 
+  const phonesMatch = main.phones.map(
+    (p) => p.productBrand.toLowerCase() || p.productModel.toLowerCase()
+  );
+  const watchMatch = main.smartWatches.map(
+    (p) => p.productBrand.toLowerCase() || p.productModel.toLowerCase()
+  );
+  const accMatch = main.accessories.map(
+    (p) => p.productBrand.toLowerCase() || p.productModel.toLowerCase()
+  );
+
+  if (phonesMatch.includes(searchQuery.toLowerCase())) {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
+
+  const filteredProducts = searchQuery
+    ? main.phones
+        .filter(
+          (product) =>
+            product.productModel
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            product.productBrand
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase())
+        )
+        .filter(
+          (product) =>
+            (selectedCheckboxes.productColor.length === 0 ||
+              selectedCheckboxes.productColor.includes(product.productColor)) &&
+            (maxPrice.length === 0 ||
+              (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+            (minPrice.length === 0 ||
+              (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+        )
+    : "";
+
   const handleSorting = (value) => {
     const newData = [...filteredProducts];
     if (value === "Ən yenilər") {
@@ -50,7 +88,7 @@ const Results = ({ main, fetchData }) => {
     } else if (value === "Əvvəlcə baha") {
       newData.sort((a, b) => b.price - a.price);
     }
-    dispatch(fetchData(newData))
+    dispatch(fetchData(newData));
   };
 
   const handleCheckboxChange = (event) => {
@@ -91,37 +129,15 @@ const Results = ({ main, fetchData }) => {
     searchQuery.toLowerCase().charAt(0).toUpperCase() +
     searchQuery.slice(1).toLowerCase();
 
-  const filteredProducts = searchQuery
-    ? main.phones
-        .filter(
-          (product) =>
-            product.productModel
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase()) ||
-            product.productBrand
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase())
-        )
-        .filter(
-          (product) =>
-            (selectedCheckboxes.productColor.length === 0 ||
-              selectedCheckboxes.productColor.includes(product.productColor)) &&
-            (maxPrice.length === 0 ||
-              (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-            (minPrice.length === 0 ||
-              (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-        )
-    : "";
-    
-    useEffect(() => {
-      const handleResize = () => setIsMobile(window.innerWidth < 992);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-    
-    useEffect(() => {
-      fetchData();
-    }, []);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 992);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="filter-area-wrapper">
