@@ -18,6 +18,7 @@ const BestSellerProduct = ({ main, fetchData }) => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 2,
+    swipeToSlide: true,
     initialSlide: 0,
     responsive: [
       {

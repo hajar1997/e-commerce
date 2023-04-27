@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
@@ -356,7 +356,10 @@ const FilterProducts = ({ main, fetchData }) => {
               </div>
               <div className="all-products">
                 {filteredProducts.map((product) => (
-                  <Link key={product.id}>
+                  <Link
+                    key={product.id}
+                    to={`/product-details/${category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                  >
                     <Product
                       img={product.img}
                       brand={product.productBrand}

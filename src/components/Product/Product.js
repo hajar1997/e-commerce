@@ -4,7 +4,7 @@ const Product = ({ brand,img, model, color, memory, price }) => {
   
   return (
     <div className="card-wrapper">
-      <img src={img} />
+      <img src={img[0]} />
       <div className="card__content">
         <a href="#">
         {brand} {model} {memory} GB {color}

@@ -73,7 +73,7 @@ const NewAccessory = ({ main, fetchData }) => {
             {main.accessories.map((product) => (
               <Link>
                 <div className="card-wrapper">
-                  <img src={product.img} />
+                  <img src={product.img[0]} />
                   <div className="card__content">
                     <a href="#">
                       {product.productBrand} {product.productModel} {product.memory}{" "}
