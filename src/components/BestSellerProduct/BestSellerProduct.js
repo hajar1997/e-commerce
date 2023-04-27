@@ -60,7 +60,7 @@ const BestSellerProduct = ({ main, fetchData }) => {
       <div className="container">
         <div className="headings">
           <h6>Ən çox satılan məhsullar</h6>
-          <a href="/products">
+          <a href="/products/phones">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

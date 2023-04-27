@@ -37,16 +37,21 @@ const SearchProduct = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter" && searchedData !== "") {
-      const newLatestSearchs = [...latestSearchs, searchedData];
-      setLatestSearchs(newLatestSearchs);
-      localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
-      navigate(`/search-results?query=${searchedData}`);
-      setIsFocus(false);
-      dispatch(setSearchSubmitted(true));
+    if (event.key === "Enter") {
+      const trimmedSearchValue = searchedData.trim();
+      if (trimmedSearchValue.length >= 3) {
+        const newLatestSearchs = [...latestSearchs, trimmedSearchValue];
+        setLatestSearchs(newLatestSearchs);
+        localStorage.setItem(
+          "latestSearches",
+          JSON.stringify(newLatestSearchs)
+        );
+        navigate(`/search-results?query=${trimmedSearchValue}`);
+        setIsFocus(false);
+        dispatch(setSearchSubmitted(true));
+      }
     }
   };
-
   const deleteLatestSearchs = () => {
     localStorage.removeItem("latestSearches");
     setLatestSearchs([]);

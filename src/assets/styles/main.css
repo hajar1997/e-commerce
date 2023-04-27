@@ -337,8 +337,9 @@ nav {
     padding: 20px;
     height: 210px;
     margin: 0px auto;
+    width: 100%;
+    object-fit: contain;
 }
-
 
 .card__content {
     display: flex;
@@ -776,8 +777,8 @@ input:focus {
 }
 
 .all-products {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .all-products .card-wrapper {
@@ -1121,7 +1122,7 @@ input:focus {
 }
 
 @media(max-width: 770px) {
-    .all-products{
+    .all-products {
         grid-template-columns: 1fr 1fr;
     }
 }

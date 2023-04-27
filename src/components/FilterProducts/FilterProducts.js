@@ -80,29 +80,22 @@ const FilterProducts = ({ main, fetchData }) => {
     setSortClicked(true);
   };
 
+  const filterProducts = (products) =>
+    products.filter(
+      (product) =>
+        (selectedCheckboxes.productBrand.length === 0 ||
+          selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+        (selectedCheckboxes.productColor.length === 0 ||
+          selectedCheckboxes.productColor.includes(product.productColor)) &&
+        (maxPrice.length === 0 ||
+          (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+        (minPrice.length === 0 ||
+          (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+    );
+
   const filteredProducts = sortClicked
-    ? sortedData.filter(
-        (product) =>
-          (selectedCheckboxes.productBrand.length === 0 ||
-            selectedCheckboxes.productBrand.includes(product.productBrand)) &&
-          (selectedCheckboxes.productColor.length === 0 ||
-            selectedCheckboxes.productColor.includes(product.productColor)) &&
-          (maxPrice.length === 0 ||
-            (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-          (minPrice.length === 0 ||
-            (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-      )
-    : main[category].filter(
-        (product) =>
-          (selectedCheckboxes.productBrand.length === 0 ||
-            selectedCheckboxes.productBrand.includes(product.productBrand)) &&
-          (selectedCheckboxes.productColor.length === 0 ||
-            selectedCheckboxes.productColor.includes(product.productColor)) &&
-          (maxPrice.length === 0 ||
-            (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-          (minPrice.length === 0 ||
-            (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-      );
+    ? filterProducts(sortedData)
+    : filterProducts(main[category]);
 
   useEffect(() => {
     fetchData();

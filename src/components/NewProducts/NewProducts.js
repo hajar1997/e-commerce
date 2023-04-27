@@ -60,7 +60,7 @@ const NewProducts = ({ main, fetchData }) => {
       <div className="container">
         <div className="headings">
           <h6>Yeni gələn məhsullar</h6>
-          <a href="/products">
+          <a href="/products/phones">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

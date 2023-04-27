@@ -232,6 +232,7 @@
       "id": "1",
       "productBrand": "Apple",
       "productModel": "Iphone MagSafe to USB-C Cable",
+      "productColor": "White",
       "img": "/images/new-accessory-1.png",
       "price": "89.99"
     },
@@ -256,6 +257,7 @@
       "productBrand": "Apple",
       "productModel": "AirPods Pro with Wireless Charging Case",
       "img": "/images/new-accessory-4.png",
+      "productColor": "White",
       "price": "549.9"
     },
     {
@@ -263,6 +265,7 @@
       "productBrand": "Apple",
       "productModel": "Mixfly Lightning to HDMI Adapter for iPhone to TV",
       "img": "/images/new-accessory-5.png",
+      "productColor": "White",
       "price": "119"
     },
     {
@@ -270,6 +273,7 @@
       "productBrand": "Apple",
       "productModel": "iPhone Adapter",
       "img": "/images/new-accessory-6.png",
+      "productColor": "White",
       "price": "27.9"
     },
     {
@@ -277,6 +281,7 @@
       "productBrand": "GNMN",
       "productModel": "Bluetooth Headphones Wireless Earbuds",
       "img": "/images/new-accessory-7.png",
+      "productColor": "Black",
       "price": "129.95"
     },
     {
@@ -284,6 +289,7 @@
       "productBrand": "Samsung",
       "productModel": "Galaxy Buds Live True Wireless Earbuds",
       "img": "/images/new-accessory-8.png",
+      "productColor": "Black",
       "price": "179.99"
     },
     {
@@ -291,6 +297,7 @@
       "productBrand": "Samsung",
       "productModel": "Wireless Charger Fast Charge Pad",
       "img": "/images/new-accessory-9.png",
+      "productColor": "White",
       "price": "31.89"
     },
     {
@@ -298,6 +305,7 @@
       "productBrand": "Samsung",
       "productModel": "Galaxy S22 S-View Flip Cover",
       "img": "/images/new-accessory-10.png",
+      "productColor": "Black",
       "price": "23.99"
     },
     {
@@ -305,6 +313,7 @@
       "productBrand": "Beats",
       "productModel": "Studio3 Wireless Noise Cancelling Over-Ear Headphones",
       "img": "/images/new-accessory-11.png",
+      "productColor": "Black",
       "price": "156.59"
     },
     {
@@ -312,6 +321,7 @@
       "productBrand": "Beats",
       "productModel": "Fit Pro - True Wireless Noise Cancelling Earbuds",
       "img": "/images/new-accessory-12.png",
+      "productColor": "Black",
       "price": "199.95"
     },
     {
@@ -319,6 +329,7 @@
       "productBrand": "Soundcore",
       "productModel": "Anker Life Q20 Hybrid Active Noise Cancelling Headphones",
       "img": "/images/new-accessory-13.png",
+      "productColor": "Black",
       "price": "65"
     }
   ],
@@ -328,6 +339,7 @@
       "productBrand": "Fitbit",
       "productModel": "Versa 2 Health and Fitness Smartwatch",
       "img": "/images/watch-1.jpg",
+      "productColor": "Black",
       "price": "118.95"
     },
     {
@@ -335,6 +347,7 @@
       "productBrand": "Fitbit",
       "productModel": "Versa 4 Fitness Smartwatch",
       "img": "/images/watch-2.jpg",
+      "productColor": "Black",
       "price": "198.95"
     },
     {
@@ -342,6 +355,7 @@
       "productBrand": "Samsung",
       "productModel": "Galaxy Watch 5 Pro",
       "img": "/images/watch-3.jpg",
+      "productColor": "Black",
       "price": "394.49"
     },
     {
@@ -349,6 +363,7 @@
       "productBrand": "Samsung",
       "productModel": "Galaxy Watch 5",
       "img": "/images/watch-4.jpg",
+      "productColor": "Gray",
       "price": "118.95"
     },
     {
@@ -356,6 +371,7 @@
       "productBrand": "Apple",
       "productModel": "Watch SE (2nd Gen) [GPS 40mm] Smart Watch",
       "img": "/images/watch-5.jpg",
+      "productColor": "Gray",
       "price": "209.41"
     },
     {
@@ -363,6 +379,7 @@
       "productBrand": "Apple",
       "productModel": "Watch Series 8 [GPS 41mm] Smart Watch",
       "img": "/images/watch-6.jpg",
+      "productColor": "Starlight",
       "price": "329"
     }
   ]

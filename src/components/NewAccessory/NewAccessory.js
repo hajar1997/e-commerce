@@ -60,7 +60,7 @@ const NewAccessory = ({ main, fetchData }) => {
       <div className="container">
         <div className="headings">
           <h6>Yeni gələn aksessuarlar</h6>
-          <a href="/products">
+          <a href="/products/accessories">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

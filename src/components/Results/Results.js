@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { setSearchSubmitted } from "../../redux/actions/action";
-import FilterDropdown from "../FilterDropdown/FilterDropdown";
+import ColorCheckboxForSearchResults from "../ColorCheckboxForSearchResults/ColorCheckboxForSearchResults";
 import Product from "../Product/Product";
 import { fetchData } from "../../redux/actions/action";
 import { Select, Divider } from "antd";
@@ -23,10 +23,11 @@ const Results = ({ main, fetchData }) => {
   const [maxPrice, setMaxPrice] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [selectedCheckboxes, setSelectedCheckboxes] = useState({
-    productBrand: [],
     productColor: [],
   });
-
+  const categories = main.accessories.concat(main.phones, main.smartWatches);
+  const [sortedData, setSortedData] = useState(categories);
+  const [sortClicked, setSortClicked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
@@ -41,46 +42,28 @@ const Results = ({ main, fetchData }) => {
     setToggle(true);
   };
 
-  const phonesMatch = main.phones.map(
-    (p) => p.productBrand.toLowerCase() || p.productModel.toLowerCase()
-  );
-  const watchMatch = main.smartWatches.map(
-    (p) => p.productBrand.toLowerCase() || p.productModel.toLowerCase()
-  );
-  const accMatch = main.accessories.map(
-    (p) => p.productBrand.toLowerCase() || p.productModel.toLowerCase()
-  );
+  const commonFilter = (product) =>
+    product.productModel.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.productBrand.toLowerCase().includes(searchQuery.toLowerCase());
 
-  if (phonesMatch.includes(searchQuery.toLowerCase())) {
-    console.log(true);
-  } else {
-    console.log(false);
-  }
+  const filteredProducts = (sortClicked ? sortedData : categories)
+    .filter(commonFilter)
+    .filter(
+      (product) =>
+        (selectedCheckboxes.productColor.length === 0 ||
+          selectedCheckboxes.productColor.includes(product.productColor)) &&
+        (maxPrice.length === 0 ||
+          (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+        (minPrice.length === 0 ||
+          (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+    );
 
-  const filteredProducts = searchQuery
-    ? main.phones
-        .filter(
-          (product) =>
-            product.productModel
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase()) ||
-            product.productBrand
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase())
-        )
-        .filter(
-          (product) =>
-            (selectedCheckboxes.productColor.length === 0 ||
-              selectedCheckboxes.productColor.includes(product.productColor)) &&
-            (maxPrice.length === 0 ||
-              (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-            (minPrice.length === 0 ||
-              (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-        )
-    : "";
+  const colors = [
+    ...new Set(categories.map((product) => product.productColor)),
+  ];
 
   const handleSorting = (value) => {
-    const newData = [...filteredProducts];
+    const newData = [...categories];
     if (value === "Ən yenilər") {
       newData.sort((a, b) => b.id - a.id);
     } else if (value === "Əvvəlcə ucuz") {
@@ -88,7 +71,8 @@ const Results = ({ main, fetchData }) => {
     } else if (value === "Əvvəlcə baha") {
       newData.sort((a, b) => b.price - a.price);
     }
-    dispatch(fetchData(newData));
+    setSortedData(newData);
+    setSortClicked(true);
   };
 
   const handleCheckboxChange = (event) => {
@@ -120,14 +104,9 @@ const Results = ({ main, fetchData }) => {
 
   useEffect(() => {
     setSelectedCheckboxes({
-      productBrand: [],
       productColor: [],
     });
   }, [searchQuery]);
-
-  const formattedStr =
-    searchQuery.toLowerCase().charAt(0).toUpperCase() +
-    searchQuery.slice(1).toLowerCase();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 992);
@@ -203,9 +182,9 @@ const Results = ({ main, fetchData }) => {
                   <h6>Filterləmələr</h6>
                 </div>
                 <Divider className="hr-divider" type="horizontal" />
-                <FilterDropdown
+                <ColorCheckboxForSearchResults
                   categoryName="Rəng"
-                  categoryItem={main.colors}
+                  categoryItem={colors}
                   handleCheckboxChange={handleCheckboxChange}
                   selectedCheckboxes={selectedCheckboxes}
                   key={searchQuery}
@@ -274,8 +253,8 @@ const Results = ({ main, fetchData }) => {
               </div>
             </div>
             <div className="all-products">
-              {filteredProducts.map((product) => (
-                <Link key={product.id}>
+              {filteredProducts.map((product, index) => (
+                <Link key={index}>
                   <Product
                     img={product.img}
                     brand={product.productBrand}
@@ -298,21 +277,16 @@ const Results = ({ main, fetchData }) => {
                   Ana səhifə
                 </a>
               </li>
-              <li className="breadcrumb-item">
-                <a href="#" onClick={() => navigate(`/products`)}>
-                  Telefonlar
-                </a>
-              </li>
               <li className="breadcrumb-item active" aria-current="page">
-                <span>{filteredProducts.length > 0 ? formattedStr : ""}</span>
+                <span>Axtarış nəticələri</span>
               </li>
             </ol>
           </nav>
           <div className="row">
             <div className="col-lg-3">
-              <FilterDropdown
+              <ColorCheckboxForSearchResults
                 categoryName="Rəng"
-                categoryItem={main.colors}
+                categoryItem={colors}
                 handleCheckboxChange={handleCheckboxChange}
                 selectedCheckboxes={selectedCheckboxes}
                 key={searchQuery}
@@ -394,8 +368,8 @@ const Results = ({ main, fetchData }) => {
                 </div>
               </div>
               <div className="all-products">
-                {filteredProducts.map((product) => (
-                  <Link key={product.id}>
+                {filteredProducts.map((product, index) => (
+                  <Link key={index}>
                     <Product
                       img={product.img}
                       brand={product.productBrand}
