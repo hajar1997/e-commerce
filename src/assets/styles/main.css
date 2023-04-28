@@ -1,3 +1,5 @@
+@import "/node_modules/react-image-gallery/styles/css/image-gallery.css";
+
 /* Header Start */
 * {
     text-decoration: none !important;
@@ -378,6 +380,11 @@ nav {
 .slick-track {
     display: flex !important;
     gap: 18px !important;
+}
+
+.main-section .slick-dots li button:before,
+.slick-dots li button::after {
+    content: "";
 }
 
 .bottom-heading {
@@ -883,6 +890,239 @@ input:focus {
 }
 
 /* Filter Area End */
+
+/* Product Detail Start */
+
+.fullscreen .image-gallery-slide .image-gallery-image {
+    object-fit: contain !important;
+    height: 80vh !important;
+    border: none !important;
+}
+
+.image-gallery-right-nav .image-gallery-svg,
+.image-gallery-left-nav .image-gallery-svg {
+    height: 40px;
+    width: 20px;
+    color: black;
+}
+
+.fullscreen .image-gallery-right-nav .image-gallery-svg,
+.fullscreen .image-gallery-left-nav .image-gallery-svg {
+    height: 120px;
+    width: 60px;
+    color: white;
+}
+
+.image-gallery-thumbnail {
+    margin-top: 20px;
+}
+
+.image-gallery-thumbnail .image-gallery-thumbnail-image {
+    object-fit: contain;
+}
+
+.product_brand_model {
+    font-weight: 700;
+    line-height: 28px;
+    color: #333333;
+}
+
+.star {
+    font-size: 25px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star.filled {
+    color: #F2994A;
+}
+
+.rating_and_comments {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.rating_count span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #4F4F4F;
+}
+
+.comment_count a {
+    color: #2888c0 !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.product_price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.product_price h5 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 28px;
+    margin-bottom: 0;
+}
+
+.product_color {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.product_color h5 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #4F4F4F;
+    margin-bottom: 0;
+}
+
+
+.range_of_colors {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.range_of_colors span {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #E0E0E0;
+}
+
+.product_memory {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.product_memory h5 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #4F4F4F;
+    margin-bottom: 0;
+}
+
+.range_of_memories {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.range_of_memories span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 76px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.product_counter {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.product_counter button {
+    background: #F2F2F2;
+    border-radius: 50px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    color: #4F4F4F;
+}
+
+.product_counter span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1D2123;
+}
+
+.add_to_bucket_btn {
+    margin-top: 50px;
+}
+
+.add_to_bucket_btn button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 197px;
+    height: 48px;
+    background: #2DD06E;
+    border-radius: 8px;
+    border: none;
+    color: white;
+}
+
+.add_to_bucket_btn button .anticon {
+    font-size: 22px !important;
+}
+
+.add_to_bucket_btn button span {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.product_specifications_and_comments {
+    margin-top: 90px;
+}
+
+.tabs_style {
+    display: flex;
+    align-items: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 28px;
+    color: #4F4F4F;
+}
+
+.ant-tabs-nav-list {
+    gap: 100px;
+}
+
+.product_specifications {
+    margin-top: 30px;
+}
+
+.ant-descriptions-item-label,
+.ant-descriptions-item-content {
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: #828282 !important;
+}
+
+/* Product Detail End */
+
 
 /* MEDIA QUERIES START */
 

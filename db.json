@@ -21,7 +21,9 @@
         "/images/iphone-7-black.jpg",
         "/images/iphone-7-black.jpg"
       ],
-      "price": "340"
+      "price": "340",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "2",
@@ -34,7 +36,9 @@
         "/images/iphone-7-plus-gold.avif",
         "/images/iphone-7-plus-gold.avif"
       ],
-      "price": "450"
+      "price": "450",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "3",
@@ -47,7 +51,9 @@
         "/images/iphone-8-silver.jpg",
         "/images/iphone-8-silver.jpg"
       ],
-      "price": "370"
+      "price": "370",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "4",
@@ -60,7 +66,9 @@
         "/images/iphone-x-silver.png",
         "/images/iphone-x-silver.png"
       ],
-      "price": "430"
+      "price": "430",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "5",
@@ -73,7 +81,9 @@
         "/images/iphone-xs-gold.png",
         "/images/iphone-xs-gold.png"
       ],
-      "price": "520"
+      "price": "520",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "6",
@@ -86,7 +96,9 @@
         "/images/iphone-11-green.jpeg",
         "/images/iphone-11-green.jpeg"
       ],
-      "price": "600"
+      "price": "600",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "7",
@@ -99,7 +111,9 @@
         "/images/iphone-11-pro-max-gold.jpg",
         "/images/iphone-11-pro-max-gold.jpg"
       ],
-      "price": "820"
+      "price": "820",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "8",
@@ -112,7 +126,9 @@
         "/images/iphone-12-white.jpeg",
         "/images/iphone-12-white.jpeg"
       ],
-      "price": "800"
+      "price": "800",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "9",
@@ -125,7 +141,9 @@
         "/images/iphone-13-red.png",
         "/images/iphone-13-red.png"
       ],
-      "price": "839"
+      "price": "839",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "10",
@@ -138,7 +156,9 @@
         "/images/iphone-14-blue.jpg",
         "/images/iphone-14-blue.jpg"
       ],
-      "price": "1029"
+      "price": "1029",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "11",
@@ -151,7 +171,9 @@
         "/images/samsung-galaxy-a-34-silver.avif",
         "/images/samsung-galaxy-a-34-silver.avif"
       ],
-      "price": "400"
+      "price": "400",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "12",
@@ -164,7 +186,9 @@
         "/images/samsung-galaxy-s23-ultra.jpg",
         "/images/samsung-galaxy-s23-ultra.jpg"
       ],
-      "price": "1199"
+      "price": "1199",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "13",
@@ -177,7 +201,9 @@
         "/images/samsung-galaxy-s23-plus.webp",
         "/images/samsung-galaxy-s23-plus.webp"
       ],
-      "price": "999"
+      "price": "999",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "14",
@@ -190,7 +216,9 @@
         "/images/samsung-galaxy-a54.webp",
         "/images/samsung-galaxy-a54.webp"
       ],
-      "price": "500"
+      "price": "500",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "15",
@@ -203,7 +231,9 @@
         "/images/samsung-galaxy-f14-black.jpg",
         "/images/samsung-galaxy-f14-black.jpg"
       ],
-      "price": "160"
+      "price": "160",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "16",
@@ -216,7 +246,9 @@
         "/images/xiaomi-13-yellow.jpg",
         "/images/xiaomi-13-yellow.jpg"
       ],
-      "price": "570"
+      "price": "570",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "17",
@@ -229,7 +261,9 @@
         "/images/xiaomi-13-pro-black.webp",
         "/images/xiaomi-13-pro-black.webp"
       ],
-      "price": "710"
+      "price": "710",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "18",
@@ -242,7 +276,9 @@
         "/images/xiaomi-12T-pro-blue.jpg",
         "/images/xiaomi-12T-pro-blue.jpg"
       ],
-      "price": "750"
+      "price": "750",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "19",
@@ -255,7 +291,9 @@
         "/images/xiaomi-12S-ultra-black.webp",
         "/images/xiaomi-12S-ultra-black.webp"
       ],
-      "price": "970"
+      "price": "970",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "20",
@@ -268,7 +306,9 @@
         "/images/honor-play-7T-pro-green.jpg",
         "/images/honor-play-7T-pro-green.jpg"
       ],
-      "price": "210"
+      "price": "210",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "21",
@@ -281,7 +321,9 @@
         "/images/honor-magic-5-ultimate.webp",
         "/images/honor-magic-5-ultimate.webp"
       ],
-      "price": "960"
+      "price": "960",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "22",
@@ -294,7 +336,9 @@
         "/images/honor-x9a-silver.jpeg",
         "/images/honor-x9a-silver.jpeg"
       ],
-      "price": "300"
+      "price": "300",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "23",
@@ -307,7 +351,9 @@
         "/images/honor-80se-blue.jpg",
         "/images/honor-80se-blue.jpg"
       ],
-      "price": "340"
+      "price": "340",
+      "network": "4G",
+      "simcard" : "1"
     },
     {
       "id": "24",
@@ -320,7 +366,9 @@
         "/images/honor-play-40-plus-2.jpg",
         "/images/honor-play-40-plus-2.jpg"
       ],
-      "price": "150"
+      "price": "150",
+      "network": "4G",
+      "simcard" : "1"
     }
   ],
   "accessories": [
