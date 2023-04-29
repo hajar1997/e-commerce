@@ -234,7 +234,10 @@ const FilterProducts = ({ main, fetchData }) => {
           )}
           <div className="all-products container">
             {filteredProducts.map((product) => (
-              <Link key={product.id}>
+              <Link
+                key={product.id}
+                to={`/product-details/${category}/${product.productBrand}/${product.productModel}/${product.id}`}
+              >
                 <Product
                   img={product.img}
                   brand={product.productBrand}

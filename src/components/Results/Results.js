@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { setSearchSubmitted } from "../../redux/actions/action";
 import ColorCheckboxForSearchResults from "../ColorCheckboxForSearchResults/ColorCheckboxForSearchResults";
@@ -25,6 +25,7 @@ const Results = ({ main, fetchData }) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState({
     productColor: [],
   });
+
   const categories = main.accessories.concat(main.phones, main.smartWatches);
   const [sortedData, setSortedData] = useState(categories);
   const [sortClicked, setSortClicked] = useState(false);
@@ -42,6 +43,12 @@ const Results = ({ main, fetchData }) => {
     setToggle(true);
   };
 
+  // const handleClick = (category) => {
+  //   navigate(
+  //     `/product-details/${category}`
+  //   );
+  // };
+
   const commonFilter = (product) =>
     product.productModel.toLowerCase().includes(searchQuery.toLowerCase()) ||
     product.productBrand.toLowerCase().includes(searchQuery.toLowerCase());
@@ -56,12 +63,21 @@ const Results = ({ main, fetchData }) => {
           (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
         (minPrice.length === 0 ||
           (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
-    );
+    )
+    .map((product) => {
+      const category = main.smartWatches.includes(product)
+        ? "smartWatches"
+        : main.phones.includes(product)
+        ? "phones"
+        : main.accessories.includes(product)
+        ? "accessories"
+        : "";
+      return { ...product, category };
+    });
 
   const colors = [
     ...new Set(categories.map((product) => product.productColor)),
   ];
-
   const handleSorting = (value) => {
     const newData = [...categories];
     if (value === "Ən yenilər") {
@@ -254,7 +270,10 @@ const Results = ({ main, fetchData }) => {
             </div>
             <div className="all-products">
               {filteredProducts.map((product, index) => (
-                <Link key={index}>
+                <Link
+                  key={index}
+                  to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                >
                   <Product
                     img={product.img}
                     brand={product.productBrand}
@@ -369,7 +388,10 @@ const Results = ({ main, fetchData }) => {
               </div>
               <div className="all-products">
                 {filteredProducts.map((product, index) => (
-                  <Link key={index}>
+                  <Link
+                    key={index}
+                    to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                  >
                     <Product
                       img={product.img}
                       brand={product.productBrand}
