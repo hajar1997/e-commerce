@@ -1,4 +1,38 @@
 {
+  "comments": [
+    {
+      "name": "adasDASD",
+      "surname": "SADAda",
+      "email": "ibrahimlihecer97@gmail.com",
+      "comment": "asdasdad",
+      "rating": 5,
+      "id": 1
+    },
+    {
+      "name": "Hajar Ibrahimova",
+      "surname": "Ibrahimova",
+      "email": "dasdadad@gmail.com",
+      "comment": "asafsadfs",
+      "rating": 4,
+      "id": 2
+    },
+    {
+      "name": "Hajar",
+      "surname": "Ibrahimova",
+      "email": "hajaribra.dev@gmail.com",
+      "comment": "salam",
+      "rating": 0,
+      "id": 3
+    },
+    {
+      "name": "Hajar",
+      "surname": "Ibrahimova",
+      "email": "hajaribra.dev@gmail.com",
+      "comment": "salam",
+      "rating": 0,
+      "id": 4
+    }
+  ],
   "filterCategories": [
     {
       "id": "1",
@@ -23,7 +57,7 @@
       ],
       "price": "340",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "2",
@@ -38,7 +72,7 @@
       ],
       "price": "450",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "3",
@@ -53,7 +87,7 @@
       ],
       "price": "370",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "4",
@@ -68,7 +102,7 @@
       ],
       "price": "430",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "5",
@@ -83,7 +117,7 @@
       ],
       "price": "520",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "6",
@@ -98,7 +132,7 @@
       ],
       "price": "600",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "7",
@@ -113,7 +147,7 @@
       ],
       "price": "820",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "8",
@@ -128,7 +162,7 @@
       ],
       "price": "800",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "9",
@@ -143,7 +177,7 @@
       ],
       "price": "839",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "10",
@@ -158,7 +192,7 @@
       ],
       "price": "1029",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "11",
@@ -173,7 +207,7 @@
       ],
       "price": "400",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "12",
@@ -188,7 +222,7 @@
       ],
       "price": "1199",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "13",
@@ -203,7 +237,7 @@
       ],
       "price": "999",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "14",
@@ -218,7 +252,7 @@
       ],
       "price": "500",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "15",
@@ -233,7 +267,7 @@
       ],
       "price": "160",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "16",
@@ -248,7 +282,7 @@
       ],
       "price": "570",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "17",
@@ -263,7 +297,7 @@
       ],
       "price": "710",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "18",
@@ -278,7 +312,7 @@
       ],
       "price": "750",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "19",
@@ -293,7 +327,7 @@
       ],
       "price": "970",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "20",
@@ -308,7 +342,7 @@
       ],
       "price": "210",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "21",
@@ -323,7 +357,7 @@
       ],
       "price": "960",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "22",
@@ -338,7 +372,7 @@
       ],
       "price": "300",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "23",
@@ -353,7 +387,7 @@
       ],
       "price": "340",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     },
     {
       "id": "24",
@@ -368,7 +402,7 @@
       ],
       "price": "150",
       "network": "4G",
-      "simcard" : "1"
+      "simcard": "1"
     }
   ],
   "accessories": [

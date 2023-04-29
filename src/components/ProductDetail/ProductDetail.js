@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchData } from "../../redux/actions/action";
 import ImageGallery from "react-image-gallery";
@@ -9,23 +10,64 @@ import {
   FormOutlined,
   InfoCircleOutlined,
 } from "@ant-design/icons";
-import { Divider } from "antd";
-import { Tabs } from "antd";
-import { Descriptions } from "antd";
+import {
+  Descriptions,
+  Tabs,
+  Divider,
+  Button,
+  Form,
+  Input,
+  InputNumber,
+} from "antd";
 import {
   faDollarSign,
   faPlus,
   faMinus,
 } from "@fortawesome/free-solid-svg-icons";
-import StarRating from "../StarRating/StarRating";
 
 const ProductDetail = ({ main, fetchData }) => {
   const { category, productBrand, id } = useParams();
-  const [ratingCount, setRatingCount] = useState(0);
-  const [commentCount, setCommentCount] = useState(0);
   const [productCount, setProductCount] = useState(0);
+  const [rating, setRating] = useState(0);
+
   const navigate = useNavigate();
+
   const product = main[category]?.find((product) => product.id === id);
+
+  const handleClick = (newRating) => {
+    if (rating === newRating) {
+      setRating(0);
+    } else {
+      setRating(newRating);
+    }
+  };
+
+  const stars = Array.from({ length: 5 }, (_, index) => {
+    const newRating = index + 1;
+    return (
+      <span
+        key={index}
+        className={`star ${newRating <= rating ? "filled" : ""}`}
+        onClick={() => handleClick(newRating)}
+      >
+        &#9733;
+      </span>
+    );
+  });
+  const onFinish = (values) => {
+    const data = {
+      name: values.name,
+      surname: values.surname,
+      email: values.email,
+      comment: values.comment,
+      rating: rating,
+    };
+
+    axios
+      .post("http://localhost:8001/comments", data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     fetchData();
@@ -79,13 +121,13 @@ const ProductDetail = ({ main, fetchData }) => {
               {product.productColor}
             </h3>
             <div className="rating_and_comments">
-              <StarRating />
+              <div className="star-rating">{stars}</div>
               <div className="rating_count">
-                <span>({ratingCount})</span>
+                <span>({main.comments.data.length})</span>
               </div>
               <Divider type="vertical" />
               <div className="comment_count">
-                <a href="#">{commentCount} rəy</a>
+                <a href="#">{main.comments.data.length} rəy</a>
               </div>
             </div>
             <div className="product_price">
@@ -149,6 +191,7 @@ const ProductDetail = ({ main, fetchData }) => {
       {/* Specifications of products */}
       <div className="product_specifications_and_comments">
         <Tabs
+          defaultActiveKey="2"
           items={[InfoCircleOutlined, FormOutlined].map((Icon, i) => {
             const id = String(i + 1);
             const label = i === 1 ? "Rəylər" : `Texniki Xüsusiyyətləri`;
@@ -295,9 +338,172 @@ const ProductDetail = ({ main, fetchData }) => {
                     </div>
                   )}
                   {id === "2" && (
-                    <div>
-                      <h2>Tab {id} Content</h2>
-                      <p>This is the content for Tab {id}.</p>
+                    <div className="comments_wrapper">
+                      {main.comments.data &&
+                        main.comments.data.map((comment) => (
+                          <div className="comment">
+                            <div className="row mt-5">
+                              <div className="col-lg-3">
+                                <div className="star_count">
+                                  <span>{comment.rating}</span>
+                                  <div className="star-rating">
+                                    <span
+                                      className={`star cursor_unset ${
+                                        rating >= 1 ? "filled" : ""
+                                      }`}
+                                    >
+                                      &#9733;
+                                    </span>
+                                    <span
+                                      className={`star cursor_unset ${
+                                        rating >= 2 ? "filled" : ""
+                                      }`}
+                                    >
+                                      &#9733;
+                                    </span>
+                                    <span
+                                      className={`star  cursor_unset ${
+                                        rating >= 3 ? "filled" : ""
+                                      }`}
+                                    >
+                                      &#9733;
+                                    </span>
+                                    <span
+                                      className={`star cursor_unset ${
+                                        rating >= 4 ? "filled" : ""
+                                      }`}
+                                    >
+                                      &#9733;
+                                    </span>
+                                    <span
+                                      className={`star cursor_unset ${
+                                        rating >= 5 ? "filled" : ""
+                                      }`}
+                                    >
+                                      &#9733;
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="col-lg-9">
+                                <div className="user_comment_info_date">
+                                  <div className="user_name_surname">
+                                    <h5>
+                                      {comment.name}
+                                      {comment.surname}
+                                    </h5>
+                                  </div>
+                                  <div className="comment_date">
+                                    {new Date().toDateString()}
+                                  </div>
+                                </div>
+                                <div className="user__comment">
+                                  <p>{comment.comment}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      <div className="form_wrapper">
+                        <h4>Rəy Bildir</h4>
+                        <Form
+                          onFinish={onFinish}
+                          style={{
+                            maxWidth: 800,
+                            width: "100%",
+                            marginTop: 48,
+                          }}
+                          layout="vertical"
+                        >
+                          <div className="form_flex">
+                            <div style={{ flex: "1 1 50%" }}>
+                              <Form.Item
+                                name="name"
+                                label="Ad"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Adınızı daxil edin",
+                                  },
+                                ]}
+                              >
+                                <Input
+                                  placeholder="Adınızı daxil edin"
+                                  style={{
+                                    border: "none",
+                                  }}
+                                  size="large"
+                                />
+                              </Form.Item>
+                            </div>
+                            <div style={{ flex: "1 1 50%" }}>
+                              <Form.Item
+                                name="surname"
+                                label="Soyad"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Soyadınızı daxil edin",
+                                  },
+                                ]}
+                              >
+                                <Input
+                                  placeholder="Soyadınızı daxil edin"
+                                  style={{
+                                    border: "none",
+                                  }}
+                                  size="large"
+                                />
+                              </Form.Item>
+                            </div>
+                          </div>
+                          <Form.Item
+                            name="email"
+                            label="Email"
+                            rules={[
+                              {
+                                required: true,
+                                type: "email",
+                                message: "Emailinizi daxil edin",
+                              },
+                            ]}
+                          >
+                            <Input
+                              placeholder="Emailinizi daxil edin"
+                              style={{
+                                border: "none",
+                              }}
+                              size="large"
+                            />
+                          </Form.Item>
+                          <Form.Item name="comment" label="Rəyinizi yazın">
+                            <Input.TextArea
+                              style={{
+                                resize: "none",
+                                border: "none",
+                              }}
+                              placeholder="Rəyinizi buraya yazın"
+                              cols={5}
+                              rows={5}
+                              size="large"
+                            />
+                          </Form.Item>
+                          <Form.Item>
+                            <Button
+                              type="primary"
+                              htmlType="submit"
+                              style={{
+                                backgroundColor: "#2DD06E",
+                                float: "right",
+                                width: "174px",
+                                height: "44px",
+                              }}
+                            >
+                              Rəyini bildir
+                            </Button>
+                          </Form.Item>
+                        </Form>
+                      </div>
                     </div>
                   )}
                 </div>
