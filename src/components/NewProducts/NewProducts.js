@@ -71,7 +71,10 @@ const NewProducts = ({ main, fetchData }) => {
         <div className="cards__wrapper">
           <Slider {...settings}>
             {main.phones.map((product) => (
-              <Link key={product.id}>
+              <Link
+                key={product.id}
+                to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
+              >
                 <Product
                   img={product.img}
                   brand={product.productBrand}

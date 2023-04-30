@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { useForm } from "antd/es/form/Form";
+import { notification } from "antd";
 import { fetchData } from "../../redux/actions/action";
 import ImageGallery from "react-image-gallery";
 import { connect } from "react-redux";
@@ -10,15 +12,7 @@ import {
   FormOutlined,
   InfoCircleOutlined,
 } from "@ant-design/icons";
-import {
-  Descriptions,
-  Tabs,
-  Divider,
-  Button,
-  Form,
-  Input,
-  InputNumber,
-} from "antd";
+import { Descriptions, Tabs, Divider, Button, Form, Input } from "antd";
 import {
   faDollarSign,
   faPlus,
@@ -30,9 +24,10 @@ const ProductDetail = ({ main, fetchData }) => {
   const [productCount, setProductCount] = useState(0);
   const [rating, setRating] = useState(0);
 
-  const navigate = useNavigate();
-
   const product = main[category]?.find((product) => product.id === id);
+  const [comments, setComments] = useState([]);
+  const navigate = useNavigate();
+  const [form] = useForm();
 
   const handleClick = (newRating) => {
     if (rating === newRating) {
@@ -41,6 +36,17 @@ const ProductDetail = ({ main, fetchData }) => {
       setRating(newRating);
     }
   };
+
+  const fetchComments = async () => {
+    await axios
+      .get(`http://localhost:8001/${category}/${id}`)
+      .then((res) => setComments(res.data.comments))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
 
   const stars = Array.from({ length: 5 }, (_, index) => {
     const newRating = index + 1;
@@ -54,6 +60,7 @@ const ProductDetail = ({ main, fetchData }) => {
       </span>
     );
   });
+
   const onFinish = (values) => {
     const data = {
       name: values.name,
@@ -63,10 +70,25 @@ const ProductDetail = ({ main, fetchData }) => {
       rating: rating,
     };
 
+    const currentProduct = main[category]?.find((product) => product.id === id);
+    currentProduct.comments.push(data);
+
     axios
-      .post("http://localhost:8001/comments", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .put(`http://localhost:8001/${category}/${id}`, currentProduct)
+      .then((res) => {
+        form.resetFields();
+        notification["success"]({
+          message: "Rəyiniz göndərildi!",
+        });
+        fetchComments();
+        setRating(0);
+      })
+      .catch((err) => {
+        console.log(err);
+        notification["error"]({
+          message: "Rəyiniz göndərilmədi!",
+        });
+      });
   };
 
   useEffect(() => {
@@ -108,7 +130,7 @@ const ProductDetail = ({ main, fetchData }) => {
           </li>
         </ol>
       </nav>
-      <div className="row">
+      <div className="row mt-2">
         <div className="col-lg-6">
           <div className="detail_slider_wrapper">
             <ImageGallery items={images} showPlayButton={false} />
@@ -123,11 +145,11 @@ const ProductDetail = ({ main, fetchData }) => {
             <div className="rating_and_comments">
               <div className="star-rating">{stars}</div>
               <div className="rating_count">
-                <span>({main.comments.data.length})</span>
+                <span>({comments.length})</span>
               </div>
               <Divider type="vertical" />
               <div className="comment_count">
-                <a href="#">{main.comments.data.length} rəy</a>
+                <a href="#comment">{comments.length} rəy</a>
               </div>
             </div>
             <div className="product_price">
@@ -191,7 +213,6 @@ const ProductDetail = ({ main, fetchData }) => {
       {/* Specifications of products */}
       <div className="product_specifications_and_comments">
         <Tabs
-          defaultActiveKey="2"
           items={[InfoCircleOutlined, FormOutlined].map((Icon, i) => {
             const id = String(i + 1);
             const label = i === 1 ? "Rəylər" : `Texniki Xüsusiyyətləri`;
@@ -339,8 +360,8 @@ const ProductDetail = ({ main, fetchData }) => {
                   )}
                   {id === "2" && (
                     <div className="comments_wrapper">
-                      {main.comments.data &&
-                        main.comments.data.map((comment) => (
+                      {comments &&
+                        comments.map((comment) => (
                           <div className="comment">
                             <div className="row mt-5">
                               <div className="col-lg-3">
@@ -349,35 +370,35 @@ const ProductDetail = ({ main, fetchData }) => {
                                   <div className="star-rating">
                                     <span
                                       className={`star cursor_unset ${
-                                        rating >= 1 ? "filled" : ""
+                                        comment.rating >= 1 ? "filled" : ""
                                       }`}
                                     >
                                       &#9733;
                                     </span>
                                     <span
                                       className={`star cursor_unset ${
-                                        rating >= 2 ? "filled" : ""
+                                        comment.rating >= 2 ? "filled" : ""
                                       }`}
                                     >
                                       &#9733;
                                     </span>
                                     <span
                                       className={`star  cursor_unset ${
-                                        rating >= 3 ? "filled" : ""
+                                        comment.rating >= 3 ? "filled" : ""
                                       }`}
                                     >
                                       &#9733;
                                     </span>
                                     <span
                                       className={`star cursor_unset ${
-                                        rating >= 4 ? "filled" : ""
+                                        comment.rating >= 4 ? "filled" : ""
                                       }`}
                                     >
                                       &#9733;
                                     </span>
                                     <span
                                       className={`star cursor_unset ${
-                                        rating >= 5 ? "filled" : ""
+                                        comment.rating >= 5 ? "filled" : ""
                                       }`}
                                     >
                                       &#9733;
@@ -389,12 +410,11 @@ const ProductDetail = ({ main, fetchData }) => {
                                 <div className="user_comment_info_date">
                                   <div className="user_name_surname">
                                     <h5>
-                                      {comment.name}
-                                      {comment.surname}
+                                      {comment.name} {comment.surname}
                                     </h5>
                                   </div>
                                   <div className="comment_date">
-                                    {new Date().toDateString()}
+                                    <span>{new Date().toDateString()}</span>
                                   </div>
                                 </div>
                                 <div className="user__comment">
@@ -404,7 +424,7 @@ const ProductDetail = ({ main, fetchData }) => {
                             </div>
                           </div>
                         ))}
-                      <div className="form_wrapper">
+                      <div className="form_wrapper" id="comment">
                         <h4>Rəy Bildir</h4>
                         <Form
                           onFinish={onFinish}
@@ -413,6 +433,7 @@ const ProductDetail = ({ main, fetchData }) => {
                             width: "100%",
                             marginTop: 48,
                           }}
+                          form={form}
                           layout="vertical"
                         >
                           <div className="form_flex">

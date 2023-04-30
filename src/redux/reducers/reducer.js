@@ -12,7 +12,6 @@ const initialState = {
   phones: [],
   accessories: [],
   smartWatches: [],
-  comments: [],
   error: null,
 };
 
@@ -35,7 +34,6 @@ export const mainReducer = (state = initialState, action) => {
         phones: action.payload.phones,
         accessories: action.payload.accessories,
         smartWatches: action.payload.smartWatches,
-        comments: action.payload.comments,
         error: null,
       };
     }

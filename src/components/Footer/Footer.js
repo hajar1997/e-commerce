@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="footer-card">
           <div className="row mb-4">
             <div className="col-lg-3">
-              <div className="footer-logo d-flex">
+              <div className="footer-logo d-flex mb-2">
                 <Link>
-                  <img src="/images/logo.svg" />
+                  <img src="/images/footer-logo.svg" />
                 </Link>
               </div>
               <div className="footer-social mt-2 mb-3">

@@ -7,11 +7,10 @@ import { fetchData } from "../../redux/actions/action";
 import Slider from "react-slick";
 
 const NewAccessory = ({ main, fetchData }) => {
-
   useEffect(() => {
     fetchData();
   }, []);
-  
+
   const settings = {
     dots: false,
     infinite: false,
@@ -71,13 +70,16 @@ const NewAccessory = ({ main, fetchData }) => {
         <div className="cards__wrapper">
           <Slider {...settings}>
             {main.accessories.map((product) => (
-              <Link>
+              <Link
+                key={product.id}
+                to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}
+              >
                 <div className="card-wrapper">
                   <img src={product.img[0]} />
                   <div className="card__content">
                     <a href="#">
-                      {product.productBrand} {product.productModel} {product.memory}{" "}
-                      {product.productColor}
+                      {product.productBrand} {product.productModel}{" "}
+                      {product.memory} {product.productColor}
                     </a>
                     <span>{product.price} $</span>
                   </div>

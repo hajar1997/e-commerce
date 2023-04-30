@@ -1,38 +1,4 @@
 {
-  "comments": [
-    {
-      "name": "adasDASD",
-      "surname": "SADAda",
-      "email": "ibrahimlihecer97@gmail.com",
-      "comment": "asdasdad",
-      "rating": 5,
-      "id": 1
-    },
-    {
-      "name": "Hajar Ibrahimova",
-      "surname": "Ibrahimova",
-      "email": "dasdadad@gmail.com",
-      "comment": "asafsadfs",
-      "rating": 4,
-      "id": 2
-    },
-    {
-      "name": "Hajar",
-      "surname": "Ibrahimova",
-      "email": "hajaribra.dev@gmail.com",
-      "comment": "salam",
-      "rating": 0,
-      "id": 3
-    },
-    {
-      "name": "Hajar",
-      "surname": "Ibrahimova",
-      "email": "hajaribra.dev@gmail.com",
-      "comment": "salam",
-      "rating": 0,
-      "id": 4
-    }
-  ],
   "filterCategories": [
     {
       "id": "1",
@@ -43,7 +9,7 @@
       "category": "Rəng"
     }
   ],
-  "smartphones": [
+  "phones": [
     {
       "id": "1",
       "productBrand": "Apple",
@@ -57,7 +23,8 @@
       ],
       "price": "340",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "2",
@@ -72,7 +39,23 @@
       ],
       "price": "450",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": [
+        {
+          "name": "Hajar",
+          "surname": "Ibrahimova",
+          "email": "ibrahimlihecer97@gmail.com",
+          "comment": "Ela telefondur!",
+          "rating": 4
+        },
+        {
+          "name": "Tuku",
+          "surname": "Ibrahimova",
+          "email": "tuku@gmail.com",
+          "comment": "Gozeldir!",
+          "rating": 2
+        }
+      ]
     },
     {
       "id": "3",
@@ -87,7 +70,8 @@
       ],
       "price": "370",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "4",
@@ -102,7 +86,8 @@
       ],
       "price": "430",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "5",
@@ -117,7 +102,8 @@
       ],
       "price": "520",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "6",
@@ -132,7 +118,8 @@
       ],
       "price": "600",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "7",
@@ -147,7 +134,8 @@
       ],
       "price": "820",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "8",
@@ -162,7 +150,8 @@
       ],
       "price": "800",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "9",
@@ -177,7 +166,8 @@
       ],
       "price": "839",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "10",
@@ -192,7 +182,8 @@
       ],
       "price": "1029",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "11",
@@ -207,7 +198,8 @@
       ],
       "price": "400",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "12",
@@ -222,7 +214,8 @@
       ],
       "price": "1199",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "13",
@@ -237,7 +230,8 @@
       ],
       "price": "999",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "14",
@@ -252,7 +246,8 @@
       ],
       "price": "500",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "15",
@@ -267,7 +262,8 @@
       ],
       "price": "160",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "16",
@@ -282,7 +278,8 @@
       ],
       "price": "570",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "17",
@@ -297,7 +294,8 @@
       ],
       "price": "710",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "18",
@@ -312,7 +310,8 @@
       ],
       "price": "750",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "19",
@@ -327,7 +326,8 @@
       ],
       "price": "970",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "20",
@@ -342,7 +342,8 @@
       ],
       "price": "210",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "21",
@@ -357,7 +358,8 @@
       ],
       "price": "960",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "22",
@@ -372,7 +374,8 @@
       ],
       "price": "300",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "23",
@@ -387,7 +390,8 @@
       ],
       "price": "340",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     },
     {
       "id": "24",
@@ -402,7 +406,8 @@
       ],
       "price": "150",
       "network": "4G",
-      "simcard": "1"
+      "simcard": "1",
+      "comments": []
     }
   ],
   "accessories": [
@@ -416,7 +421,8 @@
         "/images/new-accessory-1.png",
         "/images/new-accessory-1.png"
       ],
-      "price": "89.99"
+      "price": "89.99",
+      "comments": []
     },
     {
       "id": "2",
@@ -428,7 +434,8 @@
         "/images/new-accessory-2.png",
         "/images/new-accessory-2.png"
       ],
-      "price": "109.9"
+      "price": "109.9",
+      "comments": []
     },
     {
       "id": "3",
@@ -440,7 +447,8 @@
         "/images/new-accessory-3.png",
         "/images/new-accessory-3.png"
       ],
-      "price": "1279"
+      "price": "1279",
+      "comments": []
     },
     {
       "id": "4",
@@ -452,7 +460,8 @@
         "/images/new-accessory-4.png"
       ],
       "productColor": "White",
-      "price": "549.9"
+      "price": "549.9",
+      "comments": []
     },
     {
       "id": "5",
@@ -464,7 +473,8 @@
         "/images/new-accessory-5.png"
       ],
       "productColor": "White",
-      "price": "119"
+      "price": "119",
+      "comments": []
     },
     {
       "id": "6",
@@ -476,7 +486,8 @@
         "/images/new-accessory-6.png"
       ],
       "productColor": "White",
-      "price": "27.9"
+      "price": "27.9",
+      "comments": []
     },
     {
       "id": "7",
@@ -488,7 +499,8 @@
         "/images/new-accessory-7.png"
       ],
       "productColor": "Black",
-      "price": "129.95"
+      "price": "129.95",
+      "comments": []
     },
     {
       "id": "8",
@@ -500,7 +512,8 @@
         "/images/new-accessory-8.png"
       ],
       "productColor": "Black",
-      "price": "179.99"
+      "price": "179.99",
+      "comments": []
     },
     {
       "id": "9",
@@ -512,7 +525,8 @@
         "/images/new-accessory-9.png"
       ],
       "productColor": "White",
-      "price": "31.89"
+      "price": "31.89",
+      "comments": []
     },
     {
       "id": "10",
@@ -524,7 +538,8 @@
         "/images/new-accessory-10.png"
       ],
       "productColor": "Black",
-      "price": "23.99"
+      "price": "23.99",
+      "comments": []
     },
     {
       "id": "11",
@@ -536,7 +551,8 @@
         "/images/new-accessory-11.png"
       ],
       "productColor": "Black",
-      "price": "156.59"
+      "price": "156.59",
+      "comments": []
     },
     {
       "id": "12",
@@ -548,7 +564,8 @@
         "/images/new-accessory-12.png"
       ],
       "productColor": "Black",
-      "price": "199.95"
+      "price": "199.95",
+      "comments": []
     },
     {
       "id": "13",
@@ -560,7 +577,8 @@
         "/images/new-accessory-13.png"
       ],
       "productColor": "Black",
-      "price": "65"
+      "price": "65",
+      "comments": []
     }
   ],
   "smartWatches": [
@@ -574,7 +592,16 @@
         "/images/watch-1.jpg"
       ],
       "productColor": "Black",
-      "price": "118.95"
+      "price": "118.95",
+      "comments": [
+        {
+          "name": "Hajar",
+          "surname": "Ibrahimova",
+          "email": "hajaribra.dev@gmail.com",
+          "comment": "watch",
+          "rating": 0
+        }
+      ]
     },
     {
       "id": "2",
@@ -586,7 +613,8 @@
         "/images/watch-2.jpg"
       ],
       "productColor": "Black",
-      "price": "198.95"
+      "price": "198.95",
+      "comments": []
     },
     {
       "id": "3",
@@ -598,7 +626,8 @@
         "/images/watch-3.jpg"
       ],
       "productColor": "Black",
-      "price": "394.49"
+      "price": "394.49",
+      "comments": []
     },
     {
       "id": "4",
@@ -610,7 +639,8 @@
         "/images/watch-4.jpg"
       ],
       "productColor": "Gray",
-      "price": "118.95"
+      "price": "118.95",
+      "comments": []
     },
     {
       "id": "5",
@@ -622,7 +652,8 @@
         "/images/watch-5.jpg"
       ],
       "productColor": "Gray",
-      "price": "209.41"
+      "price": "209.41",
+      "comments": []
     },
     {
       "id": "6",
@@ -634,7 +665,8 @@
         "/images/watch-6.jpg"
       ],
       "productColor": "Starlight",
-      "price": "329"
+      "price": "329",
+      "comments": []
     }
   ]
 }
