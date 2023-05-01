@@ -35,8 +35,14 @@ const QuestionsAndAnswers = ({ main, fetchData }) => {
               <Collapse
                 expandIconPosition="right"
                 expandIcon={({ isActive }) => (
-                  <span style={{ fontSize: "17px",color:"#4F4F4F",fontWeight:"600" }}>
-                    {isActive ? <CloseOutlined /> : < PlusOutlined/>}
+                  <span
+                    style={{
+                      fontSize: "17px",
+                      color: "#4F4F4F",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {isActive ? <CloseOutlined /> : <PlusOutlined />}
                   </span>
                 )}
               >

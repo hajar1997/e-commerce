@@ -1248,7 +1248,7 @@ input:focus {
 }
 
 .ant-collapse-header {
-    padding: 18px 24px!important;
+    padding: 18px 24px !important;
 }
 
 .ant-collapse-header-text {
@@ -1259,6 +1259,157 @@ input:focus {
 }
 
 /* FAQ End */
+
+/* Payment Start */
+.payment_header {
+    padding: 32px;
+    border-bottom: 1px solid #2DD06E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment__container {
+    margin-top: 50px;
+}
+
+.payment__container h5 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #1D2123;
+}
+
+.payment__container .ant-divider {
+    border-block-start: 2px solid rgba(130, 130, 130, 0.5);
+}
+
+.total_container .ant-divider {
+    border-block-start: 2px solid rgba(130, 130, 130, 0.5);
+}
+
+
+.payment_user-info {
+    margin-top: 30px;
+}
+
+.payment_user-info h6 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1D2123;
+    cursor: pointer;
+}
+
+.payment__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment__container .ant-input-number-input {
+    background-color: #F2F2F2 !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 18px 24px !important;
+}
+
+.ant-input-number-input::placeholder {
+    color: #828282 !important;
+    font-size: 13px !important;
+}
+
+.ant-select-selector {
+    border: none !important;
+}
+
+.ant-input-number-group-addon {
+    border: none !important;
+    background-color: #F2F2F2 !important;
+}
+
+.ant-select-selection-item {
+    font-size: 12px !important;
+}
+
+.payment_choice_btn span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.payment_choice_btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.ant-radio-button-wrapper {
+    margin-top: 20px;
+    width: 248px;
+    color: black !important;
+    height: 44px;
+    border: 1px solid #E0E0E0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+
+.ant-radio-button-wrapper-checked {
+    background-color: rgb(242, 242, 244) !important;
+    border-color: gray !important;
+}
+
+.payment_btns {
+    margin-top: 60px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.ant-radio-group {
+    display: flex;
+    gap: 40px;
+}
+
+.ant-radio-button-wrapper:not(:first-child)::before {
+    display: none;
+}
+
+.total_container {
+    box-shadow: 0px 4px 32px rgba(130, 130, 130, 0.4);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 56px;
+    margin-left: 90px;
+}
+
+.total_container h5 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1D2123;
+}
+
+.total_container h6 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #333333;
+}
+
+.total_container .cost {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Payment End */
+
 
 /* MEDIA QUERIES START */
 
@@ -1547,6 +1698,21 @@ input:focus {
     .comment_date span {
         font-size: 12px;
     }
+
+    .ant-radio-group {
+        flex-direction: column;
+        gap: unset;
+    }
+
+    .payment_btns {
+        margin-top: unset;
+    }
+
+    .total_container {
+        margin-top: 50px;
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
 }
 
 @media(max-width: 770px) {
@@ -1556,6 +1722,10 @@ input:focus {
 
     .q_and_a_wrapper .ant-collapse {
         width: 100% !important;
+    }
+
+    .form_flex {
+        flex-direction: column;
     }
 }
 
@@ -1625,6 +1795,22 @@ input:focus {
 
     .all-products .card-wrapper {
         width: 100% !important;
+    }
+
+    .payment__container h5 {
+        font-size: 21px;
+    }
+
+    .payment_user-info h6 {
+        font-size: 18px;
+    }
+
+    .total_container h6 {
+        font-size: 15px;
+    }
+
+    .total_container h5 {
+        font-size: 17px;
     }
 }
 

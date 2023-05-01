@@ -6,6 +6,7 @@ import SearchResults from "./pages/SearchResults";
 import ProductDetails from "./pages/ProductDetails";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import FAQ from "./pages/FAQ";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             element={<ProductDetails />}
           />
           <Route path="frequently-asked-questions" element={<FAQ />} />
+          <Route path="payment" element={<Payment />} />
         </Routes>
       </ScrollToTop>
     </>
