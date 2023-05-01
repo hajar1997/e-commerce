@@ -9,6 +9,32 @@
       "category": "Rəng"
     }
   ],
+  "questions_answers": [
+    {
+      "question": "Bonusları harada və necə qazana bilərəm?",
+      "answer": "Bonusları qazanmaq üçün ilk növbədə bizim mobil tətbiqimizi yükləməlisiniz. Nağd, hissəvi və ya kartla birdəfəlik ödəniş zamanı əldə etdiyiniz məhsulun dəyərinin 1%-i sizə bonus olaraq geri qayıdacaqdır. 1 bonus = 1 AZN təşkil edir. Toplanmış bonuslarla istər mağazalarımızda, istər saytımızda, istərsə də mobil tətbiqimizdə yalnız alış-veriş zamanı istifadə edə bilərsiniz. Nə qədər çox bonus, o qədər çox endirim deməkdir.Qeyd: Bonuslar taksitli alışlara şamil olunmur. Hissəvi ödəniş zamanı bonuslardan istifadə edilə bilməz və ya hissəvi aylıq ödənişlər bonus qazandırmır."
+    },
+    {
+      "question": "Sizdə çatdırılma xidməti var və hansı ərazilər üzrə həyata keçirilir?",
+      "answer": "Bakı, Sumqayıt, Xırdalan, Qəbələ, Quba, Lənkəran, Göyçay, Bərdə, Gəncə, Masallı, Tovuz, Şəmkir, Xaçmaz, Sabirabad, Cəlilabad, Ağcabədi, İmişli, Yevlax, Şəki, Ağdaş, Kürdəmir şəhərləri üzrə dəyəri 50 AZN-dən yuxarı olan məhsulların istər kredit, istərsə də nağd, taksit kartları ilə alışı zamanı çatdırılma xidməti mövcuddur və pulsuzdur."
+    },
+    {
+      "question": "Sizdən alınan smartfonların qeydiyyatı mövcuddur?",
+      "answer": "Bəli, əldə etdiyiniz smartfonun qeydiyyatı şirkətimiz tərəfindən pulsuz və avtomatik şəkildə həyata keçirilir. Bunun üçün sizin mağazamıza müraciət etməyinizə və ya əlaqə saxlamağınıza ehtiyac yoxdur. Xeyirli olsun, xoş xəbərlər eşidəsiniz!"
+    },
+    {
+      "question": "Hissəli alış zamanı iş yerindən yazılı arayışa ehtiyac var?",
+      "answer": "Xeyr, hissəli alış zamanı rəsmi iş yeriniz varsa, elektron formada yoxlanılır və kredit mütəxəssislərimiz tərəfindən təsdiqlənir. Sənəd olaraq sadəcə şəxsiyyət vəsiqəsi kifayət edir"
+    },
+    {
+      "question": "Müştəri kodum harada yazılır?",
+      "answer": "Müştəri kodu sizə təqdim olunan aylıq ödəniş müqavilə kağızında kağızın üst hissəsində ad, soyad, ata adı qarşısında mötərizədə olur və 6 rəqəmlidir."
+    },
+    {
+      "question": "Satışda işlənmiş telefon olur?",
+      "answer": "İkinci əl modellər yalnız mağazamızda mövcuddur. "
+    }
+  ],
   "phones": [
     {
       "id": "1",

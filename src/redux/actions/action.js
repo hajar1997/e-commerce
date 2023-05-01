@@ -10,6 +10,7 @@ const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
 const phonesEndpoint = "http://localhost:8001/phones";
 const accessoryEndpoint = "http://localhost:8001/accessories";
 const smartWatchesEndpoint = "http://localhost:8001/smartWatches";
+const questions_answersEndpoint = "http://localhost:8001/questions_answers";
 
 export const setSearchedData = (searchedData) => ({
   type: SET_SEARCHED_DATA,
@@ -29,6 +30,7 @@ export const fetchData = () => {
         axios.get(phonesEndpoint),
         axios.get(accessoryEndpoint),
         axios.get(smartWatchesEndpoint),
+        axios.get(questions_answersEndpoint),
       ])
       .then(
         axios.spread(
@@ -36,7 +38,8 @@ export const fetchData = () => {
             filterCategoriesEndpoint,
             phonesEndpoint,
             accessoryEndpoint,
-            smartWatchesEndpoint
+            smartWatchesEndpoint,
+            questions_answersEndpoint
           ) => {
             dispatch({
               type: FETCH_DATA_SUCCESS,
@@ -45,6 +48,7 @@ export const fetchData = () => {
                 phones: phonesEndpoint.data,
                 accessories: accessoryEndpoint.data,
                 smartWatches: smartWatchesEndpoint.data,
+                questions_answers: questions_answersEndpoint,
               },
             });
           }

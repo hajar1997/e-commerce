@@ -5,6 +5,7 @@ import Products from "./pages/Products";
 import SearchResults from "./pages/SearchResults";
 import ProductDetails from "./pages/ProductDetails";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import FAQ from "./pages/FAQ";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             path="product-details/:category/:productBrand/:productModel/:id"
             element={<ProductDetails />}
           />
+          <Route path="frequently-asked-questions" element={<FAQ />} />
         </Routes>
       </ScrollToTop>
     </>
