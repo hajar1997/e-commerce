@@ -1410,6 +1410,58 @@ input:focus {
 
 /* Payment End */
 
+/* Add To Basket Start */
+.basket__page header {
+    background-color: white;
+    padding: 20px 0px 0px;
+}
+
+.basket__page .hr-line {
+    height: unset;
+}
+
+.basket__page {
+    background-color: #F2F2F2;
+}
+
+
+.add_to_basket__ {}
+
+.add_to_basket__ h5 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    color: #4F4F4F;
+}
+
+.inside_basket {
+    padding: 100px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+
+.for_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.is__empty {
+    text-align: center;
+}
+
+.is__empty h5 {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #BDBDBD;
+}
+
+/* Add To Basket End */
 
 /* MEDIA QUERIES START */
 

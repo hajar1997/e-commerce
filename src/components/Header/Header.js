@@ -43,7 +43,7 @@ const Header = () => {
                 <HeartOutlined style={{ fontSize: "20px" }} />
               </Link>
               <div className="shopping-icon d-flex align-items-center">
-                <Link className="text-dark">
+                <Link className="text-dark" to={"/basket"}>
                   <ShoppingCartOutlined style={{ fontSize: "20px" }} />
                 </Link>
                 <div className="countOfShopping ms-2">0</div>
