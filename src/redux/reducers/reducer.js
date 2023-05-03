@@ -3,6 +3,8 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
+  // SET_PRODUCT_COUNT,
+  // INCREASE_PRODUCT_COUNT,
 } from "../types/index";
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
   accessories: [],
   smartWatches: [],
   questions_answers: [],
+  // count: 0,
+  // productCount: 0,
   error: null,
 };
 
@@ -45,6 +49,18 @@ export const mainReducer = (state = initialState, action) => {
         error: action.payload,
       };
     }
+    // case SET_PRODUCT_COUNT: {
+    //   return {
+    //     ...state,
+    //     count: action.payload,
+    //   };
+    // }
+    // case INCREASE_PRODUCT_COUNT: {
+    //   return {
+    //     ...state,
+    //     count: state.count,
+    //   };
+    // }
     default:
       return state;
   }

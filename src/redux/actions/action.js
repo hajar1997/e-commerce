@@ -3,6 +3,8 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
+  SET_PRODUCT_COUNT,
+  INCREASE_PRODUCT_COUNT
 } from "../types/index";
 import axios from "axios";
 
@@ -21,6 +23,16 @@ export const setSearchSubmitted = (searchSubmitted) => ({
   type: SET_SEARCH_SUBMITTED,
   payload: searchSubmitted,
 });
+
+// export const setProductCount = (productCount) => ({
+//   type: SET_PRODUCT_COUNT,
+//   payload: productCount,
+// });
+
+// export const increaseProductCount = (count) => ({
+//   type: INCREASE_PRODUCT_COUNT,
+//   payload: count,
+// });
 
 export const fetchData = () => {
   return (dispatch) => {

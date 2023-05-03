@@ -1424,9 +1424,6 @@ input:focus {
     background-color: #F2F2F2;
 }
 
-
-.add_to_basket__ {}
-
 .add_to_basket__ h5 {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -1554,6 +1551,69 @@ input:focus {
 }
 
 /* Add To Basket End */
+
+/* My Favorites Start */
+.profile_ {
+    background-color: #F2F2F2;
+}
+
+.profile_ header {
+    background-color: white;
+    padding: 20px 0px 0px;
+}
+
+.profile__menus {
+    padding: 27px 30px;
+    background: white;
+    border-radius: 8px;
+}
+.my__profile{
+    margin-top: 40px;
+}
+.ant-menu-title-content {
+    transition: none !important;
+}
+
+.my_favs .all-products .card-wrapper {
+    background-color: white !important;
+}
+
+.ant-menu-vertical {
+    border: none !important;
+}
+
+.ant-layout-content {
+    margin: 0px !important;
+    background-color: unset !important;
+    padding: unset !important;
+}
+
+.ant-menu-item {
+    padding-inline: 0px !important;
+    margin-inline: 0px !important;
+    color: #4F4F4F !important;
+}
+
+.ant-menu-item a:hover {
+    color: unset !important;
+}
+
+.ant-menu-title-content a:active {
+    color: #2DD06E !important;
+}
+
+.ant-menu-item:active,
+.ant-menu-item-selected,
+.ant-menu-item:hover {
+    background-color: white !important;
+}
+
+.ant-menu-item-selected {
+    color: #2DD06E !important;
+}
+
+/* My Favorites End */
+
 
 /* MEDIA QUERIES START */
 
@@ -1858,6 +1918,13 @@ input:focus {
         margin-bottom: 20px;
     }
 
+    .profile__menus {
+        margin-bottom: 40px;
+    }
+
+    .my__profile .nav-pills {
+        gap: 10px;
+    }
 }
 
 @media(max-width: 770px) {

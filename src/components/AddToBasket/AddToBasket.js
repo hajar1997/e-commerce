@@ -250,6 +250,20 @@ const AddToBasket = () => {
                     />
                   </h6>
                 </div>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{
+                    fontSize: "16px",
+                    marginTop: "20px",
+                    backgroundColor: "#2DD06E",
+                    width: "100%",
+                    height: "44px",
+                  }}
+                  onClick={() => navigate("/payment")}
+                >
+                  Sifarişi tamamla
+                </Button>
               </div>
             </div>
           </div>

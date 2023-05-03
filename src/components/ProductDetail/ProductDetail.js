@@ -6,6 +6,7 @@ import { notification } from "antd";
 import { fetchData } from "../../redux/actions/action";
 import ImageGallery from "react-image-gallery";
 import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ShoppingCartOutlined,
@@ -23,7 +24,7 @@ const ProductDetail = ({ main, fetchData }) => {
   const { category, productBrand, id } = useParams();
   const [productCount, setProductCount] = useState(0);
   const [rating, setRating] = useState(0);
-
+  const dispatch = useDispatch();
   const product = main[category]?.find((product) => product.id === id);
   const [comments, setComments] = useState([]);
   const navigate = useNavigate();
@@ -36,6 +37,18 @@ const ProductDetail = ({ main, fetchData }) => {
       setRating(newRating);
     }
   };
+
+  const handleIncrease = () => {
+    setProductCount((prevCount) => prevCount + 1);
+  };
+
+  const handleDecrease = () => {
+    setProductCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
+  };
+
+  // const handleAddToCart = () => {
+  //   dispatch(increaseProductCount(productCount));
+  // };
 
   const fetchComments = async () => {
     await axios
@@ -183,18 +196,14 @@ const ProductDetail = ({ main, fetchData }) => {
             )}
             <Divider type="horizontal" />
             <div className="product_counter">
-              <button
-                onClick={() =>
-                  productCount > 0 && setProductCount(productCount - 1)
-                }
-              >
+              <button onClick={() => handleDecrease()}>
                 <FontAwesomeIcon
                   style={{ fontSize: "13px", paddingRight: "0" }}
                   icon={faMinus}
                 />
               </button>
               <span>{productCount}</span>
-              <button onClick={() => setProductCount(productCount + 1)}>
+              <button onClick={() => handleIncrease()}>
                 <FontAwesomeIcon
                   style={{ fontSize: "13px", paddingRight: "0" }}
                   icon={faPlus}
@@ -541,4 +550,6 @@ const mapStateToProps = (state) => ({
   main: state.main,
 });
 
-export default connect(mapStateToProps, { fetchData })(ProductDetail);
+export default connect(mapStateToProps, { fetchData })(
+  ProductDetail
+);

@@ -6,12 +6,14 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Space } from "antd";
+import { connect, useSelector } from "react-redux";
 import MegaMenu from "../MegaMenu/MegaMenu";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchProduct from "../SearchProduct/SearchProduct";
 
-const Header = () => {
+const Header = ({ main }) => {
+  // const count = useSelector((state) => state.main.productCount);
   return (
     <header>
       <div className="container">
@@ -60,4 +62,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  main: state.main,
+});
+
+export default connect(mapStateToProps)(Header);
