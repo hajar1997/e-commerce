@@ -96,7 +96,9 @@ const MyProfile = () => {
               {selectedPath === "/my-favs" && <MyFavs />}
               {selectedPath === "/my-info" && <MyInfo />}
               {selectedPath === "/my-address" && <MyAddress />}
-              {selectedPath === "/order-details" && <OrderDetails />}
+              {selectedPath === "/order-details" && (
+                <OrderDetails handleMenuClick={handleMenuClick} />
+              )}
             </Content>
           </div>
         </div>
