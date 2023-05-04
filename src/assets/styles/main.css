@@ -1567,9 +1567,11 @@ input:focus {
     background: white;
     border-radius: 8px;
 }
-.my__profile{
+
+.my__profile {
     margin-top: 40px;
 }
+
 .ant-menu-title-content {
     transition: none !important;
 }
@@ -1612,6 +1614,87 @@ input:focus {
     color: #2DD06E !important;
 }
 
+.inside__basket {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.basket__product {
+    background-color: white;
+    padding: 60px 32px 60px;
+}
+
+.basket_product__container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.basket_product__img {
+    max-width: 15rem;
+}
+
+.basket_product__img img {
+    width: 100%;
+}
+
+.basket_product__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.basket_product__info span,
+.basket__product_total_cost span {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #828282;
+}
+
+.basket__product_total_cost h6 {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.order__date,
+.basket__product_total_cost {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order__date h6 {
+    font-size: 14px;
+
+}
+
+.basket__product_total_cost h6 {
+    color: #DB2C66;
+    font-weight: 600;
+}
+
+.basket_product__container .ant-btn span {
+    color: #4F4F4F;
+    font-weight: 600;
+}
+
+.basket_pr_mobile_btn {
+    display: none;
+}
+
+.order__details{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order__details h5{
+    margin-bottom: 0px;
+}
+
 /* My Favorites End */
 
 
@@ -1643,6 +1726,16 @@ input:focus {
 
     .navbar .megamenu {
         padding: 2rem 5rem;
+    }
+}
+
+@media (max-width:992px) and (min-width:770px) {
+    .basket_product__img {
+        max-width: 22rem;
+    }
+
+    .inside__basket {
+        grid-template-columns: 1fr 1fr;
     }
 }
 
@@ -1925,6 +2018,28 @@ input:focus {
     .my__profile .nav-pills {
         gap: 10px;
     }
+
+    .inside__basket {
+        flex-direction: column;
+    }
+
+    .basket__product {
+        background-color: white;
+        display: flex;
+        padding: 60px 13px 60px;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .basket_pr_mobile_btn {
+        display: block;
+    }
+
+    .basket_pr_destkop_btn {
+        display: none;
+    }
+
 }
 
 @media(max-width: 770px) {
@@ -1997,6 +2112,10 @@ input:focus {
 
     .product_counter span {
         font-size: 16px;
+    }
+
+    .inside__basket {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2087,6 +2206,10 @@ input:focus {
     .product__img {
         max-width: 12rem;
         margin: 0 auto;
+    }
+
+    .basket_product__img {
+        max-width: 12rem;
     }
 }
 

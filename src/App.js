@@ -13,6 +13,7 @@ import MyOrders from "./pages/MyOrders";
 import MyFavs from "./pages/MyFavs";
 import MyInfo from "./pages/MyInfo";
 import MyAddress from "./pages/MyAddress";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   return (
@@ -30,10 +31,6 @@ function App() {
           <Route path="payment" element={<Payment />} />
           <Route path="basket" element={<Basket />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="my-orders" element={<MyOrders />} />
-          <Route path="my-favs" element={<MyFavs />} />
-          <Route path="my-info" element={<MyInfo />} />
-          <Route path="my-address" element={<MyAddress />} />
         </Routes>
       </ScrollToTop>
     </>
@@ -41,5 +38,3 @@ function App() {
 }
 
 export default App;
-
-
