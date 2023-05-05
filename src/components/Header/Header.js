@@ -41,7 +41,7 @@ const Header = ({ main }) => {
               <Link className="text-dark" to={"/profile"}>
                 <UserOutlined style={{ fontSize: "20px" }} />
               </Link>
-              <Link className="text-dark">
+              <Link className="text-dark" to={"/favorites"}>
                 <HeartOutlined style={{ fontSize: "20px" }} />
               </Link>
               <div className="shopping-icon d-flex align-items-center">

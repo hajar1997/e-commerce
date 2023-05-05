@@ -9,11 +9,7 @@ import FAQ from "./pages/FAQ";
 import Payment from "./pages/Payment";
 import Basket from "./pages/Basket";
 import Profile from "./pages/Profile";
-import MyOrders from "./pages/MyOrders";
-import MyFavs from "./pages/MyFavs";
-import MyInfo from "./pages/MyInfo";
-import MyAddress from "./pages/MyAddress";
-import OrderDetails from "./pages/OrderDetails";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
@@ -31,6 +27,7 @@ function App() {
           <Route path="payment" element={<Payment />} />
           <Route path="basket" element={<Basket />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="favorites" element={<Favorites />} />
         </Routes>
       </ScrollToTop>
     </>

@@ -8,12 +8,12 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import MyFavs from "./MyFavs";
-import MyAddress from "./MyAddress";
-import MyInfo from "./MyInfo";
-import MyOrders from "./MyOrders";
+import MyFavs from "../components/MyFavs/MyFavs";
+import MyAddress from "../components/MyAddress/MyAddress";
+import MyInfo from "../components/MyInfo/MyInfo";
+import MyOrders from "../components/MyOrders/MyOrders";
 import { Content } from "antd/es/layout/layout";
-import OrderDetails from "./OrderDetails";
+import OrderDetails from "../components/OrderDetails/OrderDetails";
 
 const MyProfile = () => {
   const [selectedPath, setSelectedPath] = useState(
