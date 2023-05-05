@@ -38,7 +38,7 @@ const Header = ({ main }) => {
           </div>
           <div className="header-icons">
             <Space size={"large"}>
-              <Link className="text-dark">
+              <Link className="text-dark" to={"/profile"}>
                 <UserOutlined style={{ fontSize: "20px" }} />
               </Link>
               <Link className="text-dark">
