@@ -25,20 +25,20 @@ const Favs = () => {
       price: "340",
       count: 0,
     },
-    {
-      id: "2",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
+    // {
+    //   id: "2",
+    //   productBrand: "Apple",
+    //   productModel: "iPhone 7",
+    //   memory: "32",
+    //   productColor: "Black",
+    //   img: [
+    //     "/images/iphone-7-black.jpg",
+    //     "/images/iphone-7-black.jpg",
+    //     "/images/iphone-7-black.jpg",
+    //   ],
+    //   price: "340",
+    //   count: 0,
+    // },
   ]);
 
   const handleLikeClick = (productId) => {
