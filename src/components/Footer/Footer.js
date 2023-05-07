@@ -49,7 +49,12 @@ const Footer = () => {
               <h5 className="heading">Kömək</h5>
               <ul className="card-text">
                 <li>
-                  <a href="/frequently-asked-questions">Tez-tez soruşulan suallar</a>
+                  <a href="/about">Haqqımızda</a>
+                </li>
+                <li>
+                  <a href="/frequently-asked-questions">
+                    Tez-tez soruşulan suallar
+                  </a>
                 </li>
                 <li>
                   <a href="#">Çatdırılma xidməti</a>

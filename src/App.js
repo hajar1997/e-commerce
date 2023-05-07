@@ -10,6 +10,7 @@ import Payment from "./pages/Payment";
 import Basket from "./pages/Basket";
 import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="basket" element={<Basket />} />
           <Route path="profile" element={<Profile />} />
           <Route path="favorites" element={<Favorites />} />
+          <Route path="about" element={<About />}/>
         </Routes>
       </ScrollToTop>
     </>
