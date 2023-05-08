@@ -66,22 +66,7 @@
       "price": "450",
       "network": "4G",
       "simcard": "1",
-      "comments": [
-        {
-          "name": "Hajar",
-          "surname": "Ibrahimova",
-          "email": "ibrahimlihecer97@gmail.com",
-          "comment": "Ela telefondur!",
-          "rating": 4
-        },
-        {
-          "name": "Tuku",
-          "surname": "Ibrahimova",
-          "email": "tuku@gmail.com",
-          "comment": "Gozeldir!",
-          "rating": 2
-        }
-      ]
+      "comments": []
     },
     {
       "id": "3",

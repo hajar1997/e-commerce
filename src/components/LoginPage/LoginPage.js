@@ -74,10 +74,9 @@ const LoginPage = () => {
                       size="large"
                     />
                   </Form.Item>
-                  <a className="login-form-forgot" href="">
+                  <a className="login-form-forgot" href="/forget-password">
                     Şifrəni unutmusunuz?
                   </a>
-
                   {/* <Form.Item
                     name="remember"
                     valuePropName="checked"

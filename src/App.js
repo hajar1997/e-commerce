@@ -13,6 +13,9 @@ import Favorites from "./pages/Favorites";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgetPassword from "./pages/ForgetPassword";
+import MailCheck from "./pages/MailCheck";
+import RenewPassword from "./pages/RenewPassword";
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="forget-password" element={<ForgetPassword />} />
+          <Route path="mail-check" element={<MailCheck />} />
+          <Route path="renew-password" element={<RenewPassword />} />
         </Routes>
       </ScrollToTop>
     </>

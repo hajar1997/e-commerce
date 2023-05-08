@@ -56,12 +56,6 @@ const Footer = () => {
                     Tez-tez soruşulan suallar
                   </a>
                 </li>
-                <li>
-                  <a href="#">Çatdırılma xidməti</a>
-                </li>
-                <li>
-                  <a href="#">Geri qaytarılma şərtləri</a>
-                </li>
               </ul>
             </div>
             <div className="col-lg-3">
