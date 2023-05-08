@@ -2060,6 +2060,165 @@ input:focus {
 
 /* About End */
 
+/* Login Start */
+
+.login_ .row {
+    align-items: center;
+}
+
+.login__form {
+    margin-top: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login__form h5 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #4F4F4F;
+    text-align: center;
+}
+
+.login_with {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 30px;
+    justify-content: center;
+}
+
+.with_gm,
+.with_fb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.with_fb .fa-facebook {
+    padding-right: 0px;
+    color: #4267B2;
+    font-size: 39px;
+}
+
+
+.gm_icon span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #4F4F4F;
+}
+
+.gm_icon .fa-google {
+    padding-right: 0px;
+    background-color: #DB4437;
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.or_with {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #BDBDBD;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form__ {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__ .ant-input,
+.form__ .ant-input-password {
+    background-color: #F2F2F2;
+    padding: 14px;
+    border: none;
+}
+
+.form__ .login-form-forgot {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right !important;
+    color: #2D9CDB;
+    display: block;
+}
+
+.login__right_side {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.direct_to_register {
+    margin-top: 44px;
+}
+
+.direct_to_register h5 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #4F4F4F;
+}
+
+.direct_to_register a {
+    color: #2D9CDB !important;
+    font-weight: 700;
+}
+
+.dot_img {
+    position: absolute;
+    z-index: -1000;
+    top: 0;
+    right: 9%;
+}
+
+/* Login End */
+
+/* Register Start */
+.form_register .ant-input-number-input {
+    background-color: #F2F2F2 !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 26px !important;
+}
+
+.form_register .ant-input-number-input::placeholder {
+    color: #828282 !important;
+    font-size: 13px !important;
+}
+
+.form_register .ant-select-selector {
+    border: none !important;
+}
+
+.form_register .ant-input-number-group-addon {
+    border: none !important;
+    background-color: #F2F2F2 !important;
+}
+
+.form_register .ant-checkbox-input {
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+}
+
+
+/* Register End */
 /* MEDIA QUERIES START */
 
 @media(min-width: 1400px) {
@@ -2444,6 +2603,10 @@ input:focus {
         margin-top: 20px;
     }
 
+    .login__right_side img {
+        display: none;
+    }
+
 }
 
 @media(max-width: 770px) {
@@ -2652,6 +2815,10 @@ input:focus {
 
     .headline_center h2 {
         font-size: 2.5rem;
+    }
+
+    .login_with {
+        gap: 18px;
     }
 }
 
