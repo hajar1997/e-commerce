@@ -1,18 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "antd/es/form/Form";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Select,
-  InputNumber,
-  DatePicker,
-} from "antd";
+import { Button, Checkbox, Form, Input, Select, InputNumber } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { EditOutlined } from "@ant-design/icons";
-import moment from "moment";
+import { RegisterUser } from "../../redux/actions/action";
 
 const { Option } = Select;
 const prefixSelector = (
@@ -32,18 +24,22 @@ const prefixSelector = (
   </Form.Item>
 );
 const RegisterPage = () => {
+  const dispatch = useDispatch();
+
+  const [userInfoForm] = useForm();
+
   const onFinish = (values) => {
-    console.log("Success:", values);
+    const phone = values.prefix + "-" + values.phone;
+    dispatch(
+      RegisterUser(values.name_surname, values.email, phone, values.password)
+    );
+    userInfoForm.resetFields();
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const [userInfoForm] = useForm();
-
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-  };
   return (
     <div className="login_">
       <div className="container">
@@ -71,7 +67,8 @@ const RegisterPage = () => {
               <span className="or_with">və ya</span>
               <div className="form__ form_register">
                 <Form
-                  //   onFinish={onFinish}
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
                   initialValues={{
                     prefix: "070",
                   }}

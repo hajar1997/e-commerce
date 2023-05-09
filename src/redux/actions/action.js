@@ -4,9 +4,14 @@ import {
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
   SET_PRODUCT_COUNT,
-  INCREASE_PRODUCT_COUNT
+  INCREASE_PRODUCT_COUNT,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  REGISTER_SUCCESS,
+  REGISTER_FAILED,
 } from "../types/index";
 import axios from "axios";
+import { notification } from "antd";
 
 const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
 const phonesEndpoint = "http://localhost:8001/phones";
@@ -74,3 +79,32 @@ export const fetchData = () => {
       });
   };
 };
+
+export const RegisterUser =
+  (name_surname, email, phone, password) => async (dispatch) => {
+    const randomId = Math.floor(Math.random() * 1000000);
+    await axios
+      .post("http://localhost:8001/users", {
+        id: randomId,
+        name_surname,
+        email,
+        phone,
+        password,
+      })
+      .then((res) => {
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: res.data,
+        });
+        notification.open({
+          type: "success",
+          message: "You have successfully registered!",
+        });
+      })
+      .catch((err) =>
+        dispatch({
+          type: REGISTER_FAILED,
+          payload: err.response.data,
+        })
+      );
+  };

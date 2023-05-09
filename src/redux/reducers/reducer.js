@@ -3,6 +3,8 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
+  REGISTER_SUCCESS,
+  REGISTER_FAILED,
   // SET_PRODUCT_COUNT,
   // INCREASE_PRODUCT_COUNT,
 } from "../types/index";
@@ -18,6 +20,12 @@ const initialState = {
   // count: 0,
   // productCount: 0,
   error: null,
+};
+
+const initialUser = {
+  err: null,
+  user: null,
+  isRegistered: false,
 };
 
 export const mainReducer = (state = initialState, action) => {
@@ -61,6 +69,27 @@ export const mainReducer = (state = initialState, action) => {
     //     count: state.count,
     //   };
     // }
+    default:
+      return state;
+  }
+};
+
+export const userReducer = (state = initialUser, action) => {
+  switch (action.type) {
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        err: null,
+        isRegistered: true,
+      };
+    case REGISTER_FAILED:
+      return {
+        ...state,
+        user: null,
+        err: action.payload,
+        isRegistered: false,
+      };
     default:
       return state;
   }
