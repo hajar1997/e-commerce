@@ -11,7 +11,7 @@ import {
   REGISTER_FAILED,
 } from "../types/index";
 import axios from "axios";
-import { notification } from "antd";
+import { Alert, notification } from "antd";
 
 const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
 const phonesEndpoint = "http://localhost:8001/phones";
@@ -108,3 +108,33 @@ export const RegisterUser =
         })
       );
   };
+
+export const LoginUser = (email, password) => async (dispatch) => {
+  await axios
+    .get("http://localhost:8001/users", {
+      email,
+      password,
+    })
+    .then((res) => {
+      const users = res.data;
+      const filteredUser = users.find(
+        (user) => user.email === email && user.password === password
+      );
+      if (filteredUser) {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: filteredUser,
+        });
+        alert("SUCCESS!");
+        console.log(filteredUser);
+      } else {
+        notification.open({
+          type: "error",
+          message: "Username or password incorrect!",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};

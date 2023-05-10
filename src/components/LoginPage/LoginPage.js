@@ -1,15 +1,21 @@
 import React from "react";
+import { LoginUser } from "../../redux/actions/action";
+import { useDispatch } from "react-redux";
 import { Button, Checkbox, Form, Input } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+
   const onFinish = (values) => {
-    console.log("Success:", values);
+    dispatch(LoginUser(values.email, values.password));
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <div className="login_">
       <div className="container">
@@ -54,6 +60,7 @@ const LoginPage = () => {
                       {
                         required: true,
                         message: "Emailinizi daxil edin!",
+                        type: "email",
                       },
                     ]}
                   >

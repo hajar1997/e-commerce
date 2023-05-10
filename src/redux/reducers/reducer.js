@@ -5,6 +5,9 @@ import {
   FETCH_DATA_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
+  LOGIN_FAILED,
+  LOGIN_SUCCESS,
+  LOG_OUT,
   // SET_PRODUCT_COUNT,
   // INCREASE_PRODUCT_COUNT,
 } from "../types/index";
@@ -26,6 +29,7 @@ const initialUser = {
   err: null,
   user: null,
   isRegistered: false,
+  isLoggedIn: false,
 };
 
 export const mainReducer = (state = initialState, action) => {
@@ -89,6 +93,27 @@ export const userReducer = (state = initialUser, action) => {
         user: null,
         err: action.payload,
         isRegistered: false,
+      };
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        user: null,
+        err: action.payload,
+        isLoggedIn: false,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        err: null,
+        isLoggedIn: true,
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: action.payload,
+        err: null,
       };
     default:
       return state;

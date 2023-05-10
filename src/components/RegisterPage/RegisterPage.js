@@ -106,6 +106,10 @@ const RegisterPage = () => {
                         required: true,
                         message: "Emailinizi daxil edin!",
                       },
+                      {
+                        type: "email",
+                        message: "Emaili düzgün daxil edin!",
+                      },
                     ]}
                   >
                     <Input placeholder="nümunə@gmail.com" size="large" />
@@ -117,6 +121,10 @@ const RegisterPage = () => {
                       {
                         required: true,
                         message: "Mobil nömrənizi daxil edin!",
+                      },
+                      {
+                        type: "number",
+                        message: "Nömrənizi düzgün daxil edin!",
                       },
                     ]}
                   >
@@ -139,6 +147,11 @@ const RegisterPage = () => {
                       {
                         required: true,
                         message: "Şifrənizi daxil edin!",
+                      },
+                      {
+                        min: 5,
+                        max: 90,
+                        message: "Şifrənin uzunluğu 5-90 aralığında olmalıdır!",
                       },
                     ]}
                   >
