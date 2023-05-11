@@ -7,6 +7,7 @@ import {
   INCREASE_PRODUCT_COUNT,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
+  LOG_OUT,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
 } from "../types/index";
@@ -101,12 +102,7 @@ export const RegisterUser =
           message: "You have successfully registered!",
         });
       })
-      .catch((err) =>
-        dispatch({
-          type: REGISTER_FAILED,
-          payload: err.response.data,
-        })
-      );
+      .catch((error) => console.log(error));
   };
 
 export const LoginUser = (email, password) => async (dispatch) => {
@@ -116,25 +112,44 @@ export const LoginUser = (email, password) => async (dispatch) => {
       password,
     })
     .then((res) => {
-      const users = res.data;
-      const filteredUser = users.find(
-        (user) => user.email === email && user.password === password
+      const data = res.data;
+      const filtered = data.filter(
+        (f) => f.email === email && f.password === password
       );
-      if (filteredUser) {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: filteredUser,
-        });
-        alert("SUCCESS!");
-        console.log(filteredUser);
-      } else {
-        notification.open({
-          type: "error",
-          message: "Username or password incorrect!",
-        });
-      }
+      dispatch(getUser(filtered[0]?.id));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export const getUser = (id) => async (dispatch) => {
+  await axios
+    .get(`http://localhost:8001/users/${id}`)
+    .then((res) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: {
+          isLoggedIn: true,
+          payload: res.data,
+        },
+      });
     })
     .catch((err) => {
-      console.log(err.message);
+      notification.open({
+        type: "error",
+        message: "Email or password is incorrect",
+      });
     });
+};
+
+export const LogOut = () => {
+  return {
+    type: LOG_OUT,
+    payload: {
+      isLoggedIn: false,
+      isRegistered: false,
+      data: {},
+    },
+  };
 };

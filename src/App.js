@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -18,6 +19,7 @@ import MailCheck from "./pages/MailCheck";
 import RenewPassword from "./pages/RenewPassword";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <>
       <ScrollToTop>

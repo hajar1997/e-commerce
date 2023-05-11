@@ -26,8 +26,7 @@ const initialState = {
 };
 
 const initialUser = {
-  err: null,
-  user: null,
+  data: {},
   isRegistered: false,
   isLoggedIn: false,
 };
@@ -81,40 +80,11 @@ export const mainReducer = (state = initialState, action) => {
 export const userReducer = (state = initialUser, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return {
-        ...state,
-        user: action.payload,
-        err: null,
-        isRegistered: true,
-      };
-    case REGISTER_FAILED:
-      return {
-        ...state,
-        user: null,
-        err: action.payload,
-        isRegistered: false,
-      };
-    case LOGIN_FAILED:
-      return {
-        ...state,
-        user: null,
-        err: action.payload,
-        isLoggedIn: false,
-      };
+      return action.payload;
     case LOGIN_SUCCESS:
-      return {
-        ...state,
-        user: action.payload,
-        err: null,
-        isLoggedIn: true,
-      };
+      return action.payload;
     case LOG_OUT:
-      return {
-        ...state,
-        isLoggedIn: false,
-        user: action.payload,
-        err: null,
-      };
+      return action.payload;
     default:
       return state;
   }
