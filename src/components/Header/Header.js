@@ -14,6 +14,8 @@ import SearchProduct from "../SearchProduct/SearchProduct";
 
 const Header = ({ main }) => {
   // const count = useSelector((state) => state.main.productCount);
+  const { isLoggedIn, isRegistered } = useSelector((state) => state.user);
+
   return (
     <header>
       <div className="container">
@@ -38,7 +40,10 @@ const Header = ({ main }) => {
           </div>
           <div className="header-icons">
             <Space size={"large"}>
-              <Link className="text-dark" to={"/profile"}>
+              <Link
+                className="text-dark"
+                to={isLoggedIn || isRegistered ? "/profile" : "/login"}
+              >
                 <UserOutlined style={{ fontSize: "20px" }} />
               </Link>
               <Link className="text-dark" to={"/favorites"}>

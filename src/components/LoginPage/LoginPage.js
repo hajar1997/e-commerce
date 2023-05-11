@@ -1,15 +1,18 @@
 import React from "react";
 import { LoginUser } from "../../redux/actions/action";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button, Checkbox, Form, Input } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
     dispatch(LoginUser(values.email, values.password));
+    navigate('/profile')
   };
 
   const onFinishFailed = (errorInfo) => {

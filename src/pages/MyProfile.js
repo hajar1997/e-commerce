@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ShoppingCartOutlined,
   UserOutlined,
@@ -6,6 +7,7 @@ import {
   EnvironmentOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import { LogOut } from "../redux/actions/action";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import MyFavs from "../components/MyFavs/MyFavs";
@@ -16,8 +18,9 @@ import { Content } from "antd/es/layout/layout";
 import OrderDetails from "../components/OrderDetails/OrderDetails";
 
 const MyProfile = () => {
+  const navigate = useNavigate();
   const [selectedPath, setSelectedPath] = useState(
-    localStorage.getItem("selectedPath") || "/my-orders"
+    "/my-orders" || localStorage.getItem("selectedPath")
   );
 
   const handleMenuClick = (e) => {
@@ -27,6 +30,10 @@ const MyProfile = () => {
     localStorage.setItem("selectedPath", selectedPath);
   }, [selectedPath]);
 
+  const logOut = () => {
+    LogOut();
+    navigate("/login");
+  };
   return (
     <div className="my__profile">
       <div className="container">
@@ -72,8 +79,8 @@ const MyProfile = () => {
                     <span>Çatdırılma ünvanı</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="5">
-                  <Link>
+                <Menu.Item key="logout">
+                  <Link onClick={() => logOut()}>
                     <LogoutOutlined style={{ fontSize: "20px" }} />
                     <span>Çıxış</span>
                   </Link>
@@ -99,6 +106,7 @@ const MyProfile = () => {
               {selectedPath === "/order-details" && (
                 <OrderDetails handleMenuClick={handleMenuClick} />
               )}
+              {selectedPath === "logout" && logOut()}
             </Content>
           </div>
         </div>

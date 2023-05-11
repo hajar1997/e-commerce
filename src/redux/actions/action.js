@@ -140,6 +140,7 @@ export const getUser = (id) => async (dispatch) => {
         type: "error",
         message: "Email or password is incorrect",
       });
+      dispatch(LogOut());
     });
 };
 

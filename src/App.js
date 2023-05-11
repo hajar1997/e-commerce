@@ -19,7 +19,6 @@ import MailCheck from "./pages/MailCheck";
 import RenewPassword from "./pages/RenewPassword";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   return (
     <>
       <ScrollToTop>
