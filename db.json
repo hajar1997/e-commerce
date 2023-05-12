@@ -1,35 +1,20 @@
 {
   "users": [
     {
-      "id": 553609,
-      "name_surname": "Hajar Ibrahimova",
-      "email": "ibrahimlihecer97@gmail.com",
-      "phone": "070-23742941",
-      "password": "ahdasdad"
-    },
-    {
-      "id": 445618,
-      "name_surname": "jashdlfkjhasfa",
-      "email": "hajaribra.dev@gmail.com",
-      "phone": "070-3442342",
-      "password": "sdfasdfasdf"
-    },
-    {
-      "id": 615377,
-      "name_surname": "dasdsadASD",
-      "email": "sadads@gmial.com",
-      "phone": "070-324242",
-      "password": "324nm,nmn"
-    },
-    {
-      "id": 492972,
+      "id": 53837,
       "name_surname": "Hajar Ibrahimova",
       "email": "ibrahimlihecer97@gmail.com",
       "phone": "070-8008806",
       "password": "hajar97"
+    },
+    {
+      "id": 568832,
+      "name_surname": "Hajar Ibrahimova",
+      "email": "h@gmail.com",
+      "phone": "070-92348234",
+      "password": "11111"
     }
   ],
-  "login": [],
   "filterCategories": [
     {
       "id": "1",

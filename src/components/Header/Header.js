@@ -14,7 +14,8 @@ import SearchProduct from "../SearchProduct/SearchProduct";
 
 const Header = ({ main }) => {
   // const count = useSelector((state) => state.main.productCount);
-  const { isLoggedIn, isRegistered } = useSelector((state) => state.user);
+  const { isRegistered } = useSelector((state) => state.user);
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   return (
     <header>

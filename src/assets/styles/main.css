@@ -1875,6 +1875,22 @@ input:focus {
     width: 85%;
 }
 
+.log-out a {
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #4F4F4F !important;
+}
+
+.log-out span {
+    font-weight: 400!important;
+    font-size: 14px;
+    line-height: 24px!important;
+    color: #4F4F4F;
+}
+
+
 /* My Profile End */
 
 
@@ -2271,6 +2287,7 @@ input:focus {
     text-align: center;
     color: #4F4F4F;
 }
+
 
 /* Mail Check End */
 

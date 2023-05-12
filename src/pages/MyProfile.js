@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   ShoppingCartOutlined,
   UserOutlined,
@@ -18,22 +18,19 @@ import { Content } from "antd/es/layout/layout";
 import OrderDetails from "../components/OrderDetails/OrderDetails";
 
 const MyProfile = () => {
-  const navigate = useNavigate();
+
   const [selectedPath, setSelectedPath] = useState(
-    "/my-orders" || localStorage.getItem("selectedPath")
+    localStorage.getItem("selectedPath") || "/my-orders"
   );
 
   const handleMenuClick = (e) => {
     setSelectedPath(e.key);
   };
+
   useEffect(() => {
     localStorage.setItem("selectedPath", selectedPath);
   }, [selectedPath]);
 
-  const logOut = () => {
-    LogOut();
-    navigate("/login");
-  };
   return (
     <div className="my__profile">
       <div className="container">
@@ -79,13 +76,19 @@ const MyProfile = () => {
                     <span>Çatdırılma ünvanı</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="logout">
-                  <Link onClick={() => logOut()}>
-                    <LogoutOutlined style={{ fontSize: "20px" }} />
-                    <span>Çıxış</span>
-                  </Link>
-                </Menu.Item>
               </Menu>
+              <div className="log-out">
+                <Link
+                  to={"/"}
+                  onClick={() => {
+                    LogOut();
+                    localStorage.removeItem("selectedPath");
+                  }}
+                >
+                  <LogoutOutlined style={{ fontSize: "20px" }} />
+                  <span>Çıxış</span>
+                </Link>
+              </div>
             </div>
           </div>
           <div className="col-lg-9">
@@ -106,7 +109,6 @@ const MyProfile = () => {
               {selectedPath === "/order-details" && (
                 <OrderDetails handleMenuClick={handleMenuClick} />
               )}
-              {selectedPath === "logout" && logOut()}
             </Content>
           </div>
         </div>

@@ -2,8 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "antd/es/form/Form";
 import { Button, Checkbox, Form, Input, Select, InputNumber } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { RegisterUser } from "../../redux/actions/action";
 
 const { Option } = Select;
@@ -47,25 +45,7 @@ const RegisterPage = () => {
           <div className="col-lg-6">
             <div className="login__form">
               <h5>Qeydiyyat</h5>
-              <div className="login_with">
-                <div className="with_fb">
-                  <div className="fb_icon">
-                    <FontAwesomeIcon icon={faFacebook} />
-                  </div>
-                  <span>Facebook ilə</span>
-                </div>
-                <div className="with_gm">
-                  <div className="gm_icon">
-                    <FontAwesomeIcon
-                      icon={faGoogle}
-                      style={{ color: "#ffffff" }}
-                    />
-                  </div>
-                  <span>Google ilə</span>
-                </div>
-              </div>
-              <span className="or_with">və ya</span>
-              <div className="form__ form_register">
+              <div className="form__ form_register mt-4">
                 <Form
                   onFinish={onFinish}
                   onFinishFailed={onFinishFailed}
@@ -150,7 +130,7 @@ const RegisterPage = () => {
                       },
                       {
                         min: 5,
-                        max: 90,
+                        max: 1000,
                         message: "Şifrənin uzunluğu 5-90 aralığında olmalıdır!",
                       },
                     ]}

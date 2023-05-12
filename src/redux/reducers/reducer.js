@@ -82,7 +82,11 @@ export const userReducer = (state = initialUser, action) => {
     case REGISTER_SUCCESS:
       return action.payload;
     case LOGIN_SUCCESS:
-      return action.payload;
+      return {
+        ...state,
+        isLoggedIn: true,
+        data: action.payload,
+      };
     case LOG_OUT:
       return action.payload;
     default:

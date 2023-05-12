@@ -12,7 +12,7 @@ import {
   REGISTER_FAILED,
 } from "../types/index";
 import axios from "axios";
-import { Alert, notification } from "antd";
+import { notification } from "antd";
 
 const filterCategoriesEndpoint = "http://localhost:8001/filterCategories";
 const phonesEndpoint = "http://localhost:8001/phones";
@@ -134,6 +134,7 @@ export const getUser = (id) => async (dispatch) => {
           payload: res.data,
         },
       });
+      localStorage.setItem("isLoggedIn", true);
     })
     .catch((err) => {
       notification.open({
@@ -141,10 +142,12 @@ export const getUser = (id) => async (dispatch) => {
         message: "Email or password is incorrect",
       });
       dispatch(LogOut());
+      localStorage.setItem("isLoggedIn", false);
     });
 };
 
 export const LogOut = () => {
+  localStorage.setItem("isLoggedIn", false);
   return {
     type: LOG_OUT,
     payload: {

@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LoginUser } from "../../redux/actions/action";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { Button, Checkbox, Form, Input } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Form, Input } from "antd";
 
 const LoginPage = () => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLogged = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
     dispatch(LoginUser(values.email, values.password));
-    navigate('/profile')
+    isLoggedIn ? navigate("/profile") : navigate("/login");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -26,25 +26,7 @@ const LoginPage = () => {
           <div className="col-lg-6">
             <div className="login__form">
               <h5>Daxil ol</h5>
-              <div className="login_with">
-                <div className="with_fb">
-                  <div className="fb_icon">
-                    <FontAwesomeIcon icon={faFacebook} />
-                  </div>
-                  <span>Facebook ilə</span>
-                </div>
-                <div className="with_gm">
-                  <div className="gm_icon">
-                    <FontAwesomeIcon
-                      icon={faGoogle}
-                      style={{ color: "#ffffff" }}
-                    />
-                  </div>
-                  <span>Google ilə</span>
-                </div>
-              </div>
-              <span className="or_with">və ya</span>
-              <div className="form__">
+              <div className="form__ mt-4">
                 <Form
                   name="basic"
                   onFinish={onFinish}
@@ -87,16 +69,6 @@ const LoginPage = () => {
                   <a className="login-form-forgot" href="/forget-password">
                     Şifrəni unutmusunuz?
                   </a>
-                  {/* <Form.Item
-                    name="remember"
-                    valuePropName="checked"
-                    wrapperCol={{
-                      offset: 8,
-                      span: 16,
-                    }}
-                  >
-                    <Checkbox>Remember me</Checkbox>
-                  </Form.Item> */}
                   <Form.Item>
                     <Button
                       type="primary"
