@@ -6,19 +6,22 @@ import { Button, Form, Input } from "antd";
 
 const LoginPage = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const isLogged = localStorage.getItem("isLoggedIn") === "true";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
     dispatch(LoginUser(values.email, values.password));
-    isLoggedIn ? navigate("/profile") : navigate("/login");
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/profile");
+    }
+  }, [isLoggedIn]);
   return (
     <div className="login_">
       <div className="container">

@@ -1,18 +1,11 @@
 {
   "users": [
     {
-      "id": 53837,
+      "id": 823883,
       "name_surname": "Hajar Ibrahimova",
-      "email": "ibrahimlihecer97@gmail.com",
-      "phone": "070-8008806",
+      "email": "tuku@gmail.com",
+      "phone": "070-8937459832",
       "password": "hajar97"
-    },
-    {
-      "id": 568832,
-      "name_surname": "Hajar Ibrahimova",
-      "email": "h@gmail.com",
-      "phone": "070-92348234",
-      "password": "11111"
     }
   ],
   "filterCategories": [

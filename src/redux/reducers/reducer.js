@@ -10,6 +10,8 @@ import {
   LOG_OUT,
   // SET_PRODUCT_COUNT,
   // INCREASE_PRODUCT_COUNT,
+  LOADING_ON,
+  LOADING_OFF,
 } from "../types/index";
 
 const initialState = {
@@ -82,14 +84,21 @@ export const userReducer = (state = initialUser, action) => {
     case REGISTER_SUCCESS:
       return action.payload;
     case LOGIN_SUCCESS:
-      return {
-        ...state,
-        isLoggedIn: true,
-        data: action.payload,
-      };
+      return action.payload;
     case LOG_OUT:
       return action.payload;
     default:
       return state;
+  }
+};
+
+export const loaderReducer = (loading = false, action) => {
+  switch (action.type) {
+    case LOADING_ON:
+      return true;
+    case LOADING_OFF:
+      return false;
+    default:
+      return loading;
   }
 };

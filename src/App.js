@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -16,10 +17,13 @@ import Register from "./pages/Register";
 import ForgetPassword from "./pages/ForgetPassword";
 import MailCheck from "./pages/MailCheck";
 import RenewPassword from "./pages/RenewPassword";
+import Loader from "./components/Loader/Loader";
 
 function App() {
+  const loading = useSelector((state) => state.loading);
   return (
     <>
+      {loading ? <Loader /> : null}
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,9 +36,9 @@ function App() {
           <Route path="frequently-asked-questions" element={<FAQ />} />
           <Route path="payment" element={<Payment />} />
           <Route path="basket" element={<Basket />} />
-          <Route path="profile" element={<Profile />} />
           <Route path="favorites" element={<Favorites />} />
           <Route path="about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forget-password" element={<ForgetPassword />} />

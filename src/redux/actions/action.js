@@ -10,6 +10,8 @@ import {
   LOG_OUT,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
+  LOADING_ON,
+  LOADING_OFF,
 } from "../types/index";
 import axios from "axios";
 import { notification } from "antd";
@@ -83,6 +85,7 @@ export const fetchData = () => {
 
 export const RegisterUser =
   (name_surname, email, phone, password) => async (dispatch) => {
+    dispatch({ type: LOADING_ON });
     const randomId = Math.floor(Math.random() * 1000000);
     await axios
       .post("http://localhost:8001/users", {
@@ -95,6 +98,7 @@ export const RegisterUser =
       .then((res) => {
         dispatch({
           type: REGISTER_SUCCESS,
+          isRegistered: true,
           payload: res.data,
         });
         notification.open({
@@ -102,10 +106,14 @@ export const RegisterUser =
           message: "You have successfully registered!",
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        dispatch({ type: LOADING_OFF });
+      });
   };
 
 export const LoginUser = (email, password) => async (dispatch) => {
+  dispatch({ type: LOADING_ON });
   await axios
     .get("http://localhost:8001/users", {
       email,
@@ -120,10 +128,14 @@ export const LoginUser = (email, password) => async (dispatch) => {
     })
     .catch((error) => {
       console.log(error);
+    })
+    .finally(() => {
+      dispatch({ type: LOADING_OFF });
     });
 };
 
 export const getUser = (id) => async (dispatch) => {
+  dispatch({ type: LOADING_ON });
   await axios
     .get(`http://localhost:8001/users/${id}`)
     .then((res) => {
@@ -143,6 +155,9 @@ export const getUser = (id) => async (dispatch) => {
       });
       dispatch(LogOut());
       localStorage.setItem("isLoggedIn", false);
+    })
+    .finally(() => {
+      dispatch({ type: LOADING_OFF });
     });
 };
 

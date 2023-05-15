@@ -7,3 +7,5 @@ export const INCREASE_PRODUCT_COUNT = "INCREASE_PRODUCT_COUNT";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const LOG_OUT = "LOG_OUT";
+export const LOADING_ON = "LOADING_ON";
+export const LOADING_OFF = "LOADING_FF";
