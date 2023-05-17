@@ -27,9 +27,15 @@ const RegisterPage = () => {
   const [userInfoForm] = useForm();
 
   const onFinish = (values) => {
-    const phone = values.prefix + "-" + values.phone;
     dispatch(
-      RegisterUser(values.name_surname, values.email, phone, values.password)
+      RegisterUser(
+        values.name,
+        values.surname,
+        values.email,
+        values.prefix,
+        values.phone,
+        values.password
+      )
     );
     userInfoForm.resetFields();
   };
@@ -60,12 +66,12 @@ const RegisterPage = () => {
                   layout="vertical"
                 >
                   <Form.Item
-                    name="name_surname"
-                    label="Ad, Soyad"
+                    name="name"
+                    label="Ad"
                     rules={[
                       {
                         required: true,
-                        message: "Ad, Soyadınızı daxil edin!",
+                        message: "Adınızı daxil edin!",
                       },
                     ]}
                   >
@@ -74,7 +80,25 @@ const RegisterPage = () => {
                         border: "none",
                       }}
                       size="large"
-                      placeholder="Ad və soyadınızı daxil edin"
+                      placeholder="Adınızı daxil edin"
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name="surname"
+                    label="Soyad"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Soyadınızı daxil edin!",
+                      },
+                    ]}
+                  >
+                    <Input
+                      style={{
+                        border: "none",
+                      }}
+                      size="large"
+                      placeholder="Soyadınızı daxil edin"
                     />
                   </Form.Item>
 

@@ -1,10 +1,12 @@
 {
   "users": [
     {
-      "id": 823883,
-      "name_surname": "Hajar Ibrahimova",
-      "email": "tuku@gmail.com",
-      "phone": "070-8937459832",
+      "id": 652716,
+      "name": "Hajar",
+      "surname": "Ibrahimova",
+      "email": "ibrahimlihecer97@gmail.com",
+      "phone": 8008806,
+      "prefix": "070",
       "password": "hajar97"
     }
   ],

@@ -84,15 +84,28 @@ export const fetchData = () => {
 };
 
 export const RegisterUser =
-  (name_surname, email, phone, password) => async (dispatch) => {
+  (name, surname, email, prefix, phone, password) => async (dispatch) => {
     dispatch({ type: LOADING_ON });
+    const existingUser = await axios.get(
+      `http://localhost:8001/users?email=${email}`
+    );
+    if (existingUser.data.length > 0) {
+      notification.open({
+        type: "error",
+        message: "This email is already registered",
+      });
+      dispatch({ type: LOADING_OFF });
+      return;
+    }
     const randomId = Math.floor(Math.random() * 1000000);
     await axios
       .post("http://localhost:8001/users", {
         id: randomId,
-        name_surname,
+        name,
+        surname,
         email,
         phone,
+        prefix,
         password,
       })
       .then((res) => {
