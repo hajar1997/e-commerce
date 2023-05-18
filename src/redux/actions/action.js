@@ -137,6 +137,7 @@ export const LoginUser = (email, password) => async (dispatch) => {
       const filtered = data.filter(
         (f) => f.email === email && f.password === password
       );
+      localStorage.setItem("current_id", filtered[0]?.id);
       dispatch(getUser(filtered[0]?.id));
     })
     .catch((error) => {
@@ -176,6 +177,7 @@ export const getUser = (id) => async (dispatch) => {
 
 export const LogOut = () => {
   localStorage.setItem("isLoggedIn", false);
+  localStorage.removeItem("current_id");
   return {
     type: LOG_OUT,
     payload: {

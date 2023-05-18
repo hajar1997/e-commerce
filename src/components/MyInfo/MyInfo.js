@@ -35,70 +35,31 @@ const prefixSelector = (
 const MyInfo = () => {
   const [editMode, setEditMode] = useState(false);
   const [users, setUsers] = useState([]);
-  const [data, setData] = useState([]);
   const [userInfoForm] = useForm();
 
   const onChange = (date, dateString) => {
     console.log(date, dateString);
   };
 
-  const onFinish = async (values) => {
-    const existingUser = await axios.get(
-      `http://localhost:8001/users?id=${values.key}`
-    );
-    console.log(existingUser);
-    // if (values.id) {
-    //   let editedData = data.find((s) => s.id === values.id);
-    //   const arr = users.filter((user) => user.email === values.email);
-    //   if (arr.length > 0 && arr[0].email !== editedData.email) {
-    //     notification["error"]({
-    //       message: "Operation was unsuccessfull!",
-    //       description: "Email is already registered",
-    //     });
-    //   } else {
-    //     await axios
-    //       .put(`http://localhost:8001/users${values.id}`, {
-    //         id: values.id,
-    //         name: values.name,
-    //         surname: values.surname,
-    //         email: values.email,
-    //         prefix: values.prefix,
-    //         phone: values.phone,
-    //         password: values.password,
-    //       })
-    //       .then((res) => {
-    //         notification.open({
-    //           type: "success",
-    //           message: "Successfully edited",
-    //         });
-    //       });
-    //   }
-    // }
-  };
+  const id = localStorage.getItem("current_id");
+  const onFinish = async (values) => {};
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    await axios.get("http://localhost:8001/users").then((res) => {
-      setUsers(res.data);
-      let mydata = [];
-      res.data.map((item, i) => {
-        if (item.id == users.id) {
-          mydata.push(item);
-          setData(mydata);
-        }
-      });
+    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+      setUsers([res.data]);
     });
   };
+
   return (
     <div className="my__info_">
       <h5>Şəxsi məlumatlar</h5>
       <div className="user__info">
         {users.map((user) => (
           <Form
-            key={user.id}
             initialValues={{
               prefix: user.prefix,
             }}
@@ -192,7 +153,11 @@ const MyInfo = () => {
             <div className="myInfo_btn">
               <Form.Item>
                 {editMode ? (
-                  <Button type="primary" htmlType="submit" onClick={()=> onFinish()}>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    onClick={() => onFinish()}
+                  >
                     <SaveOutlined style={{ fontSize: "17px" }} />
                     Yadda saxla
                   </Button>
