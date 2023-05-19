@@ -2233,6 +2233,20 @@ input:focus {
     border-radius: 8px;
 }
 
+.form_register .ant-picker {
+    width: 50%;
+    padding: 14px;
+    background-color: #f2f2F2;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.form_register .ant-picker-input>input:placeholder-shown {
+    color: #828282 !important;
+    font-size: 14px !important;
+}
+
 /* Register End */
 
 /* Forget Password Page Start */
@@ -2772,6 +2786,10 @@ input:focus {
 
     .login__right_side img {
         display: none;
+    }
+
+    .pass-form{
+        width: 100%!important;
     }
 
 }

@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 864419,
+      "id": 549044,
       "name": "Hajar",
       "surname": "Ibrahimova",
       "email": "ibrahimlihecer97@gmail.com",
@@ -10,11 +10,11 @@
       "password": "hajar97"
     },
     {
-      "id": 998259,
+      "id": 846393,
       "name": "Tuku",
       "surname": "Ibrahimova",
       "email": "tuku@gmail.com",
-      "phone": 5345235,
+      "phone": 456456,
       "prefix": "070",
       "password": "tuku97"
     }

@@ -8,6 +8,7 @@ import {
   Select,
   InputNumber,
   notification,
+  message,
 } from "antd";
 import moment from "moment/moment";
 import { EditOutlined, SaveOutlined } from "@ant-design/icons";
@@ -35,14 +36,48 @@ const prefixSelector = (
 const MyInfo = () => {
   const [editMode, setEditMode] = useState(false);
   const [users, setUsers] = useState([]);
+  const [data, setData] = useState([]);
   const [userInfoForm] = useForm();
 
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
+  const id = localStorage.getItem("current_id");
+  const onFinish = async (values) => {
+    const existingUser = await axios.get(
+      `http://localhost:8001/users?email=${values.email}`
+    );
+    if (existingUser.data.length > 0) {
+      notification.open({
+        type: "error",
+        message: "This email is already registered",
+      });
+      return;
+    }
+    await axios
+      .put(`http://localhost:8001/users/${id}`, {
+        id,
+        name: values.name,
+        surname: values.surname,
+        email: values.email,
+        phone: values.phone,
+        prefix: values.prefix,
+        password: values.password,
+      })
+      .then((res) => {
+        notification.open({
+          type: "success",
+          message: "Məlumatlar uğurla yeniləndi!",
+        });
+        console.log("mission is completed");
+        setEditMode(!editMode);
+      })
+      .catch((err) => {
+        message.open("Something is wrong");
+      });
   };
 
-  const id = localStorage.getItem("current_id");
-  const onFinish = async (values) => {};
+  const handleEditButtonClick = (e) => {
+    e.preventDefault();
+    setEditMode(!editMode);
+  };
 
   useEffect(() => {
     getData();
@@ -50,7 +85,8 @@ const MyInfo = () => {
 
   const getData = async () => {
     await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
-      setUsers([res.data]);
+      const user = res.data;
+      setUsers([user]);
     });
   };
 
@@ -61,12 +97,14 @@ const MyInfo = () => {
         {users.map((user) => (
           <Form
             initialValues={{
+              ...user,
               prefix: user.prefix,
             }}
             style={{
               maxWidth: 800,
               width: "100%",
             }}
+            onFinish={onFinish}
             form={userInfoForm}
             layout="vertical"
           >
@@ -78,7 +116,6 @@ const MyInfo = () => {
                       border: "none",
                     }}
                     size="large"
-                    defaultValue={user.name}
                     disabled={!editMode}
                   />
                 </Form.Item>
@@ -100,7 +137,6 @@ const MyInfo = () => {
               <div style={{ flex: "1 1 50%" }}>
                 <Form.Item name="email" label="Email">
                   <Input
-                    defaultValue={user.email}
                     style={{
                       border: "none",
                     }}
@@ -121,52 +157,26 @@ const MyInfo = () => {
                     disabled={!editMode}
                     bordered={false}
                     controls={false}
-                    defaultValue={user.phone}
                   />
                 </Form.Item>
               </div>
             </div>
-            <div className="form_flex">
-              <Form.Item label="Doğum tarixi" style={{ flex: "1 1 50%" }}>
-                <DatePicker
-                  style={{
-                    width: "100%",
-                    border: "none",
-                  }}
-                  size="large"
-                  onChange={onChange}
-                  disabled={!editMode}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Şifrə"
-                name="password"
-                style={{ flex: "1 1 50%" }}
-              >
-                <Input.Password
-                  style={{ width: "100%", padding: "14px", border: "none" }}
-                  defaultValue={user.password}
-                  disabled={!editMode}
-                />
-              </Form.Item>
-            </div>
+            <Form.Item label="Şifrə" name="password">
+              <Input.Password
+                className="pass-form"
+                style={{ width: "50%", padding: "14px", border: "none" }}
+                disabled={!editMode}
+              />
+            </Form.Item>
             <div className="myInfo_btn">
               <Form.Item>
                 {editMode ? (
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    onClick={() => onFinish()}
-                  >
+                  <Button type="primary" htmlType="submit">
                     <SaveOutlined style={{ fontSize: "17px" }} />
                     Yadda saxla
                   </Button>
                 ) : (
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    onClick={() => setEditMode(!editMode)}
-                  >
+                  <Button type="primary" onClick={handleEditButtonClick}>
                     <EditOutlined style={{ fontSize: "17px" }} />
                     Məlumatları yenilə
                   </Button>
