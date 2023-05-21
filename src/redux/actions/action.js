@@ -107,6 +107,7 @@ export const RegisterUser =
         phone,
         prefix,
         password,
+        addresses: [],
       })
       .then((res) => {
         dispatch({

@@ -40,16 +40,21 @@ const MyInfo = () => {
   const [userInfoForm] = useForm();
 
   const id = localStorage.getItem("current_id");
+
   const onFinish = async (values) => {
-    const existingUser = await axios.get(
-      `http://localhost:8001/users?email=${values.email}`
-    );
-    if (existingUser.data.length > 0) {
-      notification.open({
-        type: "error",
-        message: "This email is already registered",
-      });
-      return;
+    const { email } = values;
+    const user = users[0];
+    if (email !== user.email) {
+      const existingUser = await axios.get(
+        `http://localhost:8001/users?email=${values.email}`
+      );
+      if (existingUser.data.length > 0) {
+        notification.open({
+          type: "error",
+          message: "This email is already registered",
+        });
+        return;
+      }
     }
     await axios
       .put(`http://localhost:8001/users/${id}`, {
@@ -81,12 +86,19 @@ const MyInfo = () => {
 
   useEffect(() => {
     getData();
+    getAllUsers();
   }, []);
 
   const getData = async () => {
     await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
       const user = res.data;
       setUsers([user]);
+    });
+  };
+  const getAllUsers = async () => {
+    await axios.get(`http://localhost:8001/users/`).then((res) => {
+      const users = res.data;
+      setData(users);
     });
   };
 

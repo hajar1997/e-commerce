@@ -7,16 +7,24 @@
       "email": "ibrahimlihecer97@gmail.com",
       "phone": 8008806,
       "prefix": "070",
-      "password": "hajar97"
+      "password": "hajar97",
+      "addresses": []
     },
     {
       "id": 846393,
       "name": "Tuku",
       "surname": "Ibrahimova",
       "email": "tuku@gmail.com",
-      "phone": 456456,
+      "phone": 45645676,
       "prefix": "070",
-      "password": "tuku97"
+      "password": "tuku97",
+      "addresses": [
+        {
+          "address": "Nərimanov rayonu,Təbriz küçəsi",
+          "apartment": "Bina 10 mənzil 40",
+          "comment": "Xirda getirsin ozu ile"
+        }
+      ]
     }
   ],
   "filterCategories": [
