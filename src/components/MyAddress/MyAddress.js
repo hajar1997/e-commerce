@@ -7,7 +7,7 @@ import axios from "axios";
 const MyAddress = () => {
   const [deliveryForm] = Form.useForm();
   const [editMode, setEditMode] = useState(false);
-  const [isEmptyForm, setIsEmptyForm] = useState(false);
+  const [isEmptyForm, setIsEmptyForm] = useState(true);
   const [user, setUser] = useState([]);
 
   const id = localStorage.getItem("current_id");

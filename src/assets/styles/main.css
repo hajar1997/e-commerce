@@ -330,6 +330,7 @@ nav {
 }
 
 .card-wrapper {
+    position: relative;
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100% !important;
@@ -352,6 +353,17 @@ nav {
     padding: 0px 20px;
 }
 
+.heart_icon_card {
+    position: absolute;
+    top: 14px;
+    right: 9px;
+}
+
+.heart_icon_card .fa-heart:hover {
+    color: #dc3545 !important;
+    transition: ease-in-out .3s;
+    cursor: pointer;
+}
 
 .ant-card .ant-card-body {
     padding: 0 !important;
@@ -2788,8 +2800,8 @@ input:focus {
         display: none;
     }
 
-    .pass-form{
-        width: 100%!important;
+    .pass-form {
+        width: 100% !important;
     }
 
 }

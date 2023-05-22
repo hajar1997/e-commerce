@@ -3,8 +3,8 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import Product from "../Product/Product";
 import { fetchData } from "../../redux/actions/action";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
 const NewProducts = ({ main, fetchData }) => {
@@ -71,24 +71,33 @@ const NewProducts = ({ main, fetchData }) => {
         <div className="cards__wrapper">
           <Slider {...settings}>
             {main.phones.map((product) => (
-              <Link
-                key={product.id}
-                to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
-              >
-                <Product
-                  img={product.img}
-                  brand={product.productBrand}
-                  model={product.productModel}
-                  memory={product.memory}
-                  color={product.productColor}
-                  price={product.price}
-                />
-              </Link>
+              <div className="card-wrapper" key={product.id}>
+                <Link
+                  to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
+                >
+                  <img src={product.img[0]} />
+                </Link>
+                <div className="card__content">
+                  <Link
+                    to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
+                  >
+                    {product.productBrand} {product.productModel}{" "}
+                    {product.memory} GB {product.productColor}
+                  </Link>
+                  <span>{product.price} $</span>
+                </div>
+                <div className="heart_icon_card">
+                  <FontAwesomeIcon
+                    style={{ color: "#c2c5ca", fontSize: "20px" }}
+                    icon={faHeart}
+                  />
+                </div>
+              </div>
             ))}
           </Slider>
         </div>
         <div className="bottom-heading">
-          <a href="/products">
+          <a href="/products/phones">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

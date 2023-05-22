@@ -234,19 +234,15 @@ const FilterProducts = ({ main, fetchData }) => {
           )}
           <div className="all-products container">
             {filteredProducts.map((product) => (
-              <Link
-                key={product.id}
-                to={`/product-details/${category}/${product.productBrand}/${product.productModel}/${product.id}`}
-              >
-                <Product
-                  img={product.img}
-                  brand={product.productBrand}
-                  model={product.productModel}
-                  memory={product.memory}
-                  color={product.productColor}
-                  price={product.price}
-                />
-              </Link>
+              <Product
+                id={product.id}
+                img={product.img}
+                brand={product.productBrand}
+                model={product.productModel}
+                memory={product.memory}
+                color={product.productColor}
+                price={product.price}
+              />
             ))}
           </div>
         </div>
@@ -359,19 +355,15 @@ const FilterProducts = ({ main, fetchData }) => {
               </div>
               <div className="all-products">
                 {filteredProducts.map((product) => (
-                  <Link
-                    key={product.id}
-                    to={`/product-details/${category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                  >
-                    <Product
-                      img={product.img}
-                      brand={product.productBrand}
-                      model={product.productModel}
-                      memory={product.memory}
-                      color={product.productColor}
-                      price={product.price}
-                    />
-                  </Link>
+                  <Product
+                    id={product.id}
+                    img={product.img}
+                    brand={product.productBrand}
+                    model={product.productModel}
+                    memory={product.memory}
+                    color={product.productColor}
+                    price={product.price}
+                  />
                 ))}
               </div>
             </div>

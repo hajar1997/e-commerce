@@ -1,16 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import Product from "../Product/Product";
 import { fetchData } from "../../redux/actions/action";
 import { connect } from "react-redux";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const BestSellerProduct = ({ main, fetchData }) => {
+  const [clicked, setClicked] = useState([]);
+
+  const handleHeartClick = (productId) => {
+    if (clicked.includes(productId)) {
+      setClicked(clicked.filter((id) => id !== productId));
+    } else {
+      setClicked([...clicked, productId]);
+    }
+  };
+  
   useEffect(() => {
     fetchData();
+    const clickedProducts = JSON.parse(localStorage.getItem("clickedProducts"));
+    if (clickedProducts) {
+      setClicked(clickedProducts);
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clickedProducts", JSON.stringify(clicked));
+  }, [clicked]);
 
   const settings = {
     dots: false,
@@ -72,24 +90,39 @@ const BestSellerProduct = ({ main, fetchData }) => {
         <div className="cards__wrapper">
           <Slider {...settings}>
             {main.phones.map((product) => (
-              <Link
-                key={product.id}
-                to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
-              >
-                <Product
-                  img={product.img}
-                  brand={product.productBrand}
-                  model={product.productModel}
-                  memory={product.memory}
-                  color={product.productColor}
-                  price={product.price}
-                />
-              </Link>
+              <div className="card-wrapper" key={product.id}>
+                <Link
+                  to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
+                >
+                  <img src={product.img[0]} />
+                </Link>
+                <div className="card__content">
+                  <Link
+                    to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
+                  >
+                    {product.productBrand} {product.productModel}{" "}
+                    {product.memory} GB {product.productColor}
+                  </Link>
+                  <span>{product.price} $</span>
+                </div>
+                <div className="heart_icon_card">
+                  <FontAwesomeIcon
+                    onClick={() => handleHeartClick(product.id)}
+                    style={{
+                      color: clicked.includes(product.id)
+                        ? "#dc3545"
+                        : "#c2c5ca",
+                      fontSize: "20px",
+                    }}
+                    icon={faHeart}
+                  />
+                </div>
+              </div>
             ))}
           </Slider>
         </div>
         <div className="bottom-heading">
-          <a href="#">
+          <a href="/products/phones">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

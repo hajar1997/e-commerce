@@ -5,11 +5,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { fetchData } from "../../redux/actions/action";
 import Slider from "react-slick";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const NewAccessory = ({ main, fetchData }) => {
+  const [clicked, setClicked] = useState([]);
+
+  const handleHeartClick = (productId) => {
+    if (clicked.includes(productId)) {
+      setClicked(clicked.filter((id) => id !== productId));
+    } else {
+      setClicked([...clicked, productId]);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    const clickedProducts = JSON.parse(localStorage.getItem("clickedProducts"));
+    if (clickedProducts) {
+      setClicked(clickedProducts);
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("clickedProducts", JSON.stringify(clicked));
+  }, [clicked]);
 
   const settings = {
     dots: false,
@@ -70,26 +89,39 @@ const NewAccessory = ({ main, fetchData }) => {
         <div className="cards__wrapper">
           <Slider {...settings}>
             {main.accessories.map((product) => (
-              <Link
-                key={product.id}
-                to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}
-              >
-                <div className="card-wrapper">
+              <div className="card-wrapper" key={product.id}>
+                <Link
+                  to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}
+                >
                   <img src={product.img[0]} />
-                  <div className="card__content">
-                    <a href="#">
-                      {product.productBrand} {product.productModel}{" "}
-                      {product.memory} {product.productColor}
-                    </a>
-                    <span>{product.price} $</span>
-                  </div>
+                </Link>
+                <div className="card__content">
+                  <Link
+                    to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}
+                  >
+                    {product.productBrand} {product.productModel}{" "}
+                    {product.memory} GB {product.productColor}
+                  </Link>
+                  <span>{product.price} $</span>
                 </div>
-              </Link>
+                <div className="heart_icon_card">
+                  <FontAwesomeIcon
+                    onClick={() => handleHeartClick(product.id)}
+                    style={{
+                      color: clicked.includes(product.id)
+                        ? "#dc3545"
+                        : "#c2c5ca",
+                      fontSize: "20px",
+                    }}
+                    icon={faHeart}
+                  />
+                </div>
+              </div>
             ))}
           </Slider>
         </div>
         <div className="bottom-heading">
-          <a href="#">
+          <a href="/products/accessories">
             Hamısına bax
             <FontAwesomeIcon
               icon={faChevronRight}

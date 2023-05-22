@@ -13,6 +13,7 @@ import {
   faMinus,
   faDollarSign,
   faManatSign,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Results = ({ main, fetchData }) => {
@@ -42,12 +43,6 @@ const Results = ({ main, fetchData }) => {
   const handeMinusClick = () => {
     setToggle(true);
   };
-
-  // const handleClick = (category) => {
-  //   navigate(
-  //     `/product-details/${category}`
-  //   );
-  // };
 
   const commonFilter = (product) =>
     product.productModel.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -269,20 +264,29 @@ const Results = ({ main, fetchData }) => {
               </div>
             </div>
             <div className="all-products">
-              {filteredProducts.map((product, index) => (
-                <Link
-                  key={index}
-                  to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                >
-                  <Product
-                    img={product.img}
-                    brand={product.productBrand}
-                    model={product.productModel}
-                    memory={product.memory}
-                    color={product.productColor}
-                    price={product.price}
-                  />
-                </Link>
+              {filteredProducts.map((product) => (
+                <div className="card-wrapper" key={product.id}>
+                  <Link
+                    to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                  >
+                    <img src={product.img[0]} />
+                  </Link>
+                  <div className="card__content">
+                    <Link
+                      to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                    >
+                      {product.productBrand} {product.productModel}{" "}
+                      {product.memory} GB {product.productColor}
+                    </Link>
+                    <span>{product.price} $</span>
+                  </div>
+                  <div className="heart_icon_card">
+                    <FontAwesomeIcon
+                      style={{ color: "#c2c5ca", fontSize: "20px" }}
+                      icon={faHeart}
+                    />
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -387,20 +391,29 @@ const Results = ({ main, fetchData }) => {
                 </div>
               </div>
               <div className="all-products">
-                {filteredProducts.map((product, index) => (
-                  <Link
-                    key={index}
-                    to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                  >
-                    <Product
-                      img={product.img}
-                      brand={product.productBrand}
-                      model={product.productModel}
-                      memory={product.memory}
-                      color={product.productColor}
-                      price={product.price}
-                    />
-                  </Link>
+                {filteredProducts.map((product,index) => (
+                  <div className="card-wrapper" key={index}>
+                    <Link
+                      to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                    >
+                      <img src={product.img[0]} />
+                    </Link>
+                    <div className="card__content">
+                      <Link
+                        to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
+                      >
+                        {product.productBrand} {product.productModel}{" "}
+                        {product.memory} GB {product.productColor}
+                      </Link>
+                      <span>{product.price} $</span>
+                    </div>
+                    <div className="heart_icon_card">
+                      <FontAwesomeIcon
+                        style={{ color: "#c2c5ca", fontSize: "20px" }}
+                        icon={faHeart}
+                      />
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
