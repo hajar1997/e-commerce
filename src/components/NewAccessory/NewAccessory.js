@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { connect } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,27 +9,51 @@ import Slider from "react-slick";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const NewAccessory = ({ main, fetchData }) => {
-  const [clicked, setClicked] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
-  const handleHeartClick = (productId) => {
-    if (clicked.includes(productId)) {
-      setClicked(clicked.filter((id) => id !== productId));
+  const fetchFavorites = async () => {
+    try {
+      const response = await axios.get("http://localhost:8001/favorites");
+      setFavorites(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const isProductFavorite = (id) => {
+    return favorites.some((favorite) => favorite.id === id);
+  };
+
+  const handleHeartClick = (id) => {
+    if (isProductFavorite(id)) {
+      removeProductFromFavorites(id);
     } else {
-      setClicked([...clicked, productId]);
+      addProductToFavorites(id);
+    }
+  };
+
+  const addProductToFavorites = async (id) => {
+    try {
+      await axios.post("http://localhost:8001/favorites", { id });
+      fetchFavorites();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeProductFromFavorites = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8001/favorites/${id}`);
+      fetchFavorites();
+    } catch (error) {
+      console.log(error);
     }
   };
 
   useEffect(() => {
     fetchData();
-    const clickedProducts = JSON.parse(localStorage.getItem("clickedProducts"));
-    if (clickedProducts) {
-      setClicked(clickedProducts);
-    }
+    fetchFavorites();
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("clickedProducts", JSON.stringify(clicked));
-  }, [clicked]);
 
   const settings = {
     dots: false,
@@ -108,7 +133,7 @@ const NewAccessory = ({ main, fetchData }) => {
                   <FontAwesomeIcon
                     onClick={() => handleHeartClick(product.id)}
                     style={{
-                      color: clicked.includes(product.id)
+                      color: isProductFavorite(product.id)
                         ? "#dc3545"
                         : "#c2c5ca",
                       fontSize: "20px",

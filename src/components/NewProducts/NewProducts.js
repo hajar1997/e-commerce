@@ -1,15 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import Slider from "react-slick";
 import { fetchData } from "../../redux/actions/action";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 
 const NewProducts = ({ main, fetchData }) => {
+  const [favorites, setFavorites] = useState([]);
+
+  const fetchFavorites = async () => {
+    try {
+      const response = await axios.get("http://localhost:8001/favorites");
+      setFavorites(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const isProductFavorite = (id) => {
+    return favorites.some((favorite) => favorite.id === id);
+  };
+
+  const handleHeartClick = (id) => {
+    if (isProductFavorite(id)) {
+      removeProductFromFavorites(id);
+    } else {
+      addProductToFavorites(id);
+    }
+  };
+
+  const addProductToFavorites = async (id) => {
+    try {
+      await axios.post("http://localhost:8001/favorites", { id });
+      fetchFavorites();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeProductFromFavorites = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8001/favorites/${id}`);
+      fetchFavorites();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    fetchFavorites();
   }, []);
 
   const settings = {
@@ -88,7 +131,13 @@ const NewProducts = ({ main, fetchData }) => {
                 </div>
                 <div className="heart_icon_card">
                   <FontAwesomeIcon
-                    style={{ color: "#c2c5ca", fontSize: "20px" }}
+                    onClick={() => handleHeartClick(product.id)}
+                    style={{
+                      color: isProductFavorite(product.id)
+                        ? "#dc3545"
+                        : "#c2c5ca",
+                      fontSize: "20px",
+                    }}
                     icon={faHeart}
                   />
                 </div>
