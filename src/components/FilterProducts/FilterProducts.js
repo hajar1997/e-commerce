@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fetchData } from "../../redux/actions/action";
+import {
+  fetchData,
+  fetchFavorites,
+  addProductToFavorites,
+  removeProductFromFavorites,
+} from "../../redux/actions/action";
 import {
   faTimes,
   faPlus,
@@ -13,7 +18,8 @@ import {
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
 
-const FilterProducts = ({ main, fetchData }) => {
+const FilterProducts = () => {
+  const main = useSelector((state) => state.main);
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
   const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
@@ -27,8 +33,21 @@ const FilterProducts = ({ main, fetchData }) => {
   const { category } = useParams();
   const [sortedData, setSortedData] = useState(main[category]);
   const [sortClicked, setSortClicked] = useState(false);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const favorites = useSelector((state) => state.main.favorites);
+
+  const isProductFavorite = (id) => {
+    return favorites.some((favorite) => favorite.id === id);
+  };
+
+  const handleHeartClick = (id) => {
+    if (isProductFavorite(id)) {
+      dispatch(removeProductFromFavorites(id));
+    } else {
+      dispatch(addProductToFavorites(id));
+    }
+  };
 
   const handlePlusClick = () => {
     setToggle(false);
@@ -98,7 +117,8 @@ const FilterProducts = ({ main, fetchData }) => {
     : filterProducts(main[category]);
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchData());
+    dispatch(fetchFavorites());
   }, []);
 
   useEffect(() => {
@@ -242,6 +262,8 @@ const FilterProducts = ({ main, fetchData }) => {
                 memory={product.memory}
                 color={product.productColor}
                 price={product.price}
+                handleHeartClick={handleHeartClick}
+                isProductFavorite={isProductFavorite}
               />
             ))}
           </div>
@@ -363,6 +385,8 @@ const FilterProducts = ({ main, fetchData }) => {
                     memory={product.memory}
                     color={product.productColor}
                     price={product.price}
+                    handleHeartClick={handleHeartClick}
+                    isProductFavorite={isProductFavorite}
                   />
                 ))}
               </div>
@@ -374,8 +398,4 @@ const FilterProducts = ({ main, fetchData }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  main: state.main,
-});
-
-export default connect(mapStateToProps, { fetchData })(FilterProducts);
+export default FilterProducts;

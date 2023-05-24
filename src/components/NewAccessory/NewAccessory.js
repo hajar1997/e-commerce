@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { fetchData } from "../../redux/actions/action";
+import {
+  fetchData,
+  fetchFavorites,
+  addProductToFavorites,
+  removeProductFromFavorites,
+} from "../../redux/actions/action";
 import Slider from "react-slick";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const NewAccessory = ({ main, fetchData }) => {
-  const [favorites, setFavorites] = useState([]);
-
-  const fetchFavorites = async () => {
-    try {
-      const response = await axios.get("http://localhost:8001/favorites");
-      setFavorites(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const NewAccessory = () => {
+  const dispatch = useDispatch();
+  const main = useSelector((state) => state.main);
+  const favorites = useSelector((state) => state.main.favorites);
 
   const isProductFavorite = (id) => {
     return favorites.some((favorite) => favorite.id === id);
@@ -26,33 +23,15 @@ const NewAccessory = ({ main, fetchData }) => {
 
   const handleHeartClick = (id) => {
     if (isProductFavorite(id)) {
-      removeProductFromFavorites(id);
+      dispatch(removeProductFromFavorites(id));
     } else {
-      addProductToFavorites(id);
-    }
-  };
-
-  const addProductToFavorites = async (id) => {
-    try {
-      await axios.post("http://localhost:8001/favorites", { id });
-      fetchFavorites();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const removeProductFromFavorites = async (id) => {
-    try {
-      await axios.delete(`http://localhost:8001/favorites/${id}`);
-      fetchFavorites();
-    } catch (error) {
-      console.log(error);
+      dispatch(addProductToFavorites(id));
     }
   };
 
   useEffect(() => {
-    fetchData();
-    fetchFavorites();
+    dispatch(fetchData());
+    dispatch(fetchFavorites());
   }, []);
 
   const settings = {
@@ -159,8 +138,4 @@ const NewAccessory = ({ main, fetchData }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  main: state.main,
-});
-
-export default connect(mapStateToProps, { fetchData })(NewAccessory);
+export default NewAccessory;

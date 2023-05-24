@@ -1,60 +1,64 @@
-import React, { useState } from "react";
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
-  faPlus,
-  faMinus,
-  faManatSign,
-} from "@fortawesome/free-solid-svg-icons";
+  fetchData,
+  fetchFavorites,
+  removeProductFromFavorites,
+  addProductToFavorites,
+} from "../../redux/actions/action";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { HeartOutlined } from "@ant-design/icons";
 
 const Favs = () => {
-  const [likedProductId, setLikedProductId] = useState(null);
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.main.favorites);
+  const [favoriteProducts, setFavoriteProducts] = useState([]);
 
-  const [product, setProduct] = useState([
-    {
-      id: "1",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-    {
-      id: "2",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-  ]);
+  const isProductFavorite = (id) => {
+    return favorites.some((favorite) => favorite.id === id);
+  };
 
-  const handleLikeClick = (productId) => {
-    if (likedProductId === productId) {
-      setLikedProductId(null);
+  const handleHeartClick = (id) => {
+    if (isProductFavorite(id)) {
+      dispatch(removeProductFromFavorites(id));
     } else {
-      setLikedProductId(productId);
+      dispatch(addProductToFavorites(id));
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchData());
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
+  const { phones, accessories, smartWatches } = useSelector(
+    (state) => state.main
+  );
+
+  useEffect(() => {
+    const filteredProducts = [
+      ...phones.filter((product) =>
+        favorites.some((fav) => fav.id === product.id)
+      ),
+      ...accessories.filter((product) =>
+        favorites.some((fav) => fav.id === product.id)
+      ),
+      ...smartWatches.filter((product) =>
+        favorites.some((fav) => fav.id === product.id)
+      ),
+    ];
+
+    setFavoriteProducts(filteredProducts);
+  }, [favorites, phones, accessories, smartWatches]);
+  console.log(favorites);
 
   return (
     <div className="favs_page">
       <div className="container">
         <h5>Bəyəndiklərim</h5>
         <div className="favs__container">
-          {!product.length && (
+          {!favoriteProducts.length && (
             <div className="inside_basket for_empty">
               <div className="is__empty">
                 <HeartOutlined style={{ fontSize: "50px", color: "#4F4F4F" }} />
@@ -63,7 +67,7 @@ const Favs = () => {
             </div>
           )}
           <div className="basket__products">
-            {product.map((item) => (
+            {favoriteProducts.map((item) => (
               <div className="basket_product" key={item.id}>
                 <div className="two_divs_container">
                   <div className="product__img">
@@ -99,17 +103,14 @@ const Favs = () => {
                   </div>
                 </div>
                 <div className="remove__product">
-                  {likedProductId === item.id ? (
-                    <HeartFilled
-                      onClick={() => handleLikeClick(item.id)}
-                      style={{ color: "red", fontSize: "24px" }}
-                    />
-                  ) : (
-                    <HeartOutlined
-                      onClick={() => handleLikeClick(item.id)}
-                      className="heart__outlined"
-                    />
-                  )}
+                  <FontAwesomeIcon
+                    onClick={() => handleHeartClick(item.id)}
+                    style={{
+                      color: isProductFavorite(item.id) ? "#dc3545" : "#c2c5ca",
+                      fontSize: "20px",
+                    }}
+                    icon={faHeart}
+                  />
                 </div>
               </div>
             ))}

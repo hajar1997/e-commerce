@@ -9,3 +9,6 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const LOG_OUT = "LOG_OUT";
 export const LOADING_ON = "LOADING_ON";
 export const LOADING_OFF = "LOADING_FF";
+export const SET_FAVORITES = "SET_FAVORITES";
+export const FETCH_FAVORITES = "FETCH_FAVORITES";
+export const FAVORITE_COUNT = "FAVORITE_COUNT"

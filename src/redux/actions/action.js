@@ -12,6 +12,8 @@ import {
   REGISTER_FAILED,
   LOADING_ON,
   LOADING_OFF,
+  SET_FAVORITES,
+  FETCH_FAVORITES,
 } from "../types/index";
 import axios from "axios";
 import { notification } from "antd";
@@ -31,16 +33,6 @@ export const setSearchSubmitted = (searchSubmitted) => ({
   type: SET_SEARCH_SUBMITTED,
   payload: searchSubmitted,
 });
-
-// export const setProductCount = (productCount) => ({
-//   type: SET_PRODUCT_COUNT,
-//   payload: productCount,
-// });
-
-// export const increaseProductCount = (count) => ({
-//   type: INCREASE_PRODUCT_COUNT,
-//   payload: count,
-// });
 
 export const fetchData = () => {
   return (dispatch) => {
@@ -187,4 +179,37 @@ export const LogOut = () => {
       data: {},
     },
   };
+};
+
+export const setFavorites = (favorites) => ({
+  type: SET_FAVORITES,
+  payload: favorites,
+});
+
+export const fetchFavorites = () => (dispatch) => {
+  axios
+    .get("http://localhost:8001/favorites")
+    .then((res) => {
+      dispatch(setFavorites(res.data));
+    })
+    .catch((err) => console.log(err));
+};
+
+export const addProductToFavorites = (id) => async (dispatch) => {
+  await axios
+    .post("http://localhost:8001/favorites", { id })
+    .then((res) => {
+      dispatch(fetchFavorites());
+      console.log("product is sent to favorites");
+    })
+    .catch((err) => console.log(err));
+};
+
+export const removeProductFromFavorites = (id) => async (dispatch) => {
+  await axios
+    .delete(`http://localhost:8001/favorites/${id}`)
+    .then((res) => {
+      dispatch(fetchFavorites());
+    })
+    .catch((err) => console.log(err));
 };

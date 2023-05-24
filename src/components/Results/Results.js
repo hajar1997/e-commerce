@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
-import { useSelector, useDispatch, connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setSearchSubmitted } from "../../redux/actions/action";
 import ColorCheckboxForSearchResults from "../ColorCheckboxForSearchResults/ColorCheckboxForSearchResults";
-import Product from "../Product/Product";
-import { fetchData } from "../../redux/actions/action";
+import {
+  fetchData,
+  fetchFavorites,
+  addProductToFavorites,
+  removeProductFromFavorites,
+} from "../../redux/actions/action";
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +20,8 @@ import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Results = ({ main, fetchData }) => {
+const Results = () => {
+  const main = useSelector((state) => state.main);
   const [leftSideMobileIsOpen, setLeftSideMobileIsOpen] = useState(false);
   const [rightSideMobileIsOpen, setRightSideMobileIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
@@ -35,6 +40,19 @@ const Results = ({ main, fetchData }) => {
   const searchQuery = new URLSearchParams(location.search).get("query");
   const searchSubmitted = useSelector((state) => state.main.searchSubmitted);
   const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.main.favorites);
+
+  const isProductFavorite = (id) => {
+    return favorites.some((favorite) => favorite.id === id);
+  };
+
+  const handleHeartClick = (id) => {
+    if (isProductFavorite(id)) {
+      dispatch(removeProductFromFavorites(id));
+    } else {
+      dispatch(addProductToFavorites(id));
+    }
+  };
 
   const handlePlusClick = () => {
     setToggle(false);
@@ -126,7 +144,8 @@ const Results = ({ main, fetchData }) => {
   }, []);
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchData());
+    dispatch(fetchFavorites());
   }, []);
 
   return (
@@ -391,7 +410,7 @@ const Results = ({ main, fetchData }) => {
                 </div>
               </div>
               <div className="all-products">
-                {filteredProducts.map((product,index) => (
+                {filteredProducts.map((product, index) => (
                   <div className="card-wrapper" key={index}>
                     <Link
                       to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
@@ -409,7 +428,13 @@ const Results = ({ main, fetchData }) => {
                     </div>
                     <div className="heart_icon_card">
                       <FontAwesomeIcon
-                        style={{ color: "#c2c5ca", fontSize: "20px" }}
+                        onClick={() => handleHeartClick(product.id)}
+                        style={{
+                          color: isProductFavorite(product.id)
+                            ? "#dc3545"
+                            : "#c2c5ca",
+                          fontSize: "20px",
+                        }}
                         icon={faHeart}
                       />
                     </div>
@@ -424,8 +449,4 @@ const Results = ({ main, fetchData }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  main: state.main,
-});
-
-export default connect(mapStateToProps, { fetchData })(Results);
+export default Results;

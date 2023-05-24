@@ -8,10 +8,9 @@ import {
   LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOG_OUT,
-  // SET_PRODUCT_COUNT,
-  // INCREASE_PRODUCT_COUNT,
   LOADING_ON,
   LOADING_OFF,
+  SET_FAVORITES,
 } from "../types/index";
 
 const initialState = {
@@ -22,9 +21,8 @@ const initialState = {
   accessories: [],
   smartWatches: [],
   questions_answers: [],
-  // count: 0,
-  // productCount: 0,
   error: null,
+  favorites: [],
 };
 
 const initialUser = {
@@ -62,18 +60,12 @@ export const mainReducer = (state = initialState, action) => {
         error: action.payload,
       };
     }
-    // case SET_PRODUCT_COUNT: {
-    //   return {
-    //     ...state,
-    //     count: action.payload,
-    //   };
-    // }
-    // case INCREASE_PRODUCT_COUNT: {
-    //   return {
-    //     ...state,
-    //     count: state.count,
-    //   };
-    // }
+    case SET_FAVORITES: {
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+    }
     default:
       return state;
   }

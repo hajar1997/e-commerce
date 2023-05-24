@@ -69,12 +69,19 @@ nav {
     outline: 0;
 }
 
-.countOfShopping {
+.countOfShopping,
+.countOfFavorited {
     padding: 0px 7px;
     color: white;
     border-radius: 50%;
     background: #2DD06E;
 }
+
+.heart-icon-header a {
+    display: flex;
+    align-items: center;
+}
+
 
 .hr-line {
     margin: 0;
@@ -1542,9 +1549,7 @@ input:focus {
     margin-top: 0px;
 }
 
-.remove__product .anticon-delete {
-    font-size: 20px;
-    color: #828282;
+.remove__product {
     cursor: pointer;
 }
 
@@ -2463,7 +2468,13 @@ input:focus {
         position: relative;
     }
 
-    .countOfShopping {
+    .heart-icon-header {
+        position: relative;
+    }
+
+
+    .countOfShopping,
+    .countOfFavorited {
         position: absolute;
         bottom: 10px;
         padding: 0px 5px;

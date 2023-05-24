@@ -3,7 +3,17 @@ import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const Product = ({ brand, img, model, color, memory, price, id }) => {
+const Product = ({
+  brand,
+  img,
+  model,
+  color,
+  memory,
+  price,
+  id,
+  isProductFavorite,
+  handleHeartClick,
+}) => {
   const { category } = useParams();
 
   return (
@@ -19,7 +29,11 @@ const Product = ({ brand, img, model, color, memory, price, id }) => {
       </div>
       <div className="heart_icon_card">
         <FontAwesomeIcon
-          style={{ color: "#c2c5ca", fontSize: "20px" }}
+          onClick={() => handleHeartClick(id)}
+          style={{
+            color: isProductFavorite(id) ? "#dc3545" : "#c2c5ca",
+            fontSize: "20px",
+          }}
           icon={faHeart}
         />
       </div>
