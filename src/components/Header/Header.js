@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   UserOutlined,
   HeartOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { fetchFavorites } from "../../redux/actions/action";
 import { Space } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import MegaMenu from "../MegaMenu/MegaMenu";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

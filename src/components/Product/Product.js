@@ -11,8 +11,8 @@ const Product = ({
   memory,
   price,
   id,
-  isProductFavorite,
   handleHeartClick,
+  isProductFavorite,
 }) => {
   const { category } = useParams();
 

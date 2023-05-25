@@ -66,6 +66,7 @@ const MyFavs = () => {
               memory={product.memory}
               color={product.productColor}
               price={product.price}
+              
             />
           </Link>
         ))}

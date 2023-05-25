@@ -63,7 +63,11 @@
       "answer": "İkinci əl modellər yalnız mağazamızda mövcuddur."
     }
   ],
-  "favorites": [],
+  "favorites": [
+    {
+      "id": "94e1735e-63e4-4134-b74e-e4ec006755b9"
+    }
+  ],
   "phones": [
     {
       "id": "94e1735e-63e4-4134-b74e-e4ec006755b9",
