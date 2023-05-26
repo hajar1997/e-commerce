@@ -105,7 +105,8 @@ const NewProducts = () => {
                     to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}
                   >
                     {product.productBrand} {product.productModel}{" "}
-                    {product.memory} GB {product.productColor}
+                    {product.memory ? `${product.memory} GB ` : ""}{" "}
+                    {product.productColor}
                   </Link>
                   <span>{product.price} $</span>
                 </div>

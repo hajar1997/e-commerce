@@ -6,6 +6,7 @@ import {
   fetchFavorites,
   removeProductFromFavorites,
   addProductToFavorites,
+  addProductToBasket,
 } from "../../redux/actions/action";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +27,10 @@ const Favs = () => {
     } else {
       dispatch(addProductToFavorites(id));
     }
+  };
+
+  const handleBasketClick = (id) => {
+    dispatch(addProductToBasket(id));
   };
 
   useEffect(() => {
@@ -52,7 +57,6 @@ const Favs = () => {
 
     setFavoriteProducts(filteredProducts);
   }, [favorites, phones, accessories, smartWatches]);
-  console.log(favorites);
 
   return (
     <div className="favs_page">
@@ -92,6 +96,11 @@ const Favs = () => {
                       justifyContent: "center",
                       padding: "0px 25px",
                     }}
+                    onClick={() => {
+                      favoriteProducts.forEach((product) => {
+                        dispatch(addProductToBasket(product.id));
+                      });
+                    }}
                   >
                     <ShoppingCartOutlined style={{ fontSize: "19px" }} />
                     Bütün məhsulları səbətə əlavə et
@@ -102,7 +111,16 @@ const Favs = () => {
                 <h5>Bəyəndiklərim</h5>
               </div>
               <div className="btn-favs-mobile">
-                <Button type="primary" htmlType="submit" className="btn-favs">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="btn-favs"
+                  onClick={() => {
+                    favoriteProducts.forEach((product) => {
+                      dispatch(addProductToBasket(product.id));
+                    });
+                  }}
+                >
                   <ShoppingCartOutlined style={{ fontSize: "19px" }} />
                   Bütün məhsulları səbətə əlavə et
                 </Button>
@@ -118,7 +136,7 @@ const Favs = () => {
                         <div className="product__title">
                           <h6>
                             {item.productBrand}, {item.productModel}
-                            {item.memory ? " GB" : " "}
+                            {item.memory ? ` ${item.memory} GB` : " "}
                           </h6>
                         </div>
                         <div className="product_color_and_cost for_destkop">
@@ -146,6 +164,7 @@ const Favs = () => {
                             type="primary"
                             htmlType="submit"
                             className="btn-favs-for-one"
+                            onClick={() => handleBasketClick(item.id)}
                           >
                             <ShoppingCartOutlined
                               style={{ fontSize: "19px" }}
@@ -159,6 +178,7 @@ const Favs = () => {
                           type="primary"
                           htmlType="submit"
                           className="btn-favs-for-one btn-favs-for-one-mobile"
+                          onClick={() => handleBasketClick(item.id)}
                         >
                           <ShoppingCartOutlined style={{ fontSize: "19px" }} />
                           Səbətə əlavə et

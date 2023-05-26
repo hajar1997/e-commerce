@@ -4,13 +4,12 @@ import {
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAILED,
-  LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOG_OUT,
   LOADING_ON,
   LOADING_OFF,
   SET_FAVORITES,
+  SET_BASKET,
 } from "../types/index";
 
 const initialState = {
@@ -23,6 +22,7 @@ const initialState = {
   questions_answers: [],
   error: null,
   favorites: [],
+  basket: [],
 };
 
 const initialUser = {
@@ -64,6 +64,12 @@ export const mainReducer = (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload,
+      };
+    }
+    case SET_BASKET: {
+      return {
+        ...state,
+        basket: action.payload,
       };
     }
     default:

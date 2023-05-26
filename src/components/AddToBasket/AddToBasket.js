@@ -1,5 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Divider } from "antd";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  fetchData,
+  fetchBasket,
+  removeProductFromBasket,
+  addProductToBasket,
+  setBasket,
+} from "../../redux/actions/action";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,45 +18,104 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const AddToBasket = () => {
-  const [product, setProduct] = useState([
-    {
-      id: "1",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-    {
-      id: "2",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-  ]);
-  const [productCount, setProductCount] = useState(0);
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const basket = useSelector((state) => state.main.basket);
+  const [basketProducts, setBasketProducts] = useState([]);
+
+  const isProductInBasket = (id) => {
+    return basket.some((b) => b.id === id);
+  };
+
+  const handleBasketClick = (id) => {
+    if (isProductInBasket(id)) {
+      dispatch(removeProductFromBasket(id));
+    }
+  };
+
+  useEffect(() => {
+    dispatch(fetchData());
+    dispatch(fetchBasket());
+  }, [dispatch]);
+
+  const { phones, accessories, smartWatches } = useSelector(
+    (state) => state.main
+  );
+
+  useEffect(() => {
+    const filteredProducts = [
+      ...phones.filter((product) => basket.some((b) => b.id === product.id)),
+      ...accessories.filter((product) =>
+        basket.some((b) => b.id === product.id)
+      ),
+      ...smartWatches.filter((product) =>
+        basket.some((b) => b.id === product.id)
+      ),
+    ];
+
+    const productsWithQuantity = filteredProducts.map((product) => ({
+      ...product,
+      quantity: 1,
+    }));
+
+    setBasketProducts(productsWithQuantity);
+  }, [basket, phones, accessories, smartWatches]);
+
+  const handleIncreaseQuantity = (id) => {
+    const updatedBasketProducts = basketProducts.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setBasketProducts(updatedBasketProducts);
+
+    const updatedBasket = basket.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setBasket(updatedBasket);
+  };
+
+  const handleDecreaseQuantity = (id) => {
+    const updatedBasketProducts = basketProducts.map((item) => {
+      if (item.id === id && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+
+    setBasketProducts(updatedBasketProducts);
+
+    const updatedBasket = basket.map((item) => {
+      if (item.id === id && item.quantity > 1) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+
+    setBasket(updatedBasket);
+  };
 
   return (
     <div className="add_to_basket__">
       <div className="container">
-        <h5>Səbət ({product.length} məhsul)</h5>
-        {!product.length && (
+        <h5>Səbət ({basketProducts.length} məhsul)</h5>
+        {!basketProducts.length && (
           <div className="inside_basket for_empty">
             <div className="is__empty">
               <img src="/images/shopping-cart.svg" />
@@ -72,7 +139,7 @@ const AddToBasket = () => {
           <div className="row">
             <div className="col-lg-8">
               <div className="basket__products">
-                {product.map((item) => (
+                {basketProducts.map((item) => (
                   <div className="basket_product" key={item.id}>
                     <div className="product__img">
                       <img src={item?.img[0]} />
@@ -103,85 +170,18 @@ const AddToBasket = () => {
                             <h5>{item.price} $</h5>
                           </div>
                         </div>
-                        <div className="counter_container for_destkop">
-                          <div className="product_counter">
-                            <button
-                              onClick={() =>
-                                item.count > 0 &&
-                                setProduct((prevState) => {
-                                  const index = prevState.findIndex(
-                                    (p) => p.id === item.id
-                                  );
-                                  const newProduct = [...prevState];
-                                  newProduct[index].count =
-                                    newProduct[index].count - 1;
-                                  return newProduct;
-                                })
-                              }
-                            >
-                              <FontAwesomeIcon
-                                style={{ fontSize: "13px", paddingRight: "0" }}
-                                icon={faMinus}
-                              />
-                            </button>
-                            <span>{item.count}</span>
-                            <button
-                              onClick={() =>
-                                setProduct((prevState) => {
-                                  const index = prevState.findIndex(
-                                    (p) => p.id === item.id
-                                  );
-                                  const newProduct = [...prevState];
-                                  newProduct[index].count =
-                                    newProduct[index].count + 1;
-                                  return newProduct;
-                                })
-                              }
-                            >
-                              <FontAwesomeIcon
-                                style={{ fontSize: "13px", paddingRight: "0" }}
-                                icon={faPlus}
-                              />
-                            </button>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div className="counter_container">
                       <div className="product_counter">
-                        <button
-                          onClick={() =>
-                            item.count > 0 &&
-                            setProduct((prevState) => {
-                              const index = prevState.findIndex(
-                                (p) => p.id === item.id
-                              );
-                              const newProduct = [...prevState];
-                              newProduct[index].count =
-                                newProduct[index].count - 1;
-                              return newProduct;
-                            })
-                          }
-                        >
+                        <button onClick={() => handleDecreaseQuantity(item.id)}>
                           <FontAwesomeIcon
                             style={{ fontSize: "13px", paddingRight: "0" }}
                             icon={faMinus}
                           />
                         </button>
-                        <span>{item.count}</span>
-                        <button
-                          onClick={() =>
-                            setProduct((prevState) => {
-                              const index = prevState.findIndex(
-                                (p) => p.id === item.id
-                              );
-                              const newProduct = [...prevState];
-                              newProduct[index].count =
-                                newProduct[index].count + 1;
-                              return newProduct;
-                            })
-                          }
-                        >
+                        <span>{item.quantity}</span>
+                        <button onClick={() => handleIncreaseQuantity(item.id)}>
                           <FontAwesomeIcon
                             style={{ fontSize: "13px", paddingRight: "0" }}
                             icon={faPlus}
@@ -189,8 +189,9 @@ const AddToBasket = () => {
                         </button>
                       </div>
                     </div>
+
                     <div className="remove__product">
-                      <DeleteOutlined />
+                      <DeleteOutlined onClick={handleBasketClick} />
                     </div>
                   </div>
                 ))}

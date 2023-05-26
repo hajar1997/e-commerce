@@ -1931,7 +1931,7 @@ input:focus {
 
 .two_divs_container {
     display: flex;
-    gap: 50px;
+    gap: 30px;
     align-items: center;
 }
 
@@ -2816,7 +2816,6 @@ input:focus {
     .two_divs_container {
         flex-direction: column;
         margin: 0 auto;
-        gap: 0px;
         align-items: flex-start;
     }
 
@@ -2848,7 +2847,7 @@ input:focus {
 
     .btn-favs-for-one-container {
         width: 100%;
-        margin-top: 30px;
+        margin-bottom: 20px;
     }
 
     .btn-for1-destkop {
@@ -2938,6 +2937,10 @@ input:focus {
         justify-content: space-between;
     }
 
+    .two_divs_container .second_row_wrapper {
+        gap: 5px;
+    }
+
     .remove__product {
         position: absolute;
         top: 26px;
@@ -3022,7 +3025,9 @@ input:focus {
         padding: 0px 18px;
     }
 
-
+    .favs_page h5 {
+        margin-top: 16px;
+    }
 
 }
 

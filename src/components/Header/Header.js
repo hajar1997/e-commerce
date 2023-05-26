@@ -16,6 +16,7 @@ const Header = () => {
   const { isRegistered } = useSelector((state) => state.user);
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const favorites = useSelector((state) => state.main.favorites);
+  const basket = useSelector((state) => state.main.basket);
 
   return (
     <header>
@@ -59,7 +60,7 @@ const Header = () => {
                 <Link className="text-dark" to={"/basket"}>
                   <ShoppingCartOutlined style={{ fontSize: "20px" }} />
                 </Link>
-                <div className="countOfShopping ms-2">0</div>
+                <div className="countOfShopping ms-2">{basket.length}</div>
               </div>
             </Space>
           </div>

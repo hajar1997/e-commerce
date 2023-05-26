@@ -3,17 +3,13 @@ import {
   SET_SEARCH_SUBMITTED,
   FETCH_DATA_FAILURE,
   FETCH_DATA_SUCCESS,
-  SET_PRODUCT_COUNT,
-  INCREASE_PRODUCT_COUNT,
   LOGIN_SUCCESS,
-  LOGIN_FAILED,
   LOG_OUT,
   REGISTER_SUCCESS,
-  REGISTER_FAILED,
   LOADING_ON,
   LOADING_OFF,
   SET_FAVORITES,
-  FETCH_FAVORITES,
+  SET_BASKET,
 } from "../types/index";
 import axios from "axios";
 import { notification } from "antd";
@@ -210,6 +206,39 @@ export const removeProductFromFavorites = (id) => async (dispatch) => {
     .delete(`http://localhost:8001/favorites/${id}`)
     .then((res) => {
       dispatch(fetchFavorites());
+    })
+    .catch((err) => console.log(err));
+};
+
+export const setBasket = (basket) => ({
+  type: SET_BASKET,
+  payload: basket,
+});
+
+export const fetchBasket = () => (dispatch) => {
+  axios
+    .get("http://localhost:8001/basket")
+    .then((res) => {
+      dispatch(setBasket(res.data));
+    })
+    .catch((err) => console.log(err));
+};
+
+export const addProductToBasket = (id) => async (dispatch) => {
+  await axios
+    .post("http://localhost:8001/basket", { id })
+    .then((res) => {
+      dispatch(fetchBasket());
+      console.log("product is sent to basket");
+    })
+    .catch((err) => console.log(err));
+};
+
+export const removeProductFromBasket = (id) => async (dispatch) => {
+  await axios
+    .delete(`http://localhost:8001/basket/${id}`)
+    .then((res) => {
+      dispatch(fetchBasket());
     })
     .catch((err) => console.log(err));
 };

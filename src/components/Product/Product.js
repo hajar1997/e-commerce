@@ -23,7 +23,8 @@ const Product = ({
       </Link>
       <div className="card__content">
         <Link to={`/product-details/${category}/${brand}/${model}/${id}`}>
-          {brand} {model} {memory} GB {color}
+          {brand} {model} {memory ? ` ${memory} GB ` : " "}
+          {color}
         </Link>
         <span>{price} $</span>
       </div>

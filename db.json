@@ -25,6 +25,22 @@
           "comment": "1"
         }
       ]
+    },
+    {
+      "id": 11329,
+      "name": "Adem",
+      "surname": "Qarayev",
+      "email": "ademqarayev@gmail.com",
+      "phone": 7450141,
+      "prefix": "070",
+      "password": "adem11",
+      "addresses": [
+        {
+          "address": "Qarabag kucesi 8",
+          "apartment": "12/115",
+          "comment": "Xirda getir ozunle"
+        }
+      ]
     }
   ],
   "filterCategories": [
@@ -65,7 +81,18 @@
   ],
   "favorites": [
     {
-      "id": "94e1735e-63e4-4134-b74e-e4ec006755b9"
+      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f"
+    },
+    {
+      "id": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f"
+    }
+  ],
+  "basket": [
+    {
+      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f"
+    },
+    {
+      "id": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f"
     }
   ],
   "phones": [
@@ -76,9 +103,9 @@
       "memory": "32",
       "productColor": "Black",
       "img": [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg"
+        "/images/iphone-7-black.webp",
+        "/images/iphone-7-black.webp",
+        "/images/iphone-7-black.webp"
       ],
       "price": "340",
       "network": "4G",
