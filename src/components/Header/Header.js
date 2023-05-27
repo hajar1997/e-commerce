@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   UserOutlined,
@@ -6,7 +6,8 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Space } from "antd";
-import { useSelector } from "react-redux";
+import { fetchBasket, fetchFavorites } from "../../redux/actions/action";
+import { useDispatch, useSelector } from "react-redux";
 import MegaMenu from "../MegaMenu/MegaMenu";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,9 +16,16 @@ import SearchProduct from "../SearchProduct/SearchProduct";
 const Header = () => {
   const { isRegistered } = useSelector((state) => state.user);
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const favorites = useSelector((state) => state.main.favorites);
+  const favorites = useSelector((state) => state.main.favorites.length);
   const basket = useSelector((state) => state.main.basket);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBasket());
+    dispatch(fetchFavorites());
+  }, [dispatch]);
+
+  const basketCount = basket.reduce((total, product) => total + product.quantity, 0);
   return (
     <header>
       <div className="container">
@@ -51,16 +59,14 @@ const Header = () => {
               <div className="heart-icon-header">
                 <Link className="text-dark" to={"/favorites"}>
                   <HeartOutlined style={{ fontSize: "20px" }} />
-                  <div className="countOfFavorited ms-2">
-                    {favorites.length}
-                  </div>
+                  <div className="countOfFavorited ms-2">{favorites}</div>
                 </Link>
               </div>
               <div className="shopping-icon d-flex align-items-center">
                 <Link className="text-dark" to={"/basket"}>
                   <ShoppingCartOutlined style={{ fontSize: "20px" }} />
                 </Link>
-                <div className="countOfShopping ms-2">{basket.length}</div>
+                <div className="countOfShopping ms-2">{basketCount}</div>
               </div>
             </Space>
           </div>

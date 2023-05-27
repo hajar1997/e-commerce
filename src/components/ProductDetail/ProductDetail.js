@@ -3,10 +3,14 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
 import { notification } from "antd";
-import { fetchData } from "../../redux/actions/action";
+import {
+  fetchData,
+  addProductToBasket,
+  updateBasketProduct,
+} from "../../redux/actions/action";
 import ImageGallery from "react-image-gallery";
 import { connect } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ShoppingCartOutlined,
@@ -29,6 +33,7 @@ const ProductDetail = ({ main, fetchData }) => {
   const [comments, setComments] = useState([]);
   const navigate = useNavigate();
   const [form] = useForm();
+  const basket = useSelector((state) => state.basket);
 
   const handleClick = (newRating) => {
     if (rating === newRating) {
@@ -46,9 +51,13 @@ const ProductDetail = ({ main, fetchData }) => {
     setProductCount((prevCount) => (prevCount > 0 ? prevCount - 1 : 0));
   };
 
-  // const handleAddToCart = () => {
-  //   dispatch(increaseProductCount(productCount));
-  // };
+  const handleAddToBasket = () => {
+    const quantity = productCount;
+    if (quantity > 0) {
+      dispatch(addProductToBasket(product.id, quantity));
+      setProductCount(0);
+    }
+  };
 
   const fetchComments = async () => {
     await axios
@@ -196,14 +205,14 @@ const ProductDetail = ({ main, fetchData }) => {
             )}
             <Divider type="horizontal" />
             <div className="product_counter">
-              <button onClick={() => handleDecrease()}>
+              <button onClick={handleDecrease}>
                 <FontAwesomeIcon
                   style={{ fontSize: "13px", paddingRight: "0" }}
                   icon={faMinus}
                 />
               </button>
               <span>{productCount}</span>
-              <button onClick={() => handleIncrease()}>
+              <button onClick={handleIncrease}>
                 <FontAwesomeIcon
                   style={{ fontSize: "13px", paddingRight: "0" }}
                   icon={faPlus}
@@ -211,7 +220,7 @@ const ProductDetail = ({ main, fetchData }) => {
               </button>
             </div>
             <div className="add_to_bucket_btn">
-              <button>
+              <button onClick={handleAddToBasket}>
                 <ShoppingCartOutlined />
                 <span>Səbətə at</span>
               </button>
@@ -550,6 +559,4 @@ const mapStateToProps = (state) => ({
   main: state.main,
 });
 
-export default connect(mapStateToProps, { fetchData })(
-  ProductDetail
-);
+export default connect(mapStateToProps, { fetchData })(ProductDetail);

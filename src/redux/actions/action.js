@@ -224,12 +224,28 @@ export const fetchBasket = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const addProductToBasket = (id) => async (dispatch) => {
+export const addProductToBasket =
+  (id, quantity = 1) =>
+  async (dispatch) => {
+    await axios
+      .post("http://localhost:8001/basket", { id, quantity })
+      .then((res) => {
+        dispatch(fetchBasket());
+        notification.open({
+          type: "success",
+          message: "You have successfully added product to the basket!",
+        });
+        console.log("Product is added to the basket");
+      })
+      .catch((err) => console.log(err));
+  };
+
+export const updateBasketProduct = (id, quantity) => async (dispatch) => {
   await axios
-    .post("http://localhost:8001/basket", { id })
+    .put(`http://localhost:8001/basket/${id}`, { id, quantity })
     .then((res) => {
       dispatch(fetchBasket());
-      console.log("product is sent to basket");
+      console.log("Product quantity is updated in the basket");
     })
     .catch((err) => console.log(err));
 };
