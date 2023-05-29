@@ -1426,6 +1426,13 @@ input:focus {
     align-items: center;
 }
 
+.customer_personal_info__payment{
+}
+
+.icon_and_edit{
+    display: flex;
+    gap:50px;
+}
 /* Payment End */
 
 /* Add To Basket Start */

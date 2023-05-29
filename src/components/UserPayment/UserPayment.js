@@ -1,22 +1,45 @@
-import React, { useState } from "react";
-import { Divider, Form, Button, Input, Select, InputNumber, Radio } from "antd";
+import React, { useState, useEffect } from "react";
+import UnregisteredUserInfo from "../UnregisteredUserInfo/UnregisteredUserInfo";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import {
+  Divider,
+  Form,
+  Button,
+  Input,
+  Select,
+  InputNumber,
+  Radio,
+  message,
+  notification,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
 import {
+  CheckCircleFilled,
   CheckCircleOutlined,
   CreditCardOutlined,
   DollarCircleOutlined,
+  SaveOutlined,
 } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faManatSign } from "@fortawesome/free-solid-svg-icons";
+import ClickedInfoEdit from "../ClickedInfoEdit/ClickedInfoEdit";
+import NotClickedPaymentUserInfo from "../NotClickedPaymentUserInfo/NotClickedPaymentUserInfo";
 const { Option } = Select;
 
 const UserPayment = () => {
   const [userInfoForm] = useForm();
   const [deliveryForm] = useForm();
+  const [users, setUsers] = useState([]);
+  const [unregisteredUsers, setUnregisteredUsers] = useState([]);
+  const [editInfoClicked, setEditInfoClicked] = useState(false);
+  const [editAddressClicked, setEditAddressClicked] = useState(false);
   const [isPersonalInfoClicked, setIsPersonalInfoClicked] = useState(true);
   const [isDeliveryClicked, setIsDeliveryClicked] = useState(true);
   const [isPaymentChoiceClicked, setIsPaymentChoiceClicked] = useState(true);
-
+  const dispatch = useDispatch();
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const id = localStorage.getItem("current_id");
   const prefixSelector = (
     <Form.Item name="prefix" noStyle bordered={false}>
       <Select
@@ -34,6 +57,42 @@ const UserPayment = () => {
     </Form.Item>
   );
 
+  const getData = async () => {
+    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+      const user = res.data;
+      setUsers([user]);
+    });
+  };
+
+  const onFinishAddress = async (values) => {
+    const user = users[0];
+    await axios
+      .put(`http://localhost:8001/users/${id}`, {
+        ...user,
+        addresses: [
+          {
+            address: values.address,
+            apartment: values.apartment,
+            comment: values.comment,
+          },
+        ],
+      })
+      .then((res) => {
+        notification.open({
+          type: "success",
+          message: "Məlumatlar uğurla dəyişdirildi!",
+        });
+        setEditAddressClicked(false);
+      })
+      .catch((err) => {
+        message.error("Xəta baş verdi");
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className="payment_wrapper">
       <div className="payment_header">
@@ -46,240 +105,238 @@ const UserPayment = () => {
               <h5>Ödəmə</h5>
               <Divider type="horizontal" />
               <div className="payment_user-info">
-                <div className="payment__header">
-                  <h6
-                    onClick={() =>
-                      setIsPersonalInfoClicked(!isPersonalInfoClicked)
-                    }
-                  >
-                    1. Şəxsi məlumatlar
-                  </h6>
-                  <CheckCircleOutlined
-                    style={{
-                      fontSize: "22px",
-                      color: isPersonalInfoClicked ? "#2DD06E" : "#828282",
-                    }}
-                  />
-                </div>
-                {isPersonalInfoClicked && (
-                  <div className="user__info">
-                    <Form
-                      //   onFinish={onFinish}
-                      initialValues={{
-                        prefix: "070",
-                      }}
-                      style={{
-                        maxWidth: 800,
-                        width: "100%",
-                        marginTop: 48,
-                      }}
-                      form={userInfoForm}
-                      layout="vertical"
-                    >
-                      <div className="form_flex">
-                        <div style={{ flex: "1 1 50%" }}>
-                          <Form.Item
-                            name="name"
-                            label="Ad"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Adınızı daxil edin",
-                              },
-                            ]}
-                          >
-                            <Input
-                              placeholder="Adınızı daxil edin"
-                              style={{
-                                border: "none",
-                              }}
-                              size="large"
-                            />
-                          </Form.Item>
-                        </div>
-                        <div style={{ flex: "1 1 50%" }}>
-                          <Form.Item
-                            name="surname"
-                            label="Soyad"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Soyadınızı daxil edin",
-                              },
-                            ]}
-                          >
-                            <Input
-                              placeholder="Soyadınızı daxil edin"
-                              style={{
-                                border: "none",
-                              }}
-                              size="large"
-                            />
-                          </Form.Item>
-                        </div>
-                      </div>
-                      <div className="form_flex">
-                        <div style={{ flex: "1 1 50%" }}>
-                          <Form.Item
-                            name="phone"
-                            label="Mobil nömrə"
-                            rules={[
-                              {
-                                required: true,
-                                message: "Mobil nömrənizi daxil edin",
-                              },
-                            ]}
-                          >
-                            <InputNumber
-                              addonBefore={prefixSelector}
-                              style={{
-                                width: "100%",
-                                border: "none",
-                              }}
-                              bordered={false}
-                              controls={false}
-                              placeholder="000-00-00"
-                            />
-                          </Form.Item>
-                        </div>
-                        <div style={{ flex: "1 1 50%" }}>
-                          <Form.Item
-                            name="email"
-                            label="Email"
-                            rules={[
-                              {
-                                required: true,
-                                type: "email",
-                                message: "Emailinizi daxil edin",
-                              },
-                            ]}
-                          >
-                            <Input
-                              placeholder="nümunə@gmail.com"
-                              style={{
-                                border: "none",
-                              }}
-                              size="large"
-                            />
-                          </Form.Item>
-                        </div>
-                      </div>
-                      <Form.Item>
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          style={{
-                            marginTop: "20px",
-                            backgroundColor: "#2DD06E",
-                            width: "174px",
-                            height: "44px",
-                          }}
-                        >
-                          Yadda saxla
-                        </Button>
-                      </Form.Item>
-                    </Form>
-                  </div>
+                {isLoggedIn ? (
+                  users.map((user) => (
+                    <div>
+                      {editInfoClicked ? (
+                        <ClickedInfoEdit
+                          getData={getData}
+                          user={user}
+                          editInfoClicked={editInfoClicked}
+                          setEditInfoClicked={setEditInfoClicked}
+                          users={users}
+                          setUsers={setUsers}
+                        />
+                      ) : (
+                        <NotClickedPaymentUserInfo
+                          users={users}
+                          user={user}
+                          setEditInfoClicked={setEditInfoClicked}
+                          editInfoClicked={editInfoClicked}
+                        />
+                      )}
+                    </div>
+                  ))
+                ) : (
+                  <>
+                    <UnregisteredUserInfo
+                      editInfoClicked={editInfoClicked}
+                      setEditInfoClicked={setEditInfoClicked}
+                    />
+                  </>
                 )}
                 <Divider type="horizontal" />
                 <div className="product__delivery">
-                  <div className="payment__header">
-                    <h6
-                      onClick={() => setIsDeliveryClicked(!isDeliveryClicked)}
-                    >
-                      2. Çatdırılma
-                    </h6>
-                    <CheckCircleOutlined
-                      style={{
-                        fontSize: "22px",
-                        color: isDeliveryClicked ? "#2DD06E" : "#828282",
-                      }}
-                    />
-                  </div>
-                  {isDeliveryClicked && (
-                    <div className="delivery_info">
-                      <Form
-                        // onFinish={onFinish}
-                        style={{
-                          maxWidth: 800,
-                          width: "100%",
-                          marginTop: 48,
-                        }}
-                        form={deliveryForm}
-                        layout="vertical"
-                      >
-                        <div className="form_flex">
-                          <div style={{ flex: "1 1 50%" }}>
-                            <Form.Item
-                              name="address"
-                              label="Ünvan"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Ünvanı daxil edin",
-                                },
-                              ]}
-                            >
-                              <Input
-                                placeholder="Ünvanı daxil edin"
-                                style={{
-                                  border: "none",
-                                }}
-                                size="large"
-                              />
-                            </Form.Item>
-                          </div>
-                          <div style={{ flex: "1 1 50%" }}>
-                            <Form.Item
-                              name="apartment"
-                              label="Bina/Mənzil"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Daxil edin",
-                                },
-                              ]}
-                            >
-                              <Input
-                                placeholder="Daxil edin"
-                                style={{
-                                  border: "none",
-                                }}
-                                size="large"
-                              />
-                            </Form.Item>
-                          </div>
-                        </div>
-                        <Form.Item
-                          name="comment"
-                          label="Kuryer üçün əlavə qeydlər"
-                        >
-                          <Input.TextArea
+                  {isLoggedIn ? (
+                    users?.map((user) => (
+                      <div className="customer_personal_info__payment">
+                        {editAddressClicked ? (
+                          <Form
+                            onFinish={onFinishAddress}
                             style={{
-                              resize: "none",
-                              border: "none",
+                              maxWidth: 800,
+                              width: "100%",
                             }}
-                            placeholder="Mətni daxil edin..."
-                            cols={5}
-                            rows={5}
-                            size="large"
-                          />
-                        </Form.Item>
-                        <Form.Item>
-                          <Button
-                            type="primary"
-                            htmlType="submit"
-                            style={{
-                              marginTop: "20px",
-                              backgroundColor: "#2DD06E",
-                              width: "174px",
-                              height: "44px",
-                            }}
+                            form={deliveryForm}
+                            layout="vertical"
                           >
-                            Yadda saxla
-                          </Button>
-                        </Form.Item>
-                      </Form>
+                            <div className="form_flex">
+                              <div style={{ flex: "1 1 50%" }}>
+                                <Form.Item name="address" label="Ünvan">
+                                  <Input
+                                    placeholder="Ünvanınızı daxil edin"
+                                    disabled={!editAddressClicked}
+                                    style={{
+                                      border: "none",
+                                      padding: "14px",
+                                    }}
+                                    size="large"
+                                  />
+                                </Form.Item>
+                              </div>
+                              <div style={{ flex: "1 1 50%" }}>
+                                <Form.Item name="apartment" label="Bina/Mənzil">
+                                  <Input
+                                    placeholder="Yaşadığınız bina və mənzili daxil edin"
+                                    disabled={!editAddressClicked}
+                                    style={{
+                                      border: "none",
+                                      padding: "14px",
+                                    }}
+                                    size="large"
+                                  />
+                                </Form.Item>
+                              </div>
+                            </div>
+                            <Form.Item
+                              name="comment"
+                              label="Kuryer üçün əlavə qeydlər"
+                            >
+                              <Input.TextArea
+                                placeholder="Kuryer üçün əlavə qeydlərinizi daxil edin"
+                                style={{
+                                  resize: "none",
+                                  border: "none",
+                                }}
+                                disabled={!editAddressClicked}
+                                cols={5}
+                                rows={5}
+                                size="large"
+                              />
+                            </Form.Item>
+                            <div className="myInfo_btn">
+                              <Form.Item>
+                                <Button type="primary" htmlType="submit">
+                                  <SaveOutlined style={{ fontSize: "17px" }} />
+                                  Yadda saxla
+                                </Button>
+                              </Form.Item>
+                            </div>
+                          </Form>
+                        ) : (
+                          <div className="payment__header">
+                            <h6> 2. Çatdırılma</h6>
+                            <div className="icon_and_edit">
+                              <a
+                                href="#"
+                                onClick={() =>
+                                  setEditAddressClicked(!editAddressClicked)
+                                }
+                              >
+                                Düzəliş et
+                              </a>
+                              <CheckCircleFilled
+                                style={{
+                                  fontSize: "22px",
+                                  color: "#2DD06E",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        )}
+                        <div className="customer_infos__container">
+                          {user.addresses.map((a) => (
+                            <div className="d-flex flex-column">
+                              <span>{a.address}</span>
+                              <span className="mt-2">{a.apartment}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div>
+                      <div className="payment__header">
+                        <h6
+                          onClick={() =>
+                            setIsDeliveryClicked(!isDeliveryClicked)
+                          }
+                        >
+                          2. Çatdırılma
+                        </h6>
+                        <CheckCircleOutlined
+                          style={{
+                            fontSize: "22px",
+                            color: isDeliveryClicked ? "#2DD06E" : "#828282",
+                          }}
+                        />
+                      </div>
+                      {isDeliveryClicked && (
+                        <div className="delivery_info">
+                          <Form
+                            // onFinish={onFinish}
+                            style={{
+                              maxWidth: 800,
+                              width: "100%",
+                              marginTop: 48,
+                            }}
+                            form={deliveryForm}
+                            layout="vertical"
+                          >
+                            <div className="form_flex">
+                              <div style={{ flex: "1 1 50%" }}>
+                                <Form.Item
+                                  name="address"
+                                  label="Ünvan"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Ünvanı daxil edin",
+                                    },
+                                  ]}
+                                >
+                                  <Input
+                                    placeholder="Ünvanı daxil edin"
+                                    style={{
+                                      border: "none",
+                                    }}
+                                    size="large"
+                                  />
+                                </Form.Item>
+                              </div>
+                              <div style={{ flex: "1 1 50%" }}>
+                                <Form.Item
+                                  name="apartment"
+                                  label="Bina/Mənzil"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Daxil edin",
+                                    },
+                                  ]}
+                                >
+                                  <Input
+                                    placeholder="Daxil edin"
+                                    style={{
+                                      border: "none",
+                                    }}
+                                    size="large"
+                                  />
+                                </Form.Item>
+                              </div>
+                            </div>
+                            <Form.Item
+                              name="comment"
+                              label="Kuryer üçün əlavə qeydlər"
+                            >
+                              <Input.TextArea
+                                style={{
+                                  resize: "none",
+                                  border: "none",
+                                }}
+                                placeholder="Mətni daxil edin..."
+                                cols={5}
+                                rows={5}
+                                size="large"
+                              />
+                            </Form.Item>
+                            <Form.Item>
+                              <Button
+                                type="primary"
+                                htmlType="submit"
+                                style={{
+                                  marginTop: "20px",
+                                  backgroundColor: "#2DD06E",
+                                  width: "174px",
+                                  height: "44px",
+                                }}
+                              >
+                                Yadda saxla
+                              </Button>
+                            </Form.Item>
+                          </Form>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -394,7 +451,7 @@ const UserPayment = () => {
               </div>
               <Divider type="horizontal" />
               <div className="cost mt-3">
-                <h6 style={{fontWeight:"700"}}>Cəmi</h6>
+                <h6 style={{ fontWeight: "700" }}>Cəmi</h6>
                 <h6 style={{ color: "#DB2C66" }}>
                   61.50
                   <FontAwesomeIcon

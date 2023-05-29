@@ -8,7 +8,13 @@
       "phone": 8008806,
       "prefix": "070",
       "password": "hajar97",
-      "addresses": []
+      "addresses": [
+        {
+          "address": "Nərimanov rayonu,Təbriz küçəsi",
+          "apartment": "Bina 10, mənzil 40",
+          "comment": "1"
+        }
+      ]
     },
     {
       "id": 846393,
@@ -21,24 +27,8 @@
       "addresses": [
         {
           "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "Bina 10 mənzil 40",
+          "apartment": "Bina 10, mənzil 40",
           "comment": "1"
-        }
-      ]
-    },
-    {
-      "id": 11329,
-      "name": "Adem",
-      "surname": "Qarayev",
-      "email": "ademqarayev@gmail.com",
-      "phone": 7450141,
-      "prefix": "070",
-      "password": "adem11",
-      "addresses": [
-        {
-          "address": "Qarabag kucesi 8",
-          "apartment": "12/115",
-          "comment": "Xirda getir ozunle"
         }
       ]
     }
@@ -79,8 +69,19 @@
       "answer": "İkinci əl modellər yalnız mağazamızda mövcuddur."
     }
   ],
-  "favorites": [],
-  "basket": [],
+  "favorites": [
+    {
+      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f"
+    }
+  ],
+  "basket": [
+    {
+      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f",
+      "quantity": 1
+    }
+  ],
+  "orders": [],
+  "unregisteredOrderInfo": [],
   "phones": [
     {
       "id": "94e1735e-63e4-4134-b74e-e4ec006755b9",

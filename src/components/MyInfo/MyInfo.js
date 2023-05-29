@@ -95,6 +95,7 @@ const MyInfo = () => {
       setUsers([user]);
     });
   };
+  
   const getAllUsers = async () => {
     await axios.get(`http://localhost:8001/users/`).then((res) => {
       const users = res.data;
