@@ -12,7 +12,7 @@
         {
           "address": "Nərimanov rayonu,Təbriz küçəsi",
           "apartment": "Bina 10, mənzil 40",
-          "comment": "1"
+          "comment": "salam"
         }
       ]
     },
@@ -69,11 +69,7 @@
       "answer": "İkinci əl modellər yalnız mağazamızda mövcuddur."
     }
   ],
-  "favorites": [
-    {
-      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f"
-    }
-  ],
+  "favorites": [],
   "basket": [
     {
       "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f",
@@ -81,7 +77,23 @@
     }
   ],
   "orders": [],
-  "unregisteredOrderInfo": [],
+  "unregisteredOrderInfo": [
+    {
+      "id": 11841657996013,
+      "name": "Hajar",
+      "surname": "Ibrahimova",
+      "email": "ibrahimlihecer97@gmail.com",
+      "phone": 656756,
+      "prefix": "070",
+      "addresses": [
+        {
+          "address": "Nərimanov rayonu,Təbriz küçəsi",
+          "apartment": "1",
+          "comment": "jk"
+        }
+      ]
+    }
+  ],
   "phones": [
     {
       "id": "94e1735e-63e4-4134-b74e-e4ec006755b9",

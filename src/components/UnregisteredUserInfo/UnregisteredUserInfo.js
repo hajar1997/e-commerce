@@ -75,53 +75,83 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
   const id = localStorage.getItem("unregistered_user_id");
 
   const getData = async () => {
-    await axios
-      .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
-      .then((res) => {
-        const user = res?.data;
-        console.log(user);
-        setUsers([user]);
-      });
+    if (id) {
+      await axios
+        .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
+        .then((res) => {
+          const user = res.data;
+          setUsers([user]);
+        })
+        .catch((err) => {
+          localStorage.removeItem("unregistered_user_id");
+        });
+    } else {
+      localStorage.removeItem("unregistered_user_id");
+    }
   };
 
   useEffect(() => {
     getData();
-  }, [submitted]);
+
+    const handleBeforeUnload = () => {
+      if (users.length !== 0) {
+        axios
+          .delete(`http://localhost:8001/unregisteredOrderInfo/${id}`)
+          .then(() => {
+            localStorage.removeItem("unregistered_user_id");
+          })
+          .catch((err) => {
+            console.log("Error occurred while deleting user info:", err);
+          });
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [submitted, id]);
+
   return (
     <div>
       {submitted ? (
         users.map((user) => (
           <div className="customer_personal_info__payment">
-            <div className="payment__header">
-              <h6
-                onClick={() => setIsPersonalInfoClicked(!isPersonalInfoClicked)}
-              >
-                1. Şəxsi məlumatlar
-              </h6>
-              <div className="icon_and_edit">
-                <a
-                  href="#"
-                  onClick={() => setEditInfoClicked(!editInfoClicked)}
-                >
-                  Düzəliş et
-                </a>
-                <CheckCircleFilled
-                  style={{
-                    fontSize: "22px",
-                    color: "#2DD06E",
-                  }}
-                />
-              </div>
-            </div>
             {editInfoClicked ? (
               <UnregisteredInfoEdit
                 editInfoClicked={editInfoClicked}
                 setEditInfoClicked={setEditInfoClicked}
                 users={users}
                 setUsers={setUsers}
+                setIsPersonalInfoClicked={setIsPersonalInfoClicked}
+                isPersonalInfoClicked={isPersonalInfoClicked}
               />
             ) : (
               <>
+                <div className="payment__header">
+                  <h6
+                    onClick={() =>
+                      setIsPersonalInfoClicked(!isPersonalInfoClicked)
+                    }
+                  >
+                    1. Şəxsi məlumatlar
+                  </h6>
+                  <div className="icon_and_edit">
+                    <a
+                      href="#"
+                      onClick={() => setEditInfoClicked(!editInfoClicked)}
+                    >
+                      Düzəliş et
+                    </a>
+                    <CheckCircleFilled
+                      style={{
+                        fontSize: "22px",
+                        color: "#2DD06E",
+                      }}
+                    />
+                  </div>
+                </div>
                 {isPersonalInfoClicked && (
                   <div className="customer_infos__container">
                     <span>
@@ -145,14 +175,12 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
             >
               1. Şəxsi məlumatlar
             </h6>
-            <div className="icon_and_edit">
-              <CheckCircleOutlined
-                style={{
-                  fontSize: "22px",
-                  color: isPersonalInfoClicked ? "#2DD06E" : "#828282",
-                }}
-              />
-            </div>
+            <CheckCircleOutlined
+              style={{
+                fontSize: "22px",
+                color: isPersonalInfoClicked ? "#2DD06E" : "#828282",
+              }}
+            />
           </div>
           {isPersonalInfoClicked && (
             <div className="user__info">

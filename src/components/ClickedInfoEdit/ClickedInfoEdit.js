@@ -102,6 +102,9 @@ const ClickedInfoEdit = ({
 
   return (
     <div>
+      <div className="payment__header mb-3">
+        <h6>1. Şəxsi məlumatlar</h6>
+      </div>
       <Form
         initialValues={{
           ...user,

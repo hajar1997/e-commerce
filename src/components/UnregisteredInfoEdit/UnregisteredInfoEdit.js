@@ -10,7 +10,7 @@ import {
   message,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { SaveOutlined } from "@ant-design/icons";
+import { CheckCircleFilled, SaveOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 const prefixSelector = (
@@ -99,6 +99,9 @@ const UnregisteredInfoEdit = ({
   };
   return (
     <div>
+      <div className="payment__header mb-3">
+        <h6>1. Şəxsi məlumatlar</h6>
+      </div>
       <Form
         style={{
           maxWidth: 800,
