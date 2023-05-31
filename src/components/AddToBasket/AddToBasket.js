@@ -30,6 +30,26 @@ const AddToBasket = () => {
     dispatch(removeProductFromBasket(id));
   };
 
+  const handleCompleteOrder = () => {
+    if (basketProducts.length > 0) {
+      const productData = basketProducts.map((product) => {
+        return {
+          id: product.id,
+          quantity: product.quantity,
+        };
+      });
+
+      const orderData = {
+        totalPrice: totalPrice,
+        totalPriceWithGiftPackage: totalPriceWithGiftPackage,
+        products: productData,
+        giftPackagePrice: giftPackagePrice,
+      };
+
+      navigate("/payment", { state: { orderData } });
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchData());
     dispatch(fetchBasket());
@@ -250,7 +270,7 @@ const AddToBasket = () => {
                       width: "100%",
                       height: "44px",
                     }}
-                    onClick={() => navigate("/payment")}
+                    onClick={handleCompleteOrder}
                   >
                     Sifarişi tamamla
                   </Button>

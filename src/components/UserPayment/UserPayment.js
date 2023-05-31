@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import UnregisteredUserInfo from "../UnregisteredUserInfo/UnregisteredUserInfo";
 import axios from "axios";
-import { Divider, Form, Button, Input, Select, Radio } from "antd";
-import { useForm } from "antd/es/form/Form";
+import { Divider, Form, Button, Radio } from "antd";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   CheckCircleOutlined,
   CreditCardOutlined,
@@ -21,14 +21,82 @@ const UserPayment = () => {
   const [editInfoClicked, setEditInfoClicked] = useState(false);
   const [editAddressClicked, setEditAddressClicked] = useState(false);
   const [isPaymentChoiceClicked, setIsPaymentChoiceClicked] = useState(true);
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "false";
+  const [selectedPayment, setSelectedPayment] = useState(null);
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvv, setCvv] = useState("");
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const id = localStorage.getItem("current_id");
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const orderData = location.state && location.state;
+  const productId = orderData.orderData.products.map((i) => i.id);
+  const productQuantity = orderData.orderData.products.map((q) => q.quantity);
+  const totalPrice = orderData.orderData.totalPrice;
+  const giftPackagePrice = orderData.orderData.giftPackagePrice;
+  const totalPriceWithGiftPackage =
+    orderData.orderData.totalPriceWithGiftPackage;
 
   const getData = async () => {
     await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
       const user = res.data;
       setUsers([user]);
     });
+  };
+
+  const handlePaymentChange = (e) => {
+    setSelectedPayment(e.target.value);
+  };
+
+  const handlePaymentSubmit = async () => {
+    const updatedUser = { ...users[0] };
+
+    if (selectedPayment === "Qapıda nağd ödəmə") {
+      updatedUser.orders = [
+        {
+          paymentMethod: selectedPayment,
+          products: productId.map((id, index) => ({
+            productId: id,
+            quantity: productQuantity[index],
+          })),
+          totalPrice: totalPriceWithGiftPackage,
+        },
+      ];
+    } else if (selectedPayment === "Onlayn kart ilə ödəmə") {
+      updatedUser.orders = [
+        {
+          payment: [
+            {
+              paymentMethod: selectedPayment,
+              productId: productId,
+              productQuantity: productQuantity,
+              totalPrice: totalPriceWithGiftPackage,
+              cardNumber: cardNumber,
+              expiryDate: expiryDate,
+              cvv: cvv,
+            },
+          ],
+        },
+      ];
+    }
+
+    await axios
+      .put(`http://localhost:8001/users/${id}`, updatedUser)
+      .then((res) => {
+        navigate("/completed-order-detail", {
+          state: {
+            products: productId.map((id, index) => ({
+              productId: id,
+              quantity: productQuantity[index],
+            })),
+          },
+        });
+        console.log("User updated successfully:", res.data);
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+      });
   };
 
   useEffect(() => {
@@ -123,9 +191,13 @@ const UserPayment = () => {
                   {isPaymentChoiceClicked && (
                     <div>
                       <div className="payment_btns">
-                        <Radio.Group buttonStyle="solid">
+                        <Radio.Group
+                          buttonStyle="solid"
+                          onChange={handlePaymentChange}
+                          value={selectedPayment}
+                        >
                           <Radio.Button
-                            value="online"
+                            value="Onlayn kart ilə ödəmə"
                             className="payment_choice_btn"
                           >
                             <CreditCardOutlined
@@ -134,7 +206,7 @@ const UserPayment = () => {
                             Onlayn kart ilə ödəmə
                           </Radio.Button>
                           <Radio.Button
-                            value="cash"
+                            value="Qapıda nağd ödəmə"
                             className="payment_choice_btn"
                           >
                             <DollarCircleOutlined
@@ -152,6 +224,7 @@ const UserPayment = () => {
                         }}
                       >
                         <Button
+                          onClick={handlePaymentSubmit}
                           type="primary"
                           htmlType="submit"
                           style={{
@@ -175,7 +248,7 @@ const UserPayment = () => {
               <div className="cost mt-3">
                 <h6>Məbləğ</h6>
                 <h6>
-                  66.50
+                  {totalPrice}
                   <FontAwesomeIcon
                     style={{ marginLeft: "9px" }}
                     icon={faManatSign}
@@ -195,17 +268,7 @@ const UserPayment = () => {
               <div className="cost mt-3">
                 <h6>Hədiyyə paketi</h6>
                 <h6>
-                  5.00
-                  <FontAwesomeIcon
-                    style={{ marginLeft: "9px" }}
-                    icon={faManatSign}
-                  />
-                </h6>
-              </div>
-              <div className="cost mt-3">
-                <h6>Promo kod</h6>
-                <h6>
-                  10.00
+                  {giftPackagePrice}
                   <FontAwesomeIcon
                     style={{ marginLeft: "9px" }}
                     icon={faManatSign}
@@ -216,7 +279,7 @@ const UserPayment = () => {
               <div className="cost mt-3">
                 <h6 style={{ fontWeight: "700" }}>Cəmi</h6>
                 <h6 style={{ color: "#DB2C66" }}>
-                  61.50
+                  {totalPriceWithGiftPackage}
                   <FontAwesomeIcon
                     style={{ marginLeft: "9px" }}
                     icon={faManatSign}

@@ -14,6 +14,26 @@
           "apartment": "Bina 10, mənzil 40",
           "comment": "salam"
         }
+      ],
+      "orders": [
+        {
+          "paymentMethod": "Qapıda nağd ödəmə",
+          "products": [
+            {
+              "productId": "94e1735e-63e4-4134-b74e-e4ec006755b9",
+              "quantity": 4
+            },
+            {
+              "productId": "72ef699d-61ce-44bd-a6c1-069365cfbf6f",
+              "quantity": 1
+            },
+            {
+              "productId": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
+              "quantity": 1
+            }
+          ],
+          "totalPrice": 2185
+        }
       ]
     },
     {
@@ -29,6 +49,18 @@
           "address": "Nərimanov rayonu,Təbriz küçəsi",
           "apartment": "Bina 10, mənzil 40",
           "comment": "1"
+        }
+      ],
+      "orders": [
+        {
+          "paymentMethod": "Qapıda nağd ödəmə",
+          "products": [
+            {
+              "productId": "adeb4b70-6bd6-4ecc-929c-d6d75c65eeb3",
+              "quantity": 1
+            }
+          ],
+          "totalPrice": 1284
         }
       ]
     }
@@ -70,13 +102,7 @@
     }
   ],
   "favorites": [],
-  "basket": [
-    {
-      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f",
-      "quantity": 1
-    }
-  ],
-  "orders": [],
+  "basket": [],
   "unregisteredOrderInfo": [
     {
       "id": 11841657996013,
@@ -90,6 +116,21 @@
           "address": "Nərimanov rayonu,Təbriz küçəsi",
           "apartment": "1",
           "comment": "jk"
+        }
+      ]
+    },
+    {
+      "id": 12795556598264,
+      "name": "Hajarr",
+      "surname": "Ibrahimova",
+      "email": "ibrahimlihecer97@gmail.com",
+      "phone": 3453453,
+      "prefix": "070",
+      "addresses": [
+        {
+          "address": "Nərimanov rayonu,Təbriz küçəsiii",
+          "apartment": "Bina 10 mənzil 40",
+          "comment": "ewr"
         }
       ]
     }

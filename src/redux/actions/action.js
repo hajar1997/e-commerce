@@ -10,6 +10,7 @@ import {
   LOADING_OFF,
   SET_FAVORITES,
   SET_BASKET,
+  ORDER_COMPLETED,
 } from "../types/index";
 import axios from "axios";
 import { notification } from "antd";

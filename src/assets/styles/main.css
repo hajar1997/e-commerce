@@ -1426,8 +1426,7 @@ input:focus {
     align-items: center;
 }
 
-.customer_personal_info__payment{
-}
+
 
 .icon_and_edit{
     display: flex;
@@ -2442,6 +2441,25 @@ input:focus {
 
 .loading .dot:nth-child(5)::before {
     animation-delay: 1s;
+}
+
+.cod .order_details_header{
+    cursor: unset;
+}
+
+.ordered-products{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cod .op__img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.cod .ordered_product_info{
+    gap: 100px;
 }
 
 @keyframes wave {

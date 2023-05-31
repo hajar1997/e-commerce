@@ -18,6 +18,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import MailCheck from "./pages/MailCheck";
 import RenewPassword from "./pages/RenewPassword";
 import Loader from "./components/Loader/Loader";
+import CompletedOrderDetail from "./components/CompletedOrderDetail/CompletedOrderDetail";
 
 function App() {
   const loading = useSelector((state) => state.loading);
@@ -44,6 +45,8 @@ function App() {
           <Route path="forget-password" element={<ForgetPassword />} />
           <Route path="mail-check" element={<MailCheck />} />
           <Route path="renew-password" element={<RenewPassword />} />
+          <Route path="completed-order-detail" element={<CompletedOrderDetail />} />
+
         </Routes>
       </ScrollToTop>
     </>
