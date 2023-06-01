@@ -13,7 +13,10 @@ const NotClickedAddressEdit = ({
         <div className="icon_and_edit">
           <a
             href="#"
-            onClick={() => setEditAddressClicked(!editAddressClicked)}
+            onClick={(e) => {
+              e.preventDefault();
+              setEditAddressClicked(!editAddressClicked);
+            }}
           >
             Düzəliş et
           </a>

@@ -17,22 +17,22 @@
       ],
       "orders": [
         {
-          "paymentMethod": "Qapıda nağd ödəmə",
+          "paymentMethod": "Kart ilə ödəmə",
           "products": [
-            {
-              "productId": "94e1735e-63e4-4134-b74e-e4ec006755b9",
-              "quantity": 4
-            },
             {
               "productId": "72ef699d-61ce-44bd-a6c1-069365cfbf6f",
               "quantity": 1
             },
             {
               "productId": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
-              "quantity": 1
+              "quantity": 2
             }
           ],
-          "totalPrice": 2185
+          "totalPrice": 1195,
+          "cardNumber": "6476 5765 8358 3459",
+          "cardName": "Hajar Ibrahimova",
+          "expiryDate": "12/23",
+          "cvv": "1213"
         }
       ]
     },
@@ -49,18 +49,6 @@
           "address": "Nərimanov rayonu,Təbriz küçəsi",
           "apartment": "Bina 10, mənzil 40",
           "comment": "1"
-        }
-      ],
-      "orders": [
-        {
-          "paymentMethod": "Qapıda nağd ödəmə",
-          "products": [
-            {
-              "productId": "adeb4b70-6bd6-4ecc-929c-d6d75c65eeb3",
-              "quantity": 1
-            }
-          ],
-          "totalPrice": 1284
         }
       ]
     }
@@ -101,36 +89,49 @@
       "answer": "İkinci əl modellər yalnız mağazamızda mövcuddur."
     }
   ],
-  "favorites": [],
-  "basket": [],
+  "favorites": [
+    {
+      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f"
+    },
+    {
+      "id": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f"
+    }
+  ],
+  "basket": [
+    {
+      "id": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
+      "quantity": 2
+    },
+    {
+      "id": "72ef699d-61ce-44bd-a6c1-069365cfbf6f",
+      "quantity": 1
+    }
+  ],
   "unregisteredOrderInfo": [
     {
-      "id": 11841657996013,
+      "id": 14049843341561,
       "name": "Hajar",
       "surname": "Ibrahimova",
       "email": "ibrahimlihecer97@gmail.com",
-      "phone": 656756,
+      "phone": 35345325,
       "prefix": "070",
       "addresses": [
         {
-          "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "1",
-          "comment": "jk"
-        }
-      ]
-    },
-    {
-      "id": 12795556598264,
-      "name": "Hajarr",
-      "surname": "Ibrahimova",
-      "email": "ibrahimlihecer97@gmail.com",
-      "phone": 3453453,
-      "prefix": "070",
-      "addresses": [
-        {
-          "address": "Nərimanov rayonu,Təbriz küçəsiii",
+          "address": "Nərimanov rayonu,Təbriz küçəsii",
           "apartment": "Bina 10 mənzil 40",
-          "comment": "ewr"
+          "comment": "dfsgsdfgs"
+        }
+      ],
+      "orders": [
+        {
+          "paymentMethod": "Qapıda nağd ödəmə",
+          "products": [
+            {
+              "productId": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
+              "quantity": 2
+            }
+          ],
+          "totalPrice": 745
         }
       ]
     }

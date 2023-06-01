@@ -1428,10 +1428,11 @@ input:focus {
 
 
 
-.icon_and_edit{
+.icon_and_edit {
     display: flex;
-    gap:50px;
+    gap: 50px;
 }
+
 /* Payment End */
 
 /* Add To Basket Start */
@@ -2443,22 +2444,22 @@ input:focus {
     animation-delay: 1s;
 }
 
-.cod .order_details_header{
+.cod .order_details_header {
     cursor: unset;
 }
 
-.ordered-products{
+.ordered-products {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.cod .op__img{
+.cod .op__img {
     max-width: 100px;
     max-height: 100px;
 }
 
-.cod .ordered_product_info{
+.cod .ordered_product_info {
     gap: 100px;
 }
 
@@ -2475,6 +2476,299 @@ input:focus {
     }
 }
 
+/* CREDIT CARD FORM START */
+.credit-card-form {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 20px;
+}
+
+.credit-card-form .parent {
+    margin: 0 auto;
+    width: 100%;
+    padding: 30px 0;
+    border-radius: 5px;
+    box-shadow: 23px 27px 28px -20px rgba(0, 0, 0, 0.75);
+    min-height: 670px;
+}
+
+.credit-card-form .parent .child {
+    width: 100%;
+    max-width: 900px;
+    padding: 80px 0 55px 0;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 1px 25px 0px rgba(50, 50, 50, 0.91);
+}
+
+.credit-card-form .parent .child .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.credit-card-form .container {
+    display: grid;
+    width: 100%;
+    max-width: 900px;
+    gap: 50px;
+}
+
+.credit-card-form input {
+    margin-top: 3px;
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+}
+
+.credit-card-form input.error {
+    border-color: #ec2049;
+    color: #ec2049;
+    animation: 0.8s 0.2s ease-in-out error_state forwards;
+}
+
+#credit-card {
+    font-size: 1rem;
+    color: #fff;
+    width: 400px;
+    height: 250px;
+    perspective: 40rem;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+#credit-card-body {
+    width: 100%;
+    border-radius: 10px;
+    height: 100%;
+    transition: transform 0.7s;
+    position: relative;
+    transform-style: preserve-3d;
+    background-color: #bdbdbd;
+    box-shadow: 0 2.8px 2.2px rgba(36, 59, 85, 0.034),
+        0 6.7px 5.3px rgba(36, 59, 85, 0.048), 0 12.5px 10px rgba(36, 59, 85, 0.06),
+        0 22.3px 17.9px rgba(36, 59, 85, 0.072),
+        0 41.8px 33.4px rgba(36, 59, 85, 0.086), 0 100px 80px rgba(36, 59, 85, 0.12);
+}
+
+#card-front,
+#card-back {
+    backface-visibility: hidden;
+    transform: rotateX(0deg);
+}
+
+#credit-card-body.flip {
+    transform: rotateY(-180deg);
+}
+
+#card-front {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 30px 50px 40px 15px 30px;
+    grid-row-gap: 10px;
+    padding: 20px 20px 20px 40px;
+}
+
+.card-logo,
+.card-chip {
+    width: 100px;
+    grid-column: 1 / -1;
+    justify-self: right;
+}
+
+.card-chip {
+    justify-self: left;
+    overflow: hidden;
+    border-top: 3px solid #222;
+    border-bottom: 3px solid #222;
+    border-radius: 5px;
+    width: 60px;
+    height: 45px;
+    position: relative;
+    background: url("https://lh3.googleusercontent.com/pw/ACtC-3fjmJIeIwFP3fJZs6u1iTHYdC4NMmJKgLaWNm00LSOMTuj_bR4-fHXOAYnGSYG76wG9QTSraETA2sLGsXouho7ZjMTzzwq4Dy4WxN6VpvyTR9E6opE-SgR1J1-6Mq9mhXPn-42an2WpRI_ciXQjnTkv=w60-h45-no");
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "component-1 . component-2"
+        "component-3 . component-4"
+        ". . component-5";
+}
+
+.card-chip:before {
+    position: absolute;
+    width: 23px;
+    border-top: 1px solid #222;
+    content: "";
+    top: 5px;
+    left: 16px;
+    box-shadow: 0 15px 0 #222;
+}
+
+.card-chip:after {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #222;
+    border-radius: 50%;
+    content: "";
+    left: 26px;
+    top: 12px;
+    box-shadow: 0 15px #222;
+}
+
+.card-chip>* {
+    width: 18px;
+    height: 15px;
+    border-radius: 5px / 9px;
+    border: 1px solid #222;
+}
+
+.component-1,
+.component-3 {
+    border-radius: 0 5px 5px 0 / 0 9px 9px 0;
+    margin-left: -1px;
+}
+
+.component-3 {
+    grid-area: component-3;
+}
+
+.component-2,
+.component-4,
+.component-5 {
+    border-radius: 5px 0 0 5px / 9px 0 0 9px;
+    margin-left: 2px;
+}
+
+.component-2 {
+    grid-area: component-2;
+}
+
+.component-4 {
+    grid-area: component-4;
+}
+
+.component-5 {
+    grid-area: component-5;
+}
+
+.credit-card-form div[class^="component"] {
+    margin-top: -1px;
+}
+
+#card-back {
+    transform: rotateY(-180deg);
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    display: grid;
+    grid-row-gap: 12px;
+    grid-template-columns: 55% 75px 1fr;
+    grid-template-rows: 60px 40px 1fr;
+}
+
+#card_no {
+    font-size: 20px;
+    font-weight: 900;
+    color: #000;
+    grid-column: 1 / -1;
+}
+
+#card_name {
+    grid-column: span 2;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#signature {
+    background-image: radial-gradient(circle 964.7px at 10% 20%,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(46, 52, 79, 1) 44%,
+            rgba(187, 187, 187, 1) 100.1%);
+}
+
+#card_cvv {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 40px;
+    font-size: 0.8rem;
+}
+
+#magnetic_stripe {
+    background-image: radial-gradient(circle farthest-corner at 6.7% 22.9%,
+            rgba(187, 187, 187, 1) 0%,
+            rgba(240, 241, 242, 1) 96.6%);
+    height: 40px;
+
+    margin-left: -20px;
+    margin-right: -20px;
+    grid-column: 1 / -1;
+}
+
+
+
+.card-labels {
+    font-size: 0.75rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.card-holder-label {
+    grid-column: span 2;
+}
+
+#disclaimer {
+    font-size: 0.4rem;
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: grid;
+    grid-template-columns: 120px 120px 50px 120px;
+    grid-template-areas:
+        "cardNoLabel          cardNoInput          cardNoInput     cardNoInput"
+        "cardNameLabel        cardNameInput        cardNameInput   cardNameInput"
+        "cardExpiryLabel      cardExpiryInput      cardCvvLabel    cardCvvInput";
+    grid-gap: 30px;
+}
+
+.credit-card-form .row {
+}
+
+.credit-card-form .form-group>* {
+    padding: 15px 12px;
+    font-size: 0.9rem;
+    color: #211c1d;
+}
+
+#card_no_input {
+    grid-area: cardNoInput;
+}
+
+#card_name_input {
+    grid-area: cardNameInput;
+}
+
+
+/* CREDIT CARD FORM END */
+
+
 /* MEDIA QUERIES START */
 
 @media(min-width: 1400px) {
@@ -2484,6 +2778,14 @@ input:focus {
 }
 
 @media(max-width: 1400px) {
+    .navbar-nav {
+        gap: 20px;
+    }
+
+    .navbar .megamenu {
+        padding: 2rem 5rem;
+    }
+
     .all-products .card-wrapper {
         width: 256px !important;
     }
@@ -2496,15 +2798,6 @@ input:focus {
 }
 
 
-@media(max-width: 1400px) {
-    .navbar-nav {
-        gap: 20px;
-    }
-
-    .navbar .megamenu {
-        padding: 2rem 5rem;
-    }
-}
 
 @media (max-width:992px) and (min-width:770px) {
     .basket_product__img {
@@ -2903,13 +3196,64 @@ input:focus {
         margin-top: 50px;
     }
 
+    .credit-card-form .container {
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .credit-card-form .parent .child {
+        padding: 40px 0 30px 0;
+    }
+
+    .credit-card-form .parent .child .container {
+        gap: 30px;
+    }
+
+    #credit-card {
+        width: 400px;
+        height: auto;
+    }
+
+    .credit-card-form .form-group {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "cardNoLabel"
+            "cardNoInput"
+            "cardNameLabel"
+            "cardNameInput"
+            "cardExpiryLabel"
+            "cardExpiryInput"
+            "cardCvvLabel"
+            "cardCvvInput";
+    }
+
+    .credit-card-form {
+        margin: unset;
+        display: unset;
+        justify-content: unset;
+        align-items: unset;
+        min-height: unset;
+        padding: 0 20px;
+    }
+
+    .credit-card-form .row {
+        padding: 30px;
+        gap: 50px;
+    }
+
+    .credit-card-form .form-group {
+        grid-gap: 0;
+    }
+
 }
 
 @media (max-width:770px) and (min-width:480px) {
-   .basket__page .second_row_wrapper {
+    .basket__page .second_row_wrapper {
         margin-top: 70px;
     }
 }
+
 
 @media(max-width: 770px) {
     .all-products {
@@ -3072,6 +3416,8 @@ input:focus {
 
 }
 
+
+
 @media(max-width: 480px) {
     .slick-track {
         display: flex !important;
@@ -3189,6 +3535,7 @@ input:focus {
         gap: 18px;
     }
 }
+
 
 
 

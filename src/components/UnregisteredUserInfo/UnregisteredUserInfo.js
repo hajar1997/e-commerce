@@ -14,6 +14,7 @@ import {
 import UnregisteredInfoEdit from "../UnregisteredInfoEdit/UnregisteredInfoEdit";
 const { Option } = Select;
 
+
 const prefixSelector = (
   <Form.Item name="prefix" noStyle bordered={false}>
     <Select
@@ -31,7 +32,10 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
+const UnregisteredUserInfo = ({
+  setEditInfoClicked,
+  editInfoClicked,
+}) => {
   const [users, setUsers] = useState([]);
   const [userInfoForm] = useForm();
   const [isPersonalInfoClicked, setIsPersonalInfoClicked] = useState(true);
@@ -44,7 +48,6 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
     const part3 = formattedNumber.slice(5, 7);
     return `${part1}-${part2}-${part3}`;
   };
-
   const phoneNumber = users.map((user) => user.phone);
   const formattedPhoneNumber = formatNumberWithDashes(phoneNumber);
 
@@ -72,46 +75,24 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
         message.error("Xəta baş verdi");
       });
   };
-  const id = localStorage.getItem("unregistered_user_id");
-
-  const getData = async () => {
-    if (id) {
-      await axios
-        .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
-        .then((res) => {
-          const user = res.data;
-          setUsers([user]);
-        })
-        .catch((err) => {
-          localStorage.removeItem("unregistered_user_id");
-        });
-    } else {
-      localStorage.removeItem("unregistered_user_id");
-    }
-  };
-
   useEffect(() => {
-    getData();
-
-    const handleBeforeUnload = () => {
-      if (users.length !== 0) {
-        axios
-          .delete(`http://localhost:8001/unregisteredOrderInfo/${id}`)
-          .then(() => {
-            localStorage.removeItem("unregistered_user_id");
+    const id = localStorage.getItem("unregistered_user_id");
+    const getData = async () => {
+      if (id) {
+        await axios
+          .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
+          .then((res) => {
+            const user = res.data;
+            setUsers([user]);
           })
           .catch((err) => {
-            console.log("Error occurred while deleting user info:", err);
+            console.log(err);
           });
       }
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [submitted, id]);
+    getData();
+  }, [submitted]);
 
   return (
     <div>
@@ -140,7 +121,10 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
                   <div className="icon_and_edit">
                     <a
                       href="#"
-                      onClick={() => setEditInfoClicked(!editInfoClicked)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setEditInfoClicked(!editInfoClicked);
+                      }}
                     >
                       Düzəliş et
                     </a>

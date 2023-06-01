@@ -55,14 +55,14 @@ const UnregisteredUserAddress = () => {
         });
     }
   };
-
   useEffect(() => {
     getData();
-  }, [submitted]);
+  }, [unregistered_id, submitted]);
 
   return (
     <div>
       {submitted ? (
+        users.length > 0 &&
         users.map((user) =>
           editAddressClicked ? (
             <UnregisteredAddressEdit
@@ -81,7 +81,10 @@ const UnregisteredUserAddress = () => {
                 <div className="icon_and_edit">
                   <a
                     href="#"
-                    onClick={() => setEditAddressClicked(!editAddressClicked)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setEditAddressClicked(!editAddressClicked);
+                    }}
                   >
                     Düzəliş et
                   </a>
@@ -95,14 +98,15 @@ const UnregisteredUserAddress = () => {
               </div>
               {isDeliveryClicked && (
                 <div className="customer_infos__container">
-                  {users?.map((user) =>
-                    user?.addresses?.map((add) => (
-                      <div className="d-flex flex-column">
-                        <span>{add?.address}</span>
-                        <span className="mt-2">{add?.apartment}</span>
-                      </div>
-                    ))
-                  )}
+                  {users.length > 0 &&
+                    users.map((user) =>
+                      user?.addresses?.map((add) => (
+                        <div className="d-flex flex-column">
+                          <span>{add?.address}</span>
+                          <span className="mt-2">{add?.apartment}</span>
+                        </div>
+                      ))
+                    )}
                 </div>
               )}
             </div>

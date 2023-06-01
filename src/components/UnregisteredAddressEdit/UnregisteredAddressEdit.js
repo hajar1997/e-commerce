@@ -54,6 +54,9 @@ const UnregisteredAddressEdit = ({
         };
         setInitialValues(initialValues);
         deliveryForm.setFieldsValue(initialValues);
+      })
+      .catch((err) => {
+        message.error("Error occurred while fetching user data");
       });
   };
 

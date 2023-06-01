@@ -24,7 +24,13 @@ const NotClickedPaymentUserInfo = ({
           1. Şəxsi məlumatlar
         </h6>
         <div className="icon_and_edit">
-          <a href="#" onClick={() => setEditInfoClicked(!editInfoClicked)}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setEditInfoClicked(!editInfoClicked);
+            }}
+          >
             Düzəliş et
           </a>
           <CheckCircleFilled

@@ -27,22 +27,32 @@ const UserPayment = () => {
   const [cvv, setCvv] = useState("");
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const id = localStorage.getItem("current_id");
-
+  const unregistered_user_id = localStorage.getItem("unregistered_user_id");
   const navigate = useNavigate();
   const location = useLocation();
-  const orderData = location.state && location.state;
-  const productId = orderData.orderData.products.map((i) => i.id);
-  const productQuantity = orderData.orderData.products.map((q) => q.quantity);
-  const totalPrice = orderData.orderData.totalPrice;
-  const giftPackagePrice = orderData.orderData.giftPackagePrice;
-  const totalPriceWithGiftPackage =
-    orderData.orderData.totalPriceWithGiftPackage;
+  const orderData = location.state && location.state.orderData;
+  const productId = orderData?.products?.map((i) => i.id);
+  const productQuantity = orderData?.products?.map((q) => q.quantity);
+  const totalPrice = orderData?.totalPrice;
+  const giftPackagePrice = orderData?.giftPackagePrice;
+  const totalPriceWithGiftPackage = orderData?.totalPriceWithGiftPackage;
 
   const getData = async () => {
-    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
-      const user = res.data;
-      setUsers([user]);
-    });
+    if (isLoggedIn && id) {
+      await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+        const user = res.data;
+        setUsers([user]);
+      });
+    } else if (!isLoggedIn && unregistered_user_id) {
+      await axios
+        .get(
+          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`
+        )
+        .then((res) => {
+          const user = res.data;
+          setUsers([user]);
+        });
+    }
   };
 
   const handlePaymentChange = (e) => {
@@ -53,10 +63,18 @@ const UserPayment = () => {
     const updatedUser = { ...users[0] };
 
     if (selectedPayment === "Qapıda nağd ödəmə") {
+      navigate("/completed-order-detail", {
+        state: {
+          products: productId.map((id, index) => ({
+            productId: id,
+            quantity: productQuantity[index],
+          })),
+        },
+      });
       updatedUser.orders = [
         {
           paymentMethod: selectedPayment,
-          products: productId.map((id, index) => ({
+          products: productId?.map((id, index) => ({
             productId: id,
             quantity: productQuantity[index],
           })),
@@ -64,39 +82,52 @@ const UserPayment = () => {
         },
       ];
     } else if (selectedPayment === "Onlayn kart ilə ödəmə") {
-      updatedUser.orders = [
-        {
+      navigate("/credit-card-form", {
+        state: {
           payment: [
             {
               paymentMethod: selectedPayment,
-              productId: productId,
-              productQuantity: productQuantity,
+              products: productId.map((id, index) => ({
+                productId: id,
+                quantity: productQuantity[index],
+              })),
               totalPrice: totalPriceWithGiftPackage,
-              cardNumber: cardNumber,
-              expiryDate: expiryDate,
-              cvv: cvv,
             },
           ],
         },
-      ];
-    }
-
-    await axios
-      .put(`http://localhost:8001/users/${id}`, updatedUser)
-      .then((res) => {
-        navigate("/completed-order-detail", {
-          state: {
-            products: productId.map((id, index) => ({
-              productId: id,
-              quantity: productQuantity[index],
-            })),
-          },
-        });
-        console.log("User updated successfully:", res.data);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
       });
+      return;
+    }
+    if (isLoggedIn) {
+      await axios
+        .put(`http://localhost:8001/users/${id}`, updatedUser)
+        .then((res) => {
+          console.log("User updated successfully:", res.data);
+        })
+        .catch((error) => {
+          console.error("Error updating user:", error);
+        });
+    } else {
+      await axios
+        .patch(
+          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`,
+          updatedUser
+        )
+        .then((res) => {
+          navigate("/completed-order-detail", {
+            state: {
+              products: productId?.map((id, index) => ({
+                productId: id,
+                quantity: productQuantity[index],
+              })),
+            },
+          });
+          console.log("User updated successfully:", res.data);
+        })
+        .catch((error) => {
+          console.error("Error updating user:", error);
+        });
+    }
   };
 
   useEffect(() => {
