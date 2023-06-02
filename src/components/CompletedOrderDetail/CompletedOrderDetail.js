@@ -23,10 +23,10 @@ const CompletedOrderDetail = () => {
   const product = location.state && location.state;
   const productIds = product.products.map((product) => product.productId);
   const productQuantity = product.products.map((product) => product.quantity);
-
   const { phones, accessories, smartWatches } = useSelector(
     (state) => state.main
   );
+
   const filteredProducts = [
     ...phones.filter((product) => product),
     ...accessories.filter((product) => product),
@@ -37,23 +37,10 @@ const CompletedOrderDetail = () => {
     productIds.some((id) => id === product.id)
   );
 
-  const getData = async () => {
-    if (isLoggedIn) {
-      await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
-        const user = res.data;
-        setUsers([user]);
-      });
-    } else {
-      await axios
-        .get(
-          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`
-        )
-        .then((res) => {
-          const user = res.data;
-          setUsers([user]);
-        });
-    }
-  };
+  const newlyOrderedProducts = sameId.filter((product) =>
+    productIds.includes(product.id)
+  );
+
   const formatNumberWithDashes = (number) => {
     const formattedNumber = number.toString();
     const part1 = formattedNumber.slice(0, 3);
@@ -66,8 +53,26 @@ const CompletedOrderDetail = () => {
   const formattedPhoneNumber = formatNumberWithDashes(phoneNumber);
 
   useEffect(() => {
+    const getData = async () => {
+      try {
+        if (isLoggedIn) {
+          const response = await axios.get(`http://localhost:8001/users/${id}`);
+          const user = response.data;
+          setUsers([user]);
+        } else {
+          const response = await axios.get(
+            `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`
+          );
+          const user = response.data;
+          setUsers([user]);
+        }
+      } catch (error) {
+        console.log("Error fetching user data:", error);
+      }
+    };
+
     getData();
-  }, []);
+  }, [isLoggedIn, unregistered_user_id]);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -82,7 +87,7 @@ const CompletedOrderDetail = () => {
         </div>
         <div className="order__detail mt-4">
           <div className="ordered-products">
-            {sameId.map((item, index) => (
+            {newlyOrderedProducts.map((item, index) => (
               <div className="ordered_product_info">
                 <div className="op__img">
                   <img src={item.img[0]} />
@@ -128,22 +133,22 @@ const CompletedOrderDetail = () => {
             type="horizontal"
           />
           <div className="customer_info mt-4">
-            {users.map((user) => (
+            {users?.map((user) => (
               <>
                 <div className="customer_personal_info">
                   <h6>Şəxsi məlumatlar</h6>
                   <div className="customer_infos__container">
-                    <span>{user.name}</span>
-                    <span>{user.surname}</span>
+                    <span>{user?.name}</span>
+                    <span>{user?.surname}</span>
                     <span>
                       ({user?.prefix}) {formattedPhoneNumber}
                     </span>
-                    <span>{user.email}</span>
+                    <span>{user?.email}</span>
                   </div>
                 </div>
                 <div className="customer_delivery_address">
                   <h6>Çatdırılma ünvanı</h6>
-                  {user.addresses.map((u) => (
+                  {user?.addresses?.map((u) => (
                     <div className="customer_address_container">
                       <span>{u.address}</span>
                       <span>{u.apartment}</span>
@@ -165,8 +170,8 @@ const CompletedOrderDetail = () => {
               Ödəmə detalları
             </h6>
             <div className="total_container">
-              {users.map((user) =>
-                user.orders.map((order) => (
+              {users?.map((user) =>
+                user?.orders?.map((order) => (
                   <>
                     <div className="cost mt-3">
                       <h6>Ödəmə metodu</h6>
@@ -190,13 +195,7 @@ const CompletedOrderDetail = () => {
                     </div>
                     <div className="cost mt-3">
                       <h6>Toplam məbləğ</h6>
-                      <span>
-                        {order.totalPrice}
-                        <FontAwesomeIcon
-                          style={{ marginLeft: "9px" }}
-                          icon={faManatSign}
-                        />
-                      </span>
+                      <span>{order.totalPrice} $</span>
                     </div>
                     <Divider
                       className="divider-destkop for__order_details"
@@ -213,11 +212,7 @@ const CompletedOrderDetail = () => {
                         Cəmi
                       </h6>
                       <span style={{ color: "#DB2C66" }}>
-                       {order.totalPrice}
-                        <FontAwesomeIcon
-                          style={{ marginLeft: "9px" }}
-                          icon={faManatSign}
-                        />
+                        {order.totalPrice} $
                       </span>
                     </div>
                   </>

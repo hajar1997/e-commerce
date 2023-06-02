@@ -20,7 +20,6 @@ import OrderDetails from "../components/OrderDetails/OrderDetails";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [selectedPath, setSelectedPath] = useState(
     localStorage.getItem("selectedPath") || "/my-orders"
   );

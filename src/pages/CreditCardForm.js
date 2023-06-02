@@ -17,14 +17,14 @@ const CreditCardForm = () => {
   const [isCardFlipped, setCardFlipped] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const orderData = location.state && location.state.orderData;
+  const orderData = location.state && location.state;
   const productId = orderData?.products?.map((i) => i.productId);
   const productQuantity = orderData?.products?.map((q) => q.quantity);
   const totalPrice = orderData?.totalPrice;
   const id = localStorage.getItem("current_id");
   const unregistered_user_id = localStorage.getItem("unregistered_user_id");
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  console.log(totalPrice);
+  console.log(productId);
   const getData = async () => {
     if (isLoggedIn && id) {
       await axios.get(`http://localhost:8001/users/${id}`).then((res) => {

@@ -1498,7 +1498,8 @@ input:focus {
     align-items: center;
     justify-content: space-evenly;
     background-color: white;
-    padding: 10px 0px;
+    padding: 10px 40px;
+    gap: 27px;
     border-radius: 8px;
 }
 
@@ -1656,7 +1657,7 @@ input:focus {
 
 .basket_product__container {
     display: flex;
-    gap: 10px;
+    gap: 50px;
     align-items: center;
 }
 
@@ -1665,7 +1666,7 @@ input:focus {
 }
 
 .basket_product__img img {
-    width: 100%;
+    width: 100px;
 }
 
 .basket_product__info {
@@ -2748,8 +2749,6 @@ input:focus {
     grid-gap: 30px;
 }
 
-.credit-card-form .row {
-}
 
 .credit-card-form .form-group>* {
     padding: 15px 12px;
@@ -2767,6 +2766,20 @@ input:focus {
 
 
 /* CREDIT CARD FORM END */
+
+/* My Orders Start */
+.my_orders .basket__product {
+    position: relative;
+}
+
+.my_orders .remove__product {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+}
+
+/* My Orders End */
+
 
 
 /* MEDIA QUERIES START */
@@ -3271,7 +3284,8 @@ input:focus {
     .basket_product {
         flex-direction: column;
         align-items: normal;
-        padding: 39px 25px;
+        padding: 39px 17px;
+        gap: 30px;
         position: relative;
     }
 

@@ -84,16 +84,12 @@ const UserPayment = () => {
     } else if (selectedPayment === "Onlayn kart ilə ödəmə") {
       navigate("/credit-card-form", {
         state: {
-          payment: [
-            {
-              paymentMethod: selectedPayment,
-              products: productId.map((id, index) => ({
-                productId: id,
-                quantity: productQuantity[index],
-              })),
-              totalPrice: totalPriceWithGiftPackage,
-            },
-          ],
+          paymentMethod: selectedPayment,
+          products: productId.map((id, index) => ({
+            productId: id,
+            quantity: productQuantity[index],
+          })),
+          totalPrice: totalPriceWithGiftPackage,
         },
       });
       return;

@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
   faMinus,
-  faManatSign,
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -94,7 +93,7 @@ const AddToBasket = () => {
     const updatedBasketProducts = basketProducts.map((item) => {
       if (item.id === id) {
         const updatedQuantity = item.quantity + 1;
-        dispatch(updateBasketProduct(id, updatedQuantity)); // Send updated quantity to the database
+        dispatch(updateBasketProduct(id, updatedQuantity));
         return {
           ...item,
           quantity: updatedQuantity,
@@ -109,7 +108,7 @@ const AddToBasket = () => {
     const updatedBasketProducts = basketProducts.map((item) => {
       if (item.id === id && item.quantity > 1) {
         const updatedQuantity = item.quantity - 1;
-        dispatch(updateBasketProduct(id, updatedQuantity)); // Send updated quantity to the database
+        dispatch(updateBasketProduct(id, updatedQuantity));
         return {
           ...item,
           quantity: updatedQuantity,
@@ -158,7 +157,8 @@ const AddToBasket = () => {
                         <div className="product__title">
                           <h6>
                             {item.productBrand}, {item.productModel},{" "}
-                            {item.memory}GB, {item.productColor}
+                            {item.memory ? item.memory + " GB," : ""}{" "}
+                            {item.productColor}
                           </h6>
                         </div>
                         <div className="product_color_and_cost for_destkop">

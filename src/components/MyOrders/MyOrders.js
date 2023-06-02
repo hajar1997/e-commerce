@@ -1,52 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { fetchData } from "../../redux/actions/action";
 import { Button } from "antd";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const MyOrders = ({ handleMenuClick }) => {
-  const [products, setProducts] = useState([
-    {
-      id: "1",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-    {
-      id: "2",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-    {
-      id: "3",
-      productBrand: "Apple",
-      productModel: "iPhone 7",
-      memory: "32",
-      productColor: "Black",
-      img: [
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-        "/images/iphone-7-black.jpg",
-      ],
-      price: "340",
-      count: 0,
-    },
-  ]);
-  const handleClick = (key) => {
+  const [users, setUsers] = useState([]);
+  const id = localStorage.getItem("current_id");
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const dispatch = useDispatch();
+
+  const { phones, accessories, smartWatches } = useSelector(
+    (state) => state.main
+  );
+
+  const productIds = users?.flatMap((user) =>
+    user?.orders?.flatMap((order) =>
+      order?.products?.map((product) => product.productId)
+    )
+  );
+
+  const filteredProducts = [
+    ...phones.filter((product) => product),
+    ...accessories.filter((product) => product),
+    ...smartWatches.filter((product) => product),
+  ];
+
+  const sameId = filteredProducts.filter((product) =>
+    productIds.some((id) => id === product.id)
+  );
+
+  const getData = async () => {
+    if (isLoggedIn) {
+      await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+        const user = res.data;
+        setUsers([user]);
+      });
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  const handleClick = (id) => {
+    localStorage.setItem("ordered-productId", id);
     handleMenuClick({ key: `/order-details` });
   };
 
@@ -59,11 +61,11 @@ const MyOrders = ({ handleMenuClick }) => {
           marginBottom: "30px",
         }}
       >
-        {!products.length
+        {!users.length
           ? "Sifarişlərim"
-          : `Sifarişlərim (${products.length} məhsul)`}
+          : `Sifarişlərim (${users.length} məhsul)`}
       </h5>
-      {!products.length && (
+      {!users.length && (
         <div className="inside_basket for_empty">
           <div className="is__empty">
             <img src="/images/shopping-cart.svg" />
@@ -72,7 +74,7 @@ const MyOrders = ({ handleMenuClick }) => {
         </div>
       )}
       <div className="inside__basket">
-        {products?.map((product) => (
+        {sameId?.map((product) => (
           <div className="basket__product" key={product.id}>
             <div className="basket_product__container">
               <div className="basket_product__img">
@@ -85,7 +87,7 @@ const MyOrders = ({ handleMenuClick }) => {
                 </div>
                 <div className="basket__product_total_cost">
                   <span>Ümumi məbləğ:</span>
-                  <h6>240 $</h6>
+                  <h6>{product.price} $</h6>
                 </div>
                 <Button
                   onClick={() => handleClick(product.id)}
