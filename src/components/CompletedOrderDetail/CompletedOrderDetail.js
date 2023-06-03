@@ -171,52 +171,58 @@ const CompletedOrderDetail = () => {
             </h6>
             <div className="total_container">
               {users?.map((user) =>
-                user?.orders?.map((order) => (
-                  <>
-                    <div className="cost mt-3">
-                      <h6>Ödəmə metodu</h6>
-                      {order.paymentMethod === "Qapıda nağd ödəmə" ? (
-                        <span>
-                          <FontAwesomeIcon
-                            style={{ marginLeft: "9px", color: "#2DD06E" }}
-                            icon={faMoneyBill}
-                          />
-                          Nəğd
+                user?.orders
+                  ?.filter((order) =>
+                    order.products.some((product) =>
+                      productIds.includes(product.productId)
+                    )
+                  )
+                  .map((order) => (
+                    <>
+                      <div className="cost mt-3">
+                        <h6>Ödəmə metodu</h6>
+                        {order.paymentMethod === "Qapıda nağd ödəmə" ? (
+                          <span>
+                            <FontAwesomeIcon
+                              style={{ marginLeft: "9px", color: "#2DD06E" }}
+                              icon={faMoneyBill}
+                            />
+                            Nəğd
+                          </span>
+                        ) : (
+                          <span>
+                            <FontAwesomeIcon
+                              style={{ marginLeft: "9px", color: "#2DD06E" }}
+                              icon={faCreditCard}
+                            />
+                            Kart ilə
+                          </span>
+                        )}
+                      </div>
+                      <div className="cost mt-3">
+                        <h6>Toplam məbləğ</h6>
+                        <span>{order.totalPrice} $</span>
+                      </div>
+                      <Divider
+                        className="divider-destkop for__order_details"
+                        type="horizontal"
+                      />
+                      <div className="cost mt-3">
+                        <h6
+                          style={{
+                            fontSize: "16px",
+                            color: " #1D2123",
+                            fontWeight: "600",
+                          }}
+                        >
+                          Cəmi
+                        </h6>
+                        <span style={{ color: "#DB2C66" }}>
+                          {order.totalPrice} $
                         </span>
-                      ) : (
-                        <span>
-                          <FontAwesomeIcon
-                            style={{ marginLeft: "9px", color: "#2DD06E" }}
-                            icon={faCreditCard}
-                          />
-                          Kart ilə
-                        </span>
-                      )}
-                    </div>
-                    <div className="cost mt-3">
-                      <h6>Toplam məbləğ</h6>
-                      <span>{order.totalPrice} $</span>
-                    </div>
-                    <Divider
-                      className="divider-destkop for__order_details"
-                      type="horizontal"
-                    />
-                    <div className="cost mt-3">
-                      <h6
-                        style={{
-                          fontSize: "16px",
-                          color: " #1D2123",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Cəmi
-                      </h6>
-                      <span style={{ color: "#DB2C66" }}>
-                        {order.totalPrice} $
-                      </span>
-                    </div>
-                  </>
-                ))
+                      </div>
+                    </>
+                  ))
               )}
             </div>
           </div>

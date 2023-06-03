@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ForgetPasswordPage = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
+    navigate("/mail-check");
     console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
@@ -46,7 +47,6 @@ const ForgetPasswordPage = () => {
                   </Form.Item>
                   <Form.Item>
                     <Button
-                    onClick={() => navigate("/mail-check")}
                       type="primary"
                       htmlType="submit"
                       style={{

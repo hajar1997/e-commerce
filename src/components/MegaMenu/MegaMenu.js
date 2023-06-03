@@ -1,6 +1,7 @@
 import React from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 const MegaMenu = () => {
   const categories = [
@@ -12,6 +13,8 @@ const MegaMenu = () => {
     "Aksessuarlar",
     "Endirimlər",
   ];
+
+ const navigate = useNavigate();
 
   return (
     <div>
@@ -167,8 +170,8 @@ const MegaMenu = () => {
             ))}
           </ul>
           <div className="login-and-register-wrapper container">
-            <button className="btn login-btn">Daxil ol</button>
-            <button className="btn register-btn">Qeydiyyat</button>
+            <button className="btn login-btn" onClick={() => navigate('/login')}>Daxil ol</button>
+            <button className="btn register-btn" onClick={() => navigate('/register') }>Qeydiyyat</button>
           </div>
         </div>
       </nav>

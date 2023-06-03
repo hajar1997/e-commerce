@@ -1438,7 +1438,6 @@ input:focus {
 /* Add To Basket Start */
 .basket__page header {
     background-color: white;
-    padding: 20px 0px 0px;
 }
 
 .basket__page .hr-line {
@@ -1785,6 +1784,7 @@ input:focus {
     grid-template-columns: 4fr 4fr 1fr;
     justify-content: space-between;
 }
+
 
 .customer_info h6 {
     font-weight: 600;
@@ -2914,12 +2914,17 @@ input:focus {
         order: 3;
     }
 
+    .header-icons .ant-space {
+        align-items: end;
+    }
+
     .search-bar {
         order: 4;
     }
 
     nav {
         justify-content: space-between;
+        align-items: flex-start;
     }
 
     .navbar-toggler {
@@ -3367,7 +3372,8 @@ input:focus {
     }
 
     .customer_info {
-        grid-template-columns: 4fr 2fr;
+        grid-template-columns: 4fr 4fr;
+        align-items: baseline;
     }
 
     .customer_delivery_address {
@@ -3547,6 +3553,13 @@ input:focus {
 
     .login_with {
         gap: 18px;
+    }
+
+
+    .customer_info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 }
 

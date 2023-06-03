@@ -22,9 +22,7 @@ const UserPayment = () => {
   const [editAddressClicked, setEditAddressClicked] = useState(false);
   const [isPaymentChoiceClicked, setIsPaymentChoiceClicked] = useState(true);
   const [selectedPayment, setSelectedPayment] = useState(null);
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [cvv, setCvv] = useState("");
+
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const id = localStorage.getItem("current_id");
   const unregistered_user_id = localStorage.getItem("unregistered_user_id");
@@ -58,9 +56,28 @@ const UserPayment = () => {
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
   };
-
+// console.log(productId?.map((id, index) => id));
   const handlePaymentSubmit = async () => {
     const updatedUser = { ...users[0] };
+
+    const newOrder = {
+      paymentMethod: selectedPayment,
+      products: productId?.map((id, index) => ({
+        productId: id,
+        quantity: productQuantity[index],
+      })),
+      totalPrice: totalPriceWithGiftPackage,
+    };
+
+    if (isLoggedIn) {
+      if (updatedUser.orders) {
+        updatedUser.orders = [...updatedUser.orders, newOrder];
+      } else {
+        updatedUser.orders = [newOrder];
+      }
+    } else {
+      updatedUser.orders = [newOrder];
+    }
 
     if (selectedPayment === "Qapıda nağd ödəmə") {
       navigate("/completed-order-detail", {
@@ -71,16 +88,6 @@ const UserPayment = () => {
           })),
         },
       });
-      updatedUser.orders = [
-        {
-          paymentMethod: selectedPayment,
-          products: productId?.map((id, index) => ({
-            productId: id,
-            quantity: productQuantity[index],
-          })),
-          totalPrice: totalPriceWithGiftPackage,
-        },
-      ];
     } else if (selectedPayment === "Onlayn kart ilə ödəmə") {
       navigate("/credit-card-form", {
         state: {
@@ -94,6 +101,7 @@ const UserPayment = () => {
       });
       return;
     }
+
     if (isLoggedIn) {
       await axios
         .put(`http://localhost:8001/users/${id}`, updatedUser)

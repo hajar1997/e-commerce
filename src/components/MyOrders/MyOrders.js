@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../../redux/actions/action";
 import { Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const MyOrders = ({ handleMenuClick }) => {
@@ -61,15 +60,15 @@ const MyOrders = ({ handleMenuClick }) => {
           marginBottom: "30px",
         }}
       >
-        {!users.length
-          ? "Sifarişlərim"
-          : `Sifarişlərim (${users.length} məhsul)`}
+        {!users[0]?.orders?.length
+          ? "Sifarişlərim (0) məhsul"
+          : `Sifarişlərim (${users[0]?.orders?.length} məhsul)`}
       </h5>
-      {!users.length && (
+      {!users[0]?.orders?.length && (
         <div className="inside_basket for_empty">
           <div className="is__empty">
             <img src="/images/shopping-cart.svg" />
-            <h5 className="mt-4">Səbətiniz halhazırda boşdur</h5>
+            <h5 className="mt-4">Sifarişləriniz halhazırda boşdur</h5>
           </div>
         </div>
       )}

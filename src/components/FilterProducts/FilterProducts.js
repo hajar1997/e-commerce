@@ -146,7 +146,7 @@ const FilterProducts = () => {
             <Divider type="vertical" />
             <div
               className="rightSide__mobile"
-              onClick={() => setRightSideMobileIsOpen(true)}
+              onClick={() => setRightSideMobileIsOpen(!rightSideMobileIsOpen)}
             >
               <img src="/images/filter-icon.svg" />
               <h5>Filterləmələr</h5>
@@ -183,14 +183,6 @@ const FilterProducts = () => {
           {rightSideMobileIsOpen && (
             <div className="right-side-mobile__opened">
               <div className="container">
-                <div className="mversion_opened_header">
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    onClick={() => setRightSideMobileIsOpen(false)}
-                  />
-                  <h6>Filterləmələr</h6>
-                </div>
-                <Divider className="hr-divider" type="horizontal" />
                 {main.categories.map((category) => (
                   <FilterDropdown
                     key={category.id}

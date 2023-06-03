@@ -27,8 +27,8 @@
       "addresses": [
         {
           "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "Bina 10, mənzil 40",
-          "comment": "1"
+          "apartment": "54654",
+          "comment": "fdgfd"
         }
       ]
     },
@@ -45,22 +45,6 @@
           "address": "Nərimanov rayonu,Təbriz küçəsi",
           "apartment": "Bina 10 mənzil 40",
           "comment": "3424"
-        }
-      ],
-      "orders": [
-        {
-          "paymentMethod": "Kart ilə ödəmə",
-          "products": [
-            {
-              "productId": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
-              "quantity": 1
-            }
-          ],
-          "totalPrice": 375,
-          "cardNumber": "5635 5265 4752 3645",
-          "cardName": "Ilahe Ibrahimova",
-          "expiryDate": "12/34",
-          "cvv": "123"
         }
       ]
     }
@@ -103,66 +87,7 @@
   ],
   "favorites": [],
   "basket": [],
-  "unregisteredOrderInfo": [
-    {
-      "id": 14049843341561,
-      "name": "Hajar",
-      "surname": "Ibrahimova",
-      "email": "ibrahimlihecer97@gmail.com",
-      "phone": 35345325,
-      "prefix": "070",
-      "addresses": [
-        {
-          "address": "Nərimanov rayonu,Təbriz küçəsii",
-          "apartment": "Bina 10 mənzil 40",
-          "comment": "dfsgsdfgs"
-        }
-      ],
-      "orders": [
-        {
-          "paymentMethod": "Qapıda nağd ödəmə",
-          "products": [
-            {
-              "productId": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
-              "quantity": 2
-            }
-          ],
-          "totalPrice": 745
-        }
-      ]
-    },
-    {
-      "id": 9223796012269,
-      "name": "Hajar",
-      "surname": "Ibrahimova",
-      "email": "ibrahimlihecer97@gmail.com",
-      "phone": 12323414,
-      "prefix": "070",
-      "addresses": [
-        {
-          "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "Bina 10 mənzil 40",
-          "comment": "123123"
-        }
-      ],
-      "orders": [
-        {
-          "paymentMethod": "Kart ilə ödəmə",
-          "products": [
-            {
-              "productId": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
-              "quantity": 2
-            }
-          ],
-          "totalPrice": 745,
-          "cardNumber": "1231 2312 3131 2312",
-          "cardName": "Hajar Ibrahimova",
-          "expiryDate": "12/31",
-          "cvv": "1231"
-        }
-      ]
-    }
-  ],
+  "unregisteredOrderInfo": [],
   "phones": [
     {
       "id": "94e1735e-63e4-4134-b74e-e4ec006755b9",
@@ -652,15 +577,7 @@
       ],
       "productColor": "Black",
       "price": "179.99",
-      "comments": [
-        {
-          "name": "Hajar",
-          "surname": "Ibrahimova",
-          "email": "ibrahimlihecer97@gmail.com",
-          "comment": "Ela!",
-          "rating": 5
-        }
-      ]
+      "comments": []
     },
     {
       "id": "34a9df59-535b-44d5-8cc9-7f8184459b29",
@@ -740,15 +657,7 @@
       ],
       "productColor": "Black",
       "price": "118.95",
-      "comments": [
-        {
-          "name": "Hajar",
-          "surname": "Ibrahimova",
-          "email": "hajaribra.dev@gmail.com",
-          "comment": "watch",
-          "rating": 0
-        }
-      ]
+      "comments": []
     },
     {
       "id": "fd4c6e00-fe77-4626-86e6-e31b27f9a8b2",

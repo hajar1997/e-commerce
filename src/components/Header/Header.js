@@ -6,6 +6,7 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Space } from "antd";
+import { useNavigate } from "react-router-dom";
 import { fetchBasket, fetchFavorites } from "../../redux/actions/action";
 import { useDispatch, useSelector } from "react-redux";
 import MegaMenu from "../MegaMenu/MegaMenu";
@@ -18,14 +19,17 @@ const Header = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const favorites = useSelector((state) => state.main.favorites.length);
   const basket = useSelector((state) => state.main.basket);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchBasket());
     dispatch(fetchFavorites());
   }, [dispatch]);
 
-  const basketCount = basket.reduce((total, product) => total + product.quantity, 0);
+  const basketCount = basket.reduce(
+    (total, product) => total + product.quantity,
+    0
+  );
   return (
     <header>
       <div className="container">
@@ -56,13 +60,13 @@ const Header = () => {
               >
                 <UserOutlined style={{ fontSize: "20px" }} />
               </Link>
-              <div className="heart-icon-header">
+              <div className="heart-icon-header" onClick={() => navigate('/favorites')}>
                 <Link className="text-dark" to={"/favorites"}>
                   <HeartOutlined style={{ fontSize: "20px" }} />
                   <div className="countOfFavorited ms-2">{favorites}</div>
                 </Link>
               </div>
-              <div className="shopping-icon d-flex align-items-center">
+              <div className="shopping-icon d-flex align-items-center" onClick={() => navigate('/basket')}>
                 <Link className="text-dark" to={"/basket"}>
                   <ShoppingCartOutlined style={{ fontSize: "20px" }} />
                 </Link>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link, useNavigate, useParams } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchSubmitted } from "../../redux/actions/action";
 import ColorCheckboxForSearchResults from "../ColorCheckboxForSearchResults/ColorCheckboxForSearchResults";
@@ -12,11 +12,9 @@ import {
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTimes,
   faPlus,
   faMinus,
   faDollarSign,
-  faManatSign,
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -167,7 +165,7 @@ const Results = () => {
             <Divider type="vertical" />
             <div
               className="rightSide__mobile"
-              onClick={() => setRightSideMobileIsOpen(true)}
+              onClick={() => setRightSideMobileIsOpen(!rightSideMobileIsOpen)}
             >
               <img src="/images/filter-icon.svg" />
               <h5>Filterləmələr</h5>
@@ -204,14 +202,6 @@ const Results = () => {
           {rightSideMobileIsOpen && (
             <div className="right-side-mobile__opened">
               <div className="container">
-                <div className="mversion_opened_header">
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    onClick={() => setRightSideMobileIsOpen(false)}
-                  />
-                  <h6>Filterləmələr</h6>
-                </div>
-                <Divider className="hr-divider" type="horizontal" />
                 <ColorCheckboxForSearchResults
                   categoryName="Rəng"
                   categoryItem={colors}

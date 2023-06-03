@@ -53,20 +53,30 @@ const CreditCardForm = () => {
         })),
       },
     });
-    updatedUser.orders = [
-      {
-        paymentMethod: "Kart ilə ödəmə",
-        products: productId.map((id, index) => ({
-          productId: id,
-          quantity: productQuantity[index],
-        })),
-        totalPrice: totalPrice,
-        cardNumber: cardNumber,
-        cardName: cardName,
-        expiryDate: expiryDate,
-        cvv: cvv,
-      },
-    ];
+
+    const newOrder = {
+      paymentMethod: "Kart ilə ödəmə",
+      products: productId.map((id, index) => ({
+        productId: id,
+        quantity: productQuantity[index],
+      })),
+      totalPrice: totalPrice,
+      cardNumber: cardNumber,
+      cardName: cardName,
+      expiryDate: expiryDate,
+      cvv: cvv,
+    };
+
+    if (isLoggedIn) {
+      if (updatedUser.orders) {
+        updatedUser.orders = [...updatedUser.orders, newOrder];
+      } else {
+        updatedUser.orders = [newOrder];
+      }
+    } else {
+      updatedUser.orders = [newOrder];
+    }
+
     if (isLoggedIn) {
       await axios
         .put(`http://localhost:8001/users/${id}`, updatedUser)
