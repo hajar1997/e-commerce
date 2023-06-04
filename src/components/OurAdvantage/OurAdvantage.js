@@ -9,27 +9,21 @@ const OurAdvantage = () => {
             <img src="/images/icon-1.svg" />
             <div className="advantage-context">
               <h6>Çatdırılma</h6>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit{" "}
-              </span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
             </div>
           </div>
           <div>
             <img src="/images/icon-2.svg" />
             <div className="advantage-context">
               <h6>Kredit</h6>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit{" "}
-              </span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
             </div>
           </div>
           <div>
             <img src="/images/icon-3.svg" />
             <div className="advantage-context">
               <h6>Zəmanət</h6>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit{" "}
-              </span>
+              <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
             </div>
           </div>
         </div>

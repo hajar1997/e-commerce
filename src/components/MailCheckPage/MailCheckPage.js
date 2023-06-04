@@ -6,10 +6,7 @@ const MailCheckPage = () => {
       <div className="mail_img">
         <img src="/images/undrawmail.svg" />
       </div>
-      <h5>
-        E - poçt ünvanınızı yoxlayın. Göndərilmiş linkə keçid edib şifrənizi
-        yeniləyin!
-      </h5>
+      <h5>E - poçt ünvanınızı yoxlayın. Göndərilmiş linkə keçid edib şifrənizi yeniləyin!</h5>
     </div>
   );
 };

@@ -4,25 +4,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "antd";
-import {
-  faManatSign,
-  faCreditCard,
-  faMoneyBill,
-} from "@fortawesome/free-solid-svg-icons";
+import {faCreditCard,faMoneyBill} from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import axios from "axios";
 
 const CompletedOrderDetail = () => {
   const [users, setUsers] = useState([]);
+
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const unregistered_user_id = localStorage.getItem("unregistered_user_id");
   const id = localStorage.getItem("current_id");
+  
   const dispatch = useDispatch();
   const location = useLocation();
+  
   const product = location.state && location.state;
   const productIds = product.products.map((product) => product.productId);
   const productQuantity = product.products.map((product) => product.quantity);
+  
   const { phones, accessories, smartWatches } = useSelector(
     (state) => state.main
   );

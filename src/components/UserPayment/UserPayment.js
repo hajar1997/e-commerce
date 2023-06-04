@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import UnregisteredUserInfo from "../UnregisteredUserInfo/UnregisteredUserInfo";
 import axios from "axios";
-import { Divider, Form, Button, Radio } from "antd";
+import { Divider, Button, Radio } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  CheckCircleOutlined,
-  CreditCardOutlined,
-  DollarCircleOutlined,
-} from "@ant-design/icons";
+import { CheckCircleOutlined, CreditCardOutlined, DollarCircleOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faManatSign } from "@fortawesome/free-solid-svg-icons";
 import ClickedInfoEdit from "../ClickedInfoEdit/ClickedInfoEdit";
@@ -26,8 +22,10 @@ const UserPayment = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const id = localStorage.getItem("current_id");
   const unregistered_user_id = localStorage.getItem("unregistered_user_id");
+
   const navigate = useNavigate();
   const location = useLocation();
+
   const orderData = location.state && location.state.orderData;
   const productId = orderData?.products?.map((i) => i.id);
   const productQuantity = orderData?.products?.map((q) => q.quantity);
@@ -42,21 +40,17 @@ const UserPayment = () => {
         setUsers([user]);
       });
     } else if (!isLoggedIn && unregistered_user_id) {
-      await axios
-        .get(
-          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`
-        )
-        .then((res) => {
-          const user = res.data;
-          setUsers([user]);
-        });
+      await axios.get(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`).then((res) => {
+        const user = res.data;
+        setUsers([user]);
+      });
     }
   };
 
   const handlePaymentChange = (e) => {
     setSelectedPayment(e.target.value);
   };
-// console.log(productId?.map((id, index) => id));
+  
   const handlePaymentSubmit = async () => {
     const updatedUser = { ...users[0] };
 
@@ -113,10 +107,7 @@ const UserPayment = () => {
         });
     } else {
       await axios
-        .patch(
-          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`,
-          updatedUser
-        )
+        .patch(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`, updatedUser)
         .then((res) => {
           navigate("/completed-order-detail", {
             state: {
@@ -154,30 +145,15 @@ const UserPayment = () => {
                   users.map((user) => (
                     <div>
                       {editInfoClicked ? (
-                        <ClickedInfoEdit
-                          getData={getData}
-                          user={user}
-                          editInfoClicked={editInfoClicked}
-                          setEditInfoClicked={setEditInfoClicked}
-                          users={users}
-                          setUsers={setUsers}
-                        />
+                        <ClickedInfoEdit getData={getData} user={user} editInfoClicked={editInfoClicked} setEditInfoClicked={setEditInfoClicked} users={users} setUsers={setUsers} />
                       ) : (
-                        <NotClickedPaymentUserInfo
-                          users={users}
-                          user={user}
-                          setEditInfoClicked={setEditInfoClicked}
-                          editInfoClicked={editInfoClicked}
-                        />
+                        <NotClickedPaymentUserInfo users={users} user={user} setEditInfoClicked={setEditInfoClicked} editInfoClicked={editInfoClicked} />
                       )}
                     </div>
                   ))
                 ) : (
                   <>
-                    <UnregisteredUserInfo
-                      editInfoClicked={editInfoClicked}
-                      setEditInfoClicked={setEditInfoClicked}
-                    />
+                    <UnregisteredUserInfo editInfoClicked={editInfoClicked} setEditInfoClicked={setEditInfoClicked} />
                   </>
                 )}
                 <Divider type="horizontal" />
@@ -186,19 +162,9 @@ const UserPayment = () => {
                     users?.map((user) => (
                       <div className="customer_personal_info__payment">
                         {editAddressClicked ? (
-                          <ClickedAddressEdit
-                            users={users}
-                            setUsers={setUsers}
-                            editAddressClicked={editAddressClicked}
-                            setEditAddressClicked={setEditAddressClicked}
-                          />
+                          <ClickedAddressEdit users={users} setUsers={setUsers} editAddressClicked={editAddressClicked} setEditAddressClicked={setEditAddressClicked} />
                         ) : (
-                          <NotClickedAddressEdit
-                            user={user}
-                            setUsers={setUsers}
-                            editAddressClicked={editAddressClicked}
-                            setEditAddressClicked={setEditAddressClicked}
-                          />
+                          <NotClickedAddressEdit user={user} setUsers={setUsers} editAddressClicked={editAddressClicked} setEditAddressClicked={setEditAddressClicked} />
                         )}
                       </div>
                     ))
@@ -209,13 +175,7 @@ const UserPayment = () => {
                 <Divider type="horizontal" />
                 <div className="payment_choice">
                   <div className="payment__header">
-                    <h6
-                      onClick={() =>
-                        setIsPaymentChoiceClicked(!isPaymentChoiceClicked)
-                      }
-                    >
-                      3. Ödəmə üsulu
-                    </h6>
+                    <h6 onClick={() => setIsPaymentChoiceClicked(!isPaymentChoiceClicked)}>3. Ödəmə üsulu</h6>
                     <CheckCircleOutlined
                       style={{
                         fontSize: "22px",
@@ -226,27 +186,13 @@ const UserPayment = () => {
                   {isPaymentChoiceClicked && (
                     <div>
                       <div className="payment_btns">
-                        <Radio.Group
-                          buttonStyle="solid"
-                          onChange={handlePaymentChange}
-                          value={selectedPayment}
-                        >
-                          <Radio.Button
-                            value="Onlayn kart ilə ödəmə"
-                            className="payment_choice_btn"
-                          >
-                            <CreditCardOutlined
-                              style={{ marginRight: "10px" }}
-                            />
+                        <Radio.Group buttonStyle="solid" onChange={handlePaymentChange} value={selectedPayment}>
+                          <Radio.Button value="Onlayn kart ilə ödəmə" className="payment_choice_btn">
+                            <CreditCardOutlined style={{ marginRight: "10px" }} />
                             Onlayn kart ilə ödəmə
                           </Radio.Button>
-                          <Radio.Button
-                            value="Qapıda nağd ödəmə"
-                            className="payment_choice_btn"
-                          >
-                            <DollarCircleOutlined
-                              style={{ marginRight: "10px" }}
-                            />
+                          <Radio.Button value="Qapıda nağd ödəmə" className="payment_choice_btn">
+                            <DollarCircleOutlined style={{ marginRight: "10px" }} />
                             Qapıda nağd ödəmə
                           </Radio.Button>
                         </Radio.Group>
@@ -284,30 +230,21 @@ const UserPayment = () => {
                 <h6>Məbləğ</h6>
                 <h6>
                   {totalPrice}
-                  <FontAwesomeIcon
-                    style={{ marginLeft: "9px" }}
-                    icon={faManatSign}
-                  />
+                  <FontAwesomeIcon style={{ marginLeft: "9px" }} icon={faManatSign} />
                 </h6>
               </div>
               <div className="cost mt-3">
                 <h6>Çatdırılma</h6>
                 <h6>
                   0.00
-                  <FontAwesomeIcon
-                    style={{ marginLeft: "9px" }}
-                    icon={faManatSign}
-                  />
+                  <FontAwesomeIcon style={{ marginLeft: "9px" }} icon={faManatSign} />
                 </h6>
               </div>
               <div className="cost mt-3">
                 <h6>Hədiyyə paketi</h6>
                 <h6>
                   {giftPackagePrice}
-                  <FontAwesomeIcon
-                    style={{ marginLeft: "9px" }}
-                    icon={faManatSign}
-                  />
+                  <FontAwesomeIcon style={{ marginLeft: "9px" }} icon={faManatSign} />
                 </h6>
               </div>
               <Divider type="horizontal" />
@@ -315,10 +252,7 @@ const UserPayment = () => {
                 <h6 style={{ fontWeight: "700" }}>Cəmi</h6>
                 <h6 style={{ color: "#DB2C66" }}>
                   {totalPriceWithGiftPackage}
-                  <FontAwesomeIcon
-                    style={{ marginLeft: "9px" }}
-                    icon={faManatSign}
-                  />
+                  <FontAwesomeIcon style={{ marginLeft: "9px" }} icon={faManatSign} />
                 </h6>
               </div>
             </div>

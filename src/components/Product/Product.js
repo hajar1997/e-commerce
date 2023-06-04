@@ -3,17 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const Product = ({
-  brand,
-  img,
-  model,
-  color,
-  memory,
-  price,
-  id,
-  handleHeartClick,
-  isProductFavorite,
-}) => {
+const Product = ({ brand, img, model, color, memory, price, id, handleHeartClick, isProductFavorite }) => {
   const { category } = useParams();
 
   return (

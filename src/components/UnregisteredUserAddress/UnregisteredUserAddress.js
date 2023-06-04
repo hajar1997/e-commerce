@@ -65,19 +65,11 @@ const UnregisteredUserAddress = () => {
         users.length > 0 &&
         users.map((user) =>
           editAddressClicked ? (
-            <UnregisteredAddressEdit
-              updateParentData={updateUser}
-              user={user}
-              setUsers={setUsers}
-              editAddressClicked={editAddressClicked}
-              setEditAddressClicked={setEditAddressClicked}
-            />
+            <UnregisteredAddressEdit updateParentData={updateUser} user={user} setUsers={setUsers} editAddressClicked={editAddressClicked} setEditAddressClicked={setEditAddressClicked} />
           ) : (
             <div>
               <div className="payment__header">
-                <h6 onClick={() => setIsDeliveryClicked(!isDeliveryClicked)}>
-                  2. Çatdırılma
-                </h6>
+                <h6 onClick={() => setIsDeliveryClicked(!isDeliveryClicked)}>2. Çatdırılma</h6>
                 <div className="icon_and_edit">
                   <a
                     href="#"
@@ -115,9 +107,7 @@ const UnregisteredUserAddress = () => {
       ) : (
         <>
           <div className="payment__header">
-            <h6 onClick={() => setIsDeliveryClicked(!isDeliveryClicked)}>
-              2. Çatdırılma
-            </h6>
+            <h6 onClick={() => setIsDeliveryClicked(!isDeliveryClicked)}>2. Çatdırılma</h6>
             <CheckCircleOutlined
               style={{
                 fontSize: "22px",

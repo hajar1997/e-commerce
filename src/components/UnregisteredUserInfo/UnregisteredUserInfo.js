@@ -2,18 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
 import axios from "axios";
 import { CheckCircleFilled, CheckCircleOutlined } from "@ant-design/icons";
-import {
-  Form,
-  Button,
-  Input,
-  InputNumber,
-  Select,
-  notification,
-  message,
-} from "antd";
+import { Form, Button, Input, InputNumber, Select, notification, message } from "antd";
 import UnregisteredInfoEdit from "../UnregisteredInfoEdit/UnregisteredInfoEdit";
 const { Option } = Select;
-
 
 const prefixSelector = (
   <Form.Item name="prefix" noStyle bordered={false}>
@@ -32,10 +23,7 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const UnregisteredUserInfo = ({
-  setEditInfoClicked,
-  editInfoClicked,
-}) => {
+const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
   const [users, setUsers] = useState([]);
   const [userInfoForm] = useForm();
   const [isPersonalInfoClicked, setIsPersonalInfoClicked] = useState(true);
@@ -111,13 +99,7 @@ const UnregisteredUserInfo = ({
             ) : (
               <>
                 <div className="payment__header">
-                  <h6
-                    onClick={() =>
-                      setIsPersonalInfoClicked(!isPersonalInfoClicked)
-                    }
-                  >
-                    1. Şəxsi məlumatlar
-                  </h6>
+                  <h6 onClick={() => setIsPersonalInfoClicked(!isPersonalInfoClicked)}>1. Şəxsi məlumatlar</h6>
                   <div className="icon_and_edit">
                     <a
                       href="#"
@@ -154,11 +136,7 @@ const UnregisteredUserInfo = ({
       ) : (
         <div>
           <div className="payment__header">
-            <h6
-              onClick={() => setIsPersonalInfoClicked(!isPersonalInfoClicked)}
-            >
-              1. Şəxsi məlumatlar
-            </h6>
+            <h6 onClick={() => setIsPersonalInfoClicked(!isPersonalInfoClicked)}>1. Şəxsi məlumatlar</h6>
             <CheckCircleOutlined
               style={{
                 fontSize: "22px",

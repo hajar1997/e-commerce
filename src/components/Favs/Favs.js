@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "antd";
-import {
-  fetchData,
-  fetchFavorites,
-  removeProductFromFavorites,
-  addProductToFavorites,
-  addProductToBasket,
-} from "../../redux/actions/action";
+import { fetchData, fetchFavorites, removeProductFromFavorites, addProductToFavorites, addProductToBasket } from "../../redux/actions/action";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
@@ -15,6 +9,7 @@ import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 const Favs = () => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.main.favorites);
+
   const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   const isProductFavorite = (id) => {
@@ -38,21 +33,13 @@ const Favs = () => {
     dispatch(fetchFavorites());
   }, [dispatch]);
 
-  const { phones, accessories, smartWatches } = useSelector(
-    (state) => state.main
-  );
+  const { phones, accessories, smartWatches } = useSelector((state) => state.main);
 
   useEffect(() => {
     const filteredProducts = [
-      ...phones.filter((product) =>
-        favorites.some((fav) => fav.id === product.id)
-      ),
-      ...accessories.filter((product) =>
-        favorites.some((fav) => fav.id === product.id)
-      ),
-      ...smartWatches.filter((product) =>
-        favorites.some((fav) => fav.id === product.id)
-      ),
+      ...phones.filter((product) => favorites.some((fav) => fav.id === product.id)),
+      ...accessories.filter((product) => favorites.some((fav) => fav.id === product.id)),
+      ...smartWatches.filter((product) => favorites.some((fav) => fav.id === product.id)),
     ];
 
     setFavoriteProducts(filteredProducts);
@@ -67,9 +54,7 @@ const Favs = () => {
               <h5>Bəyəndiklərim</h5>
               <div className="inside_basket for_empty">
                 <div className="is__empty">
-                  <HeartOutlined
-                    style={{ fontSize: "50px", color: "#4F4F4F" }}
-                  />
+                  <HeartOutlined style={{ fontSize: "50px", color: "#4F4F4F" }} />
                   <h5 className="mt-4">Favoriləriniz halhazırda boşdur</h5>
                 </div>
               </div>
@@ -160,26 +145,14 @@ const Favs = () => {
                           </div>
                         </div>
                         <div className="btn-favs-for-one-container btn-for1-destkop">
-                          <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="btn-favs-for-one"
-                            onClick={() => handleBasketClick(item.id)}
-                          >
-                            <ShoppingCartOutlined
-                              style={{ fontSize: "19px" }}
-                            />
+                          <Button type="primary" htmlType="submit" className="btn-favs-for-one" onClick={() => handleBasketClick(item.id)}>
+                            <ShoppingCartOutlined style={{ fontSize: "19px" }} />
                             Səbətə əlavə et
                           </Button>
                         </div>
                       </div>
                       <div className="btn-favs-for-one-container btn-for1-mobile">
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          className="btn-favs-for-one btn-favs-for-one-mobile"
-                          onClick={() => handleBasketClick(item.id)}
-                        >
+                        <Button type="primary" htmlType="submit" className="btn-favs-for-one btn-favs-for-one-mobile" onClick={() => handleBasketClick(item.id)}>
                           <ShoppingCartOutlined style={{ fontSize: "19px" }} />
                           Səbətə əlavə et
                         </Button>
@@ -189,9 +162,7 @@ const Favs = () => {
                       <FontAwesomeIcon
                         onClick={() => handleHeartClick(item.id)}
                         style={{
-                          color: isProductFavorite(item.id)
-                            ? "#dc3545"
-                            : "#c2c5ca",
+                          color: isProductFavorite(item.id) ? "#dc3545" : "#c2c5ca",
                           fontSize: "20px",
                         }}
                         icon={faHeart}

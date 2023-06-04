@@ -3,37 +3,27 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
 import { notification } from "antd";
-import {
-  fetchData,
-  addProductToBasket,
-  updateBasketProduct,
-} from "../../redux/actions/action";
+import { fetchData, addProductToBasket } from "../../redux/actions/action";
 import ImageGallery from "react-image-gallery";
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  ShoppingCartOutlined,
-  FormOutlined,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
+import { ShoppingCartOutlined, FormOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { Descriptions, Tabs, Divider, Button, Form, Input } from "antd";
-import {
-  faDollarSign,
-  faPlus,
-  faMinus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faDollarSign, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const ProductDetail = ({ main, fetchData }) => {
+const ProductDetail = () => {
   const { category, productBrand, id } = useParams();
   const [productCount, setProductCount] = useState(0);
   const [rating, setRating] = useState(0);
-  const dispatch = useDispatch();
-  const product = main[category]?.find((product) => product.id === id);
   const [comments, setComments] = useState([]);
+
+  const dispatch = useDispatch();
+  const main = useSelector((state) => state.main);
+  const product = main[category]?.find((product) => product.id === id);
+
   const navigate = useNavigate();
   const [form] = useForm();
-  const basket = useSelector((state) => state.basket);
 
   const handleClick = (newRating) => {
     if (rating === newRating) {
@@ -73,11 +63,7 @@ const ProductDetail = ({ main, fetchData }) => {
   const stars = Array.from({ length: 5 }, (_, index) => {
     const newRating = index + 1;
     return (
-      <span
-        key={index}
-        className={`star ${newRating <= rating ? "filled" : ""}`}
-        onClick={() => handleClick(newRating)}
-      >
+      <span key={index} className={`star ${newRating <= rating ? "filled" : ""}`} onClick={() => handleClick(newRating)}>
         &#9733;
       </span>
     );
@@ -114,7 +100,7 @@ const ProductDetail = ({ main, fetchData }) => {
   };
 
   useEffect(() => {
-    fetchData();
+    dispatch(fetchData());
   }, [fetchData]);
 
   const images =
@@ -138,13 +124,7 @@ const ProductDetail = ({ main, fetchData }) => {
           </li>
           <li className="breadcrumb-item" aria-current="page">
             <a href="#" onClick={() => navigate(`/products/${category}`)}>
-              {category === "phones"
-                ? "Telefonlar"
-                : category === "smartWatches"
-                ? "Smart saatlar"
-                : category === "accessories"
-                ? "Aksessuarlar"
-                : ""}
+              {category === "phones" ? "Telefonlar" : category === "smartWatches" ? "Smart saatlar" : category === "accessories" ? "Aksessuarlar" : ""}
             </a>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
@@ -192,10 +172,7 @@ const ProductDetail = ({ main, fetchData }) => {
                   <span
                     style={{
                       backgroundColor: product.productColor,
-                      color:
-                        product.productColor == "Black" || "Gray"
-                          ? "white"
-                          : "black",
+                      color: product.productColor == "Black" || "Gray" ? "white" : "black",
                     }}
                   >
                     {product.memory}GB
@@ -206,17 +183,11 @@ const ProductDetail = ({ main, fetchData }) => {
             <Divider type="horizontal" />
             <div className="product_counter">
               <button onClick={handleDecrease}>
-                <FontAwesomeIcon
-                  style={{ fontSize: "13px", paddingRight: "0" }}
-                  icon={faMinus}
-                />
+                <FontAwesomeIcon style={{ fontSize: "13px", paddingRight: "0" }} icon={faMinus} />
               </button>
               <span>{productCount}</span>
               <button onClick={handleIncrease}>
-                <FontAwesomeIcon
-                  style={{ fontSize: "13px", paddingRight: "0" }}
-                  icon={faPlus}
-                />
+                <FontAwesomeIcon style={{ fontSize: "13px", paddingRight: "0" }} icon={faPlus} />
               </button>
             </div>
             <div className="add_to_bucket_btn">
@@ -247,132 +218,32 @@ const ProductDetail = ({ main, fetchData }) => {
                   {id === "1" && (
                     <div className="product_specifications">
                       <Descriptions column={1}>
-                        <Descriptions.Item label="Brend">
-                          {productBrand}
-                        </Descriptions.Item>
-                        <Descriptions.Item label="Məhsul tipi">
-                          {category == "phones"
-                            ? "Smartfon"
-                            : category == "accessories"
-                            ? "Aksessuar"
-                            : "Smart Saat"}
-                        </Descriptions.Item>
-                        {product.network && (
-                          <Descriptions.Item label="Şəbəkə">
-                            {product.network}
-                          </Descriptions.Item>
-                        )}
-                        {product.simcard && (
-                          <Descriptions.Item label="SIM-kart sayı">
-                            {product.simcard}
-                          </Descriptions.Item>
-                        )}
-                        {product.screenSize && (
-                          <Descriptions.Item label="Ekranın ölçüsü">
-                            {product.screenSize}
-                          </Descriptions.Item>
-                        )}
-                        {product.resolution && (
-                          <Descriptions.Item label="Ekran icazəsi">
-                            {product.resolution}
-                          </Descriptions.Item>
-                        )}
-                        {product.operativeMemory && (
-                          <Descriptions.Item label="Operativ yaddaş">
-                            {product.operativeMemory}
-                          </Descriptions.Item>
-                        )}
-                        {product.operativeMemory && (
-                          <Descriptions.Item label="Operativ yaddaş">
-                            {product.operativeMemory}GB
-                          </Descriptions.Item>
-                        )}
-                        {product.memory && (
-                          <Descriptions.Item label="Quraşdırılmış yaddaş">
-                            {product.memory}GB
-                          </Descriptions.Item>
-                        )}
-                        <Descriptions.Item label="Rəng">
-                          {product.productColor}
-                        </Descriptions.Item>
-                        {product.memoryCard && (
-                          <Descriptions.Item label="Yaddaş kartı dəstəyi">
-                            {product.memoryCard}
-                          </Descriptions.Item>
-                        )}
-                        {product.chipSet && (
-                          <Descriptions.Item label="Prosessor tipi">
-                            {product.chipSet}
-                          </Descriptions.Item>
-                        )}
-                        {product.cpu && (
-                          <Descriptions.Item label="Prosessor tezliyi">
-                            {product.cpu}
-                          </Descriptions.Item>
-                        )}
-                        {product.os && (
-                          <Descriptions.Item label="Əməliyyat sistemi">
-                            {product.os}
-                          </Descriptions.Item>
-                        )}
-                        {product.mainCamera && (
-                          <Descriptions.Item label="Əsas kamera">
-                            {product.mainCamera}
-                          </Descriptions.Item>
-                        )}
-                        {product.ledFlash && (
-                          <Descriptions.Item label="Led fləş">
-                            {product.ledFlash}
-                          </Descriptions.Item>
-                        )}
-                        {product.videoCamera && (
-                          <Descriptions.Item label="Video çəkiliş">
-                            {product.videoCamera}
-                          </Descriptions.Item>
-                        )}
-                        {product.frontCamera && (
-                          <Descriptions.Item label="Frontal kamera">
-                            {product.frontCamera}
-                          </Descriptions.Item>
-                        )}
-                        {product.batteryType && (
-                          <Descriptions.Item label="Akkumulyatorun həcmi">
-                            {product.batteryType}
-                          </Descriptions.Item>
-                        )}
-                        {product.wlan && (
-                          <Descriptions.Item label="Wi-Fi">
-                            {product.wlan}
-                          </Descriptions.Item>
-                        )}
-                        {product.bluetooth && (
-                          <Descriptions.Item label="Bluetooth">
-                            {product.bluetooth}
-                          </Descriptions.Item>
-                        )}
-                        {product.navigator && (
-                          <Descriptions.Item label="Naviqasiya sistemi">
-                            {product.navigator}
-                          </Descriptions.Item>
-                        )}
-                        {product.fingerPrint && (
-                          <Descriptions.Item label="Barmaq izi skaneri">
-                            {product.fingerPrint}
-                          </Descriptions.Item>
-                        )}
-                        {product.dimensions && (
-                          <Descriptions.Item label="Ölçülər: Hündürlüyü / Eni / Dərinliyi">
-                            {product.dimensions}
-                          </Descriptions.Item>
-                        )}
-                        {product.weight && (
-                          <Descriptions.Item label="Çəki">
-                            {product.weight}
-                          </Descriptions.Item>
-                        )}
-                        <Descriptions.Item label="Zәmanәt">
-                          1 il
-                        </Descriptions.Item>
+                        <Descriptions.Item label="Brend">{productBrand}</Descriptions.Item>
+                        <Descriptions.Item label="Məhsul tipi">{category == "phones" ? "Smartfon" : category == "accessories" ? "Aksessuar" : "Smart Saat"}</Descriptions.Item>
+                        {product.network && <Descriptions.Item label="Şəbəkə">{product.network}</Descriptions.Item>}
+                        {product.simcard && <Descriptions.Item label="SIM-kart sayı">{product.simcard}</Descriptions.Item>}
+                        {product.screenSize && <Descriptions.Item label="Ekranın ölçüsü">{product.screenSize}</Descriptions.Item>}
+                        {product.resolution && <Descriptions.Item label="Ekran icazəsi">{product.resolution}</Descriptions.Item>}
+                        {product.operativeMemory && <Descriptions.Item label="Operativ yaddaş">{product.operativeMemory}</Descriptions.Item>}
+                        {product.operativeMemory && <Descriptions.Item label="Operativ yaddaş">{product.operativeMemory}GB</Descriptions.Item>}
+                        {product.memory && <Descriptions.Item label="Quraşdırılmış yaddaş">{product.memory}GB</Descriptions.Item>}
+                        <Descriptions.Item label="Rəng">{product.productColor}</Descriptions.Item>
+                        {product.memoryCard && <Descriptions.Item label="Yaddaş kartı dəstəyi">{product.memoryCard}</Descriptions.Item>}
+                        {product.chipSet && <Descriptions.Item label="Prosessor tipi">{product.chipSet}</Descriptions.Item>}
+                        {product.cpu && <Descriptions.Item label="Prosessor tezliyi">{product.cpu}</Descriptions.Item>}
+                        {product.os && <Descriptions.Item label="Əməliyyat sistemi">{product.os}</Descriptions.Item>}
+                        {product.mainCamera && <Descriptions.Item label="Əsas kamera">{product.mainCamera}</Descriptions.Item>}
+                        {product.ledFlash && <Descriptions.Item label="Led fləş">{product.ledFlash}</Descriptions.Item>}
+                        {product.videoCamera && <Descriptions.Item label="Video çəkiliş">{product.videoCamera}</Descriptions.Item>}
+                        {product.frontCamera && <Descriptions.Item label="Frontal kamera">{product.frontCamera}</Descriptions.Item>}
+                        {product.batteryType && <Descriptions.Item label="Akkumulyatorun həcmi">{product.batteryType}</Descriptions.Item>}
+                        {product.wlan && <Descriptions.Item label="Wi-Fi">{product.wlan}</Descriptions.Item>}
+                        {product.bluetooth && <Descriptions.Item label="Bluetooth">{product.bluetooth}</Descriptions.Item>}
+                        {product.navigator && <Descriptions.Item label="Naviqasiya sistemi">{product.navigator}</Descriptions.Item>}
+                        {product.fingerPrint && <Descriptions.Item label="Barmaq izi skaneri">{product.fingerPrint}</Descriptions.Item>}
+                        {product.dimensions && <Descriptions.Item label="Ölçülər: Hündürlüyü / Eni / Dərinliyi">{product.dimensions}</Descriptions.Item>}
+                        {product.weight && <Descriptions.Item label="Çəki">{product.weight}</Descriptions.Item>}
+                        <Descriptions.Item label="Zәmanәt">1 il</Descriptions.Item>
                       </Descriptions>
                     </div>
                   )}
@@ -386,41 +257,11 @@ const ProductDetail = ({ main, fetchData }) => {
                                 <div className="star_count">
                                   <span>{comment.rating}</span>
                                   <div className="star-rating">
-                                    <span
-                                      className={`star cursor_unset ${
-                                        comment.rating >= 1 ? "filled" : ""
-                                      }`}
-                                    >
-                                      &#9733;
-                                    </span>
-                                    <span
-                                      className={`star cursor_unset ${
-                                        comment.rating >= 2 ? "filled" : ""
-                                      }`}
-                                    >
-                                      &#9733;
-                                    </span>
-                                    <span
-                                      className={`star  cursor_unset ${
-                                        comment.rating >= 3 ? "filled" : ""
-                                      }`}
-                                    >
-                                      &#9733;
-                                    </span>
-                                    <span
-                                      className={`star cursor_unset ${
-                                        comment.rating >= 4 ? "filled" : ""
-                                      }`}
-                                    >
-                                      &#9733;
-                                    </span>
-                                    <span
-                                      className={`star cursor_unset ${
-                                        comment.rating >= 5 ? "filled" : ""
-                                      }`}
-                                    >
-                                      &#9733;
-                                    </span>
+                                    <span className={`star cursor_unset ${comment.rating >= 1 ? "filled" : ""}`}>&#9733;</span>
+                                    <span className={`star cursor_unset ${comment.rating >= 2 ? "filled" : ""}`}>&#9733;</span>
+                                    <span className={`star  cursor_unset ${comment.rating >= 3 ? "filled" : ""}`}>&#9733;</span>
+                                    <span className={`star cursor_unset ${comment.rating >= 4 ? "filled" : ""}`}>&#9733;</span>
+                                    <span className={`star cursor_unset ${comment.rating >= 5 ? "filled" : ""}`}>&#9733;</span>
                                   </div>
                                 </div>
                               </div>
@@ -555,8 +396,4 @@ const ProductDetail = ({ main, fetchData }) => {
   ) : null;
 };
 
-const mapStateToProps = (state) => ({
-  main: state.main,
-});
-
-export default connect(mapStateToProps, { fetchData })(ProductDetail);
+export default ProductDetail;

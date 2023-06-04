@@ -4,15 +4,12 @@ import { Form, Button, Input, notification, message } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
 import axios from "axios";
 
-const ClickedAddressEdit = ({
-  setUsers,
-  users,
-  setEditAddressClicked,
-  editAddressClicked,
-}) => {
+const ClickedAddressEdit = ({setUsers,users,setEditAddressClicked,editAddressClicked}) => {
   const [deliveryForm] = useForm();
   const [initialValues, setInitialValues] = useState({});
+
   const id = localStorage.getItem("current_id");
+  
   const onFinishAddress = async (values) => {
     const user = users[0];
     await axios

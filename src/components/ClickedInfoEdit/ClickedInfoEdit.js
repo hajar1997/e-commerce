@@ -1,14 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
-import {
-  Form,
-  Button,
-  Input,
-  Select,
-  InputNumber,
-  notification,
-  message,
-} from "antd";
+import {Form,Button,Input,Select,InputNumber,notification,message} from "antd";
 import { useForm } from "antd/es/form/Form";
 import { SaveOutlined } from "@ant-design/icons";
 const { Option } = Select;
@@ -30,15 +22,10 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const ClickedInfoEdit = ({
-  user,
-  editInfoClicked,
-  setEditInfoClicked,
-  users,
-  setUsers,
-}) => {
+const ClickedInfoEdit = ({user,editInfoClicked,setEditInfoClicked,users,setUsers}) => {
   const [userInfoForm] = useForm();
   const id = localStorage.getItem("current_id");
+  
   const getData = async () => {
     await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
       const user = res.data;

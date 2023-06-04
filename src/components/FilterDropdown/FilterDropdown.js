@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const FilterDropdown = ({
-  categoryName,
-  handleCheckboxChange,
-  selectedCheckboxes,
-  allBrands,
-  allColors,
-}) => {
+const FilterDropdown = ({ categoryName, handleCheckboxChange, selectedCheckboxes, allBrands, allColors }) => {
   const [toggle, setToggle] = useState(true);
   const handlePlusClick = () => {
     setToggle(false);
@@ -23,11 +17,7 @@ const FilterDropdown = ({
     <div className="filter-dropdown-container">
       <div className="filter-heading-wrapper">
         <h5>{categoryName}</h5>
-        {toggle ? (
-          <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} />
-        ) : (
-          <FontAwesomeIcon icon={faMinus} onClick={handeMinusClick} />
-        )}
+        {toggle ? <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} /> : <FontAwesomeIcon icon={faMinus} onClick={handeMinusClick} />}
       </div>
       <hr />
       {toggle && (

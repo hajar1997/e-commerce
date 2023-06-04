@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  ShoppingCartOutlined,
-  UserOutlined,
-  HeartOutlined,
-  EnvironmentOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { ShoppingCartOutlined, UserOutlined, HeartOutlined, EnvironmentOutlined, LogoutOutlined } from "@ant-design/icons";
 import { LogOut } from "../redux/actions/action";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
@@ -20,14 +13,12 @@ import OrderDetails from "../components/OrderDetails/OrderDetails";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const [selectedPath, setSelectedPath] = useState(
-    localStorage.getItem("selectedPath") || "/my-orders"
-  );
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [selectedPath, setSelectedPath] = useState(localStorage.getItem("selectedPath") || "/my-orders");
+
   const logOut = () => {
     dispatch(LogOut());
     localStorage.removeItem("selectedPath");
-    setSelectedPath("/my-orders")
+    setSelectedPath("/my-orders");
   };
 
   const handleMenuClick = (e) => {
@@ -54,12 +45,7 @@ const MyProfile = () => {
                 >
                   Profilim
                 </h5>
-                <Menu
-                  selectedKeys={[selectedPath]}
-                  onClick={handleMenuClick}
-                  theme="light"
-                  defaultSelectedKeys={["1"]}
-                >
+                <Menu selectedKeys={[selectedPath]} onClick={handleMenuClick} theme="light" defaultSelectedKeys={["1"]}>
                   <Menu.Item key="/my-orders">
                     <Link>
                       <ShoppingCartOutlined style={{ fontSize: "20px" }} />
@@ -102,15 +88,11 @@ const MyProfile = () => {
                   background: "white",
                 }}
               >
-                {selectedPath === "/my-orders" && (
-                  <MyOrders handleMenuClick={handleMenuClick} />
-                )}
+                {selectedPath === "/my-orders" && <MyOrders handleMenuClick={handleMenuClick} />}
                 {selectedPath === "/my-favs" && <MyFavs />}
                 {selectedPath === "/my-info" && <MyInfo />}
                 {selectedPath === "/my-address" && <MyAddress />}
-                {selectedPath === "/order-details" && (
-                  <OrderDetails handleMenuClick={handleMenuClick} />
-                )}
+                {selectedPath === "/order-details" && <OrderDetails handleMenuClick={handleMenuClick} />}
               </Content>
             </div>
           </div>

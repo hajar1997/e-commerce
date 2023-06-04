@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button, Divider } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchData,
-  fetchBasket,
-  removeProductFromBasket,
-  updateBasketProduct,
-} from "../../redux/actions/action";
+import { fetchData,fetchBasket,removeProductFromBasket,updateBasketProduct,} from "../../redux/actions/action";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faMinus,
-  faDollarSign,
-} from "@fortawesome/free-solid-svg-icons";
+import {faPlus,faMinus,faDollarSign} from "@fortawesome/free-solid-svg-icons";
 
 const AddToBasket = () => {
   const navigate = useNavigate();

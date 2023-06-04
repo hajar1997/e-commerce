@@ -3,20 +3,10 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchSubmitted } from "../../redux/actions/action";
 import ColorCheckboxForSearchResults from "../ColorCheckboxForSearchResults/ColorCheckboxForSearchResults";
-import {
-  fetchData,
-  fetchFavorites,
-  addProductToFavorites,
-  removeProductFromFavorites,
-} from "../../redux/actions/action";
+import { fetchData, fetchFavorites, addProductToFavorites, removeProductFromFavorites } from "../../redux/actions/action";
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faMinus,
-  faDollarSign,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faDollarSign, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Results = () => {
   const main = useSelector((state) => state.main);
@@ -60,35 +50,22 @@ const Results = () => {
     setToggle(true);
   };
 
-  const commonFilter = (product) =>
-    product.productModel.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    product.productBrand.toLowerCase().includes(searchQuery.toLowerCase());
+  const commonFilter = (product) => product.productModel.toLowerCase().includes(searchQuery.toLowerCase()) || product.productBrand.toLowerCase().includes(searchQuery.toLowerCase());
 
   const filteredProducts = (sortClicked ? sortedData : categories)
     .filter(commonFilter)
     .filter(
       (product) =>
-        (selectedCheckboxes.productColor.length === 0 ||
-          selectedCheckboxes.productColor.includes(product.productColor)) &&
-        (maxPrice.length === 0 ||
-          (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-        (minPrice.length === 0 ||
-          (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+        (selectedCheckboxes.productColor.length === 0 || selectedCheckboxes.productColor.includes(product.productColor)) &&
+        (maxPrice.length === 0 || (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+        (minPrice.length === 0 || (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
     )
     .map((product) => {
-      const category = main.smartWatches.includes(product)
-        ? "smartWatches"
-        : main.phones.includes(product)
-        ? "phones"
-        : main.accessories.includes(product)
-        ? "accessories"
-        : "";
+      const category = main.smartWatches.includes(product) ? "smartWatches" : main.phones.includes(product) ? "phones" : main.accessories.includes(product) ? "accessories" : "";
       return { ...product, category };
     });
 
-  const colors = [
-    ...new Set(categories.map((product) => product.productColor)),
-  ];
+  const colors = [...new Set(categories.map((product) => product.productColor))];
   const handleSorting = (value) => {
     const newData = [...categories];
     if (value === "Ən yenilər") {
@@ -108,9 +85,7 @@ const Results = () => {
 
     setSelectedCheckboxes((prevState) => ({
       ...prevState,
-      [name]: prevState[name].includes(value)
-        ? prevState[name].filter((checkbox) => checkbox !== value)
-        : [...prevState[name], value],
+      [name]: prevState[name].includes(value) ? prevState[name].filter((checkbox) => checkbox !== value) : [...prevState[name], value],
     }));
   };
 
@@ -151,22 +126,12 @@ const Results = () => {
       {isMobile ? (
         <div>
           <div className="mversion-container">
-            <div
-              className="leftSide__mobile"
-              onClick={() =>
-                setLeftSideMobileIsOpen(
-                  (prevLeftSideMobileIsOpen) => !prevLeftSideMobileIsOpen
-                )
-              }
-            >
+            <div className="leftSide__mobile" onClick={() => setLeftSideMobileIsOpen((prevLeftSideMobileIsOpen) => !prevLeftSideMobileIsOpen)}>
               <img src="/images/siralama-icon.svg" />
               <h5>Sıralama</h5>
             </div>
             <Divider type="vertical" />
-            <div
-              className="rightSide__mobile"
-              onClick={() => setRightSideMobileIsOpen(!rightSideMobileIsOpen)}
-            >
+            <div className="rightSide__mobile" onClick={() => setRightSideMobileIsOpen(!rightSideMobileIsOpen)}>
               <img src="/images/filter-icon.svg" />
               <h5>Filterləmələr</h5>
             </div>
@@ -202,27 +167,11 @@ const Results = () => {
           {rightSideMobileIsOpen && (
             <div className="right-side-mobile__opened">
               <div className="container">
-                <ColorCheckboxForSearchResults
-                  categoryName="Rəng"
-                  categoryItem={colors}
-                  handleCheckboxChange={handleCheckboxChange}
-                  selectedCheckboxes={selectedCheckboxes}
-                  key={searchQuery}
-                />
+                <ColorCheckboxForSearchResults categoryName="Rəng" categoryItem={colors} handleCheckboxChange={handleCheckboxChange} selectedCheckboxes={selectedCheckboxes} key={searchQuery} />
                 <div className="filter-dropdown-container">
                   <div className="filter-heading-wrapper">
                     <h5>Qiymət</h5>
-                    {toggle ? (
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        onClick={handlePlusClick}
-                      />
-                    ) : (
-                      <FontAwesomeIcon
-                        icon={faMinus}
-                        onClick={handeMinusClick}
-                      />
-                    )}
+                    {toggle ? <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} /> : <FontAwesomeIcon icon={faMinus} onClick={handeMinusClick} />}
                   </div>
                   <hr />
                   {toggle ? (
@@ -265,35 +214,23 @@ const Results = () => {
           <div className="container">
             <div className="filtered_products_wrapper">
               <div className="wrapper__headings">
-                <span>
-                  {filteredProducts.length > 0
-                    ? filteredProducts.length + " məhsul tapıldı"
-                    : "Məhsul tapılmadı"}
-                </span>
+                <span>{filteredProducts.length > 0 ? filteredProducts.length + " məhsul tapıldı" : "Məhsul tapılmadı"}</span>
               </div>
             </div>
             <div className="all-products">
               {filteredProducts.map((product) => (
                 <div className="card-wrapper" key={product.id}>
-                  <Link
-                    to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                  >
+                  <Link to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}>
                     <img src={product.img[0]} />
                   </Link>
                   <div className="card__content">
-                    <Link
-                      to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                    >
-                      {product.productBrand} {product.productModel}{" "}
-                      {product.memory} GB {product.productColor}
+                    <Link to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}>
+                      {product.productBrand} {product.productModel} {product.memory} GB {product.productColor}
                     </Link>
                     <span>{product.price} $</span>
                   </div>
                   <div className="heart_icon_card">
-                    <FontAwesomeIcon
-                      style={{ color: "#c2c5ca", fontSize: "20px" }}
-                      icon={faHeart}
-                    />
+                    <FontAwesomeIcon style={{ color: "#c2c5ca", fontSize: "20px" }} icon={faHeart} />
                   </div>
                 </div>
               ))}
@@ -316,21 +253,11 @@ const Results = () => {
           </nav>
           <div className="row">
             <div className="col-lg-3">
-              <ColorCheckboxForSearchResults
-                categoryName="Rəng"
-                categoryItem={colors}
-                handleCheckboxChange={handleCheckboxChange}
-                selectedCheckboxes={selectedCheckboxes}
-                key={searchQuery}
-              />
+              <ColorCheckboxForSearchResults categoryName="Rəng" categoryItem={colors} handleCheckboxChange={handleCheckboxChange} selectedCheckboxes={selectedCheckboxes} key={searchQuery} />
               <div className="filter-dropdown-container">
                 <div className="filter-heading-wrapper">
                   <h5>Qiymət</h5>
-                  {toggle ? (
-                    <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} />
-                  ) : (
-                    <FontAwesomeIcon icon={faMinus} onClick={handeMinusClick} />
-                  )}
+                  {toggle ? <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} /> : <FontAwesomeIcon icon={faMinus} onClick={handeMinusClick} />}
                 </div>
                 <hr />
                 {toggle ? (
@@ -371,11 +298,7 @@ const Results = () => {
             <div className="col-lg-9">
               <div className="filtered_products_wrapper">
                 <div className="wrapper__headings">
-                  <span>
-                    {filteredProducts.length > 0
-                      ? filteredProducts.length + " məhsul tapıldı"
-                      : "Məhsul tapılmadı"}
-                  </span>
+                  <span>{filteredProducts.length > 0 ? filteredProducts.length + " məhsul tapıldı" : "Məhsul tapılmadı"}</span>
                   <Select
                     defaultValue="Sıralamanı seç"
                     style={{
@@ -402,17 +325,12 @@ const Results = () => {
               <div className="all-products">
                 {filteredProducts.map((product, index) => (
                   <div className="card-wrapper" key={index}>
-                    <Link
-                      to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                    >
+                    <Link to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}>
                       <img src={product.img[0]} />
                     </Link>
                     <div className="card__content">
-                      <Link
-                        to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}
-                      >
-                        {product.productBrand} {product.productModel}{" "}
-                        {product.memory} GB {product.productColor}
+                      <Link to={`/product-details/${product.category}/${product.productBrand}/${product.productModel}/${product.id}`}>
+                        {product.productBrand} {product.productModel} {product.memory} GB {product.productColor}
                       </Link>
                       <span>{product.price} $</span>
                     </div>
@@ -420,9 +338,7 @@ const Results = () => {
                       <FontAwesomeIcon
                         onClick={() => handleHeartClick(product.id)}
                         style={{
-                          color: isProductFavorite(product.id)
-                            ? "#dc3545"
-                            : "#c2c5ca",
+                          color: isProductFavorite(product.id) ? "#dc3545" : "#c2c5ca",
                           fontSize: "20px",
                         }}
                         icon={faHeart}

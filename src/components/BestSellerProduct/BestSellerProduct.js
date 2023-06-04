@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import {
-  fetchData,
-  fetchFavorites,
-  addProductToFavorites,
-  removeProductFromFavorites,
-} from "../../redux/actions/action";
+import {fetchData,fetchFavorites,addProductToFavorites,removeProductFromFavorites} from "../../redux/actions/action";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const BestSellerProduct = () => {

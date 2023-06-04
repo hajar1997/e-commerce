@@ -7,7 +7,7 @@ const FAQ = () => {
   return (
     <div>
       <Header />
-      <QuestionsAndAnswers/>
+      <QuestionsAndAnswers />
       <Footer />
     </div>
   );

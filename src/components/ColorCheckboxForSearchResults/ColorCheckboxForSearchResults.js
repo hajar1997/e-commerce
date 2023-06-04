@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-const ColorCheckboxForSearchResults = ({
-  categoryName,
-  categoryItem,
-  handleCheckboxChange,
-  selectedCheckboxes,
-}) => {
+const ColorCheckboxForSearchResults = ({categoryName,categoryItem,handleCheckboxChange,selectedCheckboxes}) => {
   const [toggle, setToggle] = useState(true);
 
   const handlePlusClick = () => {

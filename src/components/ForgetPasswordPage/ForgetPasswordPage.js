@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 const ForgetPasswordPage = () => {
   const navigate = useNavigate();
+
   const onFinish = (values) => {
     navigate("/mail-check");
     console.log("Success:", values);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -18,9 +20,7 @@ const ForgetPasswordPage = () => {
           <div className="col-lg-6">
             <div className="forget_password">
               <h6>Şifrəmi unutdum</h6>
-              <span className="forget_info_title">
-                Doğrulama kodunu almaq üçün e - poçt ünvanınızı daxil edin
-              </span>
+              <span className="forget_info_title">Doğrulama kodunu almaq üçün e - poçt ünvanınızı daxil edin</span>
               <div className="form__">
                 <Form
                   name="basic"

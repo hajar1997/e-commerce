@@ -64,10 +64,7 @@ const LoginPage = () => {
                       },
                     ]}
                   >
-                    <Input.Password
-                      placeholder="Şifrənizi daxil edin"
-                      size="large"
-                    />
+                    <Input.Password placeholder="Şifrənizi daxil edin" size="large" />
                   </Form.Item>
                   <a className="login-form-forgot" href="/forget-password">
                     Şifrəni unutmusunuz?

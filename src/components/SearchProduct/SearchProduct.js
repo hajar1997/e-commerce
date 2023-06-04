@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { SearchOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-import {
-  setSearchedData,
-  setSearchSubmitted,
-} from "../../redux/actions/action";
+import { setSearchedData, setSearchSubmitted } from "../../redux/actions/action";
 const { Search } = Input;
 
 const prefix = (
@@ -42,16 +39,14 @@ const SearchProduct = () => {
       if (trimmedSearchValue.length >= 3) {
         const newLatestSearchs = [...latestSearchs, trimmedSearchValue];
         setLatestSearchs(newLatestSearchs);
-        localStorage.setItem(
-          "latestSearches",
-          JSON.stringify(newLatestSearchs)
-        );
+        localStorage.setItem("latestSearches", JSON.stringify(newLatestSearchs));
         navigate(`/search-results?query=${trimmedSearchValue}`);
         setIsFocus(false);
         dispatch(setSearchSubmitted(true));
       }
     }
   };
+  
   const deleteLatestSearchs = () => {
     localStorage.removeItem("latestSearches");
     setLatestSearchs([]);
@@ -70,9 +65,7 @@ const SearchProduct = () => {
   }, []);
 
   useEffect(() => {
-    const latestSearchesFromStorage = JSON.parse(
-      localStorage.getItem("latestSearches")
-    );
+    const latestSearchesFromStorage = JSON.parse(localStorage.getItem("latestSearches"));
     if (latestSearchesFromStorage) {
       const latestSearches = latestSearchesFromStorage.slice(-7);
       setLatestSearchs(latestSearches);
@@ -81,14 +74,7 @@ const SearchProduct = () => {
 
   return (
     <div className="position-relative w-100" ref={searchRef}>
-      <Search
-        placeholder="Axtarış..."
-        size="large"
-        prefix={prefix}
-        onSearch={handleSearch}
-        onFocus={handleFocus}
-        onKeyPress={handleKeyPress}
-      />
+      <Search placeholder="Axtarış..." size="large" prefix={prefix} onSearch={handleSearch} onFocus={handleFocus} onKeyPress={handleKeyPress} />
       {isFocus && (
         <div className="search-dropdown">
           <div className="latest-searchs">
@@ -100,12 +86,7 @@ const SearchProduct = () => {
             </div>
             <div className="searchs__wrapper">
               {latestSearchs.map((search, index) => (
-                <a
-                  href="#"
-                  className="latest-search"
-                  key={index}
-                  onClick={() => navigate(`/search-results?query=${search}`)}
-                >
+                <a href="#" className="latest-search" key={index} onClick={() => navigate(`/search-results?query=${search}`)}>
                   {search}
                 </a>
               ))}

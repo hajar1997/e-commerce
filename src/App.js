@@ -31,10 +31,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="products/:category" element={<Products />} />
           <Route path="search-results" element={<SearchResults />} />
-          <Route
-            path="product-details/:category/:productBrand/:productModel/:id"
-            element={<ProductDetails />}
-          />
+          <Route path="product-details/:category/:productBrand/:productModel/:id" element={<ProductDetails />} />
           <Route path="frequently-asked-questions" element={<FAQ />} />
           <Route path="payment" element={<Payment />} />
           <Route path="basket" element={<Basket />} />
@@ -46,10 +43,7 @@ function App() {
           <Route path="forget-password" element={<ForgetPassword />} />
           <Route path="mail-check" element={<MailCheck />} />
           <Route path="renew-password" element={<RenewPassword />} />
-          <Route
-            path="completed-order-detail"
-            element={<CompletedOrderDetail />}
-          />
+          <Route path="completed-order-detail" element={<CompletedOrderDetail />} />
           <Route path="credit-card-form" element={<CreditCardForm />} />
         </Routes>
       </ScrollToTop>

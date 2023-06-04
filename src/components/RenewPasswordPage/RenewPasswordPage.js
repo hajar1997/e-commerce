@@ -16,9 +16,7 @@ const RenewPasswordPage = () => {
             <div className="col-lg-6">
               <div className="forget_password">
                 <h6>Şifrəni yenilə</h6>
-                <span className="forget_info_title mb-3">
-                  Hesabınıza yeni şifrə təyin edin
-                </span>
+                <span className="forget_info_title mb-3">Hesabınıza yeni şifrə təyin edin</span>
                 <div className="form__">
                   <Form
                     name="basic"
@@ -41,10 +39,7 @@ const RenewPasswordPage = () => {
                         },
                       ]}
                     >
-                      <Input.Password
-                        placeholder="Yeni şifrənizi daxil edin"
-                        size="large"
-                      />
+                      <Input.Password placeholder="Yeni şifrənizi daxil edin" size="large" />
                     </Form.Item>
                     <Form.Item>
                       <Button

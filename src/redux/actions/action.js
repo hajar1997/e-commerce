@@ -10,7 +10,6 @@ import {
   LOADING_OFF,
   SET_FAVORITES,
   SET_BASKET,
-  ORDER_COMPLETED,
 } from "../types/index";
 import axios from "axios";
 import { notification } from "antd";
@@ -34,34 +33,20 @@ export const setSearchSubmitted = (searchSubmitted) => ({
 export const fetchData = () => {
   return (dispatch) => {
     axios
-      .all([
-        axios.get(filterCategoriesEndpoint),
-        axios.get(phonesEndpoint),
-        axios.get(accessoryEndpoint),
-        axios.get(smartWatchesEndpoint),
-        axios.get(questions_answersEndpoint),
-      ])
+      .all([axios.get(filterCategoriesEndpoint), axios.get(phonesEndpoint), axios.get(accessoryEndpoint), axios.get(smartWatchesEndpoint), axios.get(questions_answersEndpoint)])
       .then(
-        axios.spread(
-          (
-            filterCategoriesEndpoint,
-            phonesEndpoint,
-            accessoryEndpoint,
-            smartWatchesEndpoint,
-            questions_answersEndpoint
-          ) => {
-            dispatch({
-              type: FETCH_DATA_SUCCESS,
-              payload: {
-                categories: filterCategoriesEndpoint.data,
-                phones: phonesEndpoint.data,
-                accessories: accessoryEndpoint.data,
-                smartWatches: smartWatchesEndpoint.data,
-                questions_answers: questions_answersEndpoint,
-              },
-            });
-          }
-        )
+        axios.spread((filterCategoriesEndpoint, phonesEndpoint, accessoryEndpoint, smartWatchesEndpoint, questions_answersEndpoint) => {
+          dispatch({
+            type: FETCH_DATA_SUCCESS,
+            payload: {
+              categories: filterCategoriesEndpoint.data,
+              phones: phonesEndpoint.data,
+              accessories: accessoryEndpoint.data,
+              smartWatches: smartWatchesEndpoint.data,
+              questions_answers: questions_answersEndpoint,
+            },
+          });
+        })
       )
       .catch((error) => {
         dispatch({
@@ -72,48 +57,45 @@ export const fetchData = () => {
   };
 };
 
-export const RegisterUser =
-  (name, surname, email, prefix, phone, password) => async (dispatch) => {
-    dispatch({ type: LOADING_ON });
-    const existingUser = await axios.get(
-      `http://localhost:8001/users?email=${email}`
-    );
-    if (existingUser.data.length > 0) {
+export const RegisterUser = (name, surname, email, prefix, phone, password) => async (dispatch) => {
+  dispatch({ type: LOADING_ON });
+  const existingUser = await axios.get(`http://localhost:8001/users?email=${email}`);
+  if (existingUser.data.length > 0) {
+    notification.open({
+      type: "error",
+      message: "This email is already registered",
+    });
+    dispatch({ type: LOADING_OFF });
+    return;
+  }
+  const randomId = Math.floor(Math.random() * 1000000);
+  await axios
+    .post("http://localhost:8001/users", {
+      id: randomId,
+      name,
+      surname,
+      email,
+      phone,
+      prefix,
+      password,
+      addresses: [],
+    })
+    .then((res) => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        isRegistered: true,
+        payload: res.data,
+      });
       notification.open({
-        type: "error",
-        message: "This email is already registered",
+        type: "success",
+        message: "You have successfully registered!",
       });
+    })
+    .catch((error) => console.log(error))
+    .finally(() => {
       dispatch({ type: LOADING_OFF });
-      return;
-    }
-    const randomId = Math.floor(Math.random() * 1000000);
-    await axios
-      .post("http://localhost:8001/users", {
-        id: randomId,
-        name,
-        surname,
-        email,
-        phone,
-        prefix,
-        password,
-        addresses: [],
-      })
-      .then((res) => {
-        dispatch({
-          type: REGISTER_SUCCESS,
-          isRegistered: true,
-          payload: res.data,
-        });
-        notification.open({
-          type: "success",
-          message: "You have successfully registered!",
-        });
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
-        dispatch({ type: LOADING_OFF });
-      });
-  };
+    });
+};
 
 export const LoginUser = (email, password) => async (dispatch) => {
   dispatch({ type: LOADING_ON });
@@ -124,9 +106,7 @@ export const LoginUser = (email, password) => async (dispatch) => {
     })
     .then((res) => {
       const data = res.data;
-      const filtered = data.filter(
-        (f) => f.email === email && f.password === password
-      );
+      const filtered = data.filter((f) => f.email === email && f.password === password);
       localStorage.setItem("current_id", filtered[0]?.id);
       dispatch(getUser(filtered[0]?.id));
     })

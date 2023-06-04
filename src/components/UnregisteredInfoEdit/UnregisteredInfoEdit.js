@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Form,
-  Button,
-  Input,
-  Select,
-  InputNumber,
-  notification,
-  message,
-} from "antd";
+import { Form, Button, Input, Select, InputNumber, notification, message } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { CheckCircleFilled, SaveOutlined } from "@ant-design/icons";
+import { SaveOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
 const prefixSelector = (
@@ -30,32 +22,25 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const UnregisteredInfoEdit = ({
-  editInfoClicked,
-  setEditInfoClicked,
-  setUsers,
-  users,
-}) => {
+const UnregisteredInfoEdit = ({ editInfoClicked, setEditInfoClicked, setUsers, users }) => {
   const id = localStorage.getItem("unregistered_user_id");
   const [userInfoForm] = useForm();
   const [initialValues, setInitialValues] = useState({});
 
   const getData = async () => {
-    await axios
-      .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
-      .then((res) => {
-        const user = res?.data;
-        setUsers([user]);
-        const initialValues = {
-          name: user.name,
-          surname: user.surname,
-          email: user.email,
-          phone: user.phone,
-          prefix: user.prefix,
-        };
-        setInitialValues(initialValues);
-        userInfoForm.setFieldsValue(initialValues);
-      });
+    await axios.get(`http://localhost:8001/unregisteredOrderInfo/${id}`).then((res) => {
+      const user = res?.data;
+      setUsers([user]);
+      const initialValues = {
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        phone: user.phone,
+        prefix: user.prefix,
+      };
+      setInitialValues(initialValues);
+      userInfoForm.setFieldsValue(initialValues);
+    });
   };
 
   useEffect(() => {

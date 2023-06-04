@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  DatePicker,
-  Form,
-  Button,
-  Input,
-  Select,
-  InputNumber,
-  notification,
-  message,
-} from "antd";
-import moment from "moment/moment";
+import { Form, Button, Input, Select, InputNumber, notification, message } from "antd";
 import { EditOutlined, SaveOutlined } from "@ant-design/icons";
 import { useForm } from "antd/es/form/Form";
 
@@ -45,9 +35,7 @@ const MyInfo = () => {
     const { email } = values;
     const user = users[0];
     if (email !== user.email) {
-      const existingUser = await axios.get(
-        `http://localhost:8001/users?email=${values.email}`
-      );
+      const existingUser = await axios.get(`http://localhost:8001/users?email=${values.email}`);
       if (existingUser.data.length > 0) {
         notification.open({
           type: "error",
@@ -95,7 +83,7 @@ const MyInfo = () => {
       setUsers([user]);
     });
   };
-  
+
   const getAllUsers = async () => {
     await axios.get(`http://localhost:8001/users/`).then((res) => {
       const users = res.data;
@@ -175,11 +163,7 @@ const MyInfo = () => {
               </div>
             </div>
             <Form.Item label="Şifrə" name="password">
-              <Input.Password
-                className="pass-form"
-                style={{ width: "50%", padding: "14px", border: "none" }}
-                disabled={!editMode}
-              />
+              <Input.Password className="pass-form" style={{ width: "50%", padding: "14px", border: "none" }} disabled={!editMode} />
             </Form.Item>
             <div className="myInfo_btn">
               <Form.Item>

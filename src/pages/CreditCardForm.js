@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Input, Row } from "antd";
-import { useForm } from "antd/es/form/Form";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -15,16 +14,19 @@ const CreditCardForm = () => {
   const [isExpiryDateValid, setExpiryDateValid] = useState(true);
   const [isCVVValid, setCVVValid] = useState(true);
   const [isCardFlipped, setCardFlipped] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
+
   const orderData = location.state && location.state;
   const productId = orderData?.products?.map((i) => i.productId);
   const productQuantity = orderData?.products?.map((q) => q.quantity);
   const totalPrice = orderData?.totalPrice;
+
   const id = localStorage.getItem("current_id");
   const unregistered_user_id = localStorage.getItem("unregistered_user_id");
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  console.log(productId);
+
   const getData = async () => {
     if (isLoggedIn && id) {
       await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
@@ -32,17 +34,13 @@ const CreditCardForm = () => {
         setUsers([user]);
       });
     } else if (!isLoggedIn && unregistered_user_id) {
-      await axios
-        .get(
-          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`
-        )
-        .then((res) => {
-          const user = res.data;
-          setUsers([user]);
-        });
+      await axios.get(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`).then((res) => {
+        const user = res.data;
+        setUsers([user]);
+      });
     }
   };
-  console.log(orderData);
+
   const handlePaymentSubmit = async () => {
     const updatedUser = { ...users[0] };
     navigate("/completed-order-detail", {
@@ -88,10 +86,7 @@ const CreditCardForm = () => {
         });
     } else {
       await axios
-        .patch(
-          `http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`,
-          updatedUser
-        )
+        .patch(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`, updatedUser)
         .then((res) => {
           navigate("/completed-order-detail", {
             state: {
@@ -137,9 +132,7 @@ const CreditCardForm = () => {
 
     if (formattedValue.length <= 5) {
       setExpiryDate(formattedValue);
-      setExpiryDateValid(
-        /^(0[1-9]|1[0-2])\/([2-9][0-9])$/.test(formattedValue)
-      );
+      setExpiryDateValid(/^(0[1-9]|1[0-2])\/([2-9][0-9])$/.test(formattedValue));
     }
   };
 
@@ -194,23 +187,16 @@ const CreditCardForm = () => {
   useEffect(() => {
     getData();
   }, []);
+
   return (
     <div className="credit-card-form">
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
             <div id="credit-card">
-              <div
-                id="credit-card-body"
-                className={isCardFlipped ? "flip" : ""}
-                onClick={handleCardClick}
-              >
+              <div id="credit-card-body" className={isCardFlipped ? "flip" : ""} onClick={handleCardClick}>
                 <div id="card-front">
-                  <img
-                    src="images/mastercard-2.svg"
-                    alt="visa card"
-                    className="card-logo"
-                  />
+                  <img src="images/mastercard-2.svg" alt="visa card" className="card-logo" />
                   <div className="card-chip">
                     <div className="component-1"></div>
                     <div className="component-2"></div>
@@ -219,9 +205,7 @@ const CreditCardForm = () => {
                     <div className="component-5"></div>
                   </div>
                   <div id="card_no">{cardNumber.trim()}</div>
-                  <div className="card-labels card-holder-label">
-                    Card Holder
-                  </div>
+                  <div className="card-labels card-holder-label">Card Holder</div>
                   <div className="card-labels">Expires</div>
                   <div id="card_name">{cardName.trim()}</div>
                   <div id="card_expiry_date">{expiryDate.trim()}</div>
@@ -231,15 +215,9 @@ const CreditCardForm = () => {
                   <div id="signature"></div>
                   <div id="card_cvv">{cvv}</div>
                   <div id="disclaimer">
-                    Sed augue lacus viverra vitae congue eu consequat ac felis.
-                    Quam quisque id diam vel. Quis risus sed vulputate odio ut
-                    enim blandit. Viverra justo nec ultrices dui sapien eget mi
-                    proin sed. Amet justo donec enim diam vulputate. Vestibulum
-                    morbi blandit cursus risus at ultrices mi. Condimentum vitae
-                    sapien pellentesque habitant. Leo duis ut diam quam. Cras
-                    sed felis eget velit aliquet sagittis. Viverra vitae congue
-                    eu consequat ac felis donec et. Hendrerit gravida rutrum
-                    quisque non tellus orci ac.
+                    Sed augue lacus viverra vitae congue eu consequat ac felis. Quam quisque id diam vel. Quis risus sed vulputate odio ut enim blandit. Viverra justo nec ultrices dui sapien eget mi
+                    proin sed. Amet justo donec enim diam vulputate. Vestibulum morbi blandit cursus risus at ultrices mi. Condimentum vitae sapien pellentesque habitant. Leo duis ut diam quam. Cras
+                    sed felis eget velit aliquet sagittis. Viverra vitae congue eu consequat ac felis donec et. Hendrerit gravida rutrum quisque non tellus orci ac.
                   </div>
                 </div>
               </div>
@@ -254,18 +232,9 @@ const CreditCardForm = () => {
                     label="Card No."
                     rules={cardNumberRules}
                     validateStatus={!isCardNumberValid ? "error" : ""}
-                    help={
-                      !isCardNumberValid
-                        ? "Please enter a valid card number"
-                        : ""
-                    }
+                    help={!isCardNumberValid ? "Please enter a valid card number" : ""}
                   >
-                    <Input
-                      type="text"
-                      maxLength={19}
-                      value={cardNumber}
-                      onChange={handleCardNumberChange}
-                    />
+                    <Input type="text" maxLength={19} value={cardNumber} onChange={handleCardNumberChange} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -276,18 +245,9 @@ const CreditCardForm = () => {
                     label="Card Holder"
                     rules={cardNameRules}
                     validateStatus={!isCardNameValid ? "error" : ""}
-                    help={
-                      !isCardNameValid
-                        ? "Please enter a valid cardholder name"
-                        : ""
-                    }
+                    help={!isCardNameValid ? "Please enter a valid cardholder name" : ""}
                   >
-                    <Input
-                      type="text"
-                      maxLength={20}
-                      value={cardName}
-                      onChange={handleCardNameChange}
-                    />
+                    <Input type="text" maxLength={20} value={cardName} onChange={handleCardNameChange} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -298,36 +258,14 @@ const CreditCardForm = () => {
                     label="Expiry Date"
                     rules={expiryDateRules}
                     validateStatus={!isExpiryDateValid ? "error" : ""}
-                    help={
-                      !isExpiryDateValid
-                        ? "Please enter a valid expiry date (MM/YY)"
-                        : ""
-                    }
+                    help={!isExpiryDateValid ? "Please enter a valid expiry date (MM/YY)" : ""}
                   >
-                    <Input
-                      type="text"
-                      maxLength={4}
-                      value={expiryDate}
-                      onChange={handleExpiryDateChange}
-                    />
+                    <Input type="text" maxLength={4} value={expiryDate} onChange={handleExpiryDateChange} />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
-                  <Form.Item
-                    name="cvv"
-                    label="CVV"
-                    rules={cvvRules}
-                    validateStatus={!isCVVValid ? "error" : ""}
-                    help={!isCVVValid ? "Please enter a valid CVV" : ""}
-                  >
-                    <Input
-                      type="text"
-                      maxLength={4}
-                      value={cvv}
-                      onChange={handleCVVChange}
-                      onFocus={handleCVVFocus}
-                      onBlur={handleCVVBlur}
-                    />
+                  <Form.Item name="cvv" label="CVV" rules={cvvRules} validateStatus={!isCVVValid ? "error" : ""} help={!isCVVValid ? "Please enter a valid CVV" : ""}>
+                    <Input type="text" maxLength={4} value={cvv} onChange={handleCVVChange} onFocus={handleCVVFocus} onBlur={handleCVVBlur} />
                   </Form.Item>
                 </Col>
               </Row>

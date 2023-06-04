@@ -52,9 +52,7 @@ const Footer = () => {
                   <a href="/about">Haqqımızda</a>
                 </li>
                 <li>
-                  <a href="/frequently-asked-questions">
-                    Tez-tez soruşulan suallar
-                  </a>
+                  <a href="/frequently-asked-questions">Tez-tez soruşulan suallar</a>
                 </li>
               </ul>
             </div>
@@ -63,9 +61,7 @@ const Footer = () => {
               <ul className="card-text contact">
                 <li>
                   <img src="/images/footer-icon-1.svg" />
-                  <span className="address1">
-                    M. K. Ataturk avenue 89, Baku, Azerbaijan
-                  </span>
+                  <span className="address1">M. K. Ataturk avenue 89, Baku, Azerbaijan</span>
                 </li>
                 <li>
                   <img src="/images/footer-icon-2.svg" />
@@ -92,16 +88,12 @@ const Footer = () => {
       </div>
       <div className="divider-mobile mb-4"> </div>
       <div className="footer-mobile-bottom">
-        <div className="container">
-          © PeojectX {new Date().getFullYear()}. Bütün hüquqlar qorunur.
-        </div>
+        <div className="container">© PeojectX {new Date().getFullYear()}. Bütün hüquqlar qorunur.</div>
       </div>
       {/* footer bottom destkop version  */}
       <div className="container pb-3">
         <div className="footer-destkop-bottom">
-          <div>
-            © PeojectX {new Date().getFullYear()}. Bütün hüquqlar qorunur.
-          </div>
+          <div>© PeojectX {new Date().getFullYear()}. Bütün hüquqlar qorunur.</div>
           <div className="d-flex policy">
             <a href="#" className="me-5">
               Qaydalar və şərtlər

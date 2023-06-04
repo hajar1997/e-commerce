@@ -10,25 +10,13 @@ const MyOrders = ({ handleMenuClick }) => {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const dispatch = useDispatch();
 
-  const { phones, accessories, smartWatches } = useSelector(
-    (state) => state.main
-  );
+  const { phones, accessories, smartWatches } = useSelector((state) => state.main);
 
-  const productIds = users?.flatMap((user) =>
-    user?.orders?.flatMap((order) =>
-      order?.products?.map((product) => product.productId)
-    )
-  );
+  const productIds = users?.flatMap((user) => user?.orders?.flatMap((order) => order?.products?.map((product) => product.productId)));
 
-  const filteredProducts = [
-    ...phones.filter((product) => product),
-    ...accessories.filter((product) => product),
-    ...smartWatches.filter((product) => product),
-  ];
+  const filteredProducts = [...phones.filter((product) => product), ...accessories.filter((product) => product), ...smartWatches.filter((product) => product)];
 
-  const sameId = filteredProducts.filter((product) =>
-    productIds.some((id) => id === product.id)
-  );
+  const sameId = filteredProducts.filter((product) => productIds.some((id) => id === product.id));
 
   const getData = async () => {
     if (isLoggedIn) {
@@ -38,6 +26,7 @@ const MyOrders = ({ handleMenuClick }) => {
       });
     }
   };
+  
   useEffect(() => {
     getData();
   }, []);
@@ -60,9 +49,7 @@ const MyOrders = ({ handleMenuClick }) => {
           marginBottom: "30px",
         }}
       >
-        {!users[0]?.orders?.length
-          ? "Sifarişlərim (0) məhsul"
-          : `Sifarişlərim (${users[0]?.orders?.length} məhsul)`}
+        {!users[0]?.orders?.length ? "Sifarişlərim (0) məhsul" : `Sifarişlərim (${users[0]?.orders?.length} məhsul)`}
       </h5>
       {!users[0]?.orders?.length && (
         <div className="inside_basket for_empty">

@@ -5,18 +5,8 @@ import FilterDropdown from "../FilterDropdown/FilterDropdown";
 import Product from "../Product/Product";
 import { Select, Divider } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  fetchData,
-  fetchFavorites,
-  addProductToFavorites,
-  removeProductFromFavorites,
-} from "../../redux/actions/action";
-import {
-  faTimes,
-  faPlus,
-  faMinus,
-  faDollarSign,
-} from "@fortawesome/free-solid-svg-icons";
+import { fetchData, fetchFavorites, addProductToFavorites, removeProductFromFavorites } from "../../redux/actions/action";
+import { faPlus, faMinus, faDollarSign } from "@fortawesome/free-solid-svg-icons";
 
 const FilterProducts = () => {
   const main = useSelector((state) => state.main);
@@ -73,18 +63,12 @@ const FilterProducts = () => {
 
     setSelectedCheckboxes((prevState) => ({
       ...prevState,
-      [name]: prevState[name].includes(value)
-        ? prevState[name].filter((checkbox) => checkbox !== value)
-        : [...prevState[name], value],
+      [name]: prevState[name].includes(value) ? prevState[name].filter((checkbox) => checkbox !== value) : [...prevState[name], value],
     }));
   };
 
-  const allBrands = [
-    ...new Set(main[category].map((product) => product.productBrand)),
-  ];
-  const allColors = [
-    ...new Set(main[category].map((product) => product.productColor)),
-  ];
+  const allBrands = [...new Set(main[category].map((product) => product.productBrand))];
+  const allColors = [...new Set(main[category].map((product) => product.productColor))];
 
   const handleSorting = (value) => {
     const newData = [...main[category]];
@@ -102,19 +86,13 @@ const FilterProducts = () => {
   const filterProducts = (products) =>
     products.filter(
       (product) =>
-        (selectedCheckboxes.productBrand.length === 0 ||
-          selectedCheckboxes.productBrand.includes(product.productBrand)) &&
-        (selectedCheckboxes.productColor.length === 0 ||
-          selectedCheckboxes.productColor.includes(product.productColor)) &&
-        (maxPrice.length === 0 ||
-          (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
-        (minPrice.length === 0 ||
-          (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
+        (selectedCheckboxes.productBrand.length === 0 || selectedCheckboxes.productBrand.includes(product.productBrand)) &&
+        (selectedCheckboxes.productColor.length === 0 || selectedCheckboxes.productColor.includes(product.productColor)) &&
+        (maxPrice.length === 0 || (!isNaN(maxPrice) && product.price <= parseInt(maxPrice))) &&
+        (minPrice.length === 0 || (!isNaN(minPrice) && product.price >= parseInt(minPrice)))
     );
 
-  const filteredProducts = sortClicked
-    ? filterProducts(sortedData)
-    : filterProducts(main[category]);
+  const filteredProducts = sortClicked ? filterProducts(sortedData) : filterProducts(main[category]);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -132,22 +110,12 @@ const FilterProducts = () => {
       {isMobile ? (
         <div>
           <div className="mversion-container">
-            <div
-              className="leftSide__mobile"
-              onClick={() =>
-                setLeftSideMobileIsOpen(
-                  (prevLeftSideMobileIsOpen) => !prevLeftSideMobileIsOpen
-                )
-              }
-            >
+            <div className="leftSide__mobile" onClick={() => setLeftSideMobileIsOpen((prevLeftSideMobileIsOpen) => !prevLeftSideMobileIsOpen)}>
               <img src="/images/siralama-icon.svg" />
               <h5>Sıralama</h5>
             </div>
             <Divider type="vertical" />
-            <div
-              className="rightSide__mobile"
-              onClick={() => setRightSideMobileIsOpen(!rightSideMobileIsOpen)}
-            >
+            <div className="rightSide__mobile" onClick={() => setRightSideMobileIsOpen(!rightSideMobileIsOpen)}>
               <img src="/images/filter-icon.svg" />
               <h5>Filterləmələr</h5>
             </div>
@@ -196,44 +164,18 @@ const FilterProducts = () => {
                 <div className="filter-dropdown-container">
                   <div className="filter-heading-wrapper">
                     <h5>Qiymət</h5>
-                    {toggle ? (
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        onClick={handlePlusClick}
-                      />
-                    ) : (
-                      <FontAwesomeIcon
-                        icon={faMinus}
-                        onClick={handleMinusClick}
-                      />
-                    )}
+                    {toggle ? <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} /> : <FontAwesomeIcon icon={faMinus} onClick={handleMinusClick} />}
                   </div>
                   <hr />
                   {toggle ? (
                     <div className="price-range-container">
                       <div className="input-wrapper">
-                        <input
-                          className="form-control"
-                          type="text"
-                          placeholder="Ən az"
-                          name="min"
-                          value={minPrice}
-                          onChange={handlePriceChange}
-                          aria-label="default input example"
-                        />
+                        <input className="form-control" type="text" placeholder="Ən az" name="min" value={minPrice} onChange={handlePriceChange} aria-label="default input example" />
                         <FontAwesomeIcon icon={faDollarSign} />
                       </div>
                       <span></span>
                       <div className="input-wrapper">
-                        <input
-                          className="form-control"
-                          type="text"
-                          name="max"
-                          placeholder="Ən çox"
-                          value={maxPrice}
-                          onChange={handlePriceChange}
-                          aria-label="default input example"
-                        />
+                        <input className="form-control" type="text" name="max" placeholder="Ən çox" value={maxPrice} onChange={handlePriceChange} aria-label="default input example" />
                         <FontAwesomeIcon icon={faDollarSign} />
                       </div>
                     </div>
@@ -270,15 +212,7 @@ const FilterProducts = () => {
                 </a>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
-                <span>
-                  {category === "phones"
-                    ? "Telefonlar"
-                    : category === "smartWatches"
-                    ? "Smart saatlar"
-                    : category === "accessories"
-                    ? "Aksessuarlar"
-                    : ""}
-                </span>
+                <span>{category === "phones" ? "Telefonlar" : category === "smartWatches" ? "Smart saatlar" : category === "accessories" ? "Aksessuarlar" : ""}</span>
               </li>
             </ol>
           </nav>
@@ -297,41 +231,18 @@ const FilterProducts = () => {
               <div className="filter-dropdown-container">
                 <div className="filter-heading-wrapper">
                   <h5>Qiymət</h5>
-                  {toggle ? (
-                    <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faMinus}
-                      onClick={handleMinusClick}
-                    />
-                  )}
+                  {toggle ? <FontAwesomeIcon icon={faPlus} onClick={handlePlusClick} /> : <FontAwesomeIcon icon={faMinus} onClick={handleMinusClick} />}
                 </div>
                 <hr />
                 {toggle ? (
                   <div className="price-range-container">
                     <div className="input-wrapper">
-                      <input
-                        className="form-control"
-                        type="text"
-                        placeholder="Ən az"
-                        value={minPrice}
-                        name="min"
-                        onChange={handlePriceChange}
-                        aria-label="default input example"
-                      />
+                      <input className="form-control" type="text" placeholder="Ən az" value={minPrice} name="min" onChange={handlePriceChange} aria-label="default input example" />
                       <FontAwesomeIcon icon={faDollarSign} />
                     </div>
                     <span></span>
                     <div className="input-wrapper">
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="max"
-                        placeholder="Ən çox"
-                        value={maxPrice}
-                        onChange={handlePriceChange}
-                        aria-label="default input example"
-                      />
+                      <input className="form-control" type="text" name="max" placeholder="Ən çox" value={maxPrice} onChange={handlePriceChange} aria-label="default input example" />
                       <FontAwesomeIcon icon={faDollarSign} />
                     </div>
                   </div>

@@ -1,11 +1,7 @@
 import { CheckCircleFilled } from "@ant-design/icons";
 import React from "react";
 
-const NotClickedAddressEdit = ({
-  user,
-  setEditAddressClicked,
-  editAddressClicked,
-}) => {
+const NotClickedAddressEdit = ({ user, setEditAddressClicked, editAddressClicked }) => {
   return (
     <div>
       <div className="payment__header">

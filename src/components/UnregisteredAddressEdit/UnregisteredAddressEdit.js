@@ -4,13 +4,7 @@ import { Button, Form, Input, message, notification } from "antd";
 import { useForm } from "antd/es/form/Form";
 import axios from "axios";
 
-const UnregisteredAddressEdit = ({
-  user,
-  setUsers,
-  setEditAddressClicked,
-  editAddressClicked,
-  updateParentData,
-}) => {
+const UnregisteredAddressEdit = ({ user, setUsers, setEditAddressClicked, editAddressClicked, updateParentData }) => {
   const [deliveryForm] = useForm();
   const [initialValues, setInitialValues] = useState({});
   const id = localStorage.getItem("unregistered_user_id");

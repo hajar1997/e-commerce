@@ -3,12 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import {
-  fetchData,
-  fetchFavorites,
-  addProductToFavorites,
-  removeProductFromFavorites,
-} from "../../redux/actions/action";
+import { fetchData, fetchFavorites, addProductToFavorites, removeProductFromFavorites } from "../../redux/actions/action";
 import Slider from "react-slick";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
@@ -84,27 +79,19 @@ const NewAccessory = () => {
           <h6>Yeni gələn aksessuarlar</h6>
           <a href="/products/accessories">
             Hamısına bax
-            <FontAwesomeIcon
-              icon={faChevronRight}
-              style={{ width: "6px", background: "#333333;" }}
-            />
+            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px", background: "#333333;" }} />
           </a>
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
             {main.accessories.map((product) => (
               <div className="card-wrapper" key={product.id}>
-                <Link
-                  to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}
-                >
+                <Link to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}>
                   <img src={product.img[0]} />
                 </Link>
                 <div className="card__content">
-                  <Link
-                    to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}
-                  >
-                    {product.productBrand} {product.productModel}{" "}
-                    {product.memory ? `${product.memory} GB ` : ""}  {product.productColor}
+                  <Link to={`/product-details/accessories/${product.productBrand}/${product.productModel}/${product.id}`}>
+                    {product.productBrand} {product.productModel} {product.memory ? `${product.memory} GB ` : ""} {product.productColor}
                   </Link>
                   <span>{product.price} $</span>
                 </div>
@@ -112,9 +99,7 @@ const NewAccessory = () => {
                   <FontAwesomeIcon
                     onClick={() => handleHeartClick(product.id)}
                     style={{
-                      color: isProductFavorite(product.id)
-                        ? "#dc3545"
-                        : "#c2c5ca",
+                      color: isProductFavorite(product.id) ? "#dc3545" : "#c2c5ca",
                       fontSize: "20px",
                     }}
                     icon={faHeart}
@@ -127,10 +112,7 @@ const NewAccessory = () => {
         <div className="bottom-heading">
           <a href="/products/accessories">
             Hamısına bax
-            <FontAwesomeIcon
-              icon={faChevronRight}
-              style={{ width: "6px", background: "#333333;" }}
-            />
+            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px", background: "#333333;" }} />
           </a>
         </div>
       </div>
