@@ -1,54 +1,5 @@
 {
-  "users": [
-    {
-      "id": 549044,
-      "name": "Hajar",
-      "surname": "Ibrahimova",
-      "email": "ibrahimlihecer97@gmail.com",
-      "phone": 8008806,
-      "prefix": "070",
-      "password": "hajar97",
-      "addresses": [
-        {
-          "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "Bina 10, mənzil 40",
-          "comment": "salam"
-        }
-      ]
-    },
-    {
-      "id": 846393,
-      "name": "Tuku",
-      "surname": "Ibrahimova",
-      "email": "tuku@gmail.com",
-      "phone": 4564565,
-      "prefix": "070",
-      "password": "tuku97",
-      "addresses": [
-        {
-          "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "54654",
-          "comment": "fdgfd"
-        }
-      ]
-    },
-    {
-      "id": 638696,
-      "name": "Ilahe",
-      "surname": "Memmedova",
-      "email": "ilahe@gmail.com",
-      "phone": 37475632,
-      "prefix": "070",
-      "password": "ilahe74",
-      "addresses": [
-        {
-          "address": "Nərimanov rayonu,Təbriz küçəsi",
-          "apartment": "Bina 10 mənzil 40",
-          "comment": "3424"
-        }
-      ]
-    }
-  ],
+  "users": [],
   "filterCategories": [
     {
       "id": "1",
@@ -95,11 +46,7 @@
       "productModel": "iPhone 7",
       "memory": "32",
       "productColor": "Black",
-      "img": [
-        "/images/iphone-7-black.webp",
-        "/images/iphone-7-black.webp",
-        "/images/iphone-7-black.webp"
-      ],
+      "img": ["/images/iphone-7-black.webp", "/images/iphone-7-black.webp", "/images/iphone-7-black.webp"],
       "price": "340",
       "network": "4G",
       "simcard": "1",
@@ -111,11 +58,7 @@
       "productModel": "iPhone 7 Plus",
       "memory": "128",
       "productColor": "Gold",
-      "img": [
-        "/images/iphone-7-plus-gold.avif",
-        "/images/iphone-7-plus-gold.avif",
-        "/images/iphone-7-plus-gold.avif"
-      ],
+      "img": ["/images/iphone-7-plus-gold.avif", "/images/iphone-7-plus-gold.avif", "/images/iphone-7-plus-gold.avif"],
       "price": "450",
       "network": "4G",
       "simcard": "1",
@@ -127,11 +70,7 @@
       "productModel": "iPhone 8",
       "memory": "64",
       "productColor": "Silver",
-      "img": [
-        "/images/iphone-8-silver.jpg",
-        "/images/iphone-8-silver.jpg",
-        "/images/iphone-8-silver.jpg"
-      ],
+      "img": ["/images/iphone-8-silver.jpg", "/images/iphone-8-silver.jpg", "/images/iphone-8-silver.jpg"],
       "price": "370",
       "network": "4G",
       "simcard": "1",
@@ -143,11 +82,7 @@
       "productModel": "iPhone X",
       "memory": "256",
       "productColor": "Silver",
-      "img": [
-        "/images/iphone-x-silver.png",
-        "/images/iphone-x-silver.png",
-        "/images/iphone-x-silver.png"
-      ],
+      "img": ["/images/iphone-x-silver.png", "/images/iphone-x-silver.png", "/images/iphone-x-silver.png"],
       "price": "430",
       "network": "4G",
       "simcard": "1",
@@ -159,11 +94,7 @@
       "productModel": "iPhone XS",
       "memory": "512",
       "productColor": "Gold",
-      "img": [
-        "/images/iphone-xs-gold.png",
-        "/images/iphone-xs-gold.png",
-        "/images/iphone-xs-gold.png"
-      ],
+      "img": ["/images/iphone-xs-gold.png", "/images/iphone-xs-gold.png", "/images/iphone-xs-gold.png"],
       "price": "520",
       "network": "4G",
       "simcard": "1",
@@ -175,11 +106,7 @@
       "productModel": "iPhone 11",
       "memory": "64",
       "productColor": "Green",
-      "img": [
-        "/images/iphone-11-green.jpeg",
-        "/images/iphone-11-green.jpeg",
-        "/images/iphone-11-green.jpeg"
-      ],
+      "img": ["/images/iphone-11-green.jpeg", "/images/iphone-11-green.jpeg", "/images/iphone-11-green.jpeg"],
       "price": "600",
       "network": "4G",
       "simcard": "1",
@@ -191,11 +118,7 @@
       "productModel": "iPhone 11 Pro Max",
       "memory": "256",
       "productColor": "Gold",
-      "img": [
-        "/images/iphone-11-pro-max-gold.jpg",
-        "/images/iphone-11-pro-max-gold.jpg",
-        "/images/iphone-11-pro-max-gold.jpg"
-      ],
+      "img": ["/images/iphone-11-pro-max-gold.jpg", "/images/iphone-11-pro-max-gold.jpg", "/images/iphone-11-pro-max-gold.jpg"],
       "price": "820",
       "network": "4G",
       "simcard": "1",
@@ -207,11 +130,7 @@
       "productModel": "iPhone 12",
       "memory": "128",
       "productColor": "White",
-      "img": [
-        "/images/iphone-12-white.jpeg",
-        "/images/iphone-12-white.jpeg",
-        "/images/iphone-12-white.jpeg"
-      ],
+      "img": ["/images/iphone-12-white.jpeg", "/images/iphone-12-white.jpeg", "/images/iphone-12-white.jpeg"],
       "price": "800",
       "network": "4G",
       "simcard": "1",
@@ -223,11 +142,7 @@
       "productModel": "iPhone 13",
       "memory": "128",
       "productColor": "Red",
-      "img": [
-        "/images/iphone-13-red.png",
-        "/images/iphone-13-red.png",
-        "/images/iphone-13-red.png"
-      ],
+      "img": ["/images/iphone-13-red.png", "/images/iphone-13-red.png", "/images/iphone-13-red.png"],
       "price": "839",
       "network": "4G",
       "simcard": "1",
@@ -239,11 +154,7 @@
       "productModel": "iPhone 14",
       "memory": "512",
       "productColor": "Blue",
-      "img": [
-        "/images/iphone-14-blue.jpg",
-        "/images/iphone-14-blue.jpg",
-        "/images/iphone-14-blue.jpg"
-      ],
+      "img": ["/images/iphone-14-blue.jpg", "/images/iphone-14-blue.jpg", "/images/iphone-14-blue.jpg"],
       "price": "1029",
       "network": "4G",
       "simcard": "1",
@@ -255,11 +166,7 @@
       "productModel": "Galaxy A34",
       "memory": "128",
       "productColor": "Silver",
-      "img": [
-        "/images/samsung-galaxy-a-34-silver.avif",
-        "/images/samsung-galaxy-a-34-silver.avif",
-        "/images/samsung-galaxy-a-34-silver.avif"
-      ],
+      "img": ["/images/samsung-galaxy-a-34-silver.avif", "/images/samsung-galaxy-a-34-silver.avif", "/images/samsung-galaxy-a-34-silver.avif"],
       "price": "400",
       "network": "4G",
       "simcard": "1",
@@ -271,11 +178,7 @@
       "productModel": "Galaxy S23 Ultra",
       "memory": "256",
       "productColor": "Green",
-      "img": [
-        "/images/samsung-galaxy-s23-ultra.jpg",
-        "/images/samsung-galaxy-s23-ultra.jpg",
-        "/images/samsung-galaxy-s23-ultra.jpg"
-      ],
+      "img": ["/images/samsung-galaxy-s23-ultra.jpg", "/images/samsung-galaxy-s23-ultra.jpg", "/images/samsung-galaxy-s23-ultra.jpg"],
       "price": "1199",
       "network": "4G",
       "simcard": "1",
@@ -287,11 +190,7 @@
       "productModel": "Galaxy S23+",
       "memory": "256",
       "productColor": "Green",
-      "img": [
-        "/images/samsung-galaxy-s23-plus.webp",
-        "/images/samsung-galaxy-s23-plus.webp",
-        "/images/samsung-galaxy-s23-plus.webp"
-      ],
+      "img": ["/images/samsung-galaxy-s23-plus.webp", "/images/samsung-galaxy-s23-plus.webp", "/images/samsung-galaxy-s23-plus.webp"],
       "price": "999",
       "network": "4G",
       "simcard": "1",
@@ -303,11 +202,7 @@
       "productModel": "Galaxy A54",
       "memory": "128",
       "productColor": "White",
-      "img": [
-        "/images/samsung-galaxy-a54.webp",
-        "/images/samsung-galaxy-a54.webp",
-        "/images/samsung-galaxy-a54.webp"
-      ],
+      "img": ["/images/samsung-galaxy-a54.webp", "/images/samsung-galaxy-a54.webp", "/images/samsung-galaxy-a54.webp"],
       "price": "500",
       "network": "4G",
       "simcard": "1",
@@ -319,11 +214,7 @@
       "productModel": "Galaxy F14",
       "memory": "128",
       "productColor": "Black",
-      "img": [
-        "/images/samsung-galaxy-f14-black.jpg",
-        "/images/samsung-galaxy-f14-black.jpg",
-        "/images/samsung-galaxy-f14-black.jpg"
-      ],
+      "img": ["/images/samsung-galaxy-f14-black.jpg", "/images/samsung-galaxy-f14-black.jpg", "/images/samsung-galaxy-f14-black.jpg"],
       "price": "160",
       "network": "4G",
       "simcard": "1",
@@ -335,11 +226,7 @@
       "productModel": "13",
       "memory": "128",
       "productColor": "Yellow",
-      "img": [
-        "/images/xiaomi-13-yellow.jpg",
-        "/images/xiaomi-13-yellow.jpg",
-        "/images/xiaomi-13-yellow.jpg"
-      ],
+      "img": ["/images/xiaomi-13-yellow.jpg", "/images/xiaomi-13-yellow.jpg", "/images/xiaomi-13-yellow.jpg"],
       "price": "570",
       "network": "4G",
       "simcard": "1",
@@ -351,11 +238,7 @@
       "productModel": "13 Pro",
       "memory": "256",
       "productColor": "Black",
-      "img": [
-        "/images/xiaomi-13-pro-black.webp",
-        "/images/xiaomi-13-pro-black.webp",
-        "/images/xiaomi-13-pro-black.webp"
-      ],
+      "img": ["/images/xiaomi-13-pro-black.webp", "/images/xiaomi-13-pro-black.webp", "/images/xiaomi-13-pro-black.webp"],
       "price": "710",
       "network": "4G",
       "simcard": "1",
@@ -367,11 +250,7 @@
       "productModel": "12T Pro",
       "memory": "256",
       "productColor": "Blue",
-      "img": [
-        "/images/xiaomi-12T-pro-blue.jpg",
-        "/images/xiaomi-12T-pro-blue.jpg",
-        "/images/xiaomi-12T-pro-blue.jpg"
-      ],
+      "img": ["/images/xiaomi-12T-pro-blue.jpg", "/images/xiaomi-12T-pro-blue.jpg", "/images/xiaomi-12T-pro-blue.jpg"],
       "price": "750",
       "network": "4G",
       "simcard": "1",
@@ -383,11 +262,7 @@
       "productModel": "12S Ultra",
       "memory": "512",
       "productColor": "Black",
-      "img": [
-        "/images/xiaomi-12S-ultra-black.webp",
-        "/images/xiaomi-12S-ultra-black.webp",
-        "/images/xiaomi-12S-ultra-black.webp"
-      ],
+      "img": ["/images/xiaomi-12S-ultra-black.webp", "/images/xiaomi-12S-ultra-black.webp", "/images/xiaomi-12S-ultra-black.webp"],
       "price": "970",
       "network": "4G",
       "simcard": "1",
@@ -399,11 +274,7 @@
       "productModel": "Play 7T Pro",
       "memory": "128",
       "productColor": "Green",
-      "img": [
-        "/images/honor-play-7T-pro-green.jpg",
-        "/images/honor-play-7T-pro-green.jpg",
-        "/images/honor-play-7T-pro-green.jpg"
-      ],
+      "img": ["/images/honor-play-7T-pro-green.jpg", "/images/honor-play-7T-pro-green.jpg", "/images/honor-play-7T-pro-green.jpg"],
       "price": "210",
       "network": "4G",
       "simcard": "1",
@@ -415,11 +286,7 @@
       "productModel": "Magic 5 Ultimate",
       "memory": "512",
       "productColor": "Black",
-      "img": [
-        "/images/honor-magic-5-ultimate.webp",
-        "/images/honor-magic-5-ultimate.webp",
-        "/images/honor-magic-5-ultimate.webp"
-      ],
+      "img": ["/images/honor-magic-5-ultimate.webp", "/images/honor-magic-5-ultimate.webp", "/images/honor-magic-5-ultimate.webp"],
       "price": "960",
       "network": "4G",
       "simcard": "1",
@@ -431,11 +298,7 @@
       "productModel": "X9A",
       "memory": "256",
       "productColor": "Silver",
-      "img": [
-        "/images/honor-x9a-silver.jpeg",
-        "/images/honor-x9a-silver.jpeg",
-        "/images/honor-x9a-silver.jpeg"
-      ],
+      "img": ["/images/honor-x9a-silver.jpeg", "/images/honor-x9a-silver.jpeg", "/images/honor-x9a-silver.jpeg"],
       "price": "300",
       "network": "4G",
       "simcard": "1",
@@ -447,11 +310,7 @@
       "productModel": "80 SE",
       "memory": "128",
       "productColor": "Blue",
-      "img": [
-        "/images/honor-80se-blue.jpg",
-        "/images/honor-80se-blue.jpg",
-        "/images/honor-80se-blue.jpg"
-      ],
+      "img": ["/images/honor-80se-blue.jpg", "/images/honor-80se-blue.jpg", "/images/honor-80se-blue.jpg"],
       "price": "340",
       "network": "4G",
       "simcard": "1",
@@ -463,11 +322,7 @@
       "productModel": "Play 40 Plus",
       "memory": "128",
       "productColor": "Blue",
-      "img": [
-        "/images/honor-play-40-plus-2.jpg",
-        "/images/honor-play-40-plus-2.jpg",
-        "/images/honor-play-40-plus-2.jpg"
-      ],
+      "img": ["/images/honor-play-40-plus-2.jpg", "/images/honor-play-40-plus-2.jpg", "/images/honor-play-40-plus-2.jpg"],
       "price": "150",
       "network": "4G",
       "simcard": "1",
@@ -480,11 +335,7 @@
       "productBrand": "Apple",
       "productModel": "Iphone MagSafe to USB-C Cable",
       "productColor": "White",
-      "img": [
-        "/images/new-accessory-1.png",
-        "/images/new-accessory-1.png",
-        "/images/new-accessory-1.png"
-      ],
+      "img": ["/images/new-accessory-1.png", "/images/new-accessory-1.png", "/images/new-accessory-1.png"],
       "price": "89.99",
       "comments": []
     },
@@ -493,11 +344,7 @@
       "productBrand": "Apple",
       "productModel": "Air Tag Leather Loop",
       "productColor": "Red",
-      "img": [
-        "/images/new-accessory-2.png",
-        "/images/new-accessory-2.png",
-        "/images/new-accessory-2.png"
-      ],
+      "img": ["/images/new-accessory-2.png", "/images/new-accessory-2.png", "/images/new-accessory-2.png"],
       "price": "109.9",
       "comments": []
     },
@@ -506,11 +353,7 @@
       "productBrand": "Apple",
       "productModel": "AirPods Max",
       "productColor": "Green",
-      "img": [
-        "/images/new-accessory-3.png",
-        "/images/new-accessory-3.png",
-        "/images/new-accessory-3.png"
-      ],
+      "img": ["/images/new-accessory-3.png", "/images/new-accessory-3.png", "/images/new-accessory-3.png"],
       "price": "1279",
       "comments": []
     },
@@ -518,11 +361,7 @@
       "id": "8b93965e-9efa-403a-b2cb-5cffb38fd139",
       "productBrand": "Apple",
       "productModel": "AirPods Pro with Wireless Charging Case",
-      "img": [
-        "/images/new-accessory-4.png",
-        "/images/new-accessory-4.png",
-        "/images/new-accessory-4.png"
-      ],
+      "img": ["/images/new-accessory-4.png", "/images/new-accessory-4.png", "/images/new-accessory-4.png"],
       "productColor": "White",
       "price": "549.9",
       "comments": []
@@ -531,11 +370,7 @@
       "id": "1756fced-55f7-4c22-a716-32a641ed0bd2",
       "productBrand": "Apple",
       "productModel": "Mixfly Lightning to HDMI Adapter for iPhone to TV",
-      "img": [
-        "/images/new-accessory-5.png",
-        "/images/new-accessory-5.png",
-        "/images/new-accessory-5.png"
-      ],
+      "img": ["/images/new-accessory-5.png", "/images/new-accessory-5.png", "/images/new-accessory-5.png"],
       "productColor": "White",
       "price": "119",
       "comments": []
@@ -544,11 +379,7 @@
       "id": "5766e3a8-0e89-403c-a1ad-e754774eaeea",
       "productBrand": "Apple",
       "productModel": "iPhone Adapter",
-      "img": [
-        "/images/new-accessory-6.png",
-        "/images/new-accessory-6.png",
-        "/images/new-accessory-6.png"
-      ],
+      "img": ["/images/new-accessory-6.png", "/images/new-accessory-6.png", "/images/new-accessory-6.png"],
       "productColor": "White",
       "price": "27.9",
       "comments": []
@@ -557,11 +388,7 @@
       "id": "331d73ab-6d2b-416c-bf98-6c1b646b01aa",
       "productBrand": "GNMN",
       "productModel": "Bluetooth Headphones Wireless Earbuds",
-      "img": [
-        "/images/new-accessory-7.png",
-        "/images/new-accessory-7.png",
-        "/images/new-accessory-7.png"
-      ],
+      "img": ["/images/new-accessory-7.png", "/images/new-accessory-7.png", "/images/new-accessory-7.png"],
       "productColor": "Black",
       "price": "129.95",
       "comments": []
@@ -570,11 +397,7 @@
       "id": "8721dd6a-1512-40f0-b0ce-a0c3e11e1eb5",
       "productBrand": "Samsung",
       "productModel": "Galaxy Buds Live True Wireless Earbuds",
-      "img": [
-        "/images/new-accessory-8.png",
-        "/images/new-accessory-8.png",
-        "/images/new-accessory-8.png"
-      ],
+      "img": ["/images/new-accessory-8.png", "/images/new-accessory-8.png", "/images/new-accessory-8.png"],
       "productColor": "Black",
       "price": "179.99",
       "comments": []
@@ -583,11 +406,7 @@
       "id": "34a9df59-535b-44d5-8cc9-7f8184459b29",
       "productBrand": "Samsung",
       "productModel": "Wireless Charger Fast Charge Pad",
-      "img": [
-        "/images/new-accessory-9.png",
-        "/images/new-accessory-9.png",
-        "/images/new-accessory-9.png"
-      ],
+      "img": ["/images/new-accessory-9.png", "/images/new-accessory-9.png", "/images/new-accessory-9.png"],
       "productColor": "White",
       "price": "31.89",
       "comments": []
@@ -596,11 +415,7 @@
       "id": "c4065118-e511-4826-b75a-625e335908f3",
       "productBrand": "Samsung",
       "productModel": "Galaxy S22 S-View Flip Cover",
-      "img": [
-        "/images/new-accessory-10.png",
-        "/images/new-accessory-10.png",
-        "/images/new-accessory-10.png"
-      ],
+      "img": ["/images/new-accessory-10.png", "/images/new-accessory-10.png", "/images/new-accessory-10.png"],
       "productColor": "Black",
       "price": "23.99",
       "comments": []
@@ -609,11 +424,7 @@
       "id": "36788774-af2c-457a-8480-23f1f01c7ff6",
       "productBrand": "Beats",
       "productModel": "Studio3 Wireless Noise Cancelling Over-Ear Headphones",
-      "img": [
-        "/images/new-accessory-11.png",
-        "/images/new-accessory-11.png",
-        "/images/new-accessory-11.png"
-      ],
+      "img": ["/images/new-accessory-11.png", "/images/new-accessory-11.png", "/images/new-accessory-11.png"],
       "productColor": "Black",
       "price": "156.59",
       "comments": []
@@ -622,11 +433,7 @@
       "id": "be3a08f4-d0ee-4840-847a-fe0223d4ca46",
       "productBrand": "Beats",
       "productModel": "Fit Pro - True Wireless Noise Cancelling Earbuds",
-      "img": [
-        "/images/new-accessory-12.png",
-        "/images/new-accessory-12.png",
-        "/images/new-accessory-12.png"
-      ],
+      "img": ["/images/new-accessory-12.png", "/images/new-accessory-12.png", "/images/new-accessory-12.png"],
       "productColor": "Black",
       "price": "199.95",
       "comments": []
@@ -635,11 +442,7 @@
       "id": "5a64a0fe-a224-4f12-b441-879da991045e",
       "productBrand": "Soundcore",
       "productModel": "Anker Life Q20 Hybrid Active Noise Cancelling Headphones",
-      "img": [
-        "/images/new-accessory-13.png",
-        "/images/new-accessory-13.png",
-        "/images/new-accessory-13.png"
-      ],
+      "img": ["/images/new-accessory-13.png", "/images/new-accessory-13.png", "/images/new-accessory-13.png"],
       "productColor": "Black",
       "price": "65",
       "comments": []
@@ -650,11 +453,7 @@
       "id": "0baa71ab-bcb9-4031-ae3d-f8f2cfe084c8",
       "productBrand": "Fitbit",
       "productModel": "Versa 2 Health and Fitness Smartwatch",
-      "img": [
-        "/images/watch-1.jpg",
-        "/images/watch-1.jpg",
-        "/images/watch-1.jpg"
-      ],
+      "img": ["/images/watch-1.jpg", "/images/watch-1.jpg", "/images/watch-1.jpg"],
       "productColor": "Black",
       "price": "118.95",
       "comments": []
@@ -663,11 +462,7 @@
       "id": "fd4c6e00-fe77-4626-86e6-e31b27f9a8b2",
       "productBrand": "Fitbit",
       "productModel": "Versa 4 Fitness Smartwatch",
-      "img": [
-        "/images/watch-2.jpg",
-        "/images/watch-2.jpg",
-        "/images/watch-2.jpg"
-      ],
+      "img": ["/images/watch-2.jpg", "/images/watch-2.jpg", "/images/watch-2.jpg"],
       "productColor": "Black",
       "price": "198.95",
       "comments": []
@@ -676,11 +471,7 @@
       "id": "67bd1dd0-a036-4833-94fe-75eb4c6e8fde",
       "productBrand": "Samsung",
       "productModel": "Galaxy Watch 5 Pro",
-      "img": [
-        "/images/watch-3.jpg",
-        "/images/watch-3.jpg",
-        "/images/watch-3.jpg"
-      ],
+      "img": ["/images/watch-3.jpg", "/images/watch-3.jpg", "/images/watch-3.jpg"],
       "productColor": "Black",
       "price": "394.49",
       "comments": []
@@ -689,11 +480,7 @@
       "id": "bfa8d884-4d22-4ead-8c67-7157956937e4",
       "productBrand": "Samsung",
       "productModel": "Galaxy Watch 5",
-      "img": [
-        "/images/watch-4.jpg",
-        "/images/watch-4.jpg",
-        "/images/watch-4.jpg"
-      ],
+      "img": ["/images/watch-4.jpg", "/images/watch-4.jpg", "/images/watch-4.jpg"],
       "productColor": "Gray",
       "price": "118.95",
       "comments": []
@@ -702,11 +489,7 @@
       "id": "8fcca8e8-8342-49ae-b412-c5c20da4268d",
       "productBrand": "Apple",
       "productModel": "Watch SE (2nd Gen) [GPS 40mm] Smart Watch",
-      "img": [
-        "/images/watch-5.jpg",
-        "/images/watch-5.jpg",
-        "/images/watch-5.jpg"
-      ],
+      "img": ["/images/watch-5.jpg", "/images/watch-5.jpg", "/images/watch-5.jpg"],
       "productColor": "Gray",
       "price": "209.41",
       "comments": []
@@ -715,11 +498,7 @@
       "id": "6f22dd95-d8b2-4d87-8e79-69fc23a169ae",
       "productBrand": "Apple",
       "productModel": "Watch Series 8 [GPS 41mm] Smart Watch",
-      "img": [
-        "/images/watch-6.jpg",
-        "/images/watch-6.jpg",
-        "/images/watch-6.jpg"
-      ],
+      "img": ["/images/watch-6.jpg", "/images/watch-6.jpg", "/images/watch-6.jpg"],
       "productColor": "Starlight",
       "price": "329",
       "comments": []
