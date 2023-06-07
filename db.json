@@ -38,7 +38,39 @@
   ],
   "favorites": [],
   "basket": [],
-  "unregisteredOrderInfo": [],
+  "unregisteredOrderInfo": [
+    {
+      "id": 72312620821712,
+      "name": "Hajar ",
+      "surname": "Ibrahimova",
+      "email": "ibrahimlihecer97@gmail.com",
+      "phone": 732642342,
+      "prefix": "070",
+      "addresses": [
+        {
+          "address": "hgfghf",
+          "apartment": "kjhjh",
+          "comment": "rtrt"
+        }
+      ],
+      "orders": [
+        {
+          "paymentMethod": "Kart ilə ödəmə",
+          "products": [
+            {
+              "productId": "94e1735e-63e4-4134-b74e-e4ec006755b9",
+              "quantity": 3
+            }
+          ],
+          "totalPrice": 1025,
+          "cardNumber": "8746 7562 3858 6345",
+          "cardName": "Hajar Ibrahimova",
+          "expiryDate": "12/34",
+          "cvv": "123"
+        }
+      ]
+    }
+  ],
   "phones": [
     {
       "id": "94e1735e-63e4-4134-b74e-e4ec006755b9",
@@ -62,7 +94,15 @@
       "price": "450",
       "network": "4G",
       "simcard": "1",
-      "comments": []
+      "comments": [
+        {
+          "name": "Hajar ",
+          "surname": "Ibrahimova",
+          "email": "ibrahimlihecer97@gmail.com",
+          "comment": "Ela!",
+          "rating": 5
+        }
+      ]
     },
     {
       "id": "d62bceb2-e2f9-4ff1-8725-ea1a0983e85f",
