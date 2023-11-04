@@ -35,12 +35,12 @@ const UserPayment = () => {
 
   const getData = async () => {
     if (isLoggedIn && id) {
-      await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
         const user = res.data;
         setUsers([user]);
       });
     } else if (!isLoggedIn && unregistered_user_id) {
-      await axios.get(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${unregistered_user_id}.json`).then((res) => {
         const user = res.data;
         setUsers([user]);
       });
@@ -98,7 +98,7 @@ const UserPayment = () => {
 
     if (isLoggedIn) {
       await axios
-        .put(`http://localhost:8001/users/${id}`, updatedUser)
+        .put(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`, updatedUser)
         .then((res) => {
           console.log("User updated successfully:", res.data);
         })
@@ -107,7 +107,7 @@ const UserPayment = () => {
         });
     } else {
       await axios
-        .patch(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`, updatedUser)
+        .patch(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo${unregistered_user_id}.json`, updatedUser)
         .then((res) => {
           navigate("/completed-order-detail", {
             state: {
@@ -142,8 +142,8 @@ const UserPayment = () => {
               <Divider type="horizontal" />
               <div className="payment_user-info">
                 {isLoggedIn ? (
-                  users.map((user) => (
-                    <div>
+                  users.map((user,index) => (
+                    <div key={index}>
                       {editInfoClicked ? (
                         <ClickedInfoEdit getData={getData} user={user} editInfoClicked={editInfoClicked} setEditInfoClicked={setEditInfoClicked} users={users} setUsers={setUsers} />
                       ) : (
@@ -159,8 +159,8 @@ const UserPayment = () => {
                 <Divider type="horizontal" />
                 <div className="product__delivery">
                   {isLoggedIn ? (
-                    users?.map((user) => (
-                      <div className="customer_personal_info__payment">
+                    users?.map((user,index) => (
+                      <div className="customer_personal_info__payment" key={index}>
                         {editAddressClicked ? (
                           <ClickedAddressEdit users={users} setUsers={setUsers} editAddressClicked={editAddressClicked} setEditAddressClicked={setEditAddressClicked} />
                         ) : (

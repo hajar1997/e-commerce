@@ -13,7 +13,7 @@ const ClickedAddressEdit = ({setUsers,users,setEditAddressClicked,editAddressCli
   const onFinishAddress = async (values) => {
     const user = users[0];
     await axios
-      .put(`http://localhost:8001/users/${id}`, {
+      .put(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`, {
         ...user,
         addresses: [
           {
@@ -36,7 +36,7 @@ const ClickedAddressEdit = ({setUsers,users,setEditAddressClicked,editAddressCli
   };
 
   const getData = async () => {
-    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+    await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
       const user = res.data;
       setUsers([user]);
       const initialValues = {

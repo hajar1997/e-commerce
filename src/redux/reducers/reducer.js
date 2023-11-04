@@ -10,6 +10,7 @@ import {
   LOADING_OFF,
   SET_FAVORITES,
   SET_BASKET,
+  MENU_CLICKED,
 } from "../types/index";
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
   error: null,
   favorites: [],
   basket: [],
+  isMenuClicked: false,
 };
 
 const initialUser = {
@@ -70,6 +72,12 @@ export const mainReducer = (state = initialState, action) => {
       return {
         ...state,
         basket: action.payload,
+      };
+    }
+    case MENU_CLICKED: {
+      return {
+        ...state,
+        isMenuClicked: action.payload,
       };
     }
     default:

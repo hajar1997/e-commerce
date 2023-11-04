@@ -11,6 +11,7 @@ const NewProducts = () => {
   const dispatch = useDispatch();
   const main = useSelector((state) => state.main);
   const favorites = useSelector((state) => state.main.favorites);
+  const phonesArray = Object.values(main.phones);
 
   const isProductFavorite = (id) => {
     return favorites.some((favorite) => favorite.id === id);
@@ -79,12 +80,12 @@ const NewProducts = () => {
           <h6>Yeni gələn məhsullar</h6>
           <a href="/products/phones">
             Hamısına bax
-            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px", background: "#333333;" }} />
+            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px" }} />
           </a>
         </div>
         <div className="cards__wrapper">
           <Slider {...settings}>
-            {main.phones.map((product) => (
+            {phonesArray.map((product) => (
               <div className="card-wrapper" key={product.id}>
                 <Link to={`/product-details/phones/${product.productBrand}/${product.productModel}/${product.id}`}>
                   <img src={product.img[0]} />
@@ -112,7 +113,7 @@ const NewProducts = () => {
         <div className="bottom-heading">
           <a href="/products/phones">
             Hamısına bax
-            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px", background: "#333333;" }} />
+            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px" }} />
           </a>
         </div>
       </div>

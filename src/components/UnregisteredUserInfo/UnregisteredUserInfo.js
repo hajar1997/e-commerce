@@ -39,19 +39,19 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
   const phoneNumber = users.map((user) => user.phone);
   const formattedPhoneNumber = formatNumberWithDashes(phoneNumber);
 
+
+  
   const onFinish = async (values) => {
     const randomId = Math.floor(Math.random() * 100000000000000);
+    const data = {
+      id: randomId,
+      ...values,
+    };
     await axios
-      .post("http://localhost:8001/unregisteredOrderInfo", {
-        id: randomId,
-        name: values.name,
-        surname: values.surname,
-        email: values.email,
-        phone: values.phone,
-        prefix: values.prefix,
-      })
+      .put(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${randomId}.json`, data)
       .then((res) => {
         setSubmitted(true);
+        console.log(res);
         localStorage.setItem("unregistered_user_id", res.data.id);
         notification.open({
           type: "success",
@@ -63,12 +63,13 @@ const UnregisteredUserInfo = ({ setEditInfoClicked, editInfoClicked }) => {
         message.error("Xəta baş verdi");
       });
   };
+
   useEffect(() => {
     const id = localStorage.getItem("unregistered_user_id");
     const getData = async () => {
       if (id) {
         await axios
-          .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
+          .get(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${id}.json`)
           .then((res) => {
             const user = res.data;
             setUsers([user]);

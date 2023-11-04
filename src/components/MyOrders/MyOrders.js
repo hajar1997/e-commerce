@@ -20,7 +20,7 @@ const MyOrders = ({ handleMenuClick }) => {
 
   const getData = async () => {
     if (isLoggedIn) {
-      await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
         const user = res.data;
         setUsers([user]);
       });

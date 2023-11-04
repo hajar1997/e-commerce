@@ -29,12 +29,12 @@ const CreditCardForm = () => {
 
   const getData = async () => {
     if (isLoggedIn && id) {
-      await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
         const user = res.data;
         setUsers([user]);
       });
     } else if (!isLoggedIn && unregistered_user_id) {
-      await axios.get(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`).then((res) => {
+      await axios.get(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${unregistered_user_id}.json`).then((res) => {
         const user = res.data;
         setUsers([user]);
       });
@@ -77,7 +77,7 @@ const CreditCardForm = () => {
 
     if (isLoggedIn) {
       await axios
-        .put(`http://localhost:8001/users/${id}`, updatedUser)
+        .put(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`, updatedUser)
         .then((res) => {
           console.log("User updated successfully:", res.data);
         })
@@ -86,7 +86,7 @@ const CreditCardForm = () => {
         });
     } else {
       await axios
-        .patch(`http://localhost:8001/unregisteredOrderInfo/${unregistered_user_id}`, updatedUser)
+        .put(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${unregistered_user_id}.json`, updatedUser)
         .then((res) => {
           navigate("/completed-order-detail", {
             state: {

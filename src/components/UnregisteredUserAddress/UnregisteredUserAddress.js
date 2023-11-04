@@ -22,7 +22,7 @@ const UnregisteredUserAddress = () => {
       },
     ];
     await axios
-      .patch(`http://localhost:8001/unregisteredOrderInfo/${unregistered_id}`, {
+      .patch(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${unregistered_id}.json`, {
         addresses: updatedData,
       })
       .then((res) => {
@@ -45,7 +45,7 @@ const UnregisteredUserAddress = () => {
   const getData = async () => {
     if (unregistered_id) {
       await axios
-        .get(`http://localhost:8001/unregisteredOrderInfo/${unregistered_id}`)
+        .get(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${unregistered_id}.json`)
         .then((res) => {
           const user = res.data;
           setUsers([user]);

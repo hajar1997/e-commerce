@@ -35,7 +35,7 @@ const OrderDetails = ({ handleMenuClick }) => {
   const formattedPhoneNumber = formatNumberWithDashes(phoneNumber);
   
   const getData = async () => {
-    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+    await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
       const user = res.data;
       setUsers([user]);
       const foundOrder = user.orders.find((order) => order.products.some((product) => product.productId === productId));

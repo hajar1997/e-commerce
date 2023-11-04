@@ -16,7 +16,7 @@ const MyAddress = () => {
   }, []);
 
   const getData = async () => {
-    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+    await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
       const user = res.data;
       setUser(user);
       deliveryForm.setFieldsValue(user.addresses[0]);
@@ -26,7 +26,7 @@ const MyAddress = () => {
   const onFinish = async (values) => {
     if (user.length === 0) {
       await axios
-        .post(`http://localhost:8001/users/${id}`, {
+        .post(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`, {
           ...user,
           addresses: [
             {
@@ -48,7 +48,7 @@ const MyAddress = () => {
         });
     } else {
       await axios
-        .put(`http://localhost:8001/users/${id}`, {
+        .put(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`, {
           ...user,
           addresses: [
             {

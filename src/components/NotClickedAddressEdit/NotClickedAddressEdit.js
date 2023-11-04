@@ -25,8 +25,8 @@ const NotClickedAddressEdit = ({ user, setEditAddressClicked, editAddressClicked
         </div>
       </div>
       <div className="customer_infos__container">
-        {user?.addresses?.map((a) => (
-          <div className="d-flex flex-column">
+        {user?.addresses?.map((a,index) => (
+          <div className="d-flex flex-column" key={index}>
             <span>{a.address}</span>
             <span className="mt-2">{a.apartment}</span>
           </div>

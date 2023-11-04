@@ -18,7 +18,7 @@ const UnregisteredAddressEdit = ({ user, setUsers, setEditAddressClicked, editAd
       },
     ];
     await axios
-      .put(`http://localhost:8001/unregisteredOrderInfo/${id}`, {
+      .put(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${id}.json`, {
         ...user,
         addresses: updatedData,
       })
@@ -37,7 +37,7 @@ const UnregisteredAddressEdit = ({ user, setUsers, setEditAddressClicked, editAd
 
   const getData = async () => {
     await axios
-      .get(`http://localhost:8001/unregisteredOrderInfo/${id}`)
+      .get(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${id}.json`)
       .then((res) => {
         const user = res.data;
         setUsers([user]);

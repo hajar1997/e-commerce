@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import { menuClicked } from "../../redux/actions/action";
 
 const MegaMenu = () => {
   const categories = ["Apple", "Samsung", "Xiaomi", "Redmi", "Bütün Brendlər", "Aksessuarlar", "Endirimlər"];
-
+  const main = useSelector((state) => state.main);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    const body = document.body;
+    if (main.isMenuClicked) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "auto";
+    }
+
+    return () => {
+      body.style.overflow = "auto";
+    };
+  }, [main.isMenuClicked]);
 
   return (
     <div>
@@ -156,10 +174,22 @@ const MegaMenu = () => {
             ))}
           </ul>
           <div className="login-and-register-wrapper container">
-            <button className="btn login-btn" onClick={() => navigate("/login")}>
+            <button
+              className="btn login-btn"
+              onClick={() => {
+                navigate("/login");
+                dispatch(menuClicked(false));
+              }}
+            >
               Daxil ol
             </button>
-            <button className="btn register-btn" onClick={() => navigate("/register")}>
+            <button
+              className="btn register-btn"
+              onClick={() => {
+                navigate("/register");
+                dispatch(menuClicked(false));
+              }}
+            >
               Qeydiyyat
             </button>
           </div>

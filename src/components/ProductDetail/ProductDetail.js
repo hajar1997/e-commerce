@@ -5,7 +5,6 @@ import { useForm } from "antd/es/form/Form";
 import { notification } from "antd";
 import { fetchData, addProductToBasket } from "../../redux/actions/action";
 import ImageGallery from "react-image-gallery";
-import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ShoppingCartOutlined, FormOutlined, InfoCircleOutlined } from "@ant-design/icons";
@@ -16,12 +15,10 @@ const ProductDetail = () => {
   const { category, productBrand, id } = useParams();
   const [productCount, setProductCount] = useState(0);
   const [rating, setRating] = useState(0);
-  const [comments, setComments] = useState([]);
-
   const dispatch = useDispatch();
   const main = useSelector((state) => state.main);
-  const product = main[category]?.find((product) => product.id === id);
 
+  const product = main[category]?.find((product) => product.id === id);
   const navigate = useNavigate();
   const [form] = useForm();
 
@@ -49,16 +46,7 @@ const ProductDetail = () => {
     }
   };
 
-  const fetchComments = async () => {
-    await axios
-      .get(`http://localhost:8001/${category}/${id}`)
-      .then((res) => setComments(res.data.comments))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
+  const comments = product?.comments?.map((comment) => comment);
 
   const stars = Array.from({ length: 5 }, (_, index) => {
     const newRating = index + 1;
@@ -78,24 +66,29 @@ const ProductDetail = () => {
       rating: rating,
     };
 
-    const currentProduct = main[category]?.find((product) => product.id === id);
-    currentProduct.comments.push(data);
+    const updatedProduct = main[category]?.map((product) => {
+      if (product.id === id) {
+        if (!product.comments) {
+          product.comments = [];
+        }
+        product.comments.push(data);
+      }
+      return product;
+    });
 
     axios
-      .put(`http://localhost:8001/${category}/${id}`, currentProduct)
+      .put(`${process.env.REACT_APP_DATABASE_URL}/${category}.json`, updatedProduct)
       .then((res) => {
         form.resetFields();
-        notification["success"]({
+        notification.open({
+          type: "success",
           message: "Rəyiniz göndərildi!",
         });
-        fetchComments();
         setRating(0);
       })
       .catch((err) => {
         console.log(err);
-        notification["error"]({
-          message: "Rəyiniz göndərilmədi!",
-        });
+        notification("error");
       });
   };
 
@@ -147,11 +140,11 @@ const ProductDetail = () => {
             <div className="rating_and_comments">
               <div className="star-rating">{stars}</div>
               <div className="rating_count">
-                <span>({comments.length})</span>
+                <span>({comments?.length})</span>
               </div>
               <Divider type="vertical" />
               <div className="comment_count">
-                <a href="#comment">{comments.length} rəy</a>
+                <a href="#comment">{comments?.length} rəy</a>
               </div>
             </div>
             <div className="product_price">
@@ -251,7 +244,7 @@ const ProductDetail = () => {
                     <div className="comments_wrapper">
                       {comments &&
                         comments.map((comment) => (
-                          <div className="comment">
+                          <div className="comment" key={comment.id}>
                             <div className="row mt-5">
                               <div className="col-lg-3">
                                 <div className="star_count">

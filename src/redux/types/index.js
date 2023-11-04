@@ -15,3 +15,4 @@ export const FAVORITE_COUNT = "FAVORITE_COUNT";
 export const SET_BASKET = "SET_BASKET";
 export const FETCH_BASKET = "FETCH_BASKET";
 export const BASKET_COUNT = "BASKET_COUNT";
+export const MENU_CLICKED = "MENU_CLICKED";

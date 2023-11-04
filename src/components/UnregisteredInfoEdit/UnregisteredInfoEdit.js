@@ -28,7 +28,7 @@ const UnregisteredInfoEdit = ({ editInfoClicked, setEditInfoClicked, setUsers, u
   const [initialValues, setInitialValues] = useState({});
 
   const getData = async () => {
-    await axios.get(`http://localhost:8001/unregisteredOrderInfo/${id}`).then((res) => {
+    await axios.get(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${id}.json`).then((res) => {
       const user = res?.data;
       setUsers([user]);
       const initialValues = {
@@ -50,7 +50,7 @@ const UnregisteredInfoEdit = ({ editInfoClicked, setEditInfoClicked, setUsers, u
   const onFinishInfo = async (values) => {
     const user = users[0];
     await axios
-      .put(`http://localhost:8001/unregisteredOrderInfo/${id}`, {
+      .put(`${process.env.REACT_APP_DATABASE_URL}unregisteredOrderInfo/${id}.json`, {
         ...user,
         id,
         name: values.name,

@@ -31,7 +31,6 @@ const AccessToProducts = ({ main, fetchData }) => {
                     icon={faChevronRight}
                     style={{
                       width: "6px",
-                      background: "#333333;",
                       marginLeft: "17px",
                     }}
                   />
@@ -53,7 +52,6 @@ const AccessToProducts = ({ main, fetchData }) => {
                     icon={faChevronRight}
                     style={{
                       width: "6px",
-                      background: "#333333;",
                       marginLeft: "17px",
                     }}
                   />
@@ -73,7 +71,6 @@ const AccessToProducts = ({ main, fetchData }) => {
                     icon={faChevronRight}
                     style={{
                       width: "6px",
-                      background: "#333333;",
                       marginLeft: "17px",
                     }}
                   />

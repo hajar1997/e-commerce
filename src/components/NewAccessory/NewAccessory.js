@@ -79,7 +79,7 @@ const NewAccessory = () => {
           <h6>Yeni gələn aksessuarlar</h6>
           <a href="/products/accessories">
             Hamısına bax
-            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px", background: "#333333;" }} />
+            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px" }} />
           </a>
         </div>
         <div className="cards__wrapper">
@@ -112,7 +112,7 @@ const NewAccessory = () => {
         <div className="bottom-heading">
           <a href="/products/accessories">
             Hamısına bax
-            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px", background: "#333333;" }} />
+            <FontAwesomeIcon icon={faChevronRight} style={{ width: "6px" }} />
           </a>
         </div>
       </div>

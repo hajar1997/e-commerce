@@ -71,7 +71,7 @@ const OurPartners = () => {
         <div className="brands-container mt-5">
           <Slider {...settings}>
             {images.map((image) => (
-              <div className="brand">
+              <div className="brand" key={image.img}>
                 <img src={image.img} />
               </div>
             ))}

@@ -27,7 +27,7 @@ const ClickedInfoEdit = ({user,editInfoClicked,setEditInfoClicked,users,setUsers
   const id = localStorage.getItem("current_id");
   
   const getData = async () => {
-    await axios.get(`http://localhost:8001/users/${id}`).then((res) => {
+    await axios.get(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`).then((res) => {
       const user = res.data;
       setUsers([user]);
     });
@@ -42,7 +42,7 @@ const ClickedInfoEdit = ({user,editInfoClicked,setEditInfoClicked,users,setUsers
     const user = users[0];
     if (email !== user.email) {
       const existingUser = await axios.get(
-        `http://localhost:8001/users?email=${values.email}`
+        `${process.env.REACT_APP_DATABASE_URL}users?email=${values.email}`
       );
       if (existingUser.data.length > 0) {
         notification.open({
@@ -53,7 +53,7 @@ const ClickedInfoEdit = ({user,editInfoClicked,setEditInfoClicked,users,setUsers
       }
     }
     await axios
-      .put(`http://localhost:8001/users/${id}`, {
+      .put(`${process.env.REACT_APP_DATABASE_URL}users/${id}.json`, {
         ...user,
         id,
         name: values.name,
